@@ -2,6 +2,10 @@
 
 > [GitHub Action](https://github.com/features/actions) for Trivy
 
+[![GitHub Release][release-img]][release]
+[![GitHub Marketplace][marketplace-img]][marketplace]
+[![License][license-img]][license]
+
 ## Table of Contents
 
 - [Usage](#usage)
@@ -33,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/my-organization/my-app:${{ github.sha }}
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
       - name: Run vulnerability scanner
         uses: aquasecurity/trivy-action@0.0.5
         with:
@@ -55,3 +59,11 @@ Following inputs can be used as `step.with` keys:
 | `format`    | String | `table`                            | Output format (`table`, `json`)               |
 | `exit-code` | String | `0`                                | exit code when vulnerabilities were found     |
 | `severity`  | String | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | severities of vulnerabilities to be displayed |
+
+
+[release]: https://github.com/aquasecurity/trivy-action/releases/latest
+[release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
+[marketplace]: https://github.com/marketplace/actions/trivy-vulnerability-scanner
+[marketplace-img]: https://img.shields.io/badge/marketplace-trivy--action-blue?logo=github
+[license]: https://github.com/aquasecurity/trivy-action/blob/master/LICENSE
+[license-img]: https://img.shields.io/github/license/aquasecurity/trivy-action
