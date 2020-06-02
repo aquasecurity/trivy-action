@@ -1,0 +1,13 @@
+name: 'Trivy Action'
+description: 'Scan container image for vulnerabilities with Trivy'
+inputs:
+  image-ref: # Docker image reference, e.g. alpine:3.10.2
+    description: 'Docker image reference'
+outputs:
+  scan-report:
+    description: 'Vulnerability report is JSON'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.image-ref }}

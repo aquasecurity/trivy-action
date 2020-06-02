@@ -1,0 +1,1 @@
+FROM aquasec.trivy:latest

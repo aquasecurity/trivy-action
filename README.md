@@ -1,0 +1,2 @@
+# Trivy GitHub Action
+
