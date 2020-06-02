@@ -9,6 +9,10 @@ inputs:
     description: 'exit code when vulnerabilities were found'
     required: false
     default: '0'
+  severity:
+    description: 'severities of vulnerabilities to be displayed'
+    required: false
+    default: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
   format:
     description: 'output format (table, json)'
     required: false
@@ -24,4 +28,5 @@ runs:
     - 'image'
     - '--format=${{ inputs.format }}'
     - '--exit-code=${{ inputs.exit-code }}'
+    - '--severity=${{ inputs.severity }}'
     - '${{ inputs.image-ref }}'
