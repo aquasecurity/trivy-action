@@ -13,9 +13,13 @@ inputs:
     description: 'output format (table, json)'
     required: false
     default: 'table'
+  version:
+    description: 'version of Trivy to use'
+    required: false
+    default: 'latest'
 runs:
   using: 'docker'
-  image: 'docker://docker.io/aquasec/trivy:latest'
+  image: 'docker://docker.io/aquasec/trivy:${{ inputs.version }}'
   args:
     - 'image'
     - '--format=${{ inputs.format }}'
