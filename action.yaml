@@ -9,8 +9,15 @@ inputs:
     description: 'Exit code'
     required: false
     default: '0'
+  format:
+    description: 'Output format'
+    required: false
+    default: 'table'
 runs:
   using: 'docker'
   image: 'docker://docker.io/aquasec/trivy:latest'
   args:
-    - --exit-code ${{ inputs.exit-code }} ${{ inputs.image-ref }}
+    - 'image'
+    - '--format=${{ inputs.format }}'
+    - '--exit-code=${{ inputs.exit-code }}'
+    - '${{ inputs.image-ref }}'
