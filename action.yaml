@@ -1,16 +1,16 @@
 name: 'Trivy Vulnerability Scanner'
 description: 'Scan container image for vulnerabilities with Trivy'
-author: 'Daniel Pacak'
+author: 'Aqua Security'
 inputs:
-  image-ref: # Docker image reference, e.g. alpine:3.10.2
-    description: 'Docker image reference'
+  image-ref:
+    description: 'image reference'
     required: true
   exit-code:
-    description: 'Exit code'
+    description: 'exit code when vulnerabilities were found'
     required: false
     default: '0'
   format:
-    description: 'Output format'
+    description: 'output format (table, json)'
     required: false
     default: 'table'
 runs:
