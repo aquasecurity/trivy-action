@@ -4,8 +4,13 @@ author: 'Daniel Pacak'
 inputs:
   image-ref: # Docker image reference, e.g. alpine:3.10.2
     description: 'Docker image reference'
+    required: true
+  exit-code:
+    description: 'Exit code'
+    required: false
+    default: '0'
 runs:
   using: 'docker'
   image: 'docker://docker.io/aquasec/trivy:latest'
   args:
-    - ${{ inputs.image-ref }}
+    - --exit-code ${{ inputs.exit-code }} ${{ inputs.image-ref }}
