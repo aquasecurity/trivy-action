@@ -1,4 +1,4 @@
-name: 'Trivy Action'
+name: 'Trivy Vulnerability Scanner'
 description: 'Scan container image for vulnerabilities with Trivy'
 author: 'Daniel Pacak'
 inputs:
