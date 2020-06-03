@@ -1,5 +1,5 @@
 name: 'Trivy Vulnerability Scanner'
-description: 'Scan container image for vulnerabilities with Trivy'
+description: 'Scans container images for vulnerabilities with Trivy'
 author: 'Aqua Security'
 inputs:
   image-ref:

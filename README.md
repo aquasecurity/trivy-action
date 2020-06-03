@@ -6,6 +6,8 @@
 [![GitHub Marketplace][marketplace-img]][marketplace]
 [![License][license-img]][license]
 
+![](docs/images/trivy-action.png)
+
 ## Table of Contents
 
 - [Usage](#usage)
@@ -57,9 +59,8 @@ Following inputs can be used as `step.with` keys:
 |-------------|--------|------------------------------------|-----------------------------------------------|
 | `image-ref` | String |                                    | Image reference, e.g. `alpine:3.10.2`         |
 | `format`    | String | `table`                            | Output format (`table`, `json`)               |
-| `exit-code` | String | `0`                                | exit code when vulnerabilities were found     |
-| `severity`  | String | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | severities of vulnerabilities to be displayed |
-
+| `exit-code` | String | `0`                                | Exit code when vulnerabilities were found     |
+| `severity`  | String | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
