@@ -41,11 +41,12 @@ jobs:
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
       - name: Run vulnerability scanner
-        uses: aquasecurity/trivy-action@0.0.6
+        uses: aquasecurity/trivy-action@0.0.7
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'table'
           exit-code: '1'
+          ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
 ```
 
@@ -55,12 +56,13 @@ jobs:
 
 Following inputs can be used as `step.with` keys:
 
-| Name        | Type   | Default                            | Description                                   |
-|-------------|--------|------------------------------------|-----------------------------------------------|
-| `image-ref` | String |                                    | Image reference, e.g. `alpine:3.10.2`         |
-| `format`    | String | `table`                            | Output format (`table`, `json`)               |
-| `exit-code` | String | `0`                                | Exit code when vulnerabilities were found     |
-| `severity`  | String | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
+| Name             | Type    | Default                            | Description                                   |
+|------------------|---------|------------------------------------|-----------------------------------------------|
+| `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
+| `format`         | String  | `table`                            | Output format (`table`, `json`)               |
+| `exit-code`      | String  | `0`                                | Exit code when vulnerabilities were found     |
+| `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
+| `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github

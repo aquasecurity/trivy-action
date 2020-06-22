@@ -9,6 +9,10 @@ inputs:
     description: 'exit code when vulnerabilities were found'
     required: false
     default: '0'
+  ignore-unfixed:
+    description: 'ignore unfixed vulnerabilities'
+    required: false
+    default: false
   severity:
     description: 'severities of vulnerabilities to be displayed'
     required: false
@@ -24,5 +28,6 @@ runs:
     - 'image'
     - '--format=${{ inputs.format }}'
     - '--exit-code=${{ inputs.exit-code }}'
+    - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
     - '--severity=${{ inputs.severity }}'
     - '${{ inputs.image-ref }}'
