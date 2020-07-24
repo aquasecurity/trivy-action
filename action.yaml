@@ -18,9 +18,13 @@ inputs:
     required: false
     default: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
   format:
-    description: 'output format (table, json)'
+    description: 'output format (table, json, sarif)'
     required: false
     default: 'table'
+  output:
+    description: 'write results to an output file'
+    required: false
+    default: 'scan.results'
 runs:
   using: 'docker'
   image: 'docker://docker.io/aquasec/trivy:latest'
@@ -30,4 +34,5 @@ runs:
     - '--exit-code=${{ inputs.exit-code }}'
     - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
     - '--severity=${{ inputs.severity }}'
+    - '--output=${{ inputs.output }}'
     - '${{ inputs.image-ref }}'
