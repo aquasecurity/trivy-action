@@ -21,16 +21,21 @@ inputs:
     description: 'output format (table, json, template)'
     required: false
     default: 'table'
-  output:
-    description: 'write results to an output file'
+  template:
+    description: 'use an existing template for rendering output (@contrib/sarif.tpl, @contrib/gitlab.tpl, @contrib/junit.tpl'
     required: false
-    default: 'scan.results'
+    default: ''
+  output:
+    description: 'writes results to a file with the specified file name'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'docker://docker.io/aquasec/trivy:latest'
   args:
     - 'image'
     - '--format=${{ inputs.format }}'
+    - '--template=${{ inputs.template }}'
     - '--exit-code=${{ inputs.exit-code }}'
     - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
     - '--severity=${{ inputs.severity }}'

@@ -60,6 +60,7 @@ Following inputs can be used as `step.with` keys:
 |------------------|---------|------------------------------------|-----------------------------------------------|
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
 | `format`         | String  | `table`                            | Output format (`table`, `json`, `template`)   |
+| `template`       | String  |                                    | Output template (`@contrib/sarif.tpl`, `@contrib/gitlab.tpl`, `@contrib/junit.tpl`)|
 | `exit-code`      | String  | `0`                                | Exit code when vulnerabilities were found     |
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
 | `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
