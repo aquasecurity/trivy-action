@@ -18,7 +18,7 @@ inputs:
     required: false
     default: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
   format:
-    description: 'output format (table, json, sarif)'
+    description: 'output format (table, json, template)'
     required: false
     default: 'table'
   output:
