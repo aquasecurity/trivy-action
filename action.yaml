@@ -39,5 +39,5 @@ runs:
     - '--exit-code=${{ inputs.exit-code }}'
     - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
     - '--severity=${{ inputs.severity }}'
-    - '--output=${{ inputs.output }}'
+    - '--output=${{ github.workspace }}/${{ inputs.output }}'
     - '${{ inputs.image-ref }}'
