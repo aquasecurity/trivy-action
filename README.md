@@ -50,6 +50,46 @@ jobs:
           severity: 'CRITICAL,HIGH'
 ```
 
+### Using Trivy with GitHub Code Scanning
+If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.14
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+      - name: Run vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+      - name: Upload Trivy scan results to Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+```
+
+You can find a more in-depth example here: https://github.com/aquasecurity/trivy-sarif-demo
+
 ## Customizing
 
 ### inputs
@@ -59,7 +99,9 @@ Following inputs can be used as `step.with` keys:
 | Name             | Type    | Default                            | Description                                   |
 |------------------|---------|------------------------------------|-----------------------------------------------|
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
-| `format`         | String  | `table`                            | Output format (`table`, `json`)               |
+| `format`         | String  | `table`                            | Output format (`table`, `json`, `template`)   |
+| `template`       | String  |                                    | Output template (`@/contrib/sarif.tpl`, `@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|
+| `output`         | String  |                                    | Save results to a file                        |
 | `exit-code`      | String  | `0`                                | Exit code when vulnerabilities were found     |
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
 | `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
