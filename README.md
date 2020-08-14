@@ -70,8 +70,6 @@ jobs:
           go-version: 1.14
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
