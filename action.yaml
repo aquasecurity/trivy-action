@@ -13,6 +13,10 @@ inputs:
     description: 'ignore unfixed vulnerabilities'
     required: false
     default: false
+  vuln-type:
+    description: 'comma-separated list of vulnerability types (os,library)'
+    required: false
+    default: 'os,library'
   severity:
     description: 'severities of vulnerabilities to be displayed'
     required: false
@@ -38,6 +42,7 @@ runs:
     - '--template=${{ inputs.template }}'
     - '--exit-code=${{ inputs.exit-code }}'
     - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
+    - '--vuln-type=${{ inputs.vuln-type }}'
     - '--severity=${{ inputs.severity }}'
     - '--output=${{ inputs.output }}'
     - '${{ inputs.image-ref }}'
