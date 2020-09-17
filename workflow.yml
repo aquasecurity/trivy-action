@@ -9,20 +9,23 @@ jobs:
     name: Build
     runs-on: ubuntu-18.04
     steps:
-      - name: Setup Go
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.14
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
-      - name: Run vulnerability scanner
-        uses: aquasecurity/trivy-action@0.0.8
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
