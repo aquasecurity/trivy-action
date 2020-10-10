@@ -1,6 +1,6 @@
 # Trivy Action
 
-> [GitHub Action](https://github.com/features/actions) for Trivy
+> [GitHub Action](https://github.com/features/actions) for [Trivy](https://github.com/aquasecurity/trivy)
 
 [![GitHub Release][release-img]][release]
 [![GitHub Marketplace][marketplace-img]][marketplace]
