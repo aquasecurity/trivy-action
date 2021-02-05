@@ -103,7 +103,7 @@ Following inputs can be used as `step.with` keys:
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
-[marketplace]: https://github.com/marketplace/actions/trivy-vulnerability-scanner
+[marketplace]: https://github.com/marketplace/actions/aqua-security-trivy
 [marketplace-img]: https://img.shields.io/badge/marketplace-trivy--action-blue?logo=github
 [license]: https://github.com/aquasecurity/trivy-action/blob/master/LICENSE
 [license-img]: https://img.shields.io/github/license/aquasecurity/trivy-action
