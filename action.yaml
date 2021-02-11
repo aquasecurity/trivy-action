@@ -2,8 +2,12 @@ name: 'Aqua Security Trivy'
 description: 'Scans container images for vulnerabilities with Trivy'
 author: 'Aqua Security'
 inputs:
+  scan-type:
+    description: 'Scan type to use for scanning vulnerability'
+    required: false
+    default: 'image'
   image-ref:
-    description: 'image reference'
+    description: 'source reference'
     required: true
   exit-code:
     description: 'exit code when vulnerabilities were found'
@@ -33,7 +37,7 @@ runs:
   using: 'docker'
   image: 'docker://docker.io/aquasec/trivy:latest'
   args:
-    - 'image'
+    - '${{ inputs.scan-type }}'
     - '--format=${{ inputs.format }}'
     - '--template=${{ inputs.template }}'
     - '--exit-code=${{ inputs.exit-code }}'

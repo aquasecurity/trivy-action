@@ -93,6 +93,7 @@ Following inputs can be used as `step.with` keys:
 
 | Name             | Type    | Default                            | Description                                   |
 |------------------|---------|------------------------------------|-----------------------------------------------|
+| `scan-type`      | String  | `image`                           | Scan type, e.g. `image`,`fs` or `repo` 
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
 | `format`         | String  | `table`                            | Output format (`table`, `json`, `template`)   |
 | `template`       | String  |                                    | Output template (`@/contrib/sarif.tpl`, `@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|

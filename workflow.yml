@@ -29,3 +29,18 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: 'trivy-results.sarif'
+
+      - name: Run Trivy vulnerability scanner on file system
+        uses: aquasecurity/trivy-action@master
+        with:
+          source-type: fs
+          image-ref: '.'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-fs-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-fs-results.sarif'
