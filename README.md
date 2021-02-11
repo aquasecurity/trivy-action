@@ -45,6 +45,7 @@ jobs:
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
+          vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 ```
 
@@ -99,6 +100,7 @@ Following inputs can be used as `step.with` keys:
 | `output`         | String  |                                    | Save results to a file                        |
 | `exit-code`      | String  | `0`                                | Exit code when vulnerabilities were found     |
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
+| `vuln-type`      | String  | `os,library`                       | Vulnerability types (os,library)              |
 | `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
