@@ -7,8 +7,12 @@ inputs:
     required: false
     default: 'image'
   image-ref:
-    description: 'source reference'
+    description: 'image reference(for backward compatibility.)'
     required: true
+  scan-ref:
+    description: 'Scan reference'
+    required: false
+    default: ${{ inputs.image-ref }}
   exit-code:
     description: 'exit code when vulnerabilities were found'
     required: false
@@ -44,4 +48,4 @@ runs:
     - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
     - '--severity=${{ inputs.severity }}'
     - '--output=${{ inputs.output }}'
-    - '${{ inputs.image-ref }}'
+    - '${{ inputs.scan-ref }}'
