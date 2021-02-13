@@ -39,13 +39,4 @@ inputs:
     default: ''
 runs:
   using: 'docker'
-  image: 'docker://docker.io/aquasec/trivy:latest'
-  args:
-    - '${{ inputs.scan-type }}'
-    - '--format=${{ inputs.format }}'
-    - '--template=${{ inputs.template }}'
-    - '--exit-code=${{ inputs.exit-code }}'
-    - '--ignore-unfixed=${{ inputs.ignore-unfixed }}'
-    - '--severity=${{ inputs.severity }}'
-    - '--output=${{ inputs.output }}'
-    - '${{  if(inputs.scan-ref) inputs.scan-ref else inputs.image-ref }}'
+  image: "Dockerfile"
