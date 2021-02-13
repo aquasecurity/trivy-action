@@ -1,10 +1,43 @@
-#!/bin/sh -l
+#!/bin/sh
 set -e
 printenv
-export INPUT_IMAGE_REF=${INPUT_IMAGE-REF}
-echo "env var1 is" $(sh -c 'echo $INPUT_IMAGE-REF')
-if [[ ${INPUT_SCAN-REF} ]]; then
-  export INPUT_IMAGE_REF=$(sh -c 'echo $INPUT_SCAN-REF')
+while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
+    case "${o}" in
+        a)
+          export scanType=${OPTARG}
+        ;;
+        b)
+          export format=${OPTARG}
+        ;;
+        c)
+          export template=${OPTARG}
+        ;;
+        d)
+          export exitCode=${OPTARG}
+        ;;
+        e)
+          export ignoreUnfixed=${OPTARG}
+        ;;
+        f)
+          export vulnType=${OPTARG}
+        ;;
+        g)
+          export severity=${OPTARG}
+        ;;
+        h)
+          export output=${OPTARG}
+        ;;
+        i)
+          export imageRef=${OPTARG}
+        ;;
+        j)
+          export scanRef=${OPTARG}
+        ;;
+   esac
+done
+
+if [ $scanRef ];then
+   imageRef=$scanRef
 fi
-echo "env var is" ${INPUT_IMAGE_REF}
-exec trivy ${INPUT_SCAN-TYPE} --format=${INPUT_FORMAT} --template=${INPUT_TEMPLATE} --exit-code=${INPUT_EXIT-CODE} --ignore-unfixed=${INPUT_IGNORE-UNFIXED} --severity=${INPUT_SEVERITY} --output=${INPUT_OUTPUT} ${INPUT_IMAGE_REF}
+echo ${scanType} $imageRef $output
+exec trivy ${scanType} --output="${output}" "${imageRef}"
