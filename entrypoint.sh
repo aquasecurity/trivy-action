@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 printenv
 while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
@@ -40,6 +40,12 @@ if [ $scanRef ];then
   imageRef=$scanRef
 fi
 
-echo ${scanType} $imageRef $output
+echo ${scanType} $imageRef $output $exitCode
 
-trivy ${scanType} --format="${format}" --template="${template}" --exit-code="${exitCode}" --output="${output}" --ignore-unfixed="${ignoreUnfixed}" --vuln-type="${vulnType}" --severity="${severity}" --output="${output}" ${imageRef}
+trivy ${scanType} --format="${format}" \
+                  --template="${template}" \
+                  --output="${output}" \
+                  --vuln-type="${vulnType}" \
+                  --severity="${severity}" \
+                  --output="${output}" \
+                  "${imageRef}"
