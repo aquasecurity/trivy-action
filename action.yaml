@@ -20,7 +20,7 @@ inputs:
   ignore-unfixed:
     description: 'ignore unfixed vulnerabilities'
     required: false
-    default: false
+    default: 'false'
   vuln-type:
     description: 'comma-separated list of vulnerability types (os,library)'
     required: false

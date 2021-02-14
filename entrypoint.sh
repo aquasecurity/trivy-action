@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-printenv
 while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
    case "${o}" in
        a)
@@ -40,12 +39,23 @@ if [ $scanRef ];then
   imageRef=$scanRef
 fi
 
-echo ${scanType} $imageRef $output $exitCode
-
-trivy ${scanType} --format="${format}" \
-                  --template="${template}" \
-                  --output="${output}" \
-                  --vuln-type="${vulnType}" \
-                  --severity="${severity}" \
-                  --output="${output}" \
-                  "${imageRef}"
+if [ $ignoreUnfixed == "true" ];then
+  trivy ${scanType} \
+    --format ${format} \
+    --template ${template} \
+    --exit-code ${exitCode} \
+    --ignore-unfixed \
+    --vuln-type ${vulnType} \
+    --severity ${severity} \
+    --output ${output} \
+    ${imageRef}
+else
+  trivy ${scanType} \
+    --format ${format} \
+    --template ${template} \
+    --exit-code ${exitCode} \
+    --vuln-type ${vulnType} \
+    --severity ${severity} \
+    --output ${output} \
+    ${imageRef}
+fi
