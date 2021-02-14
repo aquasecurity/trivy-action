@@ -40,4 +40,4 @@ if [ $scanRef ];then
    imageRef=$scanRef
 fi
 echo ${scanType} $imageRef $output
-exec trivy ${scanType} --output="${output}" "${imageRef}"
+trivy ${scanType} --output="${output}" ${imageRef}
