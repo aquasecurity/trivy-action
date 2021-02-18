@@ -5,6 +5,13 @@ inputs:
   image-ref:
     description: 'image reference'
     required: true
+  artifact-type:
+    description: 'artifact type (image or fs)'
+    required: true
+    default: "image"
+  aritfact-ref:
+    description: 'artifact reference (image reference or file path)'
+    required: true
   exit-code:
     description: 'exit code when vulnerabilities were found'
     required: false
@@ -12,7 +19,7 @@ inputs:
   ignore-unfixed:
     description: 'ignore unfixed vulnerabilities'
     required: false
-    default: false
+    default: "false"
   vuln-type:
     description: 'comma-separated list of vulnerability types (os,library)'
     required: false
@@ -37,7 +44,7 @@ runs:
   using: 'docker'
   image: 'docker://docker.io/aquasec/trivy:latest'
   args:
-    - 'image'
+    - '${{ inputs.artifact-type }}'
     - '--format=${{ inputs.format }}'
     - '--template=${{ inputs.template }}'
     - '--exit-code=${{ inputs.exit-code }}'
@@ -45,4 +52,4 @@ runs:
     - '--vuln-type=${{ inputs.vuln-type }}'
     - '--severity=${{ inputs.severity }}'
     - '--output=${{ inputs.output }}'
-    - '${{ inputs.image-ref }}'
+    - '${{ inputs.artifact-ref }}'
