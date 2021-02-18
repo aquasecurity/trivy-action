@@ -35,10 +35,12 @@ while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
   esac
 done
 
-export artifactRef=${imageRef}
-if [ "$scanType" == "fs" ];then
-  artifactRef=$scanRef
+scanType=$(echo $scanType | tr -d '\r')
+export artifactRef="${imageRef}"
+if [ "${scanType}" = "fs" ];then
+  artifactRef=$(echo $scanRef | tr -d '\r')
 fi
+
 ARGS=""
 if [ $format ];then
  ARGS="$ARGS --format $format"
