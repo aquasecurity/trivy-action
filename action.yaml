@@ -7,7 +7,7 @@ inputs:
     required: false
     default: 'image'
   image-ref:
-    description: 'image reference(for backward compatibility.)'
+    description: 'image reference(for backward compatibility)'
     required: true
   scan-ref:
     description: 'Scan reference'
