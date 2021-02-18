@@ -94,9 +94,9 @@ Following inputs can be used as `step.with` keys:
 
 | Name             | Type    | Default                            | Description                                   |
 |------------------|---------|------------------------------------|-----------------------------------------------|
-| `scan-type`      | String  | `image`                            | Scan type, e.g. `image` or `fs` (default: `image`)|
+| `scan-type`      | String  | `image`                            | Scan type, e.g. `image` or `fs`|
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
-| `scan-ref`       | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.` (default: `/github/workspace/`)|
+| `scan-ref`       | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`|
 | `format`         | String  | `table`                            | Output format (`table`, `json`, `template`)   |
 | `template`       | String  |                                    | Output template (`@/contrib/sarif.tpl`, `@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|
 | `output`         | String  |                                    | Save results to a file                        |
