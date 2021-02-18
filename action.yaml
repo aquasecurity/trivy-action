@@ -12,7 +12,7 @@ inputs:
   scan-ref:
     description: 'Scan reference'
     required: false
-    default: ''
+    default: '.'
   exit-code:
     description: 'exit code when vulnerabilities were found'
     required: false

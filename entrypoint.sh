@@ -35,27 +35,31 @@ while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
   esac
 done
 
-if [ $scanRef ];then
-  imageRef=$scanRef
+export artifactRef=${imageRef}
+if [ "$scanType" == "fs" ];then
+  artifactRef=$scanRef
+fi
+ARGS=""
+if [ $format ];then
+ ARGS="$ARGS --format $format"
+fi
+if [ $template ] ;then
+ ARGS="$ARGS --template $template"
+fi
+if [ $exitCode ];then
+ ARGS="$ARGS --exit-code $exitCode"
+fi
+if [ "$ignoreUnfixed" == "true" ];then
+  ARGS="$ARGS --ignore-unfixed"
+fi
+if [ $vulnType ];then
+  ARGS="$ARGS --vuln-type $vulnType"
+fi
+if [ $severity ];then
+  ARGS="$ARGS --severity $severity"
+fi
+if [ $output ];then
+  ARGS="$ARGS --output $output"
 fi
 
-if [ $ignoreUnfixed == "true" ];then
-  trivy ${scanType} \
-    --format ${format} \
-    --template ${template} \
-    --exit-code ${exitCode} \
-    --ignore-unfixed \
-    --vuln-type ${vulnType} \
-    --severity ${severity} \
-    --output ${output} \
-    ${imageRef}
-else
-  trivy ${scanType} \
-    --format ${format} \
-    --template ${template} \
-    --exit-code ${exitCode} \
-    --vuln-type ${vulnType} \
-    --severity ${severity} \
-    --output ${output} \
-    ${imageRef}
-fi
+trivy ${scanType} $ARGS ${artifactRef}
