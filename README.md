@@ -12,6 +12,8 @@
 
 - [Usage](#usage)
   - [Workflow](#workflow)
+  - [Docker Image Scanning](#using-trivy-with-github-code-scanning)
+  - [Git Repository Scanning](#using-trivy-to-scan-your-git-repo)
 - [Customizing](#customizing)
   - [Inputs](#inputs)
 
@@ -87,7 +89,9 @@ jobs:
 You can find a more in-depth example here: https://github.com/aquasecurity/trivy-sarif-demo/blob/master/.github/workflows/scan.yml
 
 ### Using Trivy to scan your Git repo
-It's also possible to scan your git repos with Trivy's built-in repo scan. If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
+It's also possible to scan your git repos with Trivy's built-in repo scan. This can be handy if you want to run Trivy as a build time check on each PR that gets opened in your repo. This helps you identify potential vulnerablites that might get introduced with each PR.
+
+If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
 ```yaml
 name: build
 on:
