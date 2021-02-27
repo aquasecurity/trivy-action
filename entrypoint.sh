@@ -40,6 +40,7 @@ export artifactRef="${imageRef}"
 if [ "${scanType}" = "fs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
+ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 
 ARGS=""
 if [ $format ];then
@@ -64,5 +65,5 @@ if [ $output ];then
   ARGS="$ARGS --output $output"
 fi
 
-echo "Runnin trivy with options" "${ARGS}" "${artifactRef}"
+echo "Running trivy with options: " "${ARGS}" "${artifactRef}"
 trivy ${scanType} $ARGS ${artifactRef}
