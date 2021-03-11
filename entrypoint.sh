@@ -65,5 +65,5 @@ if [ $output ];then
   ARGS="$ARGS --output $output"
 fi
 
-echo "Running trivy with options: " "${ARGS}" "${artifactRef}"
-trivy ${scanType} $ARGS ${artifactRef}
+echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"
+trivy ${scanType} --no-progress $ARGS ${artifactRef}
