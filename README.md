@@ -12,10 +12,10 @@
 
 - [Usage](#usage)
   - [Workflow](#workflow)
-  - [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
-  - [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
+  - [Docker Image Scanning](#using-trivy-with-github-code-scanning)
+  - [Git Repository Scanning](#using-trivy-to-scan-your-git-repo)
 - [Customizing](#customizing)
-  - [inputs](#inputs)
+  - [Inputs](#inputs)
 
 ## Usage
 
