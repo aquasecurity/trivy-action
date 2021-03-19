@@ -10,12 +10,14 @@
 
 ## Table of Contents
 
-- [Usage](#usage)
-  - [Workflow](#workflow)
-  - [Docker Image Scanning](#using-trivy-with-github-code-scanning)
-  - [Git Repository Scanning](#using-trivy-to-scan-your-git-repo)
-- [Customizing](#customizing)
-  - [Inputs](#inputs)
+- [Trivy Action](#trivy-action)
+  - [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
+    - [Workflow](#workflow)
+    - [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
+    - [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
+  - [Customizing](#customizing)
+    - [inputs](#inputs)
 
 ## Usage
 
@@ -145,7 +147,7 @@ Following inputs can be used as `step.with` keys:
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
 | `vuln-type`      | String  | `os,library`                       | Vulnerability types (os,library)              |
 | `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
-
+| `skip-dirs`       | String  |                                   | Specify the directory where the traversal is skipped |
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
 [marketplace]: https://github.com/marketplace/actions/aqua-security-trivy
