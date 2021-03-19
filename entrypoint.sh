@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -31,6 +31,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:" o; do
        ;;
        j)
          export scanRef=${OPTARG}
+       ;;
+       k)
+         export skipDirs=${OPTARG}
        ;;
   esac
 done
@@ -63,6 +66,9 @@ if [ $severity ];then
 fi
 if [ $output ];then
   ARGS="$ARGS --output $output"
+fi
+if [ $skipDirs ];then
+  ARGS="$ARGS --skip-dirs $skipDirs"
 fi
 
 echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"

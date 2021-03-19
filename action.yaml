@@ -41,6 +41,10 @@ inputs:
     description: 'writes results to a file with the specified file name'
     required: false
     default: ''
+  skip-dirs:
+    description: 'comma separated list of directories where traversal is skipped'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -55,3 +59,4 @@ runs:
     - '-h ${{ inputs.output }}'
     - '-i ${{ inputs.image-ref }}'
     - '-j ${{ inputs.scan-ref }}'
+    - '-k ${{ inputs.skip-dirs }}'
