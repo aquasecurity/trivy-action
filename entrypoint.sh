@@ -32,7 +32,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:" o; do
        j)
          export scanRef=${OPTARG}
        ;;
-       j)
+       k)
          export skipDirs=${OPTARG}
        ;;
   esac
