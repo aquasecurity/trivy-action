@@ -146,6 +146,7 @@ Following inputs can be used as `step.with` keys:
 | `vuln-type`      | String  | `os,library`                       | Vulnerability types (os,library)              |
 | `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
 | `skip-dirs`       | String  |                                   | Comma separated list of directories where traversal is skipped |
+
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
 [marketplace]: https://github.com/marketplace/actions/aqua-security-trivy
