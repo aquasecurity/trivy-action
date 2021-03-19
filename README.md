@@ -10,14 +10,12 @@
 
 ## Table of Contents
 
-- [Trivy Action](#trivy-action)
-  - [Table of Contents](#table-of-contents)
-  - [Usage](#usage)
-    - [Workflow](#workflow)
-    - [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
-    - [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
-  - [Customizing](#customizing)
-    - [inputs](#inputs)
+- [Usage](#usage)
+  - [Workflow](#workflow)
+  - [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
+  - [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
+- [Customizing](#customizing)
+  - [inputs](#inputs)
 
 ## Usage
 
