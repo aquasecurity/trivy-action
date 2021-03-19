@@ -42,7 +42,7 @@ inputs:
     required: false
     default: ''
   skip-dirs:
-    description: 'specify the directory where the traversal is skipped'
+    description: 'comma separated list of directories where traversal is skipped'
     required: false
     default: ''
 runs:
