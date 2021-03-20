@@ -35,6 +35,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:" o; do
        k)
          export skipDirs=${OPTARG}
        ;;
+       l)
+         export input=${OPTARG}
+       ;;
   esac
 done
 
@@ -44,8 +47,12 @@ if [ "${scanType}" = "fs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
+input=$(echo $input | tr -d '\r')
 
 ARGS=""
+if [ "$input" == "true" ]; then
+  ARGS="$ARGS --input"
+fi
 if [ $format ];then
  ARGS="$ARGS --format $format"
 fi
