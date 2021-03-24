@@ -9,6 +9,10 @@ inputs:
   image-ref:
     description: 'image reference(for backward compatibility)'
     required: true
+  input:
+    description: 'reference of tar file to scan'
+    required: false
+    default: ''
   scan-ref:
     description: 'Scan reference'
     required: false
@@ -60,3 +64,4 @@ runs:
     - '-i ${{ inputs.image-ref }}'
     - '-j ${{ inputs.scan-ref }}'
     - '-k ${{ inputs.skip-dirs }}'
+    - '-l ${{ inputs.input }}'

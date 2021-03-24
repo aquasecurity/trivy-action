@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -35,6 +35,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:" o; do
        k)
          export skipDirs=${OPTARG}
        ;;
+       l)
+         export input=${OPTARG}
+       ;;
   esac
 done
 
@@ -42,6 +45,10 @@ scanType=$(echo $scanType | tr -d '\r')
 export artifactRef="${imageRef}"
 if [ "${scanType}" = "fs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
+fi
+input=$(echo $input | tr -d '\r')
+if [ $input ]; then
+  artifactRef="--input $input"
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 
