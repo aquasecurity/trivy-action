@@ -46,13 +46,13 @@ export artifactRef="${imageRef}"
 if [ "${scanType}" = "fs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
-ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 input=$(echo $input | tr -d '\r')
+if [ $input ]; then
+  artifactRef="--input $input"
+fi
+ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 
 ARGS=""
-if [ "$input" == "true" ]; then
-  ARGS="$ARGS --input"
-fi
 if [ $format ];then
  ARGS="$ARGS --format $format"
 fi

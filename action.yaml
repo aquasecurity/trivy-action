@@ -12,7 +12,7 @@ inputs:
   input:
     description: 'option to scan tar files'
     required: false
-    default: 'false'
+    default: ''
   scan-ref:
     description: 'Scan reference'
     required: false
