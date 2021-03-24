@@ -10,7 +10,7 @@ inputs:
     description: 'image reference(for backward compatibility)'
     required: true
   input:
-    description: 'option to scan tar files'
+    description: 'reference of tar file to scan'
     required: false
     default: ''
   scan-ref:
