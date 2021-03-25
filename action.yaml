@@ -49,6 +49,14 @@ inputs:
     description: 'comma separated list of directories where traversal is skipped'
     required: false
     default: ''
+  cache-dir:
+    description: 'specify where the cache is stored'
+    required: false
+    default: ''
+  timeout:
+    description: 'timeout (default 2m0s)'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -65,3 +73,5 @@ runs:
     - '-j ${{ inputs.scan-ref }}'
     - '-k ${{ inputs.skip-dirs }}'
     - '-l ${{ inputs.input }}'
+    - '-m ${{ inputs.cache-dir }}'
+    - '-n ${{ inputs.timeout }}'
