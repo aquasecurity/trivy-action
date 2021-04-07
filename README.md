@@ -149,6 +149,7 @@ Following inputs can be used as `step.with` keys:
 | `skip-dirs`       | String  |                                   | Comma separated list of directories where traversal is skipped |
 | `cache-dir`      | String  |                                    | Cache directory                               |
 | `timeout`        | String  | `2m0s`                             | Scan timeout duration                         |
+
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
 [marketplace]: https://github.com/marketplace/actions/aqua-security-trivy
