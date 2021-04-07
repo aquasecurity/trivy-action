@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -37,6 +37,12 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:" o; do
        ;;
        l)
          export input=${OPTARG}
+       ;;
+       m)
+         export cacheDir=${OPTARG}
+       ;;
+       n)
+         export timeout=${OPTARG}
        ;;
   esac
 done
@@ -76,6 +82,12 @@ if [ $output ];then
 fi
 if [ $skipDirs ];then
   ARGS="$ARGS --skip-dirs $skipDirs"
+fi
+if [ $cacheDir ];then
+  ARGS="$ARGS --cache-dir $cacheDir"
+fi
+if [ $timeout ];then
+  ARGS="$ARGS --timeout $timeout"
 fi
 
 echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"
