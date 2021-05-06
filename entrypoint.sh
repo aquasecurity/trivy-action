@@ -81,7 +81,10 @@ if [ $output ];then
   ARGS="$ARGS --output $output"
 fi
 if [ $skipDirs ];then
-  ARGS="$ARGS --skip-dirs $skipDirs"
+  for i in $(echo $skipDirs | tr "," "\n")
+  do
+    ARGS="$ARGS --skip-dirs $i"
+  done
 fi
 if [ $cacheDir ];then
   ARGS="$ARGS --cache-dir $cacheDir"
