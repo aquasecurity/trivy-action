@@ -46,7 +46,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:" o; do
        ;;
   esac
 done
-
+echo $TRIVY_USERNAME
 scanType=$(echo $scanType | tr -d '\r')
 export artifactRef="${imageRef}"
 if [ "${scanType}" = "fs" ];then
