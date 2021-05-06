@@ -132,7 +132,7 @@ It's also possible to scan your private registry with Trivy's built-in image sca
 
 #### Docker Hub registry
 Docker Hub needs `TRIVY_USERNAME` and `TRIVY_PASSWORD`.
-You don't need to set ENV vars when download from public repository.
+You don't need to set ENV vars when downloading from a public repository.
 ```yaml
 name: build
 on:
@@ -214,7 +214,7 @@ jobs:
 #### GCR (Google Container Registry)
 Trivy uses Google Cloud SDK. You don't need to install `gcloud` command.
 
-If you want to use target project's repository, you can settle via `GOOGLE_APPLICATION_CREDENTIAL`.
+If you want to use target project's repository, you can set it via `GOOGLE_APPLICATION_CREDENTIAL`.
 ```yaml
 name: build
 on:
