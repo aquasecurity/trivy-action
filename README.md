@@ -127,6 +127,168 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 ```
 
+### Using Trivy to scan your private registry
+It's also possible to scan your private registry with Trivy's built-in image scan. All you have to do is set ENV vars.
+
+#### Docker Hub registry
+Docker Hub needs `TRIVY_USERNAME` and `TRIVY_PASSWORD`.
+You don't need to set ENV vars when downloading from a public repository.
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+        env:
+          TRIVY_USERNAME: Username
+          TRIVY_PASSWORD: Password        
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+```
+
+#### AWS ECR (Elastic Container Registry)
+Trivy uses AWS SDK. You don't need to install `aws` CLI tool.
+You can use [AWS CLI's ENV Vars][env-var].
+
+[env-var]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+        env:
+          AWS_ACCESS_KEY_ID: key_id
+          AWS_SECRET_ACCESS_KEY: access_key
+          AWS_DEFAULT_REGION: us-west-2
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+```
+
+#### GCR (Google Container Registry)
+Trivy uses Google Cloud SDK. You don't need to install `gcloud` command.
+
+If you want to use target project's repository, you can set it via `GOOGLE_APPLICATION_CREDENTIAL`.
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+        env:
+          GOOGLE_APPLICATION_CREDENTIAL: /path/to/credential.json
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+```
+
+#### Self-Hosted
+BasicAuth server needs `TRIVY_USERNAME` and `TRIVY_PASSWORD`.
+if you want to use 80 port, use NonSSL `TRIVY_NON_SSL=true`
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+        env:
+          TRIVY_USERNAME: Username
+          TRIVY_PASSWORD: Password        
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+```
+
 ## Customizing
 
 ### inputs
