@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -43,6 +43,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:" o; do
        ;;
        n)
          export timeout=${OPTARG}
+       ;;
+       o)
+         export ignorePolicy=${OPTARG}
        ;;
   esac
 done
@@ -91,6 +94,9 @@ if [ $cacheDir ];then
 fi
 if [ $timeout ];then
   ARGS="$ARGS --timeout $timeout"
+fi
+if [ $ignorePolicy ];then
+  ARGS="$ARGS --ignore-policy $ignorePolicy"
 fi
 
 echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"
