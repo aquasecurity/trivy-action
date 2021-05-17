@@ -284,10 +284,10 @@ Following inputs can be used as `step.with` keys:
 | `format`         | String  | `table`                            | Output format (`table`, `json`, `template`)   |
 | `template`       | String  |                                    | Output template (`@/contrib/sarif.tpl`, `@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|
 | `output`         | String  |                                    | Save results to a file                        |
-| `exit-code`      | String  | `0`                                | Exit code when vulnerabilities were found     |
+| `exit-code`      | String  | `0`                                | Exit code when specified vulnerabilities are found     |
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
 | `vuln-type`      | String  | `os,library`                       | Vulnerability types (os,library)              |
-| `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to be displayed |
+| `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed |
 | `skip-dirs`       | String  |                                   | Comma separated list of directories where traversal is skipped |
 | `cache-dir`      | String  |                                    | Cache directory                               |
 | `timeout`        | String  | `2m0s`                             | Scan timeout duration                         |
