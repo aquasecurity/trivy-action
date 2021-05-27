@@ -61,6 +61,11 @@ if [ $input ]; then
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 
+GLOBAL_ARGS=""
+if [ $cacheDir ];then
+  GLOBAL_ARGS="$GLOBAL_ARGS --cache-dir $cacheDir"
+fi
+
 ARGS=""
 if [ $format ];then
  ARGS="$ARGS --format $format"
@@ -89,9 +94,6 @@ if [ $skipDirs ];then
     ARGS="$ARGS --skip-dirs $i"
   done
 fi
-if [ $cacheDir ];then
-  ARGS="$ARGS --cache-dir $cacheDir"
-fi
 if [ $timeout ];then
   ARGS="$ARGS --timeout $timeout"
 fi
@@ -100,4 +102,5 @@ if [ $ignorePolicy ];then
 fi
 
 echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"
-trivy ${scanType} --no-progress $ARGS ${artifactRef}
+echo "Global options: " "${GLOBAL_ARGS}"
+trivy $GLOBAL_ARGS ${scanType} --no-progress $ARGS ${artifactRef}
