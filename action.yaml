@@ -61,6 +61,10 @@ inputs:
     description: 'filter vulnerabilities with OPA rego language'
     required: false
     default: ''
+  hide-progress:
+    description: 'hide progress output'
+    required: false
+    default: 'true'
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -80,3 +84,4 @@ runs:
     - '-m ${{ inputs.cache-dir }}'
     - '-n ${{ inputs.timeout }}'
     - '-o ${{ inputs.ignore-policy }}'
+    - '-p ${{ inputs.hide-progress }}'

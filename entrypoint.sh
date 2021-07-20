@@ -47,6 +47,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:" o; do
        o)
          export ignorePolicy=${OPTARG}
        ;;
+       p)
+         export hideProgress=${OPTARG}
+       ;;
   esac
 done
 
@@ -100,7 +103,10 @@ fi
 if [ $ignorePolicy ];then
   ARGS="$ARGS --ignore-policy $ignorePolicy"
 fi
+if [ "$hideProgress" == "true" ];then
+  ARGS="$ARGS --no-progress"
+fi
 
-echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"
+echo "Running trivy with options: ${ARGS}" "${artifactRef}"
 echo "Global options: " "${GLOBAL_ARGS}"
-trivy $GLOBAL_ARGS ${scanType} --no-progress $ARGS ${artifactRef}
+trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
