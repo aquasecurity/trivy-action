@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
