@@ -79,10 +79,10 @@ fi
 if [ $exitCode ];then
  ARGS="$ARGS --exit-code $exitCode"
 fi
-if [ "$ignoreUnfixed" == "true" ];then
+if [ "$ignoreUnfixed" == "true" ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --ignore-unfixed"
 fi
-if [ $vulnType ];then
+if [ $vulnType ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --vuln-type $vulnType"
 fi
 if [ $severity ];then
