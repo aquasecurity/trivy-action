@@ -63,6 +63,7 @@ if [ $input ]; then
   artifactRef="--input $input"
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
+hideProgress=$(echo $hideProgress | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
