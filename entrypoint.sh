@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -47,12 +47,15 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:" o; do
        o)
          export ignorePolicy=${OPTARG}
        ;;
+       p)
+         export hideProgress=${OPTARG}
+       ;;
   esac
 done
 
 scanType=$(echo $scanType | tr -d '\r')
 export artifactRef="${imageRef}"
-if [ "${scanType}" = "fs" ];then
+if [ "${scanType}" = "fs" ] ||  [ "${scanType}" = "config" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
 input=$(echo $input | tr -d '\r')
@@ -60,6 +63,7 @@ if [ $input ]; then
   artifactRef="--input $input"
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
+hideProgress=$(echo $hideProgress | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
@@ -76,10 +80,10 @@ fi
 if [ $exitCode ];then
  ARGS="$ARGS --exit-code $exitCode"
 fi
-if [ "$ignoreUnfixed" == "true" ];then
+if [ "$ignoreUnfixed" == "true" ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --ignore-unfixed"
 fi
-if [ $vulnType ];then
+if [ $vulnType ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --vuln-type $vulnType"
 fi
 if [ $severity ];then
@@ -100,7 +104,10 @@ fi
 if [ $ignorePolicy ];then
   ARGS="$ARGS --ignore-policy $ignorePolicy"
 fi
+if [ "$hideProgress" == "true" ];then
+  ARGS="$ARGS --no-progress"
+fi
 
-echo "Running trivy with options: " --no-progress "${ARGS}" "${artifactRef}"
+echo "Running trivy with options: ${ARGS}" "${artifactRef}"
 echo "Global options: " "${GLOBAL_ARGS}"
-trivy $GLOBAL_ARGS ${scanType} --no-progress $ARGS ${artifactRef}
+trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
