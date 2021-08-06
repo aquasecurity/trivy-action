@@ -110,7 +110,7 @@ fi
 if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --no-progress"
 fi
-if [ "$skipFiles" == "true" ];then
+if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")
   do
     ARGS="$ARGS --skip-files $i"
