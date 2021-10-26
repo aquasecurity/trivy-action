@@ -54,7 +54,7 @@ inputs:
     required: false
     default: ''
   timeout:
-    description: 'timeout (default 2m0s)'
+    description: 'timeout (default 5m0s)'
     required: false
     default: ''
   ignore-policy:
