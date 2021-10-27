@@ -111,3 +111,14 @@ fi
 echo "Running trivy with options: ${ARGS}" "${artifactRef}"
 echo "Global options: " "${GLOBAL_ARGS}"
 trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
+returnCode=$?
+
+# SARIF is special. We output all vulnerabilities,
+# regardless of severity level specified in this report.
+# This is a feature, not a bug :)
+if [[ ${template} == *"sarif"* ]]; then
+  echo "Building SARIF report"
+  trivy --quiet ${scanType} --format template --template ${template} --output ${output} ${artifactRef}
+fi
+
+exit $returnCode
