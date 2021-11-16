@@ -123,7 +123,7 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 ```
 
-See this for more details: https://stackoverflow.com/a/58859404
+See this for more details: https://docs.github.com/en/actions/learn-github-actions/expressions#always
 
 ### Using Trivy to scan your Git repo
 It's also possible to scan your git repos with Trivy's built-in repo scan. This can be handy if you want to run Trivy as a build time check on each PR that gets opened in your repo. This helps you identify potential vulnerablites that might get introduced with each PR.
