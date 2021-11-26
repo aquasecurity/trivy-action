@@ -396,7 +396,8 @@ Following inputs can be used as `step.with` keys:
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
 | `vuln-type`      | String  | `os,library`                       | Vulnerability types (os,library)              |
 | `severity`       | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed |
-| `skip-dirs`       | String  |                                   | Comma separated list of directories where traversal is skipped |
+| `skip-dirs`      | String  |                                    | Comma separated list of directories where traversal is skipped |
+| `skip-files`     | String  |                                    | Comma separated list of files where traversal is skipped |
 | `cache-dir`      | String  |                                    | Cache directory                               |
 | `timeout`        | String  | `2m0s`                             | Scan timeout duration                         |
 | `ignore-policy`  | String  |                                    | Filter vulnerabilities with OPA rego language |

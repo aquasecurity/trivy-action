@@ -49,6 +49,10 @@ inputs:
     description: 'comma separated list of directories where traversal is skipped'
     required: false
     default: ''
+  skip-files:
+    description: 'comma separated list of files to be skipped'
+    required: false
+    default: ''
   cache-dir:
     description: 'specify where the cache is stored'
     required: false
@@ -85,3 +89,4 @@ runs:
     - '-n ${{ inputs.timeout }}'
     - '-o ${{ inputs.ignore-policy }}'
     - '-p ${{ inputs.hide-progress }}'
+    - '-q ${{ inputs.skip-files }}'
