@@ -401,6 +401,7 @@ Following inputs can be used as `step.with` keys:
 | `cache-dir`      | String  |                                    | Cache directory                               |
 | `timeout`        | String  | `2m0s`                             | Scan timeout duration                         |
 | `ignore-policy`  | String  |                                    | Filter vulnerabilities with OPA rego language |
+| `list-all-pkgs`  | String  |                                    | Output all packages regardless of vulnerability |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
