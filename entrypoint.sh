@@ -119,7 +119,8 @@ if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --no-progress"
 fi
 
-if [ "$listAllPkgs" == " true" ];then
+listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
+if [ "$listAllPkgs" == "true" ];then
   ARGS="$ARGS --list-all-pkgs"
 fi
 if [ "$skipFiles" ];then
