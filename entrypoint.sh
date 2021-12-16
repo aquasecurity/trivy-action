@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -52,6 +52,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:" o; do
        ;;
        q)
          export skipFiles=${OPTARG}
+       ;;
+       r)
+         export listAllPkgs=${OPTARG}
        ;;
   esac
 done
@@ -114,6 +117,11 @@ if [ $ignorePolicy ];then
 fi
 if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --no-progress"
+fi
+
+listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
+if [ "$listAllPkgs" == "true" ];then
+  ARGS="$ARGS --list-all-pkgs"
 fi
 if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")

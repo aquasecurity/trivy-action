@@ -69,6 +69,10 @@ inputs:
     description: 'hide progress output'
     required: false
     default: 'true'
+  list-all-pkgs:
+    description: 'output all packages regardless of vulnerability'
+    required: false
+    default: 'false'
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -90,3 +94,4 @@ runs:
     - '-o ${{ inputs.ignore-policy }}'
     - '-p ${{ inputs.hide-progress }}'
     - '-q ${{ inputs.skip-files }}'
+    - '-r ${{ inputs.list-all-pkgs }}'
