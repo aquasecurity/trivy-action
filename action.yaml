@@ -3,7 +3,7 @@ description: 'Scans container images for vulnerabilities with Trivy'
 author: 'Aqua Security'
 inputs:
   scan-type:
-    description: 'Scan type to use for scanning vulnerability'
+    description: 'Scan type to use for scanning vulnerability (image,fs,config,rootfs)'
     required: false
     default: 'image'
   image-ref:

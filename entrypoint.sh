@@ -130,8 +130,11 @@ if [ "$skipFiles" ];then
   done
 fi
 
-echo "Running trivy with options: ${ARGS}" "${artifactRef}"
-echo "Global options: " "${GLOBAL_ARGS}"
+echo "Global args: " "${GLOBAL_ARGS}"
+echo "Scan type: ${scanType}"
+echo "Args: ${ARGS}" 
+printf ">trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}\n"
+
 trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
 returnCode=$?
 
@@ -140,6 +143,7 @@ returnCode=$?
 # This is a feature, not a bug :)
 if [[ "${format}" == "sarif" ]]; then
   echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
+  printf ">trivy ${scanType} --format sarif --output ${output} $SARIF $ARGS ${artifactRef}\n"
   trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 fi
 

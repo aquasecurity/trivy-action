@@ -377,7 +377,7 @@ Following inputs can be used as `step.with` keys:
 
 | Name             | Type    | Default                            | Description                                   |
 |------------------|---------|------------------------------------|-----------------------------------------------|
-| `scan-type`      | String  | `image`                            | Scan type, e.g. `image` or `fs`|
+| `scan-type`      | String  | `image`                            | Scan type, e.g. `image` or `fs` or `config` or `rootfs`|
 | `input`          | String  |                                    | Tar reference, e.g. `alpine-latest.tar` |
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
 | `scan-ref`       | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`|

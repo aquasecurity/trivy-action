@@ -6,6 +6,9 @@ on:
   # run it during pull request
   pull_request:
 
+env:
+    SHELLSPEC_VERSION: 0.28.1
+
 jobs:
   build:
     name: Build image
@@ -27,16 +30,8 @@ jobs:
         with:
           skip: ''
 
-      # setup Docker build action
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Install shellspec
+        run: curl -fsSL https://git.io/shellspec | sh -s ${{ env.SHELLSPEC_VERSION }} --yes
 
-      - name: Build image
-        uses: docker/build-push-action@v2
-        with:
-          # relative path to the place where source code with Dockerfile is located
-          context: .
-
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Run shellspec
+        run: make docker-test

@@ -1,0 +1,12 @@
+FROM aquasec/trivy:0.22.0
+COPY entrypoint.sh /
+RUN apk --no-cache add bash
+RUN chmod +x /entrypoint.sh
+
+COPY --from=shellspec/shellspec-scratch /opt/shellspec /opt/shellspec
+ENV PATH /opt/shellspec/:$PATH
+
+WORKDIR /src
+RUN trivy image alpine:3.14 # Update trivy database before test
+ENTRYPOINT ["shellspec"]
+COPY ./ /src
