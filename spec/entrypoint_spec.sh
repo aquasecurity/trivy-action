@@ -3,13 +3,13 @@
 Describe 'Entrypoint '
 
 It 'Test scan-type image'
-  When run source ./entrypoint.sh '-i alpine:3.14'
+  When run source ./entrypoint.sh '-i knqyf263/vuln-image:1.2.3'
   The stdout should match pattern '*Detected OS: alpine*'
 End
 
 It 'Test scan-type image and format json'
-  When run source ./entrypoint.sh '-i alpine:3.14' '-b json'
-  The stdout should match pattern '*"ArtifactName": "alpine:3.14",*'
+  When run source ./entrypoint.sh '-i knqyf263/vuln-image:1.2.3' '-b json'
+  The stdout should match pattern '*"ArtifactName": "knqyf263/vuln-image:1.2.3",*'
 End
 
 It 'Test scan-type conf'
