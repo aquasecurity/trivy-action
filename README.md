@@ -382,6 +382,7 @@ Following inputs can be used as `step.with` keys:
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
 | `scan-ref`       | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`|
 | `format`         | String  | `table`                            | Output format (`table`, `json`, `sarif`)   |
+| `template`       | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|
 | `output`         | String  |                                    | Save results to a file                        |
 | `exit-code`      | String  | `0`                                | Exit code when specified vulnerabilities are found     |
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
