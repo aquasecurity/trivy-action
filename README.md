@@ -76,8 +76,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
 
       - name: Upload Trivy scan results to GitHub Security tab
@@ -112,8 +111,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
 
       - name: Upload Trivy scan results to GitHub Security tab
@@ -149,8 +147,7 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL'
 
@@ -185,8 +182,7 @@ jobs:
           scan-type: 'rootfs'
           scan-ref: 'rootfs-example-binary'
           ignore-unfixed: true
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL'
 
@@ -256,8 +252,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
         env:
           TRIVY_USERNAME: Username
@@ -293,8 +288,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'aws_account_id.dkr.ecr.region.amazonaws.com/imageName:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
         env:
           AWS_ACCESS_KEY_ID: key_id
@@ -330,8 +324,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
         env:
           GOOGLE_APPLICATION_CREDENTIAL: /path/to/credential.json
@@ -364,8 +357,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          format: 'sarif'
           output: 'trivy-results.sarif'
         env:
           TRIVY_USERNAME: Username
@@ -389,8 +381,8 @@ Following inputs can be used as `step.with` keys:
 | `input`          | String  |                                    | Tar reference, e.g. `alpine-latest.tar` |
 | `image-ref`      | String  |                                    | Image reference, e.g. `alpine:3.10.2`         |
 | `scan-ref`       | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`|
-| `format`         | String  | `table`                            | Output format (`table`, `json`, `template`)   |
-| `template`       | String  |                                    | Output template (`@/contrib/sarif.tpl`, `@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|
+| `format`         | String  | `table`                            | Output format (`table`, `json`, `sarif`)   |
+| `template`       | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)|
 | `output`         | String  |                                    | Save results to a file                        |
 | `exit-code`      | String  | `0`                                | Exit code when specified vulnerabilities are found     |
 | `ignore-unfixed` | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities      |
