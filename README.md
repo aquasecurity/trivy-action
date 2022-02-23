@@ -391,7 +391,7 @@ Following inputs can be used as `step.with` keys:
 | `skip-dirs`      | String  |                                    | Comma separated list of directories where traversal is skipped |
 | `skip-files`     | String  |                                    | Comma separated list of files where traversal is skipped |
 | `cache-dir`      | String  |                                    | Cache directory                               |
-| `timeout`        | String  | `2m0s`                             | Scan timeout duration                         |
+| `timeout`        | String  | `5m0s`                             | Scan timeout duration                         |
 | `ignore-policy`  | String  |                                    | Filter vulnerabilities with OPA rego language |
 | `list-all-pkgs`  | String  |                                    | Output all packages regardless of vulnerability |
 
