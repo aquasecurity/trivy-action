@@ -141,10 +141,22 @@ returnCode=$?
 # SARIF is special. We output all vulnerabilities,
 # regardless of severity level specified in this report.
 # This is a feature, not a bug :)
+<<<<<<< HEAD
 if [[ "${format}" == "sarif" ]]; then
   echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
   printf ">trivy ${scanType} --format sarif --output ${output} $SARIF $ARGS ${artifactRef}\n"
   trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+||||||| parent of 6e31783 (chore: test format sarif)
+if [ ! -z "$template" ] && [[ ${template} == *"sarif"* ]]; then
+  printf "Building SARIF report with options: ${SARIF_ARGS}\n"
+  printf ">trivy --quiet ${scanType} --format template --template ${template} --output ${output} $SARIF_ARGS ${artifactRef}\n"
+  trivy --quiet ${scanType} --format template --template ${template} --output ${output} $SARIF_ARGS ${artifactRef}
+=======
+if [[ "${format}" == "sarif" ]]; then
+  printf "Building SARIF report with options: ${SARIF_ARGS}\n"
+  printf ">trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}\n"
+  trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+>>>>>>> 6e31783 (chore: test format sarif)
 fi
 
 exit $returnCode

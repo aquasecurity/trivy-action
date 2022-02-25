@@ -22,4 +22,9 @@ It 'Test scan-type rootfs'
   The stdout should match pattern '*Number of language-specific files*'
 End
 
+It 'Test scan image sarif reports'
+  When run source ./entrypoint.sh '-i knqyf263/vuln-image:1.2.3' '-h myReport.sarif' '-b sarif'
+  The stdout should match pattern '*Number of language-specific files*'
+End
+
 End
