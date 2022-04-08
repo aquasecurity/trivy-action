@@ -1,0 +1,941 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2018-14618",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-14618"
+              },
+              "fullDescription": {
+                "text": "curl before version 7.61.1 is vulnerable to a buffer overrun in the NTLM authentication code. The internal function Curl_ntlm_core_mk_nt_hash multiplies the length of the password by two (SUM) to figure out how large temporary storage area to allocate from the heap. The length value is then subsequently used to iterate over the password and generate output into the allocated storage buffer. On systems with a 32 bit size_t, the math to calculate SUM triggers an integer overflow when the password length exceeds 2GB (2^31 bytes). This integer overflow usually causes a very small buffer to actually get allocated instead of the intended very huge one, making the use of that buffer end up in a heap buffer overflow. (This bug is almost identical to CVE-2017-8816.)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-14618",
+              "help": {
+                "text": "Vulnerability CVE-2018-14618\nSeverity: CRITICAL\nPackage: curl\nFixed Version: 7.61.1-r0\nLink: [CVE-2018-14618](https://avd.aquasec.com/nvd/cve-2018-14618)\ncurl before version 7.61.1 is vulnerable to a buffer overrun in the NTLM authentication code. The internal function Curl_ntlm_core_mk_nt_hash multiplies the length of the password by two (SUM) to figure out how large temporary storage area to allocate from the heap. The length value is then subsequently used to iterate over the password and generate output into the allocated storage buffer. On systems with a 32 bit size_t, the math to calculate SUM triggers an integer overflow when the password length exceeds 2GB (2^31 bytes). This integer overflow usually causes a very small buffer to actually get allocated instead of the intended very huge one, making the use of that buffer end up in a heap buffer overflow. (This bug is almost identical to CVE-2017-8816.)",
+                "markdown": "**Vulnerability CVE-2018-14618**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|curl|7.61.1-r0|[CVE-2018-14618](https://avd.aquasec.com/nvd/cve-2018-14618)|\n\ncurl before version 7.61.1 is vulnerable to a buffer overrun in the NTLM authentication code. The internal function Curl_ntlm_core_mk_nt_hash multiplies the length of the password by two (SUM) to figure out how large temporary storage area to allocate from the heap. The length value is then subsequently used to iterate over the password and generate output into the allocated storage buffer. On systems with a 32 bit size_t, the math to calculate SUM triggers an integer overflow when the password length exceeds 2GB (2^31 bytes). This integer overflow usually causes a very small buffer to actually get allocated instead of the intended very huge one, making the use of that buffer end up in a heap buffer overflow. (This bug is almost identical to CVE-2017-8816.)"
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-16839",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-16839"
+              },
+              "fullDescription": {
+                "text": "Curl versions 7.33.0 through 7.61.1 are vulnerable to a buffer overrun in the SASL authentication code that may lead to denial of service."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-16839",
+              "help": {
+                "text": "Vulnerability CVE-2018-16839\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16839](https://avd.aquasec.com/nvd/cve-2018-16839)\nCurl versions 7.33.0 through 7.61.1 are vulnerable to a buffer overrun in the SASL authentication code that may lead to denial of service.",
+                "markdown": "**Vulnerability CVE-2018-16839**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.61.1-r1|[CVE-2018-16839](https://avd.aquasec.com/nvd/cve-2018-16839)|\n\nCurl versions 7.33.0 through 7.61.1 are vulnerable to a buffer overrun in the SASL authentication code that may lead to denial of service."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-16840",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-16840"
+              },
+              "fullDescription": {
+                "text": "A heap use-after-free flaw was found in curl versions from 7.59.0 through 7.61.1 in the code related to closing an easy handle. When closing and cleaning up an \u0026#39;easy\u0026#39; handle in the `Curl_close()` function, the library code first frees a struct (without nulling the pointer) and might then subsequently erroneously write to a struct field within that already freed struct."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-16840",
+              "help": {
+                "text": "Vulnerability CVE-2018-16840\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16840](https://avd.aquasec.com/nvd/cve-2018-16840)\nA heap use-after-free flaw was found in curl versions from 7.59.0 through 7.61.1 in the code related to closing an easy handle. When closing and cleaning up an 'easy' handle in the `Curl_close()` function, the library code first frees a struct (without nulling the pointer) and might then subsequently erroneously write to a struct field within that already freed struct.",
+                "markdown": "**Vulnerability CVE-2018-16840**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.61.1-r1|[CVE-2018-16840](https://avd.aquasec.com/nvd/cve-2018-16840)|\n\nA heap use-after-free flaw was found in curl versions from 7.59.0 through 7.61.1 in the code related to closing an easy handle. When closing and cleaning up an 'easy' handle in the `Curl_close()` function, the library code first frees a struct (without nulling the pointer) and might then subsequently erroneously write to a struct field within that already freed struct."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-16842",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-16842"
+              },
+              "fullDescription": {
+                "text": "Curl versions 7.14.1 through 7.61.1 are vulnerable to a heap-based buffer over-read in the tool_msgs.c:voutf() function that may result in information exposure and denial of service."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-16842",
+              "help": {
+                "text": "Vulnerability CVE-2018-16842\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16842](https://avd.aquasec.com/nvd/cve-2018-16842)\nCurl versions 7.14.1 through 7.61.1 are vulnerable to a heap-based buffer over-read in the tool_msgs.c:voutf() function that may result in information exposure and denial of service.",
+                "markdown": "**Vulnerability CVE-2018-16842**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.61.1-r1|[CVE-2018-16842](https://avd.aquasec.com/nvd/cve-2018-16842)|\n\nCurl versions 7.14.1 through 7.61.1 are vulnerable to a heap-based buffer over-read in the tool_msgs.c:voutf() function that may result in information exposure and denial of service."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-3822",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-3822"
+              },
+              "fullDescription": {
+                "text": "libcurl versions from 7.36.0 to before 7.64.0 are vulnerable to a stack-based buffer overflow. The function creating an outgoing NTLM type-3 header (`lib/vauth/ntlm.c:Curl_auth_create_ntlm_type3_message()`), generates the request HTTP header contents based on previously received data. The check that exists to prevent the local buffer from getting overflowed is implemented wrongly (using unsigned math) and as such it does not prevent the overflow from happening. This output data can grow larger than the local buffer if very large \u0026#39;nt response\u0026#39; data is extracted from a previous NTLMv2 header provided by the malicious or broken HTTP server. Such a \u0026#39;large value\u0026#39; needs to be around 1000 bytes or more. The actual payload data copied to the target buffer comes from the NTLMv2 type-2 response header."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-3822",
+              "help": {
+                "text": "Vulnerability CVE-2019-3822\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.61.1-r2\nLink: [CVE-2019-3822](https://avd.aquasec.com/nvd/cve-2019-3822)\nlibcurl versions from 7.36.0 to before 7.64.0 are vulnerable to a stack-based buffer overflow. The function creating an outgoing NTLM type-3 header (`lib/vauth/ntlm.c:Curl_auth_create_ntlm_type3_message()`), generates the request HTTP header contents based on previously received data. The check that exists to prevent the local buffer from getting overflowed is implemented wrongly (using unsigned math) and as such it does not prevent the overflow from happening. This output data can grow larger than the local buffer if very large 'nt response' data is extracted from a previous NTLMv2 header provided by the malicious or broken HTTP server. Such a 'large value' needs to be around 1000 bytes or more. The actual payload data copied to the target buffer comes from the NTLMv2 type-2 response header.",
+                "markdown": "**Vulnerability CVE-2019-3822**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.61.1-r2|[CVE-2019-3822](https://avd.aquasec.com/nvd/cve-2019-3822)|\n\nlibcurl versions from 7.36.0 to before 7.64.0 are vulnerable to a stack-based buffer overflow. The function creating an outgoing NTLM type-3 header (`lib/vauth/ntlm.c:Curl_auth_create_ntlm_type3_message()`), generates the request HTTP header contents based on previously received data. The check that exists to prevent the local buffer from getting overflowed is implemented wrongly (using unsigned math) and as such it does not prevent the overflow from happening. This output data can grow larger than the local buffer if very large 'nt response' data is extracted from a previous NTLMv2 header provided by the malicious or broken HTTP server. Such a 'large value' needs to be around 1000 bytes or more. The actual payload data copied to the target buffer comes from the NTLMv2 type-2 response header."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-5481",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-5481"
+              },
+              "fullDescription": {
+                "text": "Double-free vulnerability in the FTP-kerberos code in cURL 7.52.0 to 7.65.3."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-5481",
+              "help": {
+                "text": "Vulnerability CVE-2019-5481\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.61.1-r3\nLink: [CVE-2019-5481](https://avd.aquasec.com/nvd/cve-2019-5481)\nDouble-free vulnerability in the FTP-kerberos code in cURL 7.52.0 to 7.65.3.",
+                "markdown": "**Vulnerability CVE-2019-5481**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.61.1-r3|[CVE-2019-5481](https://avd.aquasec.com/nvd/cve-2019-5481)|\n\nDouble-free vulnerability in the FTP-kerberos code in cURL 7.52.0 to 7.65.3."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-5482",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-5482"
+              },
+              "fullDescription": {
+                "text": "Heap buffer overflow in the TFTP protocol handler in cURL 7.19.4 to 7.65.3."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-5482",
+              "help": {
+                "text": "Vulnerability CVE-2019-5482\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.61.1-r3\nLink: [CVE-2019-5482](https://avd.aquasec.com/nvd/cve-2019-5482)\nHeap buffer overflow in the TFTP protocol handler in cURL 7.19.4 to 7.65.3.",
+                "markdown": "**Vulnerability CVE-2019-5482**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.61.1-r3|[CVE-2019-5482](https://avd.aquasec.com/nvd/cve-2019-5482)|\n\nHeap buffer overflow in the TFTP protocol handler in cURL 7.19.4 to 7.65.3."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-17456",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-17456"
+              },
+              "fullDescription": {
+                "text": "Git before 2.14.5, 2.15.x before 2.15.3, 2.16.x before 2.16.5, 2.17.x before 2.17.2, 2.18.x before 2.18.1, and 2.19.x before 2.19.1 allows remote code execution during processing of a recursive \u0026#34;git clone\u0026#34; of a superproject if a .gitmodules file has a URL field beginning with a \u0026#39;-\u0026#39; character."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-17456",
+              "help": {
+                "text": "Vulnerability CVE-2018-17456\nSeverity: CRITICAL\nPackage: git\nFixed Version: 2.15.3-r0\nLink: [CVE-2018-17456](https://avd.aquasec.com/nvd/cve-2018-17456)\nGit before 2.14.5, 2.15.x before 2.15.3, 2.16.x before 2.16.5, 2.17.x before 2.17.2, 2.18.x before 2.18.1, and 2.19.x before 2.19.1 allows remote code execution during processing of a recursive \"git clone\" of a superproject if a .gitmodules file has a URL field beginning with a '-' character.",
+                "markdown": "**Vulnerability CVE-2018-17456**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|git|2.15.3-r0|[CVE-2018-17456](https://avd.aquasec.com/nvd/cve-2018-17456)|\n\nGit before 2.14.5, 2.15.x before 2.15.3, 2.16.x before 2.16.5, 2.17.x before 2.17.2, 2.18.x before 2.18.1, and 2.19.x before 2.19.1 allows remote code execution during processing of a recursive \"git clone\" of a superproject if a .gitmodules file has a URL field beginning with a '-' character."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1353",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1353"
+              },
+              "fullDescription": {
+                "text": "An issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. When running Git in the Windows Subsystem for Linux (also known as \u0026#34;WSL\u0026#34;) while accessing a working directory on a regular Windows drive, none of the NTFS protections were active."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1353",
+              "help": {
+                "text": "Vulnerability CVE-2019-1353\nSeverity: CRITICAL\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1353](https://avd.aquasec.com/nvd/cve-2019-1353)\nAn issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. When running Git in the Windows Subsystem for Linux (also known as \"WSL\") while accessing a working directory on a regular Windows drive, none of the NTFS protections were active.",
+                "markdown": "**Vulnerability CVE-2019-1353**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|git|2.15.4-r0|[CVE-2019-1353](https://avd.aquasec.com/nvd/cve-2019-1353)|\n\nAn issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. When running Git in the Windows Subsystem for Linux (also known as \"WSL\") while accessing a working directory on a regular Windows drive, none of the NTFS protections were active."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-12900",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-12900"
+              },
+              "fullDescription": {
+                "text": "BZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds write when there are many selectors."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-12900",
+              "help": {
+                "text": "Vulnerability CVE-2019-12900\nSeverity: CRITICAL\nPackage: libbz2\nFixed Version: 1.0.6-r7\nLink: [CVE-2019-12900](https://avd.aquasec.com/nvd/cve-2019-12900)\nBZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds write when there are many selectors.",
+                "markdown": "**Vulnerability CVE-2019-12900**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libbz2|1.0.6-r7|[CVE-2019-12900](https://avd.aquasec.com/nvd/cve-2019-12900)|\n\nBZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds write when there are many selectors."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-14697",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-14697"
+              },
+              "fullDescription": {
+                "text": "musl libc through 1.1.23 has an x87 floating-point stack adjustment imbalance, related to the math/i386/ directory. In some cases, use of this library could introduce out-of-bounds writes that are not present in an application\u0026#39;s source code."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-14697",
+              "help": {
+                "text": "Vulnerability CVE-2019-14697\nSeverity: CRITICAL\nPackage: musl-utils\nFixed Version: 1.1.18-r4\nLink: [CVE-2019-14697](https://avd.aquasec.com/nvd/cve-2019-14697)\nmusl libc through 1.1.23 has an x87 floating-point stack adjustment imbalance, related to the math/i386/ directory. In some cases, use of this library could introduce out-of-bounds writes that are not present in an application's source code.",
+                "markdown": "**Vulnerability CVE-2019-14697**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|musl-utils|1.1.18-r4|[CVE-2019-14697](https://avd.aquasec.com/nvd/cve-2019-14697)|\n\nmusl libc through 1.1.23 has an x87 floating-point stack adjustment imbalance, related to the math/i386/ directory. In some cases, use of this library could introduce out-of-bounds writes that are not present in an application's source code."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-8457",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-8457"
+              },
+              "fullDescription": {
+                "text": "SQLite3 from 3.6.0 to and including 3.27.2 is vulnerable to heap out-of-bound read in the rtreenode() function when handling invalid rtree tables."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-8457",
+              "help": {
+                "text": "Vulnerability CVE-2019-8457\nSeverity: CRITICAL\nPackage: sqlite-libs\nFixed Version: 3.25.3-r1\nLink: [CVE-2019-8457](https://avd.aquasec.com/nvd/cve-2019-8457)\nSQLite3 from 3.6.0 to and including 3.27.2 is vulnerable to heap out-of-bound read in the rtreenode() function when handling invalid rtree tables.",
+                "markdown": "**Vulnerability CVE-2019-8457**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|sqlite-libs|3.25.3-r1|[CVE-2019-8457](https://avd.aquasec.com/nvd/cve-2019-8457)|\n\nSQLite3 from 3.6.0 to and including 3.27.2 is vulnerable to heap out-of-bound read in the rtreenode() function when handling invalid rtree tables."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2020-25576",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2020-25576"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the rand_core crate before 0.4.2 for Rust. Casting of byte slices to integer slices mishandles alignment constraints."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2020-25576",
+              "help": {
+                "text": "Vulnerability CVE-2020-25576\nSeverity: CRITICAL\nPackage: rand_core\nFixed Version: 0.3.1, 0.4.2\nLink: [CVE-2020-25576](https://avd.aquasec.com/nvd/cve-2020-25576)\nAn issue was discovered in the rand_core crate before 0.4.2 for Rust. Casting of byte slices to integer slices mishandles alignment constraints.",
+                "markdown": "**Vulnerability CVE-2020-25576**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|rand_core|0.3.1, 0.4.2|[CVE-2020-25576](https://avd.aquasec.com/nvd/cve-2020-25576)|\n\nAn issue was discovered in the rand_core crate before 0.4.2 for Rust. Casting of byte slices to integer slices mishandles alignment constraints."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-15551",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-15551"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the smallvec crate before 0.6.10 for Rust. There is a double free for certain grow attempts with the current capacity."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-15551",
+              "help": {
+                "text": "Vulnerability CVE-2019-15551\nSeverity: CRITICAL\nPackage: smallvec\nFixed Version: 0.6.10\nLink: [CVE-2019-15551](https://avd.aquasec.com/nvd/cve-2019-15551)\nAn issue was discovered in the smallvec crate before 0.6.10 for Rust. There is a double free for certain grow attempts with the current capacity.",
+                "markdown": "**Vulnerability CVE-2019-15551**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|smallvec|0.6.10|[CVE-2019-15551](https://avd.aquasec.com/nvd/cve-2019-15551)|\n\nAn issue was discovered in the smallvec crate before 0.6.10 for Rust. There is a double free for certain grow attempts with the current capacity."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-15554",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-15554"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the smallvec crate before 0.6.10 for Rust. There is memory corruption for certain grow attempts with less than the current capacity."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-15554",
+              "help": {
+                "text": "Vulnerability CVE-2019-15554\nSeverity: CRITICAL\nPackage: smallvec\nFixed Version: 0.6.10\nLink: [CVE-2019-15554](https://avd.aquasec.com/nvd/cve-2019-15554)\nAn issue was discovered in the smallvec crate before 0.6.10 for Rust. There is memory corruption for certain grow attempts with less than the current capacity.",
+                "markdown": "**Vulnerability CVE-2019-15554**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|smallvec|0.6.10|[CVE-2019-15554](https://avd.aquasec.com/nvd/cve-2019-15554)|\n\nAn issue was discovered in the smallvec crate before 0.6.10 for Rust. There is memory corruption for certain grow attempts with less than the current capacity."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-25900",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2021-25900"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the smallvec crate before 0.6.14 and 1.x before 1.6.1 for Rust. There is a heap-based buffer overflow in SmallVec::insert_many."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2021-25900",
+              "help": {
+                "text": "Vulnerability CVE-2021-25900\nSeverity: CRITICAL\nPackage: smallvec\nFixed Version: 0.6.14, 1.6.1\nLink: [CVE-2021-25900](https://avd.aquasec.com/nvd/cve-2021-25900)\nAn issue was discovered in the smallvec crate before 0.6.14 and 1.x before 1.6.1 for Rust. There is a heap-based buffer overflow in SmallVec::insert_many.",
+                "markdown": "**Vulnerability CVE-2021-25900**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|smallvec|0.6.14, 1.6.1|[CVE-2021-25900](https://avd.aquasec.com/nvd/cve-2021-25900)|\n\nAn issue was discovered in the smallvec crate before 0.6.14 and 1.x before 1.6.1 for Rust. There is a heap-based buffer overflow in SmallVec::insert_many."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "9.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "CRITICAL"
+                ]
+              }
+            }
+          ],
+          "version": "0.25.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2018-14618",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2018-14618\nSeverity: CRITICAL\nFixed Version: 7.61.1-r0\nLink: [CVE-2018-14618](https://avd.aquasec.com/nvd/cve-2018-14618)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-16839",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2018-16839\nSeverity: CRITICAL\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16839](https://avd.aquasec.com/nvd/cve-2018-16839)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-16840",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2018-16840\nSeverity: CRITICAL\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16840](https://avd.aquasec.com/nvd/cve-2018-16840)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-16842",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2018-16842\nSeverity: CRITICAL\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16842](https://avd.aquasec.com/nvd/cve-2018-16842)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-3822",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2019-3822\nSeverity: CRITICAL\nFixed Version: 7.61.1-r2\nLink: [CVE-2019-3822](https://avd.aquasec.com/nvd/cve-2019-3822)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-5481",
+          "ruleIndex": 5,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2019-5481\nSeverity: CRITICAL\nFixed Version: 7.61.1-r3\nLink: [CVE-2019-5481](https://avd.aquasec.com/nvd/cve-2019-5481)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-5482",
+          "ruleIndex": 6,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2019-5482\nSeverity: CRITICAL\nFixed Version: 7.61.1-r3\nLink: [CVE-2019-5482](https://avd.aquasec.com/nvd/cve-2019-5482)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-17456",
+          "ruleIndex": 7,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2018-17456\nSeverity: CRITICAL\nFixed Version: 2.15.3-r0\nLink: [CVE-2018-17456](https://avd.aquasec.com/nvd/cve-2018-17456)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1353",
+          "ruleIndex": 8,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1353\nSeverity: CRITICAL\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1353](https://avd.aquasec.com/nvd/cve-2019-1353)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-12900",
+          "ruleIndex": 9,
+          "level": "error",
+          "message": {
+            "text": "Package: libbz2\nInstalled Version: 1.0.6-r6\nVulnerability CVE-2019-12900\nSeverity: CRITICAL\nFixed Version: 1.0.6-r7\nLink: [CVE-2019-12900](https://avd.aquasec.com/nvd/cve-2019-12900)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-16839",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2018-16839\nSeverity: CRITICAL\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16839](https://avd.aquasec.com/nvd/cve-2018-16839)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-16840",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2018-16840\nSeverity: CRITICAL\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16840](https://avd.aquasec.com/nvd/cve-2018-16840)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-16842",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2018-16842\nSeverity: CRITICAL\nFixed Version: 7.61.1-r1\nLink: [CVE-2018-16842](https://avd.aquasec.com/nvd/cve-2018-16842)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-3822",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2019-3822\nSeverity: CRITICAL\nFixed Version: 7.61.1-r2\nLink: [CVE-2019-3822](https://avd.aquasec.com/nvd/cve-2019-3822)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-5481",
+          "ruleIndex": 5,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2019-5481\nSeverity: CRITICAL\nFixed Version: 7.61.1-r3\nLink: [CVE-2019-5481](https://avd.aquasec.com/nvd/cve-2019-5481)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-5482",
+          "ruleIndex": 6,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2019-5482\nSeverity: CRITICAL\nFixed Version: 7.61.1-r3\nLink: [CVE-2019-5482](https://avd.aquasec.com/nvd/cve-2019-5482)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-14697",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: musl\nInstalled Version: 1.1.18-r3\nVulnerability CVE-2019-14697\nSeverity: CRITICAL\nFixed Version: 1.1.18-r4\nLink: [CVE-2019-14697](https://avd.aquasec.com/nvd/cve-2019-14697)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-14697",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: musl-utils\nInstalled Version: 1.1.18-r3\nVulnerability CVE-2019-14697\nSeverity: CRITICAL\nFixed Version: 1.1.18-r4\nLink: [CVE-2019-14697](https://avd.aquasec.com/nvd/cve-2019-14697)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-8457",
+          "ruleIndex": 11,
+          "level": "error",
+          "message": {
+            "text": "Package: sqlite-libs\nInstalled Version: 3.21.0-r1\nVulnerability CVE-2019-8457\nSeverity: CRITICAL\nFixed Version: 3.25.3-r1\nLink: [CVE-2019-8457](https://avd.aquasec.com/nvd/cve-2019-8457)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image:1.2.3",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-25576",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "Package: rand_core\nInstalled Version: 0.4.0\nVulnerability CVE-2020-25576\nSeverity: CRITICAL\nFixed Version: 0.3.1, 0.4.2\nLink: [CVE-2020-25576](https://avd.aquasec.com/nvd/cve-2020-25576)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-15551",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability CVE-2019-15551\nSeverity: CRITICAL\nFixed Version: 0.6.10\nLink: [CVE-2019-15551](https://avd.aquasec.com/nvd/cve-2019-15551)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-15554",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability CVE-2019-15554\nSeverity: CRITICAL\nFixed Version: 0.6.10\nLink: [CVE-2019-15554](https://avd.aquasec.com/nvd/cve-2019-15554)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-25900",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability CVE-2021-25900\nSeverity: CRITICAL\nFixed Version: 0.6.14, 1.6.1\nLink: [CVE-2021-25900](https://avd.aquasec.com/nvd/cve-2021-25900)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///"
+        }
+      }
+    }
+  ]
+}

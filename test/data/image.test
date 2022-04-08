@@ -1,0 +1,107 @@
++-------------+------------------+----------+-------------------+---------------+---------------------------------------+
+|   LIBRARY   | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |                 TITLE                 |
++-------------+------------------+----------+-------------------+---------------+---------------------------------------+
+| curl        | CVE-2018-14618   | CRITICAL | 7.61.0-r0         | 7.61.1-r0     | curl: NTLM password overflow          |
+|             |                  |          |                   |               | via integer overflow                  |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-14618 |
++             +------------------+          +                   +---------------+---------------------------------------+
+|             | CVE-2018-16839   |          |                   | 7.61.1-r1     | curl: Integer overflow leading        |
+|             |                  |          |                   |               | to heap-based buffer overflow in      |
+|             |                  |          |                   |               | Curl_sasl_create_plain_message()      |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16839 |
++             +------------------+          +                   +               +---------------------------------------+
+|             | CVE-2018-16840   |          |                   |               | curl: Use-after-free when closing     |
+|             |                  |          |                   |               | "easy" handle in Curl_close()         |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16840 |
++             +------------------+          +                   +               +---------------------------------------+
+|             | CVE-2018-16842   |          |                   |               | curl: Heap-based buffer over-read     |
+|             |                  |          |                   |               | in the curl tool warning formatting   |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16842 |
++             +------------------+          +                   +---------------+---------------------------------------+
+|             | CVE-2019-3822    |          |                   | 7.61.1-r2     | curl: NTLMv2 type-3 header            |
+|             |                  |          |                   |               | stack buffer overflow                 |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-3822  |
++             +------------------+          +                   +---------------+---------------------------------------+
+|             | CVE-2019-5481    |          |                   | 7.61.1-r3     | curl: double free due to              |
+|             |                  |          |                   |               | subsequent call of realloc()          |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5481  |
++             +------------------+          +                   +               +---------------------------------------+
+|             | CVE-2019-5482    |          |                   |               | curl: heap buffer overflow in         |
+|             |                  |          |                   |               | function tftp_receive_packet()        |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5482  |
++-------------+------------------+          +-------------------+---------------+---------------------------------------+
+| git         | CVE-2018-17456   |          | 2.15.2-r0         | 2.15.3-r0     | git: arbitrary code                   |
+|             |                  |          |                   |               | execution via .gitmodules             |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-17456 |
++             +------------------+          +                   +---------------+---------------------------------------+
+|             | CVE-2019-1353    |          |                   | 2.15.4-r0     | git: NTFS protections inactive        |
+|             |                  |          |                   |               | when running Git in the               |
+|             |                  |          |                   |               | Windows Subsystem for...              |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-1353  |
++-------------+------------------+          +-------------------+---------------+---------------------------------------+
+| libbz2      | CVE-2019-12900   |          | 1.0.6-r6          | 1.0.6-r7      | bzip2: out-of-bounds write            |
+|             |                  |          |                   |               | in function BZ2_decompress            |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-12900 |
++-------------+------------------+          +-------------------+---------------+---------------------------------------+
+| libcurl     | CVE-2018-16839   |          | 7.61.1-r0         | 7.61.1-r1     | curl: Integer overflow leading        |
+|             |                  |          |                   |               | to heap-based buffer overflow in      |
+|             |                  |          |                   |               | Curl_sasl_create_plain_message()      |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16839 |
++             +------------------+          +                   +               +---------------------------------------+
+|             | CVE-2018-16840   |          |                   |               | curl: Use-after-free when closing     |
+|             |                  |          |                   |               | "easy" handle in Curl_close()         |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16840 |
++             +------------------+          +                   +               +---------------------------------------+
+|             | CVE-2018-16842   |          |                   |               | curl: Heap-based buffer over-read     |
+|             |                  |          |                   |               | in the curl tool warning formatting   |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16842 |
++             +------------------+          +                   +---------------+---------------------------------------+
+|             | CVE-2019-3822    |          |                   | 7.61.1-r2     | curl: NTLMv2 type-3 header            |
+|             |                  |          |                   |               | stack buffer overflow                 |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-3822  |
++             +------------------+          +                   +---------------+---------------------------------------+
+|             | CVE-2019-5481    |          |                   | 7.61.1-r3     | curl: double free due to              |
+|             |                  |          |                   |               | subsequent call of realloc()          |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5481  |
++             +------------------+          +                   +               +---------------------------------------+
+|             | CVE-2019-5482    |          |                   |               | curl: heap buffer overflow in         |
+|             |                  |          |                   |               | function tftp_receive_packet()        |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5482  |
++-------------+------------------+          +-------------------+---------------+---------------------------------------+
+| musl        | CVE-2019-14697   |          | 1.1.18-r3         | 1.1.18-r4     | musl libc through 1.1.23              |
+|             |                  |          |                   |               | has an x87 floating-point             |
+|             |                  |          |                   |               | stack adjustment im ......            |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-14697 |
++-------------+                  +          +                   +               +                                       +
+| musl-utils  |                  |          |                   |               |                                       |
+|             |                  |          |                   |               |                                       |
+|             |                  |          |                   |               |                                       |
+|             |                  |          |                   |               |                                       |
++-------------+------------------+          +-------------------+---------------+---------------------------------------+
+| sqlite-libs | CVE-2019-8457    |          | 3.21.0-r1         | 3.25.3-r1     | sqlite: heap out-of-bound             |
+|             |                  |          |                   |               | read in function rtreenode()          |
+|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-8457  |
++-------------+------------------+----------+-------------------+---------------+---------------------------------------+
++-----------+------------------+----------+-------------------+---------------+---------------------------------------+
+|  LIBRARY  | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |                 TITLE                 |
++-----------+------------------+----------+-------------------+---------------+---------------------------------------+
+| rand_core | CVE-2020-25576   | CRITICAL | 0.4.0             | 0.3.1, 0.4.2  | An issue was discovered               |
+|           |                  |          |                   |               | in the rand_core crate                |
+|           |                  |          |                   |               | before 0.4.2 for Rust....             |
+|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2020-25576 |
++-----------+------------------+          +-------------------+---------------+---------------------------------------+
+| smallvec  | CVE-2019-15551   |          | 0.6.9             | 0.6.10        | An issue was discovered               |
+|           |                  |          |                   |               | in the smallvec crate                 |
+|           |                  |          |                   |               | before 0.6.10 for Rust....            |
+|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-15551 |
++           +------------------+          +                   +               +---------------------------------------+
+|           | CVE-2019-15554   |          |                   |               | An issue was discovered               |
+|           |                  |          |                   |               | in the smallvec crate                 |
+|           |                  |          |                   |               | before 0.6.10 for Rust....            |
+|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-15554 |
++           +------------------+          +                   +---------------+---------------------------------------+
+|           | CVE-2021-25900   |          |                   | 0.6.14, 1.6.1 | An issue was discovered               |
+|           |                  |          |                   |               | in the smallvec crate                 |
+|           |                  |          |                   |               | before 0.6.14 and 1.x...              |
+|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2021-25900 |
++-----------+------------------+----------+-------------------+---------------+---------------------------------------+
