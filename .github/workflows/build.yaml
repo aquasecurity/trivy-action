@@ -1,7 +1,7 @@
 name: "build"
 on: [push, pull_request]
 env:
-  TRIVY_VERSION: 0.25.0
+  TRIVY_VERSION: 0.25.3
 jobs:
   build:
     name: build
