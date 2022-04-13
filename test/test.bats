@@ -35,6 +35,13 @@
   [ "$result" == '' ]
 }
 
+@test "trivy fs with securityChecks option" {
+  # trivy fs -f json --security-checks=vuln,config -o fs.test .
+  ./entrypoint.sh '-a fs' '-j .' '-b json' '-s vuln,config' '-h fs-scheck.test'
+  result="$(diff ./test/data/fs.test fs.test)"
+  [ "$result" == '' ]
+}
+
 @test "trivy repo" {
   # trivy repo -f json -o repo.test --severity CRITICAL https://github.com/aquasecurity/trivy-action/
   ./entrypoint.sh '-b json' '-h repo.test' '-g CRITICAL' '-a repo' '-j https://github.com/aquasecurity/trivy-action/'
