@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -56,6 +56,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:" o; do
        r)
          export listAllPkgs=${OPTARG}
        ;;
+       s)
+         export securityChecks=${OPTARG}
+       ;;
   esac
 done
 
@@ -94,6 +97,9 @@ fi
 if [ $vulnType ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --vuln-type $vulnType"
   SARIF_ARGS="$SARIF_ARGS --vuln-type $vulnType"
+fi
+if [ $securityChecks ] && [ "$scanType" == "fs" ];then
+  ARGS="$ARGS --security-checks $securityChecks"
 fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
