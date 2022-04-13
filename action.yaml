@@ -73,6 +73,10 @@ inputs:
     description: 'output all packages regardless of vulnerability'
     required: false
     default: 'false'
+  security-checks:
+    description: 'comma-separated list of what security issues to detect'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -95,3 +99,4 @@ runs:
     - '-p ${{ inputs.hide-progress }}'
     - '-q ${{ inputs.skip-files }}'
     - '-r ${{ inputs.list-all-pkgs }}'
+    - '-s ${{ inputs.security-checks }}'
