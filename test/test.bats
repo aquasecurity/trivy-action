@@ -43,8 +43,8 @@
 }
 
 @test "trivy repo" {
-  # trivy repo -f json -o repo.test --severity CRITICAL https://github.com/aquasecurity/trivy-action/
-  ./entrypoint.sh '-b json' '-h repo.test' '-g CRITICAL' '-a repo' '-j https://github.com/aquasecurity/trivy-action/'
+  # trivy repo -f json -o repo.test --security-checks=secret  https://github.com/krol3/demo-trivy/
+  ./entrypoint.sh '-b json' '-h repo.test' '-s secret' '-a repo' '-j https://github.com/krol3/demo-trivy/'
   result="$(diff ./test/data/repo.test repo.test)"
   [ "$result" == '' ]
 }
