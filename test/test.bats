@@ -42,7 +42,7 @@
   [ "$result" == '' ]
 }
 
-@test "trivy repo" {
+@test "trivy repo with securityCheck secret only" {
   # trivy repo -f json -o repo.test --security-checks=secret  https://github.com/krol3/demo-trivy/
   ./entrypoint.sh '-b json' '-h repo.test' '-s secret' '-a repo' '-j https://github.com/krol3/demo-trivy/'
   result="$(diff ./test/data/repo.test repo.test)"

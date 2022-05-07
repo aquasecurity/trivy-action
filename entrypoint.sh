@@ -101,6 +101,9 @@ fi
 if [ $securityChecks ] && [ "$scanType" == "fs" ];then
   ARGS="$ARGS --security-checks $securityChecks"
 fi
+if [ $securityChecks ] && [ "$scanType" == "repo" ];then
+  ARGS="$ARGS --security-checks $securityChecks"
+fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
 fi
