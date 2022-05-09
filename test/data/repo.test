@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "ArtifactName": "https://github.com/aquasecurity/trivy-action/",
+  "ArtifactName": "https://github.com/krol3/demo-trivy/",
   "ArtifactType": "repository",
   "Metadata": {
     "ImageConfig": {
@@ -13,5 +13,22 @@
       },
       "config": {}
     }
-  }
+  },
+  "Results": [
+    {
+      "Target": "env",
+      "Class": "secret",
+      "Secrets": [
+        {
+          "RuleID": "github-pat",
+          "Category": "GitHub",
+          "Severity": "CRITICAL",
+          "Title": "GitHub Personal Access Token",
+          "StartLine": 5,
+          "EndLine": 5,
+          "Match": "export GITHUB_PAT=*****"
+        }
+      ]
+    }
+  ]
 }
