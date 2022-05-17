@@ -63,7 +63,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:" o; do
 done
 
 scanType=$(echo $scanType | tr -d '\r')
-export artifactRefs="${imageRefs}"
+export artifactsRefs="${imageRefs}"
 if [ "${scanType}" = "repo" ] || [ "${scanType}" = "fs" ] ||  [ "${scanType}" = "config" ] ||  [ "${scanType}" = "rootfs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
@@ -135,9 +135,9 @@ if [ "$skipFiles" ];then
     ARGS="$ARGS --skip-files $i"
   done
 fi
-echo "Running trivy with options: ${ARGS}" "${artifactRefs}"
+echo "Running trivy with options: ${ARGS}" "${artifactsRefs}"
 echo "Global options: " "${GLOBAL_ARGS}"
-for artifactRef in ${artifactRefs//,/$IFS}; do
+for artifactRef in ${artifactsRefs//,/$IFS}; do
   echo "Scanning $artifactRef"
   if [ $output ];then
     ARGS1="$ARGS --output ${artifactRef//\//-}-$output"

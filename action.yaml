@@ -6,7 +6,7 @@ inputs:
     description: 'Scan type to use for scanning vulnerability'
     required: false
     default: 'image'
-  image-refs:
+  images-refs:
     description: 'images reference(for backward compatibility) (split multiple images using comma)'
     required: true
   input:
@@ -89,7 +89,7 @@ runs:
     - '-f ${{ inputs.vuln-type }}'
     - '-g ${{ inputs.severity }}'
     - '-h ${{ inputs.output }}'
-    - '-i ${{ inputs.image-ref }}'
+    - '-i ${{ inputs.images-refs }}'
     - '-j ${{ inputs.scan-ref }}'
     - '-k ${{ inputs.skip-dirs }}'
     - '-l ${{ inputs.input }}'
