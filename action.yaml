@@ -6,8 +6,8 @@ inputs:
     description: 'Scan type to use for scanning vulnerability'
     required: false
     default: 'image'
-  image-ref:
-    description: 'image reference(for backward compatibility)'
+  image-refs:
+    description: 'images reference(for backward compatibility) (split multiple images using comma)'
     required: true
   input:
     description: 'reference of tar file to scan'

@@ -2,9 +2,17 @@
 
 @test "trivy image" {
   # trivy image --severity CRITICAL -o image.test knqyf263/vuln-image:1.2.3
-  ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3' '-b table' '-h image.test' '-g CRITICAL'
-  result="$(diff ./test/data/image.test image.test)"
+  ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3' '-b table' '-h test' '-g CRITICAL'
+  result="$(diff ./test/data/image.test knqyf263-vuln-image:1.2.3-test)"
   [ "$result" == '' ]
+}
+
+@test "trivy multiple images" {
+  # trivy image --severity CRITICAL -o image.test knqyf263/vuln-image:1.2.3
+  ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3,alpine:3.15.4' '-b table' '-h test' '-g CRITICAL'
+  result1="$(diff ./test/data/image.test knqyf263-vuln-image:1.2.3-test)"
+  result2="$(diff ./test/data/alpine:3.15.4-result alpine:3.15.4-result)"
+  [ "$result1" == '' ] && [ "$result2" == '' ]
 }
 
 @test "trivy image sarif report" {

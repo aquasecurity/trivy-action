@@ -27,7 +27,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:" o; do
          export output=${OPTARG}
        ;;
        i)
-         export imageRef=${OPTARG}
+         export imageRefs=${OPTARG}
        ;;
        j)
          export scanRef=${OPTARG}
@@ -63,7 +63,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:" o; do
 done
 
 scanType=$(echo $scanType | tr -d '\r')
-export artifactRef="${imageRef}"
+export artifactRefs="${imageRefs}"
 if [ "${scanType}" = "repo" ] || [ "${scanType}" = "fs" ] ||  [ "${scanType}" = "config" ] ||  [ "${scanType}" = "rootfs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
@@ -107,9 +107,6 @@ fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
 fi
-if [ $output ];then
-  ARGS="$ARGS --output $output"
-fi
 if [ $skipDirs ];then
   for i in $(echo $skipDirs | tr "," "\n")
   do
@@ -138,18 +135,25 @@ if [ "$skipFiles" ];then
     ARGS="$ARGS --skip-files $i"
   done
 fi
-
-echo "Running trivy with options: ${ARGS}" "${artifactRef}"
+echo "Running trivy with options: ${ARGS}" "${artifactRefs}"
 echo "Global options: " "${GLOBAL_ARGS}"
-trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
-returnCode=$?
+for artifactRef in ${artifactRefs//,/$IFS}; do
+  echo "Scanning $artifactRef"
+  if [ $output ];then
+    ARGS1="$ARGS --output ${artifactRef//\//-}-$output"
+  fi
+  trivy $GLOBAL_ARGS ${scanType} $ARGS1 ${artifactRef} 
+  eCode=$?
+  if [[ $eCode -gt 0 ]]; then
+    export returnCode=$eCode
+  fi
 
-# SARIF is special. We output all vulnerabilities,
-# regardless of severity level specified in this report.
-# This is a feature, not a bug :)
-if [[ "${format}" == "sarif" ]]; then
-  echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
-  trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
-fi
-
+  # SARIF is special. We output all vulnerabilities,
+  # regardless of severity level specified in this report.
+  # This is a feature, not a bug :)
+  if [[ "${format}" == "sarif" ]]; then
+    echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
+    trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+  fi
+done
 exit $returnCode
