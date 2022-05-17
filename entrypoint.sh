@@ -151,7 +151,8 @@ for artifactRef in ${artifactsRefs//,/$IFS}; do
   # SARIF is special. We output all vulnerabilities,
   # regardless of severity level specified in this report.
   # This is a feature, not a bug :)
-  if [[ $format -eq "sarif" ]]; then
+  format="$(echo $format)"
+  if [[ "${format}" == "sarif" ]]; then
     echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
     trivy --quiet ${scanType} --format sarif --output $( echo ${artifactRef//\:/-} | cut -d '/' -f2- | sed 's/\//-/g')-${output// /} $SARIF_ARGS ${artifactRef}
   fi
