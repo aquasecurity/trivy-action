@@ -140,7 +140,7 @@ echo "Global options: " "${GLOBAL_ARGS}"
 for artifactRef in ${artifactsRefs//,/$IFS}; do
   echo "Scanning $artifactRef"
   if [ $output ];then
-    ARGS1="$ARGS --output ${artifactRef//\//-}-$output"
+    ARGS1="$ARGS --output $( echo ${artifactRef//\:/-} | cut -d '/' -f2- | sed 's/\//-/g')-$output"
   fi
   trivy $GLOBAL_ARGS ${scanType} $ARGS1 ${artifactRef} 
   eCode=$?
@@ -153,7 +153,7 @@ for artifactRef in ${artifactsRefs//,/$IFS}; do
   # This is a feature, not a bug :)
   if [[ "${format}" == "sarif" ]]; then
     echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
-    trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+    trivy --quiet ${scanType} --format sarif --output ${artifactRef//\//-}-$output $SARIF_ARGS ${artifactRef}
   fi
 done
 exit $returnCode

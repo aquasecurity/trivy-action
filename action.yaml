@@ -42,7 +42,7 @@ inputs:
     required: false
     default: ''
   output:
-    description: 'writes results to a file with the specified file name'
+    description: 'suffix of the file name that will receive the scan results'
     required: false
     default: ''
   skip-dirs:
