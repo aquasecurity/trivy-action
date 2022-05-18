@@ -98,10 +98,7 @@ if [ $vulnType ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --vuln-type $vulnType"
   SARIF_ARGS="$SARIF_ARGS --vuln-type $vulnType"
 fi
-if [ $securityChecks ] && [ "$scanType" == "fs" ];then
-  ARGS="$ARGS --security-checks $securityChecks"
-fi
-if [ $securityChecks ] && [ "$scanType" == "repo" ];then
+if [ $securityChecks ];then
   ARGS="$ARGS --security-checks $securityChecks"
 fi
 if [ $severity ];then
