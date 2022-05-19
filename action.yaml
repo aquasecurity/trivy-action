@@ -76,7 +76,7 @@ inputs:
   security-checks:
     description: 'comma-separated list of what security issues to detect'
     required: false
-    default: ''
+    default: 'vuln,secret'
 runs:
   using: 'docker'
   image: "Dockerfile"
