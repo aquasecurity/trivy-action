@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "ENV secu checks ${TRIVY_SECURITY_CHECKS}"
 set -e
 while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:" o; do
    case "${o}" in
