@@ -394,7 +394,7 @@ Following inputs can be used as `step.with` keys:
 | `timeout`        | String  | `5m0s`                             | Scan timeout duration                         |
 | `ignore-policy`  | String  |                                    | Filter vulnerabilities with OPA rego language |
 | `list-all-pkgs`  | String  |                                    | Output all packages regardless of vulnerability |
-| `security-checks`| String  | `vuln`                             | comma-separated list of what security issues to detect (`vuln`,`config`)|
+| `security-checks`| String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)|
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
