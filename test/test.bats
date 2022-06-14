@@ -48,3 +48,10 @@
   result="$(diff ./test/data/repo.test repo.test)"
   [ "$result" == '' ]
 }
+
+@test "trivy image with trivyIgnores option" {
+  # cat ./test/data/.trivyignore1 ./test/data/.trivyignore2 > ./trivyignores ; trivy image --severity CRITICAL --output image-trivyignores.test --ignorefile ./trivyignores knqyf263/vuln-image:1.2.3
+  ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3' '-b table' '-h image-trivyignores.test' '-g CRITICAL' '-t ./test/data/.trivyignore1,./test/data/.trivyignore2'
+  result="$(diff ./test/data/image-trivyignores.test image-trivyignores.test)"
+  [ "$result" == '' ]
+}
