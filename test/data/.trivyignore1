@@ -1,0 +1,3 @@
+# test data #1 for trivy-ignores option
+CVE-2020-25576
+CVE-2019-15551

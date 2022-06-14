@@ -77,6 +77,10 @@ inputs:
     description: 'comma-separated list of what security issues to detect'
     required: false
     default: ''
+  trivyignores:
+    description: 'comma-separated list of relative paths in repository to one or more .trivyignore files'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -100,3 +104,4 @@ runs:
     - '-q ${{ inputs.skip-files }}'
     - '-r ${{ inputs.list-all-pkgs }}'
     - '-s ${{ inputs.security-checks }}'
+    - '-t ${{ inputs.trivyignores }}'
