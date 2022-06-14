@@ -35,11 +35,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
-      
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -116,7 +116,7 @@ jobs:
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
-        if: always() 
+        if: always()
         with:
           sarif_file: 'trivy-results.sarif'
 ```
@@ -247,7 +247,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -256,7 +256,7 @@ jobs:
           output: 'trivy-results.sarif'
         env:
           TRIVY_USERNAME: Username
-          TRIVY_PASSWORD: Password        
+          TRIVY_PASSWORD: Password
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
@@ -283,7 +283,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -319,7 +319,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -352,7 +352,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -361,7 +361,7 @@ jobs:
           output: 'trivy-results.sarif'
         env:
           TRIVY_USERNAME: Username
-          TRIVY_PASSWORD: Password        
+          TRIVY_PASSWORD: Password
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
@@ -395,6 +395,7 @@ Following inputs can be used as `step.with` keys:
 | `ignore-policy`  | String  |                                    | Filter vulnerabilities with OPA rego language |
 | `list-all-pkgs`  | String  |                                    | Output all packages regardless of vulnerability |
 | `security-checks`| String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)|
+| `trivyignores`   | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
