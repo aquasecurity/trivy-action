@@ -15,14 +15,14 @@
 }
 
 @test "trivy config" {
-  # trivy conf --output config.test .
+  # trivy config --output config.test .
   ./entrypoint.sh '-a config' '-j .' '-b table' '-h config.test'
   result="$(diff ./test/data/config.test config.test)"
   [ "$result" == '' ]
 }
 
 @test "trivy rootfs" {
-  # trivy rootfs --output rootfs.test -f json .
+  # trivy rootfs -f json --output rootfs.test .
   ./entrypoint.sh '-a rootfs' '-j .' '-b json' '-h rootfs.test'
   result="$(diff ./test/data/rootfs.test rootfs.test)"
   [ "$result" == '' ]
@@ -36,9 +36,9 @@
 }
 
 @test "trivy fs with securityChecks option" {
-  # trivy fs -f json --security-checks=vuln,config --output fs.test .
+  # trivy fs -f json --security-checks=vuln,config --output fs-scheck.test .
   ./entrypoint.sh '-a fs' '-j .' '-b json' '-s vuln,config,secret' '-h fs-scheck.test'
-  result="$(diff ./test/data/fs.test fs.test)"
+  result="$(diff ./test/data/fs-scheck.test fs-scheck.test)"
   [ "$result" == '' ]
 }
 
