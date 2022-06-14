@@ -1,2 +1,4 @@
 .idea/
 *.test
+!test/data/*.test
+trivyignores
