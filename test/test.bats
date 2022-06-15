@@ -36,9 +36,9 @@
 }
 
 @test "trivy fs with securityChecks option" {
-  # trivy fs -f json --security-checks=vuln,config --output fs.test .
+  # trivy fs --format json --security-checks=vuln,config --output fs-scheck.test .
   ./entrypoint.sh '-a fs' '-j .' '-b json' '-s vuln,config,secret' '-h fs-scheck.test'
-  result="$(diff ./test/data/fs.test fs.test)"
+  result="$(diff ./test/data/fs-scheck.test fs-scheck.test)"
   [ "$result" == '' ]
 }
 
