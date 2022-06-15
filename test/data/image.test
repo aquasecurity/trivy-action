@@ -1,107 +1,1478 @@
-+-------------+------------------+----------+-------------------+---------------+---------------------------------------+
-|   LIBRARY   | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |                 TITLE                 |
-+-------------+------------------+----------+-------------------+---------------+---------------------------------------+
-| curl        | CVE-2018-14618   | CRITICAL | 7.61.0-r0         | 7.61.1-r0     | curl: NTLM password overflow          |
-|             |                  |          |                   |               | via integer overflow                  |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-14618 |
-+             +------------------+          +                   +---------------+---------------------------------------+
-|             | CVE-2018-16839   |          |                   | 7.61.1-r1     | curl: Integer overflow leading        |
-|             |                  |          |                   |               | to heap-based buffer overflow in      |
-|             |                  |          |                   |               | Curl_sasl_create_plain_message()      |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16839 |
-+             +------------------+          +                   +               +---------------------------------------+
-|             | CVE-2018-16840   |          |                   |               | curl: Use-after-free when closing     |
-|             |                  |          |                   |               | "easy" handle in Curl_close()         |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16840 |
-+             +------------------+          +                   +               +---------------------------------------+
-|             | CVE-2018-16842   |          |                   |               | curl: Heap-based buffer over-read     |
-|             |                  |          |                   |               | in the curl tool warning formatting   |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16842 |
-+             +------------------+          +                   +---------------+---------------------------------------+
-|             | CVE-2019-3822    |          |                   | 7.61.1-r2     | curl: NTLMv2 type-3 header            |
-|             |                  |          |                   |               | stack buffer overflow                 |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-3822  |
-+             +------------------+          +                   +---------------+---------------------------------------+
-|             | CVE-2019-5481    |          |                   | 7.61.1-r3     | curl: double free due to              |
-|             |                  |          |                   |               | subsequent call of realloc()          |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5481  |
-+             +------------------+          +                   +               +---------------------------------------+
-|             | CVE-2019-5482    |          |                   |               | curl: heap buffer overflow in         |
-|             |                  |          |                   |               | function tftp_receive_packet()        |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5482  |
-+-------------+------------------+          +-------------------+---------------+---------------------------------------+
-| git         | CVE-2018-17456   |          | 2.15.2-r0         | 2.15.3-r0     | git: arbitrary code                   |
-|             |                  |          |                   |               | execution via .gitmodules             |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-17456 |
-+             +------------------+          +                   +---------------+---------------------------------------+
-|             | CVE-2019-1353    |          |                   | 2.15.4-r0     | git: NTFS protections inactive        |
-|             |                  |          |                   |               | when running Git in the               |
-|             |                  |          |                   |               | Windows Subsystem for...              |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-1353  |
-+-------------+------------------+          +-------------------+---------------+---------------------------------------+
-| libbz2      | CVE-2019-12900   |          | 1.0.6-r6          | 1.0.6-r7      | bzip2: out-of-bounds write            |
-|             |                  |          |                   |               | in function BZ2_decompress            |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-12900 |
-+-------------+------------------+          +-------------------+---------------+---------------------------------------+
-| libcurl     | CVE-2018-16839   |          | 7.61.1-r0         | 7.61.1-r1     | curl: Integer overflow leading        |
-|             |                  |          |                   |               | to heap-based buffer overflow in      |
-|             |                  |          |                   |               | Curl_sasl_create_plain_message()      |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16839 |
-+             +------------------+          +                   +               +---------------------------------------+
-|             | CVE-2018-16840   |          |                   |               | curl: Use-after-free when closing     |
-|             |                  |          |                   |               | "easy" handle in Curl_close()         |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16840 |
-+             +------------------+          +                   +               +---------------------------------------+
-|             | CVE-2018-16842   |          |                   |               | curl: Heap-based buffer over-read     |
-|             |                  |          |                   |               | in the curl tool warning formatting   |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2018-16842 |
-+             +------------------+          +                   +---------------+---------------------------------------+
-|             | CVE-2019-3822    |          |                   | 7.61.1-r2     | curl: NTLMv2 type-3 header            |
-|             |                  |          |                   |               | stack buffer overflow                 |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-3822  |
-+             +------------------+          +                   +---------------+---------------------------------------+
-|             | CVE-2019-5481    |          |                   | 7.61.1-r3     | curl: double free due to              |
-|             |                  |          |                   |               | subsequent call of realloc()          |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5481  |
-+             +------------------+          +                   +               +---------------------------------------+
-|             | CVE-2019-5482    |          |                   |               | curl: heap buffer overflow in         |
-|             |                  |          |                   |               | function tftp_receive_packet()        |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-5482  |
-+-------------+------------------+          +-------------------+---------------+---------------------------------------+
-| musl        | CVE-2019-14697   |          | 1.1.18-r3         | 1.1.18-r4     | musl libc through 1.1.23              |
-|             |                  |          |                   |               | has an x87 floating-point             |
-|             |                  |          |                   |               | stack adjustment im ......            |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-14697 |
-+-------------+                  +          +                   +               +                                       +
-| musl-utils  |                  |          |                   |               |                                       |
-|             |                  |          |                   |               |                                       |
-|             |                  |          |                   |               |                                       |
-|             |                  |          |                   |               |                                       |
-+-------------+------------------+          +-------------------+---------------+---------------------------------------+
-| sqlite-libs | CVE-2019-8457    |          | 3.21.0-r1         | 3.25.3-r1     | sqlite: heap out-of-bound             |
-|             |                  |          |                   |               | read in function rtreenode()          |
-|             |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-8457  |
-+-------------+------------------+----------+-------------------+---------------+---------------------------------------+
-+-----------+------------------+----------+-------------------+---------------+---------------------------------------+
-|  LIBRARY  | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |                 TITLE                 |
-+-----------+------------------+----------+-------------------+---------------+---------------------------------------+
-| rand_core | CVE-2020-25576   | CRITICAL | 0.4.0             | 0.3.1, 0.4.2  | An issue was discovered               |
-|           |                  |          |                   |               | in the rand_core crate                |
-|           |                  |          |                   |               | before 0.4.2 for Rust....             |
-|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2020-25576 |
-+-----------+------------------+          +-------------------+---------------+---------------------------------------+
-| smallvec  | CVE-2019-15551   |          | 0.6.9             | 0.6.10        | An issue was discovered               |
-|           |                  |          |                   |               | in the smallvec crate                 |
-|           |                  |          |                   |               | before 0.6.10 for Rust....            |
-|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-15551 |
-+           +------------------+          +                   +               +---------------------------------------+
-|           | CVE-2019-15554   |          |                   |               | An issue was discovered               |
-|           |                  |          |                   |               | in the smallvec crate                 |
-|           |                  |          |                   |               | before 0.6.10 for Rust....            |
-|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2019-15554 |
-+           +------------------+          +                   +---------------+---------------------------------------+
-|           | CVE-2021-25900   |          |                   | 0.6.14, 1.6.1 | An issue was discovered               |
-|           |                  |          |                   |               | in the smallvec crate                 |
-|           |                  |          |                   |               | before 0.6.14 and 1.x...              |
-|           |                  |          |                   |               | -->avd.aquasec.com/nvd/cve-2021-25900 |
-+-----------+------------------+----------+-------------------+---------------+---------------------------------------+
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "knqyf263/vuln-image:1.2.3",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.7.1",
+      "EOSL": true
+    },
+    "ImageID": "sha256:c17083664da903e13e9092fa3a3a1aeee2431aa2728298e3dbcec72f26369c41",
+    "DiffIDs": [
+      "sha256:ebf12965380b39889c99a9c02e82ba465f887b45975b6e389d42e9e6a3857888",
+      "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33",
+      "sha256:9922bc15eeefe1637b803ef2106f178152ce19a391f24aec838cbe2e48e73303",
+      "sha256:dc00fbef458ad3204bbb548e2d766813f593d857b845a940a0de76aed94c94d1",
+      "sha256:5cb2a5009179b1e78ecfef81a19756328bb266456cf9a9dbbcf9af8b83b735f0",
+      "sha256:9bdb2c849099a99c8ab35f6fd7469c623635e8f4479a0a5a3df61e22bae509f6",
+      "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013",
+      "sha256:83abef706f5ae199af65d1c13d737d0eb36219f0d18e36c6d8ff06159df39a63",
+      "sha256:c03283c257abd289a30b4f5e9e1345da0e9bfdc6ca398ee7e8fac6d2c1456227",
+      "sha256:2da3602d664dd3f71fae83cbc566d4e80b432c6ee8bb4efd94c8e85122f503d4",
+      "sha256:82c59ac8ee582542648e634ca5aff9a464c68ff8a054f105a58689fb52209e34",
+      "sha256:2f4a5c9187c249834ebc28783bd3c65bdcbacaa8baa6620ddaa27846dd3ef708",
+      "sha256:6ca56f561e677ae06c3bc87a70792642d671a4416becb9a101577c1a6e090e36",
+      "sha256:154ad0735c360b212b167f424d33a62305770a1fcfb6363882f5c436cfbd9812",
+      "sha256:b2a1a2d80bf0c747a4f6b0ca6af5eef23f043fcdb1ed4f3a3e750aef2dc68079",
+      "sha256:4d116f47cb2cc77a88d609b9805f2b011a5d42339b67300166654b3922685ac9",
+      "sha256:9b1326af1cf81505fd8e596b7f622b679ae5d290e46b25214ba26e4f7c661d60",
+      "sha256:a66245f885f2a210071e415f0f8ac4f21f5e4eab6c0435b4082e5c3637c411cb",
+      "sha256:ba17950e91742d6ac7055ea3a053fe764486658ca1ce8188f1e427b1fe2bc4da",
+      "sha256:6ef42db7800507577383edf1937cb203b9b85f619feed6046594208748ceb52c"
+    ],
+    "RepoTags": [
+      "knqyf263/vuln-image:1.2.3"
+    ],
+    "RepoDigests": [
+      "knqyf263/vuln-image@sha256:1e8b199249d6d0ef3419ddc6eda2348d9fbdb10d350d3bb70aa98e87faa227c9"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2019-08-07T07:25:58.6516498Z",
+      "docker_version": "19.03.1",
+      "history": [
+        {
+          "created": "2018-09-11T22:19:38.88529994Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:49f9e47e678d868d5b023482aa8dded71276a241a665c4f8b55ca77269321b34 in / "
+        },
+        {
+          "created": "2018-09-11T22:19:39.058628442Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-09-12T01:26:59.951316015Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHPIZE_DEPS=autoconf \t\tdpkg-dev dpkg \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkgconf \t\tre2c",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-09-12T01:27:01.470388635Z",
+          "created_by": "/bin/sh -c apk add --no-cache --virtual .persistent-deps \t\tca-certificates \t\tcurl \t\ttar \t\txz \t\tlibressl"
+        },
+        {
+          "created": "2018-09-12T01:27:02.432381785Z",
+          "created_by": "/bin/sh -c set -x \t\u0026\u0026 addgroup -g 82 -S www-data \t\u0026\u0026 adduser -u 82 -D -S -G www-data www-data"
+        },
+        {
+          "created": "2018-09-12T01:27:02.715120309Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_INI_DIR=/usr/local/etc/php",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-09-12T01:27:03.655421341Z",
+          "created_by": "/bin/sh -c mkdir -p $PHP_INI_DIR/conf.d"
+        },
+        {
+          "created": "2018-09-12T01:27:03.931799562Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_CFLAGS=-fstack-protector-strong -fpic -fpie -O2",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-09-12T01:27:04.210945499Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_CPPFLAGS=-fstack-protector-strong -fpic -fpie -O2",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-09-12T01:27:04.523116501Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_LDFLAGS=-Wl,-O1 -Wl,--hash-style=both -pie",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-09-12T01:27:04.795176159Z",
+          "created_by": "/bin/sh -c #(nop)  ENV GPG_KEYS=1729F83938DA44E27BA0F4D3DBDB397470D12172 B1B44D8F021E4E2D6021E995DC9FF8D3EE5AF27F",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T19:02:18.415761689Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_VERSION=7.2.11",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T19:02:18.599097853Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_URL=https://secure.php.net/get/php-7.2.11.tar.xz/from/this/mirror PHP_ASC_URL=https://secure.php.net/get/php-7.2.11.tar.xz.asc/from/this/mirror",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T19:02:18.782890412Z",
+          "created_by": "/bin/sh -c #(nop)  ENV PHP_SHA256=da1a705c0bc46410e330fc6baa967666c8cd2985378fb9707c01a8e33b01d985 PHP_MD5=",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T19:02:22.795846753Z",
+          "created_by": "/bin/sh -c set -xe; \t\tapk add --no-cache --virtual .fetch-deps \t\tgnupg \t\twget \t; \t\tmkdir -p /usr/src; \tcd /usr/src; \t\twget -O php.tar.xz \"$PHP_URL\"; \t\tif [ -n \"$PHP_SHA256\" ]; then \t\techo \"$PHP_SHA256 *php.tar.xz\" | sha256sum -c -; \tfi; \tif [ -n \"$PHP_MD5\" ]; then \t\techo \"$PHP_MD5 *php.tar.xz\" | md5sum -c -; \tfi; \t\tif [ -n \"$PHP_ASC_URL\" ]; then \t\twget -O php.tar.xz.asc \"$PHP_ASC_URL\"; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \t\tfor key in $GPG_KEYS; do \t\t\tgpg --keyserver ha.pool.sks-keyservers.net --recv-keys \"$key\"; \t\tdone; \t\tgpg --batch --verify php.tar.xz.asc php.tar.xz; \t\tcommand -v gpgconf \u003e /dev/null \u0026\u0026 gpgconf --kill all; \t\trm -rf \"$GNUPGHOME\"; \tfi; \t\tapk del .fetch-deps"
+        },
+        {
+          "created": "2018-10-15T19:02:23.071406376Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:207c686e3fed4f71f8a7b245d8dcae9c9048d276a326d82b553c12a90af0c0ca in /usr/local/bin/ "
+        },
+        {
+          "created": "2018-10-15T19:07:13.09339668Z",
+          "created_by": "/bin/sh -c set -xe \t\u0026\u0026 apk add --no-cache --virtual .build-deps \t\t$PHPIZE_DEPS \t\tcoreutils \t\tcurl-dev \t\tlibedit-dev \t\tlibressl-dev \t\tlibsodium-dev \t\tlibxml2-dev \t\tsqlite-dev \t\t\u0026\u0026 export CFLAGS=\"$PHP_CFLAGS\" \t\tCPPFLAGS=\"$PHP_CPPFLAGS\" \t\tLDFLAGS=\"$PHP_LDFLAGS\" \t\u0026\u0026 docker-php-source extract \t\u0026\u0026 cd /usr/src/php \t\u0026\u0026 gnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\" \t\u0026\u0026 ./configure \t\t--build=\"$gnuArch\" \t\t--with-config-file-path=\"$PHP_INI_DIR\" \t\t--with-config-file-scan-dir=\"$PHP_INI_DIR/conf.d\" \t\t\t\t--enable-option-checking=fatal \t\t\t\t--with-mhash \t\t\t\t--enable-ftp \t\t--enable-mbstring \t\t--enable-mysqlnd \t\t--with-sodium=shared \t\t\t\t--with-curl \t\t--with-libedit \t\t--with-openssl \t\t--with-zlib \t\t\t\t$(test \"$gnuArch\" = 's390x-linux-gnu' \u0026\u0026 echo '--without-pcre-jit') \t\t\t\t$PHP_EXTRA_CONFIGURE_ARGS \t\u0026\u0026 make -j \"$(nproc)\" \t\u0026\u0026 make install \t\u0026\u0026 { find /usr/local/bin /usr/local/sbin -type f -perm +0111 -exec strip --strip-all '{}' + || true; } \t\u0026\u0026 make clean \t\t\u0026\u0026 cp -v php.ini-* \"$PHP_INI_DIR/\" \t\t\u0026\u0026 cd / \t\u0026\u0026 docker-php-source delete \t\t\u0026\u0026 runDeps=\"$( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\" \t\u0026\u0026 apk add --no-cache --virtual .php-rundeps $runDeps \t\t\u0026\u0026 apk del .build-deps \t\t\u0026\u0026 pecl update-channels \t\u0026\u0026 rm -rf /tmp/pear ~/.pearrc"
+        },
+        {
+          "created": "2018-10-15T19:07:13.722586262Z",
+          "created_by": "/bin/sh -c #(nop) COPY multi:2cdcedabcf5a3b9ae610fab7848e94bc2f64b4d85710d55fd6f79e44dacf73d8 in /usr/local/bin/ "
+        },
+        {
+          "created": "2018-10-15T19:07:14.618087104Z",
+          "created_by": "/bin/sh -c docker-php-ext-enable sodium"
+        },
+        {
+          "created": "2018-10-15T19:07:14.826981756Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"docker-php-entrypoint\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T19:07:15.010831572Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"php\" \"-a\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T21:28:21.919735971Z",
+          "created_by": "/bin/sh -c apk --no-cache add git subversion openssh mercurial tini bash patch"
+        },
+        {
+          "created": "2018-10-15T21:28:22.611763893Z",
+          "created_by": "/bin/sh -c echo \"memory_limit=-1\" \u003e \"$PHP_INI_DIR/conf.d/memory-limit.ini\"  \u0026\u0026 echo \"date.timezone=${PHP_TIMEZONE:-UTC}\" \u003e \"$PHP_INI_DIR/conf.d/date_timezone.ini\""
+        },
+        {
+          "created": "2018-10-15T21:28:50.224278478Z",
+          "created_by": "/bin/sh -c apk add --no-cache --virtual .build-deps zlib-dev  \u0026\u0026 docker-php-ext-install zip  \u0026\u0026 runDeps=\"$(     scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions     | tr ',' '\\n'     | sort -u     | awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }'     )\"  \u0026\u0026 apk add --virtual .composer-phpext-rundeps $runDeps  \u0026\u0026 apk del .build-deps"
+        },
+        {
+          "created": "2018-10-15T21:28:50.503010161Z",
+          "created_by": "/bin/sh -c #(nop)  ENV COMPOSER_ALLOW_SUPERUSER=1",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T21:28:50.775378559Z",
+          "created_by": "/bin/sh -c #(nop)  ENV COMPOSER_HOME=/tmp",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T21:28:51.035012363Z",
+          "created_by": "/bin/sh -c #(nop)  ENV COMPOSER_VERSION=1.7.2",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T21:28:52.491402624Z",
+          "created_by": "/bin/sh -c curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/b107d959a5924af895807021fcef4ffec5a76aa9/web/installer  \u0026\u0026 php -r \"     \\$signature = '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061';     \\$hash = hash('SHA384', file_get_contents('/tmp/installer.php'));     if (!hash_equals(\\$signature, \\$hash)) {         unlink('/tmp/installer.php');         echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL;         exit(1);     }\"  \u0026\u0026 php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION}  \u0026\u0026 composer --ansi --version --no-interaction  \u0026\u0026 rm -rf /tmp/* /tmp/.htaccess"
+        },
+        {
+          "created": "2018-10-15T21:28:52.948859545Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:295943a303e8f27de4302b6aa3687bce4b1d1392335efaaab9ecd37bec5ab4c5 in /docker-entrypoint.sh "
+        },
+        {
+          "created": "2018-10-15T21:28:53.295399872Z",
+          "created_by": "/bin/sh -c #(nop) WORKDIR /app"
+        },
+        {
+          "created": "2018-10-15T21:28:53.582920705Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/bin/sh\" \"/docker-entrypoint.sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2018-10-15T21:28:53.798628678Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"composer\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2019-08-07T07:25:57.2111428Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:842584685f26edb24dc305d76894f51cfda2bad0c24a05e727f9d4905d184a70 in /php-app/composer.lock "
+        },
+        {
+          "created": "2019-08-07T07:25:57.583779Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:c6d0373d380252b91829a5bb3c81d5b1afa574c91cef7752d18170a231c31f6d in /ruby-app/Gemfile.lock "
+        },
+        {
+          "created": "2019-08-07T07:25:57.9217301Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:54a1c52556a5ebe98fd124f51c25d071f9e29e2714c72c80d6d3d254b9e83386 in /node-app/package-lock.json "
+        },
+        {
+          "created": "2019-08-07T07:25:58.3115931Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:097d32f46acde76c4da9e55f17110d69d02cc6d16c86da907980da335fc0fc5f in /python-app/Pipfile.lock "
+        },
+        {
+          "created": "2019-08-07T07:25:58.6516498Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:7f147d85de19bfb905c260a0c175f227a433259022c163017b96d0efacdcd105 in /rust-app/Cargo.lock "
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:ebf12965380b39889c99a9c02e82ba465f887b45975b6e389d42e9e6a3857888",
+          "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33",
+          "sha256:9922bc15eeefe1637b803ef2106f178152ce19a391f24aec838cbe2e48e73303",
+          "sha256:dc00fbef458ad3204bbb548e2d766813f593d857b845a940a0de76aed94c94d1",
+          "sha256:5cb2a5009179b1e78ecfef81a19756328bb266456cf9a9dbbcf9af8b83b735f0",
+          "sha256:9bdb2c849099a99c8ab35f6fd7469c623635e8f4479a0a5a3df61e22bae509f6",
+          "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013",
+          "sha256:83abef706f5ae199af65d1c13d737d0eb36219f0d18e36c6d8ff06159df39a63",
+          "sha256:c03283c257abd289a30b4f5e9e1345da0e9bfdc6ca398ee7e8fac6d2c1456227",
+          "sha256:2da3602d664dd3f71fae83cbc566d4e80b432c6ee8bb4efd94c8e85122f503d4",
+          "sha256:82c59ac8ee582542648e634ca5aff9a464c68ff8a054f105a58689fb52209e34",
+          "sha256:2f4a5c9187c249834ebc28783bd3c65bdcbacaa8baa6620ddaa27846dd3ef708",
+          "sha256:6ca56f561e677ae06c3bc87a70792642d671a4416becb9a101577c1a6e090e36",
+          "sha256:154ad0735c360b212b167f424d33a62305770a1fcfb6363882f5c436cfbd9812",
+          "sha256:b2a1a2d80bf0c747a4f6b0ca6af5eef23f043fcdb1ed4f3a3e750aef2dc68079",
+          "sha256:4d116f47cb2cc77a88d609b9805f2b011a5d42339b67300166654b3922685ac9",
+          "sha256:9b1326af1cf81505fd8e596b7f622b679ae5d290e46b25214ba26e4f7c661d60",
+          "sha256:a66245f885f2a210071e415f0f8ac4f21f5e4eab6c0435b4082e5c3637c411cb",
+          "sha256:ba17950e91742d6ac7055ea3a053fe764486658ca1ce8188f1e427b1fe2bc4da",
+          "sha256:6ef42db7800507577383edf1937cb203b9b85f619feed6046594208748ceb52c"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "composer"
+        ],
+        "Entrypoint": [
+          "/bin/sh",
+          "/docker-entrypoint.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "PHPIZE_DEPS=autoconf \t\tdpkg-dev dpkg \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkgconf \t\tre2c",
+          "PHP_INI_DIR=/usr/local/etc/php",
+          "PHP_CFLAGS=-fstack-protector-strong -fpic -fpie -O2",
+          "PHP_CPPFLAGS=-fstack-protector-strong -fpic -fpie -O2",
+          "PHP_LDFLAGS=-Wl,-O1 -Wl,--hash-style=both -pie",
+          "GPG_KEYS=1729F83938DA44E27BA0F4D3DBDB397470D12172 B1B44D8F021E4E2D6021E995DC9FF8D3EE5AF27F",
+          "PHP_VERSION=7.2.11",
+          "PHP_URL=https://secure.php.net/get/php-7.2.11.tar.xz/from/this/mirror",
+          "PHP_ASC_URL=https://secure.php.net/get/php-7.2.11.tar.xz.asc/from/this/mirror",
+          "PHP_SHA256=da1a705c0bc46410e330fc6baa967666c8cd2985378fb9707c01a8e33b01d985",
+          "PHP_MD5=",
+          "COMPOSER_ALLOW_SUPERUSER=1",
+          "COMPOSER_HOME=/tmp",
+          "COMPOSER_VERSION=1.7.2"
+        ],
+        "Image": "sha256:6d24bacbdd3005fc2400843e4a581b9877c67d50d36f7420d4ed6460c41c9b8a",
+        "WorkingDir": "/app",
+        "ArgsEscaped": true
+      }
+    }
+  },
+  "Results": [
+    {
+      "Target": "knqyf263/vuln-image:1.2.3 (alpine 3.7.1)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2018-14618",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r0",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-14618",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: NTLM password overflow via integer overflow",
+          "Description": "curl before version 7.61.1 is vulnerable to a buffer overrun in the NTLM authentication code. The internal function Curl_ntlm_core_mk_nt_hash multiplies the length of the password by two (SUM) to figure out how large temporary storage area to allocate from the heap. The length value is then subsequently used to iterate over the password and generate output into the allocated storage buffer. On systems with a 32 bit size_t, the math to calculate SUM triggers an integer overflow when the password length exceeds 2GB (2^31 bytes). This integer overflow usually causes a very small buffer to actually get allocated instead of the intended very huge one, making the use of that buffer end up in a heap buffer overflow. (This bug is almost identical to CVE-2017-8816.)",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-190"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:C/I:C/A:C",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 10,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1041605",
+            "https://access.redhat.com/errata/RHSA-2018:3558",
+            "https://access.redhat.com/errata/RHSA-2019:1880",
+            "https://access.redhat.com/security/cve/CVE-2018-14618",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-14618",
+            "https://cert-portal.siemens.com/productcert/pdf/ssa-436177.pdf",
+            "https://curl.haxx.se/docs/CVE-2018-14618.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-14618",
+            "https://github.com/curl/curl/issues/2756",
+            "https://linux.oracle.com/cve/CVE-2018-14618.html",
+            "https://linux.oracle.com/errata/ELSA-2019-1880.html",
+            "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2018-0014",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3765-1",
+            "https://ubuntu.com/security/notices/USN-3765-2",
+            "https://usn.ubuntu.com/3765-1/",
+            "https://usn.ubuntu.com/3765-2/",
+            "https://www.debian.org/security/2018/dsa-4286"
+          ],
+          "PublishedDate": "2018-09-05T19:29:00Z",
+          "LastModifiedDate": "2019-04-22T17:48:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-16839",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r1",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-16839",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: Integer overflow leading to heap-based buffer overflow in Curl_sasl_create_plain_message()",
+          "Description": "Curl versions 7.33.0 through 7.61.1 are vulnerable to a buffer overrun in the SASL authentication code that may lead to denial of service.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-119"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 5
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1042012",
+            "https://access.redhat.com/security/cve/CVE-2018-16839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-16839",
+            "https://curl.haxx.se/docs/CVE-2018-16839.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-16839",
+            "https://github.com/curl/curl/commit/f3a24d7916b9173c69a3e0ee790102993833d6c5",
+            "https://lists.apache.org/thread.html/8338a0f605bdbb3a6098bb76f666a95fc2b2f53f37fa1ecc89f1146f@%3Cdevnull.infra.apache.org%3E",
+            "https://lists.debian.org/debian-lts-announce/2018/11/msg00005.html",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3805-1",
+            "https://usn.ubuntu.com/3805-1/",
+            "https://www.debian.org/security/2018/dsa-4331"
+          ],
+          "PublishedDate": "2018-10-31T18:29:00Z",
+          "LastModifiedDate": "2019-10-09T23:36:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-16840",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r1",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-16840",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: Use-after-free when closing \"easy\" handle in Curl_close()",
+          "Description": "A heap use-after-free flaw was found in curl versions from 7.59.0 through 7.61.1 in the code related to closing an easy handle. When closing and cleaning up an 'easy' handle in the `Curl_close()` function, the library code first frees a struct (without nulling the pointer) and might then subsequently erroneously write to a struct field within that already freed struct.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-416"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 5
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1042013",
+            "https://access.redhat.com/security/cve/CVE-2018-16840",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-16840",
+            "https://curl.haxx.se/docs/CVE-2018-16840.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-16840",
+            "https://github.com/curl/curl/commit/81d135d67155c5295b1033679c606165d4e28f3f",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3805-1",
+            "https://usn.ubuntu.com/3805-1/"
+          ],
+          "PublishedDate": "2018-10-31T18:29:00Z",
+          "LastModifiedDate": "2019-10-09T23:36:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-16842",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r1",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-16842",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: Heap-based buffer over-read in the curl tool warning formatting",
+          "Description": "Curl versions 7.14.1 through 7.61.1 are vulnerable to a heap-based buffer over-read in the tool_msgs.c:voutf() function that may result in information exposure and denial of service.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H",
+              "V2Score": 6.4,
+              "V3Score": 9.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L",
+              "V3Score": 3.6
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1042014",
+            "https://access.redhat.com/errata/RHSA-2019:2181",
+            "https://access.redhat.com/security/cve/CVE-2018-16842",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-16842",
+            "https://curl.haxx.se/docs/CVE-2018-16842.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-16842",
+            "https://github.com/curl/curl/commit/d530e92f59ae9bb2d47066c3c460b25d2ffeb211",
+            "https://linux.oracle.com/cve/CVE-2018-16842.html",
+            "https://linux.oracle.com/errata/ELSA-2019-2181.html",
+            "https://lists.debian.org/debian-lts-announce/2018/11/msg00005.html",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3805-1",
+            "https://ubuntu.com/security/notices/USN-3805-2",
+            "https://usn.ubuntu.com/3805-1/",
+            "https://usn.ubuntu.com/3805-2/",
+            "https://www.debian.org/security/2018/dsa-4331",
+            "https://www.oracle.com/technetwork/security-advisory/cpuoct2019-5072832.html"
+          ],
+          "PublishedDate": "2018-10-31T19:29:00Z",
+          "LastModifiedDate": "2019-08-06T17:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-3822",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r2",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-3822",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: NTLMv2 type-3 header stack buffer overflow",
+          "Description": "libcurl versions from 7.36.0 to before 7.64.0 are vulnerable to a stack-based buffer overflow. The function creating an outgoing NTLM type-3 header (`lib/vauth/ntlm.c:Curl_auth_create_ntlm_type3_message()`), generates the request HTTP header contents based on previously received data. The check that exists to prevent the local buffer from getting overflowed is implemented wrongly (using unsigned math) and as such it does not prevent the overflow from happening. This output data can grow larger than the local buffer if very large 'nt response' data is extracted from a previous NTLMv2 header provided by the malicious or broken HTTP server. Such a 'large value' needs to be around 1000 bytes or more. The actual payload data copied to the target buffer comes from the NTLMv2 type-2 response header.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "http://www.securityfocus.com/bid/106950",
+            "https://access.redhat.com/errata/RHSA-2019:3701",
+            "https://access.redhat.com/security/cve/CVE-2019-3822",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2019-3822",
+            "https://cert-portal.siemens.com/productcert/pdf/ssa-436177.pdf",
+            "https://curl.haxx.se/docs/CVE-2019-3822.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-3822",
+            "https://linux.oracle.com/cve/CVE-2019-3822.html",
+            "https://linux.oracle.com/errata/ELSA-2019-3701.html",
+            "https://lists.apache.org/thread.html/8338a0f605bdbb3a6098bb76f666a95fc2b2f53f37fa1ecc89f1146f@%3Cdevnull.infra.apache.org%3E",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://security.netapp.com/advisory/ntap-20190315-0001/",
+            "https://security.netapp.com/advisory/ntap-20190719-0004/",
+            "https://support.f5.com/csp/article/K84141449",
+            "https://support.f5.com/csp/article/K84141449?utm_source=f5support\u0026amp;utm_medium=RSS",
+            "https://ubuntu.com/security/notices/USN-3882-1",
+            "https://usn.ubuntu.com/3882-1/",
+            "https://www.debian.org/security/2019/dsa-4386",
+            "https://www.oracle.com/technetwork/security-advisory/cpuapr2019-5072813.html",
+            "https://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html"
+          ],
+          "PublishedDate": "2019-02-06T20:29:00Z",
+          "LastModifiedDate": "2021-06-15T16:45:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-5481",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r3",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5481",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: double free due to subsequent call of realloc()",
+          "Description": "Double-free vulnerability in the FTP-kerberos code in cURL 7.52.0 to 7.65.3.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-415"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 5.7
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00048.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00055.html",
+            "https://access.redhat.com/security/cve/CVE-2019-5481",
+            "https://curl.haxx.se/docs/CVE-2019-5481.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5481",
+            "https://linux.oracle.com/cve/CVE-2019-5481.html",
+            "https://linux.oracle.com/errata/ELSA-2020-1792.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/6CI4QQ2RSZX4VCFM76SIWGKY6BY7UWIC/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RGDVKSLY5JUNJRLYRUA6CXGQ2LM63XC3/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UA7KDM2WPM5CJDDGOEGFV6SSGD2J7RNT/",
+            "https://seclists.org/bugtraq/2020/Feb/36",
+            "https://security.gentoo.org/glsa/202003-29",
+            "https://security.netapp.com/advisory/ntap-20191004-0003/",
+            "https://ubuntu.com/security/notices/USN-4129-1",
+            "https://www.debian.org/security/2020/dsa-4633",
+            "https://www.oracle.com/security-alerts/cpuapr2020.html",
+            "https://www.oracle.com/security-alerts/cpujan2020.html",
+            "https://www.oracle.com/security-alerts/cpuoct2020.html"
+          ],
+          "PublishedDate": "2019-09-16T19:15:00Z",
+          "LastModifiedDate": "2020-10-20T22:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-5482",
+          "PkgName": "curl",
+          "InstalledVersion": "7.61.0-r0",
+          "FixedVersion": "7.61.1-r3",
+          "Layer": {
+            "Digest": "sha256:88777455d910410652665cec0149a02db3584d6dc26e306788a3532d480b00ae",
+            "DiffID": "sha256:0ea33a93585cf1917ba522b2304634c3073654062d5282c1346322967790ef33"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5482",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: heap buffer overflow in function tftp_receive_packet()",
+          "Description": "Heap buffer overflow in the TFTP protocol handler in cURL 7.19.4 to 7.65.3.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 6.3
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00048.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00055.html",
+            "https://access.redhat.com/security/cve/CVE-2019-5482",
+            "https://curl.haxx.se/docs/CVE-2019-5482.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5482",
+            "https://linux.oracle.com/cve/CVE-2019-5482.html",
+            "https://linux.oracle.com/errata/ELSA-2020-5562.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/6CI4QQ2RSZX4VCFM76SIWGKY6BY7UWIC/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RGDVKSLY5JUNJRLYRUA6CXGQ2LM63XC3/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UA7KDM2WPM5CJDDGOEGFV6SSGD2J7RNT/",
+            "https://seclists.org/bugtraq/2020/Feb/36",
+            "https://security.gentoo.org/glsa/202003-29",
+            "https://security.netapp.com/advisory/ntap-20191004-0003/",
+            "https://security.netapp.com/advisory/ntap-20200416-0003/",
+            "https://ubuntu.com/security/notices/USN-4129-1",
+            "https://ubuntu.com/security/notices/USN-4129-2",
+            "https://www.debian.org/security/2020/dsa-4633",
+            "https://www.oracle.com/security-alerts/cpuapr2020.html",
+            "https://www.oracle.com/security-alerts/cpujan2020.html",
+            "https://www.oracle.com/security-alerts/cpuoct2020.html"
+          ],
+          "PublishedDate": "2019-09-16T19:15:00Z",
+          "LastModifiedDate": "2021-11-03T19:34:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-17456",
+          "PkgName": "git",
+          "InstalledVersion": "2.15.2-r0",
+          "FixedVersion": "2.15.3-r0",
+          "Layer": {
+            "Digest": "sha256:c191915691a422a1b0230c9010165ff655204a9fd95e3b43151132bcb237826b",
+            "DiffID": "sha256:2da3602d664dd3f71fae83cbc566d4e80b432c6ee8bb4efd94c8e85122f503d4"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-17456",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "git: arbitrary code execution via .gitmodules",
+          "Description": "Git before 2.14.5, 2.15.x before 2.15.3, 2.16.x before 2.16.5, 2.17.x before 2.17.2, 2.18.x before 2.18.1, and 2.19.x before 2.19.1 allows remote code execution during processing of a recursive \"git clone\" of a superproject if a .gitmodules file has a URL field beginning with a '-' character.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-88"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2020-05/msg00003.html",
+            "http://packetstormsecurity.com/files/152173/Sourcetree-Git-Arbitrary-Code-Execution-URL-Handling.html",
+            "http://www.securityfocus.com/bid/105523",
+            "http://www.securityfocus.com/bid/107511",
+            "http://www.securitytracker.com/id/1041811",
+            "https://access.redhat.com/errata/RHSA-2018:3408",
+            "https://access.redhat.com/errata/RHSA-2018:3505",
+            "https://access.redhat.com/errata/RHSA-2018:3541",
+            "https://access.redhat.com/errata/RHSA-2020:0316",
+            "https://access.redhat.com/security/cve/CVE-2018-17456",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-17456",
+            "https://github.com/git/git/commit/1a7fd1fb2998002da6e9ff2ee46e1bdd25ee8404",
+            "https://github.com/git/git/commit/a124133e1e6ab5c7a9fef6d0e6bcb084e3455b46",
+            "https://linux.oracle.com/cve/CVE-2018-17456.html",
+            "https://linux.oracle.com/errata/ELSA-2020-0316.html",
+            "https://marc.info/?l=git\u0026m=153875888916397\u0026w=2",
+            "https://public-inbox.org/git/xmqqy3bcuy3l.fsf@gitster-ct.c.googlers.com/",
+            "https://seclists.org/bugtraq/2019/Mar/30",
+            "https://ubuntu.com/security/notices/USN-3791-1",
+            "https://usn.ubuntu.com/3791-1/",
+            "https://www.debian.org/security/2018/dsa-4311",
+            "https://www.exploit-db.com/exploits/45548/",
+            "https://www.exploit-db.com/exploits/45631/",
+            "https://www.openwall.com/lists/oss-security/2018/10/06/3"
+          ],
+          "PublishedDate": "2018-10-06T14:29:00Z",
+          "LastModifiedDate": "2020-08-24T17:37:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-1353",
+          "PkgName": "git",
+          "InstalledVersion": "2.15.2-r0",
+          "FixedVersion": "2.15.4-r0",
+          "Layer": {
+            "Digest": "sha256:c191915691a422a1b0230c9010165ff655204a9fd95e3b43151132bcb237826b",
+            "DiffID": "sha256:2da3602d664dd3f71fae83cbc566d4e80b432c6ee8bb4efd94c8e85122f503d4"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-1353",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "git: NTFS protections inactive when running Git in the Windows Subsystem for Linux",
+          "Description": "An issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. When running Git in the Windows Subsystem for Linux (also known as \"WSL\") while accessing a working directory on a regular Windows drive, none of the NTFS protections were active.",
+          "Severity": "CRITICAL",
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2020-01/msg00056.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2020-05/msg00003.html",
+            "https://access.redhat.com/security/cve/CVE-2019-1353",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1353",
+            "https://github.com/git/git/security/advisories/GHSA-589j-mmg9-733v",
+            "https://groups.google.com/forum/?fromgroups#!topic/git-packagers/AWRBO_5gqa4",
+            "https://lore.kernel.org/git/xmqqr21cqcn9.fsf@gitster-ct.c.googlers.com/T/#u",
+            "https://public-inbox.org/git/xmqqr21cqcn9.fsf@gitster-ct.c.googlers.com/",
+            "https://security.gentoo.org/glsa/202003-30",
+            "https://ubuntu.com/security/notices/USN-4220-1"
+          ],
+          "PublishedDate": "2020-01-24T22:15:00Z",
+          "LastModifiedDate": "2020-03-15T19:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-12900",
+          "PkgName": "libbz2",
+          "InstalledVersion": "1.0.6-r6",
+          "FixedVersion": "1.0.6-r7",
+          "Layer": {
+            "Digest": "sha256:c191915691a422a1b0230c9010165ff655204a9fd95e3b43151132bcb237826b",
+            "DiffID": "sha256:2da3602d664dd3f71fae83cbc566d4e80b432c6ee8bb4efd94c8e85122f503d4"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-12900",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "bzip2: out-of-bounds write in function BZ2_decompress",
+          "Description": "BZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds write when there are many selectors.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 4
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-07/msg00040.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-08/msg00050.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-11/msg00078.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-12/msg00000.html",
+            "http://packetstormsecurity.com/files/153644/Slackware-Security-Advisory-bzip2-Updates.html",
+            "http://packetstormsecurity.com/files/153957/FreeBSD-Security-Advisory-FreeBSD-SA-19-18.bzip2.html",
+            "https://access.redhat.com/security/cve/CVE-2019-12900",
+            "https://bugs.launchpad.net/ubuntu/+source/bzip2/+bug/1834494",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12900",
+            "https://gitlab.com/federicomenaquintero/bzip2/commit/74de1e2e6ffc9d51ef9824db71a8ffee5962cdbc",
+            "https://lists.apache.org/thread.html/ra0adb9653c7de9539b93cc8434143b655f753b9f60580ff260becb2b@%3Cusers.kafka.apache.org%3E",
+            "https://lists.apache.org/thread.html/rce8cd8c30f60604b580ea01bebda8a671a25c9a1629f409fc24e7774@%3Cuser.flink.apache.org%3E",
+            "https://lists.apache.org/thread.html/rda98305669476c4d90cc8527c4deda7e449019dd1fe9936b56671dd4@%3Cuser.flink.apache.org%3E",
+            "https://lists.debian.org/debian-lts-announce/2019/06/msg00021.html",
+            "https://lists.debian.org/debian-lts-announce/2019/07/msg00014.html",
+            "https://lists.debian.org/debian-lts-announce/2019/10/msg00012.html",
+            "https://lists.debian.org/debian-lts-announce/2019/10/msg00018.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-12900",
+            "https://seclists.org/bugtraq/2019/Aug/4",
+            "https://seclists.org/bugtraq/2019/Jul/22",
+            "https://security.FreeBSD.org/advisories/FreeBSD-SA-19:18.bzip2.asc",
+            "https://support.f5.com/csp/article/K68713584?utm_source=f5support\u0026amp;utm_medium=RSS",
+            "https://ubuntu.com/security/notices/USN-4038-1",
+            "https://ubuntu.com/security/notices/USN-4038-2",
+            "https://ubuntu.com/security/notices/USN-4038-3",
+            "https://ubuntu.com/security/notices/USN-4038-4",
+            "https://ubuntu.com/security/notices/USN-4146-1",
+            "https://ubuntu.com/security/notices/USN-4146-2",
+            "https://usn.ubuntu.com/4038-1/",
+            "https://usn.ubuntu.com/4038-2/",
+            "https://usn.ubuntu.com/4146-1/",
+            "https://usn.ubuntu.com/4146-2/",
+            "https://www.oracle.com/security-alerts/cpuoct2020.html"
+          ],
+          "PublishedDate": "2019-06-19T23:15:00Z",
+          "LastModifiedDate": "2021-09-14T12:18:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-16839",
+          "PkgName": "libcurl",
+          "InstalledVersion": "7.61.1-r0",
+          "FixedVersion": "7.61.1-r1",
+          "Layer": {
+            "Digest": "sha256:3d6152f6ac208640f9fb494d1c379fe508db1fc5754cd08fefec200bddd13e0e",
+            "DiffID": "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-16839",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: Integer overflow leading to heap-based buffer overflow in Curl_sasl_create_plain_message()",
+          "Description": "Curl versions 7.33.0 through 7.61.1 are vulnerable to a buffer overrun in the SASL authentication code that may lead to denial of service.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-119"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 5
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1042012",
+            "https://access.redhat.com/security/cve/CVE-2018-16839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-16839",
+            "https://curl.haxx.se/docs/CVE-2018-16839.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-16839",
+            "https://github.com/curl/curl/commit/f3a24d7916b9173c69a3e0ee790102993833d6c5",
+            "https://lists.apache.org/thread.html/8338a0f605bdbb3a6098bb76f666a95fc2b2f53f37fa1ecc89f1146f@%3Cdevnull.infra.apache.org%3E",
+            "https://lists.debian.org/debian-lts-announce/2018/11/msg00005.html",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3805-1",
+            "https://usn.ubuntu.com/3805-1/",
+            "https://www.debian.org/security/2018/dsa-4331"
+          ],
+          "PublishedDate": "2018-10-31T18:29:00Z",
+          "LastModifiedDate": "2019-10-09T23:36:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-16840",
+          "PkgName": "libcurl",
+          "InstalledVersion": "7.61.1-r0",
+          "FixedVersion": "7.61.1-r1",
+          "Layer": {
+            "Digest": "sha256:3d6152f6ac208640f9fb494d1c379fe508db1fc5754cd08fefec200bddd13e0e",
+            "DiffID": "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-16840",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: Use-after-free when closing \"easy\" handle in Curl_close()",
+          "Description": "A heap use-after-free flaw was found in curl versions from 7.59.0 through 7.61.1 in the code related to closing an easy handle. When closing and cleaning up an 'easy' handle in the `Curl_close()` function, the library code first frees a struct (without nulling the pointer) and might then subsequently erroneously write to a struct field within that already freed struct.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-416"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 5
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1042013",
+            "https://access.redhat.com/security/cve/CVE-2018-16840",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-16840",
+            "https://curl.haxx.se/docs/CVE-2018-16840.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-16840",
+            "https://github.com/curl/curl/commit/81d135d67155c5295b1033679c606165d4e28f3f",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3805-1",
+            "https://usn.ubuntu.com/3805-1/"
+          ],
+          "PublishedDate": "2018-10-31T18:29:00Z",
+          "LastModifiedDate": "2019-10-09T23:36:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-16842",
+          "PkgName": "libcurl",
+          "InstalledVersion": "7.61.1-r0",
+          "FixedVersion": "7.61.1-r1",
+          "Layer": {
+            "Digest": "sha256:3d6152f6ac208640f9fb494d1c379fe508db1fc5754cd08fefec200bddd13e0e",
+            "DiffID": "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-16842",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: Heap-based buffer over-read in the curl tool warning formatting",
+          "Description": "Curl versions 7.14.1 through 7.61.1 are vulnerable to a heap-based buffer over-read in the tool_msgs.c:voutf() function that may result in information exposure and denial of service.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H",
+              "V2Score": 6.4,
+              "V3Score": 9.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L",
+              "V3Score": 3.6
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1042014",
+            "https://access.redhat.com/errata/RHSA-2019:2181",
+            "https://access.redhat.com/security/cve/CVE-2018-16842",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2018-16842",
+            "https://curl.haxx.se/docs/CVE-2018-16842.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-16842",
+            "https://github.com/curl/curl/commit/d530e92f59ae9bb2d47066c3c460b25d2ffeb211",
+            "https://linux.oracle.com/cve/CVE-2018-16842.html",
+            "https://linux.oracle.com/errata/ELSA-2019-2181.html",
+            "https://lists.debian.org/debian-lts-announce/2018/11/msg00005.html",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://ubuntu.com/security/notices/USN-3805-1",
+            "https://ubuntu.com/security/notices/USN-3805-2",
+            "https://usn.ubuntu.com/3805-1/",
+            "https://usn.ubuntu.com/3805-2/",
+            "https://www.debian.org/security/2018/dsa-4331",
+            "https://www.oracle.com/technetwork/security-advisory/cpuoct2019-5072832.html"
+          ],
+          "PublishedDate": "2018-10-31T19:29:00Z",
+          "LastModifiedDate": "2019-08-06T17:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-3822",
+          "PkgName": "libcurl",
+          "InstalledVersion": "7.61.1-r0",
+          "FixedVersion": "7.61.1-r2",
+          "Layer": {
+            "Digest": "sha256:3d6152f6ac208640f9fb494d1c379fe508db1fc5754cd08fefec200bddd13e0e",
+            "DiffID": "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-3822",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: NTLMv2 type-3 header stack buffer overflow",
+          "Description": "libcurl versions from 7.36.0 to before 7.64.0 are vulnerable to a stack-based buffer overflow. The function creating an outgoing NTLM type-3 header (`lib/vauth/ntlm.c:Curl_auth_create_ntlm_type3_message()`), generates the request HTTP header contents based on previously received data. The check that exists to prevent the local buffer from getting overflowed is implemented wrongly (using unsigned math) and as such it does not prevent the overflow from happening. This output data can grow larger than the local buffer if very large 'nt response' data is extracted from a previous NTLMv2 header provided by the malicious or broken HTTP server. Such a 'large value' needs to be around 1000 bytes or more. The actual payload data copied to the target buffer comes from the NTLMv2 type-2 response header.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "http://www.securityfocus.com/bid/106950",
+            "https://access.redhat.com/errata/RHSA-2019:3701",
+            "https://access.redhat.com/security/cve/CVE-2019-3822",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2019-3822",
+            "https://cert-portal.siemens.com/productcert/pdf/ssa-436177.pdf",
+            "https://curl.haxx.se/docs/CVE-2019-3822.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-3822",
+            "https://linux.oracle.com/cve/CVE-2019-3822.html",
+            "https://linux.oracle.com/errata/ELSA-2019-3701.html",
+            "https://lists.apache.org/thread.html/8338a0f605bdbb3a6098bb76f666a95fc2b2f53f37fa1ecc89f1146f@%3Cdevnull.infra.apache.org%3E",
+            "https://security.gentoo.org/glsa/201903-03",
+            "https://security.netapp.com/advisory/ntap-20190315-0001/",
+            "https://security.netapp.com/advisory/ntap-20190719-0004/",
+            "https://support.f5.com/csp/article/K84141449",
+            "https://support.f5.com/csp/article/K84141449?utm_source=f5support\u0026amp;utm_medium=RSS",
+            "https://ubuntu.com/security/notices/USN-3882-1",
+            "https://usn.ubuntu.com/3882-1/",
+            "https://www.debian.org/security/2019/dsa-4386",
+            "https://www.oracle.com/technetwork/security-advisory/cpuapr2019-5072813.html",
+            "https://www.oracle.com/technetwork/security-advisory/cpujul2019-5072835.html"
+          ],
+          "PublishedDate": "2019-02-06T20:29:00Z",
+          "LastModifiedDate": "2021-06-15T16:45:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-5481",
+          "PkgName": "libcurl",
+          "InstalledVersion": "7.61.1-r0",
+          "FixedVersion": "7.61.1-r3",
+          "Layer": {
+            "Digest": "sha256:3d6152f6ac208640f9fb494d1c379fe508db1fc5754cd08fefec200bddd13e0e",
+            "DiffID": "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5481",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: double free due to subsequent call of realloc()",
+          "Description": "Double-free vulnerability in the FTP-kerberos code in cURL 7.52.0 to 7.65.3.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-415"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 5.7
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00048.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00055.html",
+            "https://access.redhat.com/security/cve/CVE-2019-5481",
+            "https://curl.haxx.se/docs/CVE-2019-5481.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5481",
+            "https://linux.oracle.com/cve/CVE-2019-5481.html",
+            "https://linux.oracle.com/errata/ELSA-2020-1792.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/6CI4QQ2RSZX4VCFM76SIWGKY6BY7UWIC/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RGDVKSLY5JUNJRLYRUA6CXGQ2LM63XC3/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UA7KDM2WPM5CJDDGOEGFV6SSGD2J7RNT/",
+            "https://seclists.org/bugtraq/2020/Feb/36",
+            "https://security.gentoo.org/glsa/202003-29",
+            "https://security.netapp.com/advisory/ntap-20191004-0003/",
+            "https://ubuntu.com/security/notices/USN-4129-1",
+            "https://www.debian.org/security/2020/dsa-4633",
+            "https://www.oracle.com/security-alerts/cpuapr2020.html",
+            "https://www.oracle.com/security-alerts/cpujan2020.html",
+            "https://www.oracle.com/security-alerts/cpuoct2020.html"
+          ],
+          "PublishedDate": "2019-09-16T19:15:00Z",
+          "LastModifiedDate": "2020-10-20T22:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-5482",
+          "PkgName": "libcurl",
+          "InstalledVersion": "7.61.1-r0",
+          "FixedVersion": "7.61.1-r3",
+          "Layer": {
+            "Digest": "sha256:3d6152f6ac208640f9fb494d1c379fe508db1fc5754cd08fefec200bddd13e0e",
+            "DiffID": "sha256:6408527580eade39c2692dbb6b0f6a9321448d06ea1c2eef06bb7f37da9c5013"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-5482",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: heap buffer overflow in function tftp_receive_packet()",
+          "Description": "Heap buffer overflow in the TFTP protocol handler in cURL 7.19.4 to 7.65.3.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 6.3
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00048.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00055.html",
+            "https://access.redhat.com/security/cve/CVE-2019-5482",
+            "https://curl.haxx.se/docs/CVE-2019-5482.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5482",
+            "https://linux.oracle.com/cve/CVE-2019-5482.html",
+            "https://linux.oracle.com/errata/ELSA-2020-5562.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/6CI4QQ2RSZX4VCFM76SIWGKY6BY7UWIC/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RGDVKSLY5JUNJRLYRUA6CXGQ2LM63XC3/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UA7KDM2WPM5CJDDGOEGFV6SSGD2J7RNT/",
+            "https://seclists.org/bugtraq/2020/Feb/36",
+            "https://security.gentoo.org/glsa/202003-29",
+            "https://security.netapp.com/advisory/ntap-20191004-0003/",
+            "https://security.netapp.com/advisory/ntap-20200416-0003/",
+            "https://ubuntu.com/security/notices/USN-4129-1",
+            "https://ubuntu.com/security/notices/USN-4129-2",
+            "https://www.debian.org/security/2020/dsa-4633",
+            "https://www.oracle.com/security-alerts/cpuapr2020.html",
+            "https://www.oracle.com/security-alerts/cpujan2020.html",
+            "https://www.oracle.com/security-alerts/cpuoct2020.html"
+          ],
+          "PublishedDate": "2019-09-16T19:15:00Z",
+          "LastModifiedDate": "2021-11-03T19:34:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-14697",
+          "PkgName": "musl",
+          "InstalledVersion": "1.1.18-r3",
+          "FixedVersion": "1.1.18-r4",
+          "Layer": {
+            "Digest": "sha256:c67f3896b22c1378881cbbb9c9d1edfe881fd07f713371835ef46d93c649684d",
+            "DiffID": "sha256:ebf12965380b39889c99a9c02e82ba465f887b45975b6e389d42e9e6a3857888"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-14697",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "musl libc through 1.1.23 has an x87 floating-point stack adjustment im ...",
+          "Description": "musl libc through 1.1.23 has an x87 floating-point stack adjustment imbalance, related to the math/i386/ directory. In some cases, use of this library could introduce out-of-bounds writes that are not present in an application's source code.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2019/08/06/4",
+            "https://security.gentoo.org/glsa/202003-13",
+            "https://www.openwall.com/lists/musl/2019/08/06/1"
+          ],
+          "PublishedDate": "2019-08-06T16:15:00Z",
+          "LastModifiedDate": "2020-03-14T19:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-14697",
+          "PkgName": "musl-utils",
+          "InstalledVersion": "1.1.18-r3",
+          "FixedVersion": "1.1.18-r4",
+          "Layer": {
+            "Digest": "sha256:c67f3896b22c1378881cbbb9c9d1edfe881fd07f713371835ef46d93c649684d",
+            "DiffID": "sha256:ebf12965380b39889c99a9c02e82ba465f887b45975b6e389d42e9e6a3857888"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-14697",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "musl libc through 1.1.23 has an x87 floating-point stack adjustment im ...",
+          "Description": "musl libc through 1.1.23 has an x87 floating-point stack adjustment imbalance, related to the math/i386/ directory. In some cases, use of this library could introduce out-of-bounds writes that are not present in an application's source code.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2019/08/06/4",
+            "https://security.gentoo.org/glsa/202003-13",
+            "https://www.openwall.com/lists/musl/2019/08/06/1"
+          ],
+          "PublishedDate": "2019-08-06T16:15:00Z",
+          "LastModifiedDate": "2020-03-14T19:15:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-8457",
+          "PkgName": "sqlite-libs",
+          "InstalledVersion": "3.21.0-r1",
+          "FixedVersion": "3.25.3-r1",
+          "Layer": {
+            "Digest": "sha256:c191915691a422a1b0230c9010165ff655204a9fd95e3b43151132bcb237826b",
+            "DiffID": "sha256:2da3602d664dd3f71fae83cbc566d4e80b432c6ee8bb4efd94c8e85122f503d4"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-8457",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "sqlite: heap out-of-bound read in function rtreenode()",
+          "Description": "SQLite3 from 3.6.0 to and including 3.27.2 is vulnerable to heap out-of-bound read in the rtreenode() function when handling invalid rtree tables.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2019-06/msg00074.html",
+            "https://access.redhat.com/security/cve/CVE-2019-8457",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8457",
+            "https://kc.mcafee.com/corporate/index?page=content\u0026id=SB10365",
+            "https://linux.oracle.com/cve/CVE-2019-8457.html",
+            "https://linux.oracle.com/errata/ELSA-2020-1810.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/OPKYSWCOM3CL66RI76TYVIG6TJ263RXH/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SJPFGA45DI4F5MCF2OAACGH3HQOF4G3M/",
+            "https://security.netapp.com/advisory/ntap-20190606-0002/",
+            "https://ubuntu.com/security/notices/USN-4004-1",
+            "https://ubuntu.com/security/notices/USN-4004-2",
+            "https://ubuntu.com/security/notices/USN-4019-1",
+            "https://ubuntu.com/security/notices/USN-4019-2",
+            "https://usn.ubuntu.com/4004-1/",
+            "https://usn.ubuntu.com/4004-2/",
+            "https://usn.ubuntu.com/4019-1/",
+            "https://usn.ubuntu.com/4019-2/",
+            "https://www.oracle.com/security-alerts/cpuapr2020.html",
+            "https://www.oracle.com/security-alerts/cpujan2020.html",
+            "https://www.oracle.com/security-alerts/cpujul2020.html",
+            "https://www.oracle.com/technetwork/security-advisory/cpuoct2019-5072832.html",
+            "https://www.sqlite.org/releaselog/3_28_0.html",
+            "https://www.sqlite.org/src/info/90acdbfce9c08858"
+          ],
+          "PublishedDate": "2019-05-30T16:29:00Z",
+          "LastModifiedDate": "2021-07-31T08:15:00Z"
+        }
+      ]
+    },
+    {
+      "Target": "php-app/composer.lock",
+      "Class": "lang-pkgs",
+      "Type": "composer"
+    },
+    {
+      "Target": "rust-app/Cargo.lock",
+      "Class": "lang-pkgs",
+      "Type": "cargo",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2020-25576",
+          "PkgName": "rand_core",
+          "InstalledVersion": "0.4.0",
+          "FixedVersion": "0.3.1, 0.4.2",
+          "Layer": {
+            "Digest": "sha256:57b251229e70a32e5d386734f9bfe5bbc7b1be97e61327570524731668f2802c",
+            "DiffID": "sha256:6ef42db7800507577383edf1937cb203b9b85f619feed6046594208748ceb52c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-25576",
+          "DataSource": {
+            "ID": "osv",
+            "Name": "RustSec Advisory Database",
+            "URL": "https://github.com/RustSec/advisory-db"
+          },
+          "Title": "An issue was discovered in the rand_core crate before 0.4.2 for Rust.  ...",
+          "Description": "An issue was discovered in the rand_core crate before 0.4.2 for Rust. Casting of byte slices to integer slices mishandles alignment constraints.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-704"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "https://crates.io/crates/rand_core",
+            "https://github.com/rust-random/rand/blob/master/rand_core/CHANGELOG.md#050---2019-06-06",
+            "https://rustsec.org/advisories/RUSTSEC-2019-0035.html"
+          ],
+          "PublishedDate": "2020-09-14T19:15:00Z",
+          "LastModifiedDate": "2020-09-22T17:38:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-15551",
+          "PkgName": "smallvec",
+          "InstalledVersion": "0.6.9",
+          "FixedVersion": "0.6.10",
+          "Layer": {
+            "Digest": "sha256:57b251229e70a32e5d386734f9bfe5bbc7b1be97e61327570524731668f2802c",
+            "DiffID": "sha256:6ef42db7800507577383edf1937cb203b9b85f619feed6046594208748ceb52c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-15551",
+          "DataSource": {
+            "ID": "osv",
+            "Name": "RustSec Advisory Database",
+            "URL": "https://github.com/RustSec/advisory-db"
+          },
+          "Title": "An issue was discovered in the smallvec crate before 0.6.10 for Rust.  ...",
+          "Description": "An issue was discovered in the smallvec crate before 0.6.10 for Rust. There is a double free for certain grow attempts with the current capacity.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-415"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "https://crates.io/crates/smallvec",
+            "https://github.com/servo/rust-smallvec/issues/148",
+            "https://rustsec.org/advisories/RUSTSEC-2019-0009.html"
+          ],
+          "PublishedDate": "2019-08-26T15:15:00Z",
+          "LastModifiedDate": "2019-09-03T15:02:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2019-15554",
+          "PkgName": "smallvec",
+          "InstalledVersion": "0.6.9",
+          "FixedVersion": "0.6.10",
+          "Layer": {
+            "Digest": "sha256:57b251229e70a32e5d386734f9bfe5bbc7b1be97e61327570524731668f2802c",
+            "DiffID": "sha256:6ef42db7800507577383edf1937cb203b9b85f619feed6046594208748ceb52c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2019-15554",
+          "DataSource": {
+            "ID": "osv",
+            "Name": "RustSec Advisory Database",
+            "URL": "https://github.com/RustSec/advisory-db"
+          },
+          "Title": "An issue was discovered in the smallvec crate before 0.6.10 for Rust.  ...",
+          "Description": "An issue was discovered in the smallvec crate before 0.6.10 for Rust. There is memory corruption for certain grow attempts with less than the current capacity.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "https://crates.io/crates/smallvec",
+            "https://github.com/servo/rust-smallvec/issues/149",
+            "https://rustsec.org/advisories/RUSTSEC-2019-0012.html"
+          ],
+          "PublishedDate": "2019-08-26T15:15:00Z",
+          "LastModifiedDate": "2020-08-24T17:37:00Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-25900",
+          "PkgName": "smallvec",
+          "InstalledVersion": "0.6.9",
+          "FixedVersion": "0.6.14, 1.6.1",
+          "Layer": {
+            "Digest": "sha256:57b251229e70a32e5d386734f9bfe5bbc7b1be97e61327570524731668f2802c",
+            "DiffID": "sha256:6ef42db7800507577383edf1937cb203b9b85f619feed6046594208748ceb52c"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-25900",
+          "DataSource": {
+            "ID": "osv",
+            "Name": "RustSec Advisory Database",
+            "URL": "https://github.com/RustSec/advisory-db"
+          },
+          "Title": "An issue was discovered in the smallvec crate before 0.6.14 and 1.x be ...",
+          "Description": "An issue was discovered in the smallvec crate before 0.6.14 and 1.x before 1.6.1 for Rust. There is a heap-based buffer overflow in SmallVec::insert_many.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 7.5,
+              "V3Score": 9.8
+            }
+          },
+          "References": [
+            "https://crates.io/crates/smallvec",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-25900",
+            "https://github.com/servo/rust-smallvec/issues/252",
+            "https://rustsec.org/advisories/RUSTSEC-2021-0003.html"
+          ],
+          "PublishedDate": "2021-01-26T18:16:00Z",
+          "LastModifiedDate": "2021-02-02T19:56:00Z"
+        }
+      ]
+    }
+  ]
+}
