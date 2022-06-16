@@ -393,6 +393,7 @@ Following inputs can be used as `step.with` keys:
 | `cache-dir`      | String  |                                    | Cache directory                               |
 | `timeout`        | String  | `5m0s`                             | Scan timeout duration                         |
 | `ignore-policy`  | String  |                                    | Filter vulnerabilities with OPA rego language |
+| `hide-progress`  | String  | `true`                             | Suppress progress bar                         |
 | `list-all-pkgs`  | String  |                                    | Output all packages regardless of vulnerability |
 | `security-checks`| String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)|
 | `trivyignores`   | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files |
