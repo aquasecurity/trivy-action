@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -62,6 +62,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:" o; do
        t)
          export trivyIgnores=${OPTARG}
        ;;
+       u)
+         export artifactType=${OPTARG}
+       ;;
   esac
 done
 
@@ -97,7 +100,7 @@ if [ "$ignoreUnfixed" == "true" ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --ignore-unfixed"
   SARIF_ARGS="$SARIF_ARGS --ignore-unfixed"
 fi
-if [ $vulnType ] && [ "$scanType" != "config" ];then
+if [ $vulnType ] && [ "$scanType" != "config" ] && [ "$scanType" != "sbom" ];then
   ARGS="$ARGS --vuln-type $vulnType"
   SARIF_ARGS="$SARIF_ARGS --vuln-type $vulnType"
 fi
@@ -151,6 +154,9 @@ if [ "$skipFiles" ];then
   do
     ARGS="$ARGS --skip-files $i"
   done
+fi
+if [ $artifactType ]; then
+  ARGS="$ARGS --artifact-type $artifactType"
 fi
 
 echo "Running trivy with options: ${ARGS}" "${artifactRef}"

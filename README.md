@@ -227,6 +227,42 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 ```
 
+### Using Trivy to generate SBOM
+It's possible for Trivy to generate an SBOM of your dependencies and submit them to a consumer like GitHub Dependency Snapshot.
+
+The sending of SBOM to GitHub feature is only available if you currently have [GitHub Dependency Snapshot](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) available to you in your repo. 
+
+In addition to send results to the GitHub Dependency Snapshot, you will need to create a [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+```yaml
+---
+name: Pull Request
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+jobs:
+  build:
+    name: Checks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Trivy in GitHub SBOM mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'sbom'
+          format: 'github'
+          output: 'dependency-results.sbom.json'
+          artifact-type: 'fs'
+          image-ref: '.'
+
+      - name: Upload Trivy SBOM results to GitHub Dependency tab
+        run: |
+            curl -u "${{ secrets.PAT_TOKEN }}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./dependency-results.sbom.json
+```
+
 ### Using Trivy to scan your private registry
 It's also possible to scan your private registry with Trivy's built-in image scan. All you have to do is set ENV vars.
 
