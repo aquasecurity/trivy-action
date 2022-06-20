@@ -83,7 +83,7 @@ inputs:
     description: 'input artifact type (image, fs, repo, archive) for SBOM generation'
     required: false
   github-pat:
-    description: 'GitHub Personal Access Token (PAT) needed if submitting SBOM to GitHub Dependency Snapshot API'
+    description: 'GitHub Personal Access Token (PAT) for submitting SBOM to GitHub Dependency Snapshot API'
     required: false
 
 runs:

@@ -90,6 +90,7 @@ fi
 
 SARIF_ARGS=""
 ARGS=""
+format=$(echo $format | xargs)
 if [ $format ];then
  ARGS="$ARGS --format $format"
 fi
@@ -177,7 +178,7 @@ fi
 
 if [[ "${format}" == "github" ]]; then
   echo "Uploading GitHub Dependency Snapshot"
-  curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./dependency-results.sbom.json
+  curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
 fi
 
 exit $returnCode
