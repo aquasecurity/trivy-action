@@ -82,6 +82,9 @@ inputs:
   artifact-type:
     description: 'input artifact type (image, fs, repo, archive) for SBOM generation'
     required: false
+  github-pat:
+    description: 'GitHub Personal Access Token (PAT) needed if submitting SBOM to GitHub Dependency Snapshot API'
+    required: false
 
 runs:
   using: 'docker'
@@ -108,3 +111,4 @@ runs:
     - '-s ${{ inputs.security-checks }}'
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.artifact-type }}'
+    - '-v ${{ inputs.github-pat }}'
