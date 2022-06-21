@@ -37,7 +37,7 @@ inputs:
     required: false
     default: 'table'
   template:
-    description: 'use an existing template for rendering output (@/contrib/sarif.tpl, @/contrib/gitlab.tpl, @/contrib/junit.tpl'
+    description: 'use an existing template for rendering output (@/contrib/gitlab.tpl, @/contrib/junit.tpl, @/contrib/html.tpl)'
     required: false
     default: ''
   output:
