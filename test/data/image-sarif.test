@@ -199,6 +199,114 @@
               }
             },
             {
+              "id": "CVE-2018-16890",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-16890"
+              },
+              "fullDescription": {
+                "text": "libcurl versions from 7.36.0 to before 7.64.0 is vulnerable to a heap buffer out-of-bounds read. The function handling incoming NTLM type-2 messages (`lib/vauth/ntlm.c:ntlm_decode_type2_target`) does not validate incoming data correctly and is subject to an integer overflow vulnerability. Using that overflow, a malicious or broken NTLM server could trick libcurl to accept a bad length + offset combination that would lead to a buffer read out-of-bounds."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-16890",
+              "help": {
+                "text": "Vulnerability CVE-2018-16890\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.61.1-r2\nLink: [CVE-2018-16890](https://avd.aquasec.com/nvd/cve-2018-16890)\nlibcurl versions from 7.36.0 to before 7.64.0 is vulnerable to a heap buffer out-of-bounds read. The function handling incoming NTLM type-2 messages (`lib/vauth/ntlm.c:ntlm_decode_type2_target`) does not validate incoming data correctly and is subject to an integer overflow vulnerability. Using that overflow, a malicious or broken NTLM server could trick libcurl to accept a bad length + offset combination that would lead to a buffer read out-of-bounds.",
+                "markdown": "**Vulnerability CVE-2018-16890**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.61.1-r2|[CVE-2018-16890](https://avd.aquasec.com/nvd/cve-2018-16890)|\n\nlibcurl versions from 7.36.0 to before 7.64.0 is vulnerable to a heap buffer out-of-bounds read. The function handling incoming NTLM type-2 messages (`lib/vauth/ntlm.c:ntlm_decode_type2_target`) does not validate incoming data correctly and is subject to an integer overflow vulnerability. Using that overflow, a malicious or broken NTLM server could trick libcurl to accept a bad length + offset combination that would lead to a buffer read out-of-bounds."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-3823",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-3823"
+              },
+              "fullDescription": {
+                "text": "libcurl versions from 7.34.0 to before 7.64.0 are vulnerable to a heap out-of-bounds read in the code handling the end-of-response for SMTP. If the buffer passed to `smtp_endofresp()` isn\u0026#39;t NUL terminated and contains no character ending the parsed number, and `len` is set to 5, then the `strtol()` call reads beyond the allocated buffer. The read contents will not be returned to the caller."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-3823",
+              "help": {
+                "text": "Vulnerability CVE-2019-3823\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.61.1-r2\nLink: [CVE-2019-3823](https://avd.aquasec.com/nvd/cve-2019-3823)\nlibcurl versions from 7.34.0 to before 7.64.0 are vulnerable to a heap out-of-bounds read in the code handling the end-of-response for SMTP. If the buffer passed to `smtp_endofresp()` isn't NUL terminated and contains no character ending the parsed number, and `len` is set to 5, then the `strtol()` call reads beyond the allocated buffer. The read contents will not be returned to the caller.",
+                "markdown": "**Vulnerability CVE-2019-3823**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.61.1-r2|[CVE-2019-3823](https://avd.aquasec.com/nvd/cve-2019-3823)|\n\nlibcurl versions from 7.34.0 to before 7.64.0 are vulnerable to a heap out-of-bounds read in the code handling the end-of-response for SMTP. If the buffer passed to `smtp_endofresp()` isn't NUL terminated and contains no character ending the parsed number, and `len` is set to 5, then the `strtol()` call reads beyond the allocated buffer. The read contents will not be returned to the caller."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-20843",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-20843"
+              },
+              "fullDescription": {
+                "text": "In libexpat in Expat before 2.2.7, XML input including XML names that contain a large number of colons could make the XML parser consume a high amount of RAM and CPU resources while processing (enough to be usable for denial-of-service attacks)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-20843",
+              "help": {
+                "text": "Vulnerability CVE-2018-20843\nSeverity: HIGH\nPackage: expat\nFixed Version: 2.2.7-r0\nLink: [CVE-2018-20843](https://avd.aquasec.com/nvd/cve-2018-20843)\nIn libexpat in Expat before 2.2.7, XML input including XML names that contain a large number of colons could make the XML parser consume a high amount of RAM and CPU resources while processing (enough to be usable for denial-of-service attacks).",
+                "markdown": "**Vulnerability CVE-2018-20843**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|expat|2.2.7-r0|[CVE-2018-20843](https://avd.aquasec.com/nvd/cve-2018-20843)|\n\nIn libexpat in Expat before 2.2.7, XML input including XML names that contain a large number of colons could make the XML parser consume a high amount of RAM and CPU resources while processing (enough to be usable for denial-of-service attacks)."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-15903",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-15903"
+              },
+              "fullDescription": {
+                "text": "In libexpat before 2.2.8, crafted XML input could fool the parser into changing from DTD parsing to document parsing too early; a consecutive call to XML_GetCurrentLineNumber (or XML_GetCurrentColumnNumber) then resulted in a heap-based buffer over-read."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-15903",
+              "help": {
+                "text": "Vulnerability CVE-2019-15903\nSeverity: HIGH\nPackage: expat\nFixed Version: 2.2.7-r1\nLink: [CVE-2019-15903](https://avd.aquasec.com/nvd/cve-2019-15903)\nIn libexpat before 2.2.8, crafted XML input could fool the parser into changing from DTD parsing to document parsing too early; a consecutive call to XML_GetCurrentLineNumber (or XML_GetCurrentColumnNumber) then resulted in a heap-based buffer over-read.",
+                "markdown": "**Vulnerability CVE-2019-15903**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|expat|2.2.7-r1|[CVE-2019-15903](https://avd.aquasec.com/nvd/cve-2019-15903)|\n\nIn libexpat before 2.2.8, crafted XML input could fool the parser into changing from DTD parsing to document parsing too early; a consecutive call to XML_GetCurrentLineNumber (or XML_GetCurrentColumnNumber) then resulted in a heap-based buffer over-read."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
               "id": "CVE-2018-17456",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -253,6 +361,195 @@
               }
             },
             {
+              "id": "CVE-2019-1349",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1349"
+              },
+              "fullDescription": {
+                "text": "A remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka \u0026#39;Git for Visual Studio Remote Code Execution Vulnerability\u0026#39;. This CVE ID is unique from CVE-2019-1350, CVE-2019-1352, CVE-2019-1354, CVE-2019-1387."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1349",
+              "help": {
+                "text": "Vulnerability CVE-2019-1349\nSeverity: HIGH\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1349](https://avd.aquasec.com/nvd/cve-2019-1349)\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1350, CVE-2019-1352, CVE-2019-1354, CVE-2019-1387.",
+                "markdown": "**Vulnerability CVE-2019-1349**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|git|2.15.4-r0|[CVE-2019-1349](https://avd.aquasec.com/nvd/cve-2019-1349)|\n\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1350, CVE-2019-1352, CVE-2019-1354, CVE-2019-1387."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1350",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1350"
+              },
+              "fullDescription": {
+                "text": "A remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka \u0026#39;Git for Visual Studio Remote Code Execution Vulnerability\u0026#39;. This CVE ID is unique from CVE-2019-1349, CVE-2019-1352, CVE-2019-1354, CVE-2019-1387."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1350",
+              "help": {
+                "text": "Vulnerability CVE-2019-1350\nSeverity: HIGH\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1350](https://avd.aquasec.com/nvd/cve-2019-1350)\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1349, CVE-2019-1352, CVE-2019-1354, CVE-2019-1387.",
+                "markdown": "**Vulnerability CVE-2019-1350**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|git|2.15.4-r0|[CVE-2019-1350](https://avd.aquasec.com/nvd/cve-2019-1350)|\n\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1349, CVE-2019-1352, CVE-2019-1354, CVE-2019-1387."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1351",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1351"
+              },
+              "fullDescription": {
+                "text": "A tampering vulnerability exists when Git for Visual Studio improperly handles virtual drive paths, aka \u0026#39;Git for Visual Studio Tampering Vulnerability\u0026#39;."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1351",
+              "help": {
+                "text": "Vulnerability CVE-2019-1351\nSeverity: HIGH\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1351](https://avd.aquasec.com/nvd/cve-2019-1351)\nA tampering vulnerability exists when Git for Visual Studio improperly handles virtual drive paths, aka 'Git for Visual Studio Tampering Vulnerability'.",
+                "markdown": "**Vulnerability CVE-2019-1351**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|git|2.15.4-r0|[CVE-2019-1351](https://avd.aquasec.com/nvd/cve-2019-1351)|\n\nA tampering vulnerability exists when Git for Visual Studio improperly handles virtual drive paths, aka 'Git for Visual Studio Tampering Vulnerability'."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1352",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1352"
+              },
+              "fullDescription": {
+                "text": "A remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka \u0026#39;Git for Visual Studio Remote Code Execution Vulnerability\u0026#39;. This CVE ID is unique from CVE-2019-1349, CVE-2019-1350, CVE-2019-1354, CVE-2019-1387."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1352",
+              "help": {
+                "text": "Vulnerability CVE-2019-1352\nSeverity: HIGH\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1352](https://avd.aquasec.com/nvd/cve-2019-1352)\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1349, CVE-2019-1350, CVE-2019-1354, CVE-2019-1387.",
+                "markdown": "**Vulnerability CVE-2019-1352**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|git|2.15.4-r0|[CVE-2019-1352](https://avd.aquasec.com/nvd/cve-2019-1352)|\n\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1349, CVE-2019-1350, CVE-2019-1354, CVE-2019-1387."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1354",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1354"
+              },
+              "fullDescription": {
+                "text": "A remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka \u0026#39;Git for Visual Studio Remote Code Execution Vulnerability\u0026#39;. This CVE ID is unique from CVE-2019-1349, CVE-2019-1350, CVE-2019-1352, CVE-2019-1387."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1354",
+              "help": {
+                "text": "Vulnerability CVE-2019-1354\nSeverity: HIGH\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1354](https://avd.aquasec.com/nvd/cve-2019-1354)\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1349, CVE-2019-1350, CVE-2019-1352, CVE-2019-1387.",
+                "markdown": "**Vulnerability CVE-2019-1354**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|git|2.15.4-r0|[CVE-2019-1354](https://avd.aquasec.com/nvd/cve-2019-1354)|\n\nA remote code execution vulnerability exists when Git for Visual Studio improperly sanitizes input, aka 'Git for Visual Studio Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1349, CVE-2019-1350, CVE-2019-1352, CVE-2019-1387."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1387",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1387"
+              },
+              "fullDescription": {
+                "text": "An issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. Recursive clones are currently affected by a vulnerability that is caused by too-lax validation of submodule names, allowing very targeted attacks via remote code execution in recursive clones."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1387",
+              "help": {
+                "text": "Vulnerability CVE-2019-1387\nSeverity: HIGH\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1387](https://avd.aquasec.com/nvd/cve-2019-1387)\nAn issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. Recursive clones are currently affected by a vulnerability that is caused by too-lax validation of submodule names, allowing very targeted attacks via remote code execution in recursive clones.",
+                "markdown": "**Vulnerability CVE-2019-1387**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|git|2.15.4-r0|[CVE-2019-1387](https://avd.aquasec.com/nvd/cve-2019-1387)|\n\nAn issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. Recursive clones are currently affected by a vulnerability that is caused by too-lax validation of submodule names, allowing very targeted attacks via remote code execution in recursive clones."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-1348",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-1348"
+              },
+              "fullDescription": {
+                "text": "An issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. The --export-marks option of git fast-import is exposed also via the in-stream command feature export-marks=... and it allows overwriting arbitrary paths."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-1348",
+              "help": {
+                "text": "Vulnerability CVE-2019-1348\nSeverity: LOW\nPackage: git\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1348](https://avd.aquasec.com/nvd/cve-2019-1348)\nAn issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. The --export-marks option of git fast-import is exposed also via the in-stream command feature export-marks=... and it allows overwriting arbitrary paths.",
+                "markdown": "**Vulnerability CVE-2019-1348**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|git|2.15.4-r0|[CVE-2019-1348](https://avd.aquasec.com/nvd/cve-2019-1348)|\n\nAn issue was found in Git before v2.24.1, v2.23.1, v2.22.2, v2.21.1, v2.20.2, v2.19.3, v2.18.2, v2.17.3, v2.16.6, v2.15.4, and v2.14.6. The --export-marks option of git fast-import is exposed also via the in-stream command feature export-marks=... and it allows overwriting arbitrary paths."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "3.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
               "id": "CVE-2019-12900",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -276,6 +573,114 @@
                   "vulnerability",
                   "security",
                   "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-14404",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-14404"
+              },
+              "fullDescription": {
+                "text": "A NULL pointer dereference vulnerability exists in the xpath.c:xmlXPathCompOpEval() function of libxml2 through 2.9.8 when parsing an invalid XPath expression in the XPATH_OP_AND or XPATH_OP_OR case. Applications processing untrusted XSL format inputs with the use of the libxml2 library may be vulnerable to a denial of service attack due to a crash of the application."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-14404",
+              "help": {
+                "text": "Vulnerability CVE-2018-14404\nSeverity: HIGH\nPackage: libxml2\nFixed Version: 2.9.8-r1\nLink: [CVE-2018-14404](https://avd.aquasec.com/nvd/cve-2018-14404)\nA NULL pointer dereference vulnerability exists in the xpath.c:xmlXPathCompOpEval() function of libxml2 through 2.9.8 when parsing an invalid XPath expression in the XPATH_OP_AND or XPATH_OP_OR case. Applications processing untrusted XSL format inputs with the use of the libxml2 library may be vulnerable to a denial of service attack due to a crash of the application.",
+                "markdown": "**Vulnerability CVE-2018-14404**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libxml2|2.9.8-r1|[CVE-2018-14404](https://avd.aquasec.com/nvd/cve-2018-14404)|\n\nA NULL pointer dereference vulnerability exists in the xpath.c:xmlXPathCompOpEval() function of libxml2 through 2.9.8 when parsing an invalid XPath expression in the XPATH_OP_AND or XPATH_OP_OR case. Applications processing untrusted XSL format inputs with the use of the libxml2 library may be vulnerable to a denial of service attack due to a crash of the application."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-14567",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-14567"
+              },
+              "fullDescription": {
+                "text": "libxml2 2.9.8, if --with-lzma is used, allows remote attackers to cause a denial of service (infinite loop) via a crafted XML file that triggers LZMA_MEMLIMIT_ERROR, as demonstrated by xmllint, a different vulnerability than CVE-2015-8035 and CVE-2018-9251."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-14567",
+              "help": {
+                "text": "Vulnerability CVE-2018-14567\nSeverity: MEDIUM\nPackage: libxml2\nFixed Version: 2.9.8-r1\nLink: [CVE-2018-14567](https://avd.aquasec.com/nvd/cve-2018-14567)\nlibxml2 2.9.8, if --with-lzma is used, allows remote attackers to cause a denial of service (infinite loop) via a crafted XML file that triggers LZMA_MEMLIMIT_ERROR, as demonstrated by xmllint, a different vulnerability than CVE-2015-8035 and CVE-2018-9251.",
+                "markdown": "**Vulnerability CVE-2018-14567**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libxml2|2.9.8-r1|[CVE-2018-14567](https://avd.aquasec.com/nvd/cve-2018-14567)|\n\nlibxml2 2.9.8, if --with-lzma is used, allows remote attackers to cause a denial of service (infinite loop) via a crafted XML file that triggers LZMA_MEMLIMIT_ERROR, as demonstrated by xmllint, a different vulnerability than CVE-2015-8035 and CVE-2018-9251."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "6.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-9251",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-9251"
+              },
+              "fullDescription": {
+                "text": "The xz_decomp function in xzlib.c in libxml2 2.9.8, if --with-lzma is used, allows remote attackers to cause a denial of service (infinite loop) via a crafted XML file that triggers LZMA_MEMLIMIT_ERROR, as demonstrated by xmllint, a different vulnerability than CVE-2015-8035."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-9251",
+              "help": {
+                "text": "Vulnerability CVE-2018-9251\nSeverity: MEDIUM\nPackage: libxml2\nFixed Version: 2.9.8-r1\nLink: [CVE-2018-9251](https://avd.aquasec.com/nvd/cve-2018-9251)\nThe xz_decomp function in xzlib.c in libxml2 2.9.8, if --with-lzma is used, allows remote attackers to cause a denial of service (infinite loop) via a crafted XML file that triggers LZMA_MEMLIMIT_ERROR, as demonstrated by xmllint, a different vulnerability than CVE-2015-8035.",
+                "markdown": "**Vulnerability CVE-2018-9251**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libxml2|2.9.8-r1|[CVE-2018-9251](https://avd.aquasec.com/nvd/cve-2018-9251)|\n\nThe xz_decomp function in xzlib.c in libxml2 2.9.8, if --with-lzma is used, allows remote attackers to cause a denial of service (infinite loop) via a crafted XML file that triggers LZMA_MEMLIMIT_ERROR, as demonstrated by xmllint, a different vulnerability than CVE-2015-8035."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-3902",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-3902"
+              },
+              "fullDescription": {
+                "text": "A flaw was found in Mercurial before 4.9. It was possible to use symlinks and subrepositories to defeat Mercurial\u0026#39;s path-checking logic and write files outside a repository."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-3902",
+              "help": {
+                "text": "Vulnerability CVE-2019-3902\nSeverity: MEDIUM\nPackage: mercurial\nFixed Version: 4.5.2-r1\nLink: [CVE-2019-3902](https://avd.aquasec.com/nvd/cve-2019-3902)\nA flaw was found in Mercurial before 4.9. It was possible to use symlinks and subrepositories to defeat Mercurial's path-checking logic and write files outside a repository.",
+                "markdown": "**Vulnerability CVE-2019-3902**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|mercurial|4.5.2-r1|[CVE-2019-3902](https://avd.aquasec.com/nvd/cve-2019-3902)|\n\nA flaw was found in Mercurial before 4.9. It was possible to use symlinks and subrepositories to defeat Mercurial's path-checking logic and write files outside a repository."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
                 ]
               }
             },
@@ -307,6 +712,195 @@
               }
             },
             {
+              "id": "CVE-2018-20685",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-20685"
+              },
+              "fullDescription": {
+                "text": "In OpenSSH 7.9, scp.c in the scp client allows remote SSH servers to bypass intended access restrictions via the filename of . or an empty filename. The impact is modifying the permissions of the target directory on the client side."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-20685",
+              "help": {
+                "text": "Vulnerability CVE-2018-20685\nSeverity: MEDIUM\nPackage: openssh-sftp-server\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)\nIn OpenSSH 7.9, scp.c in the scp client allows remote SSH servers to bypass intended access restrictions via the filename of . or an empty filename. The impact is modifying the permissions of the target directory on the client side.",
+                "markdown": "**Vulnerability CVE-2018-20685**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssh-sftp-server|7.5_p1-r10|[CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)|\n\nIn OpenSSH 7.9, scp.c in the scp client allows remote SSH servers to bypass intended access restrictions via the filename of . or an empty filename. The impact is modifying the permissions of the target directory on the client side."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-6109",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-6109"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in OpenSSH 7.9. Due to missing character encoding in the progress display, a malicious server (or Man-in-The-Middle attacker) can employ crafted object names to manipulate the client output, e.g., by using ANSI control codes to hide additional files being transferred. This affects refresh_progress_meter() in progressmeter.c."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-6109",
+              "help": {
+                "text": "Vulnerability CVE-2019-6109\nSeverity: MEDIUM\nPackage: openssh-sftp-server\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)\nAn issue was discovered in OpenSSH 7.9. Due to missing character encoding in the progress display, a malicious server (or Man-in-The-Middle attacker) can employ crafted object names to manipulate the client output, e.g., by using ANSI control codes to hide additional files being transferred. This affects refresh_progress_meter() in progressmeter.c.",
+                "markdown": "**Vulnerability CVE-2019-6109**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssh-sftp-server|7.5_p1-r10|[CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)|\n\nAn issue was discovered in OpenSSH 7.9. Due to missing character encoding in the progress display, a malicious server (or Man-in-The-Middle attacker) can employ crafted object names to manipulate the client output, e.g., by using ANSI control codes to hide additional files being transferred. This affects refresh_progress_meter() in progressmeter.c."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "6.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-6111",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-6111"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in OpenSSH 7.9. Due to the scp implementation being derived from 1983 rcp, the server chooses which files/directories are sent to the client. However, the scp client only performs cursory validation of the object name returned (only directory traversal attacks are prevented). A malicious scp server (or Man-in-The-Middle attacker) can overwrite arbitrary files in the scp client target directory. If recursive operation (-r) is performed, the server can manipulate subdirectories as well (for example, to overwrite the .ssh/authorized_keys file)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-6111",
+              "help": {
+                "text": "Vulnerability CVE-2019-6111\nSeverity: MEDIUM\nPackage: openssh-sftp-server\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)\nAn issue was discovered in OpenSSH 7.9. Due to the scp implementation being derived from 1983 rcp, the server chooses which files/directories are sent to the client. However, the scp client only performs cursory validation of the object name returned (only directory traversal attacks are prevented). A malicious scp server (or Man-in-The-Middle attacker) can overwrite arbitrary files in the scp client target directory. If recursive operation (-r) is performed, the server can manipulate subdirectories as well (for example, to overwrite the .ssh/authorized_keys file).",
+                "markdown": "**Vulnerability CVE-2019-6111**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssh-sftp-server|7.5_p1-r10|[CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)|\n\nAn issue was discovered in OpenSSH 7.9. Due to the scp implementation being derived from 1983 rcp, the server chooses which files/directories are sent to the client. However, the scp client only performs cursory validation of the object name returned (only directory traversal attacks are prevented). A malicious scp server (or Man-in-The-Middle attacker) can overwrite arbitrary files in the scp client target directory. If recursive operation (-r) is performed, the server can manipulate subdirectories as well (for example, to overwrite the .ssh/authorized_keys file)."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-1000156",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-1000156"
+              },
+              "fullDescription": {
+                "text": "GNU Patch version 2.7.6 contains an input validation vulnerability when processing patch files, specifically the EDITOR_PROGRAM invocation (using ed) can result in code execution. This attack appear to be exploitable via a patch file processed via the patch utility. This is similar to FreeBSD\u0026#39;s CVE-2015-1418 however although they share a common ancestry the code bases have diverged over time."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-1000156",
+              "help": {
+                "text": "Vulnerability CVE-2018-1000156\nSeverity: HIGH\nPackage: patch\nFixed Version: 2.7.6-r0\nLink: [CVE-2018-1000156](https://avd.aquasec.com/nvd/cve-2018-1000156)\nGNU Patch version 2.7.6 contains an input validation vulnerability when processing patch files, specifically the EDITOR_PROGRAM invocation (using ed) can result in code execution. This attack appear to be exploitable via a patch file processed via the patch utility. This is similar to FreeBSD's CVE-2015-1418 however although they share a common ancestry the code bases have diverged over time.",
+                "markdown": "**Vulnerability CVE-2018-1000156**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|patch|2.7.6-r0|[CVE-2018-1000156](https://avd.aquasec.com/nvd/cve-2018-1000156)|\n\nGNU Patch version 2.7.6 contains an input validation vulnerability when processing patch files, specifically the EDITOR_PROGRAM invocation (using ed) can result in code execution. This attack appear to be exploitable via a patch file processed via the patch utility. This is similar to FreeBSD's CVE-2015-1418 however although they share a common ancestry the code bases have diverged over time."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-6952",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-6952"
+              },
+              "fullDescription": {
+                "text": "A double free exists in the another_hunk function in pch.c in GNU patch through 2.7.6."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-6952",
+              "help": {
+                "text": "Vulnerability CVE-2018-6952\nSeverity: HIGH\nPackage: patch\nFixed Version: 2.7.6-r0\nLink: [CVE-2018-6952](https://avd.aquasec.com/nvd/cve-2018-6952)\nA double free exists in the another_hunk function in pch.c in GNU patch through 2.7.6.",
+                "markdown": "**Vulnerability CVE-2018-6952**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|patch|2.7.6-r0|[CVE-2018-6952](https://avd.aquasec.com/nvd/cve-2018-6952)|\n\nA double free exists in the another_hunk function in pch.c in GNU patch through 2.7.6."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-13638",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-13638"
+              },
+              "fullDescription": {
+                "text": "GNU patch through 2.7.6 is vulnerable to OS shell command injection that can be exploited by opening a crafted patch file that contains an ed style diff payload with shell metacharacters. The ed editor does not need to be present on the vulnerable system. This is different from CVE-2018-1000156."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-13638",
+              "help": {
+                "text": "Vulnerability CVE-2019-13638\nSeverity: HIGH\nPackage: patch\nFixed Version: 2.7.6-r0\nLink: [CVE-2019-13638](https://avd.aquasec.com/nvd/cve-2019-13638)\nGNU patch through 2.7.6 is vulnerable to OS shell command injection that can be exploited by opening a crafted patch file that contains an ed style diff payload with shell metacharacters. The ed editor does not need to be present on the vulnerable system. This is different from CVE-2018-1000156.",
+                "markdown": "**Vulnerability CVE-2019-13638**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|patch|2.7.6-r0|[CVE-2019-13638](https://avd.aquasec.com/nvd/cve-2019-13638)|\n\nGNU patch through 2.7.6 is vulnerable to OS shell command injection that can be exploited by opening a crafted patch file that contains an ed style diff payload with shell metacharacters. The ed editor does not need to be present on the vulnerable system. This is different from CVE-2018-1000156."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.8",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-13636",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-13636"
+              },
+              "fullDescription": {
+                "text": "In GNU patch through 2.7.6, the following of symlinks is mishandled in certain cases other than input files. This affects inp.c and util.c."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-13636",
+              "help": {
+                "text": "Vulnerability CVE-2019-13636\nSeverity: MEDIUM\nPackage: patch\nFixed Version: 2.7.5-r3\nLink: [CVE-2019-13636](https://avd.aquasec.com/nvd/cve-2019-13636)\nIn GNU patch through 2.7.6, the following of symlinks is mishandled in certain cases other than input files. This affects inp.c and util.c.",
+                "markdown": "**Vulnerability CVE-2019-13636**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|patch|2.7.5-r3|[CVE-2019-13636](https://avd.aquasec.com/nvd/cve-2019-13636)|\n\nIn GNU patch through 2.7.6, the following of symlinks is mishandled in certain cases other than input files. This affects inp.c and util.c."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
               "id": "CVE-2019-8457",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -330,6 +924,384 @@
                   "vulnerability",
                   "security",
                   "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-20346",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-20346"
+              },
+              "fullDescription": {
+                "text": "SQLite before 3.25.3, when the FTS3 extension is enabled, encounters an integer overflow (and resultant buffer overflow) for FTS3 queries that occur after crafted changes to FTS3 shadow tables, allowing remote attackers to execute arbitrary code by leveraging the ability to run arbitrary SQL statements (such as in certain WebSQL use cases), aka Magellan."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-20346",
+              "help": {
+                "text": "Vulnerability CVE-2018-20346\nSeverity: HIGH\nPackage: sqlite-libs\nFixed Version: 3.25.3-r0\nLink: [CVE-2018-20346](https://avd.aquasec.com/nvd/cve-2018-20346)\nSQLite before 3.25.3, when the FTS3 extension is enabled, encounters an integer overflow (and resultant buffer overflow) for FTS3 queries that occur after crafted changes to FTS3 shadow tables, allowing remote attackers to execute arbitrary code by leveraging the ability to run arbitrary SQL statements (such as in certain WebSQL use cases), aka Magellan.",
+                "markdown": "**Vulnerability CVE-2018-20346**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|sqlite-libs|3.25.3-r0|[CVE-2018-20346](https://avd.aquasec.com/nvd/cve-2018-20346)|\n\nSQLite before 3.25.3, when the FTS3 extension is enabled, encounters an integer overflow (and resultant buffer overflow) for FTS3 queries that occur after crafted changes to FTS3 shadow tables, allowing remote attackers to execute arbitrary code by leveraging the ability to run arbitrary SQL statements (such as in certain WebSQL use cases), aka Magellan."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-0203",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-0203"
+              },
+              "fullDescription": {
+                "text": "In Apache Subversion versions up to and including 1.9.10, 1.10.4, 1.12.0, Subversion\u0026#39;s svnserve server process may exit when a client sends certain sequences of protocol commands. This can lead to disruption for users of the server."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-0203",
+              "help": {
+                "text": "Vulnerability CVE-2019-0203\nSeverity: HIGH\nPackage: subversion-libs\nFixed Version: 1.9.12-r0\nLink: [CVE-2019-0203](https://avd.aquasec.com/nvd/cve-2019-0203)\nIn Apache Subversion versions up to and including 1.9.10, 1.10.4, 1.12.0, Subversion's svnserve server process may exit when a client sends certain sequences of protocol commands. This can lead to disruption for users of the server.",
+                "markdown": "**Vulnerability CVE-2019-0203**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|subversion-libs|1.9.12-r0|[CVE-2019-0203](https://avd.aquasec.com/nvd/cve-2019-0203)|\n\nIn Apache Subversion versions up to and including 1.9.10, 1.10.4, 1.12.0, Subversion's svnserve server process may exit when a client sends certain sequences of protocol commands. This can lead to disruption for users of the server."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-11782",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-11782"
+              },
+              "fullDescription": {
+                "text": "In Apache Subversion versions up to and including 1.9.10, 1.10.4, 1.12.0, Subversion\u0026#39;s svnserve server process may exit when a well-formed read-only request produces a particular answer. This can lead to disruption for users of the server."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-11782",
+              "help": {
+                "text": "Vulnerability CVE-2018-11782\nSeverity: MEDIUM\nPackage: subversion-libs\nFixed Version: 1.9.12-r0\nLink: [CVE-2018-11782](https://avd.aquasec.com/nvd/cve-2018-11782)\nIn Apache Subversion versions up to and including 1.9.10, 1.10.4, 1.12.0, Subversion's svnserve server process may exit when a well-formed read-only request produces a particular answer. This can lead to disruption for users of the server.",
+                "markdown": "**Vulnerability CVE-2018-11782**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|subversion-libs|1.9.12-r0|[CVE-2018-11782](https://avd.aquasec.com/nvd/cve-2018-11782)|\n\nIn Apache Subversion versions up to and including 1.9.10, 1.10.4, 1.12.0, Subversion's svnserve server process may exit when a well-formed read-only request produces a particular answer. This can lead to disruption for users of the server."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "6.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-20482",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2018-20482"
+              },
+              "fullDescription": {
+                "text": "GNU Tar through 1.30, when --sparse is used, mishandles file shrinkage during read access, which allows local users to cause a denial of service (infinite read loop in sparse_dump_region in sparse.c) by modifying a file that is supposed to be archived by a different user\u0026#39;s process (e.g., a system backup running as root)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2018-20482",
+              "help": {
+                "text": "Vulnerability CVE-2018-20482\nSeverity: MEDIUM\nPackage: tar\nFixed Version: 1.31-r0\nLink: [CVE-2018-20482](https://avd.aquasec.com/nvd/cve-2018-20482)\nGNU Tar through 1.30, when --sparse is used, mishandles file shrinkage during read access, which allows local users to cause a denial of service (infinite read loop in sparse_dump_region in sparse.c) by modifying a file that is supposed to be archived by a different user's process (e.g., a system backup running as root).",
+                "markdown": "**Vulnerability CVE-2018-20482**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|tar|1.31-r0|[CVE-2018-20482](https://avd.aquasec.com/nvd/cve-2018-20482)|\n\nGNU Tar through 1.30, when --sparse is used, mishandles file shrinkage during read access, which allows local users to cause a denial of service (infinite read loop in sparse_dump_region in sparse.c) by modifying a file that is supposed to be archived by a different user's process (e.g., a system backup running as root)."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "4.7",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-5385",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2016-5385"
+              },
+              "fullDescription": {
+                "text": "PHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application\u0026#39;s outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv(\u0026#39;HTTP_PROXY\u0026#39;) call or (2) a CGI configuration of PHP, aka an \u0026#34;httpoxy\u0026#34; issue."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2016-5385",
+              "help": {
+                "text": "Vulnerability CVE-2016-5385\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 6.2.1, 4.2.4, 5.3.1\nLink: [CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)\nPHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue.",
+                "markdown": "**Vulnerability CVE-2016-5385**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|6.2.1, 4.2.4, 5.3.1|[CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)|\n\nPHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-29248",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2022-29248"
+              },
+              "fullDescription": {
+                "text": "Guzzle is a PHP HTTP client. Guzzle prior to versions 6.5.6 and 7.4.3 contains a vulnerability with the cookie middleware. The vulnerability is that it is not checked if the cookie domain equals the domain of the server which sets the cookie via the Set-Cookie header, allowing a malicious server to set cookies for unrelated domains. The cookie middleware is disabled by default, so most library consumers will not be affected by this issue. Only those who manually add the cookie middleware to the handler stack or construct the client with [\u0026#39;cookies\u0026#39; =\u0026gt; true] are affected. Moreover, those who do not use the same Guzzle client to call multiple domains and have disabled redirect forwarding are not affected by this vulnerability. Guzzle versions 6.5.6 and 7.4.3 contain a patch for this issue. As a workaround, turn off the cookie middleware."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-29248",
+              "help": {
+                "text": "Vulnerability CVE-2022-29248\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.3, 6.5.6\nLink: [CVE-2022-29248](https://avd.aquasec.com/nvd/cve-2022-29248)\nGuzzle is a PHP HTTP client. Guzzle prior to versions 6.5.6 and 7.4.3 contains a vulnerability with the cookie middleware. The vulnerability is that it is not checked if the cookie domain equals the domain of the server which sets the cookie via the Set-Cookie header, allowing a malicious server to set cookies for unrelated domains. The cookie middleware is disabled by default, so most library consumers will not be affected by this issue. Only those who manually add the cookie middleware to the handler stack or construct the client with ['cookies' =\u003e true] are affected. Moreover, those who do not use the same Guzzle client to call multiple domains and have disabled redirect forwarding are not affected by this vulnerability. Guzzle versions 6.5.6 and 7.4.3 contain a patch for this issue. As a workaround, turn off the cookie middleware.",
+                "markdown": "**Vulnerability CVE-2022-29248**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|7.4.3, 6.5.6|[CVE-2022-29248](https://avd.aquasec.com/nvd/cve-2022-29248)|\n\nGuzzle is a PHP HTTP client. Guzzle prior to versions 6.5.6 and 7.4.3 contains a vulnerability with the cookie middleware. The vulnerability is that it is not checked if the cookie domain equals the domain of the server which sets the cookie via the Set-Cookie header, allowing a malicious server to set cookies for unrelated domains. The cookie middleware is disabled by default, so most library consumers will not be affected by this issue. Only those who manually add the cookie middleware to the handler stack or construct the client with ['cookies' =\u003e true] are affected. Moreover, those who do not use the same Guzzle client to call multiple domains and have disabled redirect forwarding are not affected by this vulnerability. Guzzle versions 6.5.6 and 7.4.3 contain a patch for this issue. As a workaround, turn off the cookie middleware."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-31042",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2022-31042"
+              },
+              "fullDescription": {
+                "text": "Guzzle is an open source PHP HTTP client. In affected versions the `Cookie` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, or on making a request to a server which responds with a redirect to a a URI to a different host, we should not forward the `Cookie` header on. Prior to this fix, only cookies that were managed by our cookie middleware would be safely removed, and any `Cookie` header manually added to the initial request would not be stripped. We now always strip it, and allow the cookie middleware to re-add any cookies that it deems should be there. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach to use your own redirect middleware, rather than ours. If you do not require or expect redirects to be followed, one should simply disable redirects all together."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-31042",
+              "help": {
+                "text": "Vulnerability CVE-2022-31042\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.4, 6.5.7\nLink: [CVE-2022-31042](https://avd.aquasec.com/nvd/cve-2022-31042)\nGuzzle is an open source PHP HTTP client. In affected versions the `Cookie` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, or on making a request to a server which responds with a redirect to a a URI to a different host, we should not forward the `Cookie` header on. Prior to this fix, only cookies that were managed by our cookie middleware would be safely removed, and any `Cookie` header manually added to the initial request would not be stripped. We now always strip it, and allow the cookie middleware to re-add any cookies that it deems should be there. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach to use your own redirect middleware, rather than ours. If you do not require or expect redirects to be followed, one should simply disable redirects all together.",
+                "markdown": "**Vulnerability CVE-2022-31042**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|7.4.4, 6.5.7|[CVE-2022-31042](https://avd.aquasec.com/nvd/cve-2022-31042)|\n\nGuzzle is an open source PHP HTTP client. In affected versions the `Cookie` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, or on making a request to a server which responds with a redirect to a a URI to a different host, we should not forward the `Cookie` header on. Prior to this fix, only cookies that were managed by our cookie middleware would be safely removed, and any `Cookie` header manually added to the initial request would not be stripped. We now always strip it, and allow the cookie middleware to re-add any cookies that it deems should be there. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach to use your own redirect middleware, rather than ours. If you do not require or expect redirects to be followed, one should simply disable redirects all together."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-31043",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2022-31043"
+              },
+              "fullDescription": {
+                "text": "Guzzle is an open source PHP HTTP client. In affected versions `Authorization` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, we should not forward the `Authorization` header on. This is much the same as to how we don\u0026#39;t forward on the header if the host changes. Prior to this fix, `https` to `http` downgrades did not result in the `Authorization` header being removed, only changes to the host. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach which would be to use their own redirect middleware. Alternately users may simply disable redirects all together if redirects are not expected or required."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-31043",
+              "help": {
+                "text": "Vulnerability CVE-2022-31043\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.4, 6.5.7\nLink: [CVE-2022-31043](https://avd.aquasec.com/nvd/cve-2022-31043)\nGuzzle is an open source PHP HTTP client. In affected versions `Authorization` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, we should not forward the `Authorization` header on. This is much the same as to how we don't forward on the header if the host changes. Prior to this fix, `https` to `http` downgrades did not result in the `Authorization` header being removed, only changes to the host. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach which would be to use their own redirect middleware. Alternately users may simply disable redirects all together if redirects are not expected or required.",
+                "markdown": "**Vulnerability CVE-2022-31043**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|7.4.4, 6.5.7|[CVE-2022-31043](https://avd.aquasec.com/nvd/cve-2022-31043)|\n\nGuzzle is an open source PHP HTTP client. In affected versions `Authorization` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, we should not forward the `Authorization` header on. This is much the same as to how we don't forward on the header if the host changes. Prior to this fix, `https` to `http` downgrades did not result in the `Authorization` header being removed, only changes to the host. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach which would be to use their own redirect middleware. Alternately users may simply disable redirects all together if redirects are not expected or required."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-31090",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2022-31090"
+              },
+              "fullDescription": {
+                "text": "CURLOPT_HTTPAUTH option not cleared on change of origin"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-31090",
+              "help": {
+                "text": "Vulnerability CVE-2022-31090\nSeverity: UNKNOWN\nPackage: guzzlehttp/guzzle\nFixed Version: 6.5.8, 7.4.5\nLink: [CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)\n",
+                "markdown": "**Vulnerability CVE-2022-31090**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|guzzlehttp/guzzle|6.5.8, 7.4.5|[CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)|\n\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-31091",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2022-31091"
+              },
+              "fullDescription": {
+                "text": "Change in port should be considered a change in origin"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-31091",
+              "help": {
+                "text": "Vulnerability CVE-2022-31091\nSeverity: UNKNOWN\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)\n",
+                "markdown": "**Vulnerability CVE-2022-31091**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|guzzlehttp/guzzle|7.4.5, 6.5.8|[CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)|\n\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-24775",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2022-24775"
+              },
+              "fullDescription": {
+                "text": "guzzlehttp/psr7 is a PSR-7 HTTP message library. Versions prior to 1.8.4 and 2.1.1 are vulnerable to improper header parsing. An attacker could sneak in a new line character and pass untrusted values. The issue is patched in 1.8.4 and 2.1.1. There are currently no known workarounds."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-24775",
+              "help": {
+                "text": "Vulnerability CVE-2022-24775\nSeverity: HIGH\nPackage: guzzlehttp/psr7\nFixed Version: 2.1.1, 1.8.4\nLink: [CVE-2022-24775](https://avd.aquasec.com/nvd/cve-2022-24775)\nguzzlehttp/psr7 is a PSR-7 HTTP message library. Versions prior to 1.8.4 and 2.1.1 are vulnerable to improper header parsing. An attacker could sneak in a new line character and pass untrusted values. The issue is patched in 1.8.4 and 2.1.1. There are currently no known workarounds.",
+                "markdown": "**Vulnerability CVE-2022-24775**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/psr7|2.1.1, 1.8.4|[CVE-2022-24775](https://avd.aquasec.com/nvd/cve-2022-24775)|\n\nguzzlehttp/psr7 is a PSR-7 HTTP message library. Versions prior to 1.8.4 and 2.1.1 are vulnerable to improper header parsing. An attacker could sneak in a new line character and pass untrusted values. The issue is patched in 1.8.4 and 2.1.1. There are currently no known workarounds."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-15542",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2019-15542"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the ammonia crate before 2.1.0 for Rust. There is uncontrolled recursion during HTML DOM tree serialization."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2019-15542",
+              "help": {
+                "text": "Vulnerability CVE-2019-15542\nSeverity: HIGH\nPackage: ammonia\nFixed Version: 2.1.0\nLink: [CVE-2019-15542](https://avd.aquasec.com/nvd/cve-2019-15542)\nAn issue was discovered in the ammonia crate before 2.1.0 for Rust. There is uncontrolled recursion during HTML DOM tree serialization.",
+                "markdown": "**Vulnerability CVE-2019-15542**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|ammonia|2.1.0|[CVE-2019-15542](https://avd.aquasec.com/nvd/cve-2019-15542)|\n\nAn issue was discovered in the ammonia crate before 2.1.0 for Rust. There is uncontrolled recursion during HTML DOM tree serialization."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-38193",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2021-38193"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the ammonia crate before 3.1.0 for Rust. XSS can occur because the parsing differences for HTML, SVG, and MathML are mishandled, a similar issue to CVE-2020-26870."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2021-38193",
+              "help": {
+                "text": "Vulnerability CVE-2021-38193\nSeverity: MEDIUM\nPackage: ammonia\nFixed Version: 2.1.3, 3.1.0\nLink: [CVE-2021-38193](https://avd.aquasec.com/nvd/cve-2021-38193)\nAn issue was discovered in the ammonia crate before 3.1.0 for Rust. XSS can occur because the parsing differences for HTML, SVG, and MathML are mishandled, a similar issue to CVE-2020-26870.",
+                "markdown": "**Vulnerability CVE-2021-38193**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ammonia|2.1.3, 3.1.0|[CVE-2021-38193](https://avd.aquasec.com/nvd/cve-2021-38193)|\n\nAn issue was discovered in the ammonia crate before 3.1.0 for Rust. XSS can occur because the parsing differences for HTML, SVG, and MathML are mishandled, a similar issue to CVE-2020-26870."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "6.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-10931",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2016-10931"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in the openssl crate before 0.9.0 for Rust. There is an SSL/TLS man-in-the-middle vulnerability because certificate verification is off by default and there is no API for hostname verification."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2016-10931",
+              "help": {
+                "text": "Vulnerability CVE-2016-10931\nSeverity: HIGH\nPackage: openssl\nFixed Version: 0.9.0\nLink: [CVE-2016-10931](https://avd.aquasec.com/nvd/cve-2016-10931)\nAn issue was discovered in the openssl crate before 0.9.0 for Rust. There is an SSL/TLS man-in-the-middle vulnerability because certificate verification is off by default and there is no API for hostname verification.",
+                "markdown": "**Vulnerability CVE-2016-10931**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|openssl|0.9.0|[CVE-2016-10931](https://avd.aquasec.com/nvd/cve-2016-10931)|\n\nAn issue was discovered in the openssl crate before 0.9.0 for Rust. There is an SSL/TLS man-in-the-middle vulnerability because certificate verification is off by default and there is no API for hostname verification."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "8.1",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
                 ]
               }
             },
@@ -438,6 +1410,60 @@
                   "vulnerability",
                   "security",
                   "CRITICAL"
+                ]
+              }
+            },
+            {
+              "id": "RUSTSEC-2018-0018",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "RUSTSEC-2018-0018"
+              },
+              "fullDescription": {
+                "text": "Affected versions of this crate called `mem::uninitialized()` to create values of a user-supplied type `T`.\nThis is unsound e.g. if `T` is a reference type (which must be non-null and thus may not remain uninitialized).\n \nThe flaw was corrected by avoiding the use of `mem::uninitialized()`, using `MaybeUninit` instead."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2018-0018",
+              "help": {
+                "text": "Vulnerability RUSTSEC-2018-0018\nSeverity: UNKNOWN\nPackage: smallvec\nFixed Version: 0.6.13\nLink: [RUSTSEC-2018-0018](https://osv.dev/vulnerability/RUSTSEC-2018-0018)\nAffected versions of this crate called `mem::uninitialized()` to create values of a user-supplied type `T`.\nThis is unsound e.g. if `T` is a reference type (which must be non-null and thus may not remain uninitialized).\n \nThe flaw was corrected by avoiding the use of `mem::uninitialized()`, using `MaybeUninit` instead.",
+                "markdown": "**Vulnerability RUSTSEC-2018-0018**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|smallvec|0.6.13|[RUSTSEC-2018-0018](https://osv.dev/vulnerability/RUSTSEC-2018-0018)|\n\nAffected versions of this crate called `mem::uninitialized()` to create values of a user-supplied type `T`.\nThis is unsound e.g. if `T` is a reference type (which must be non-null and thus may not remain uninitialized).\n \nThe flaw was corrected by avoiding the use of `mem::uninitialized()`, using `MaybeUninit` instead."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            {
+              "id": "RUSTSEC-2018-0017",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "RUSTSEC-2018-0017"
+              },
+              "fullDescription": {
+                "text": "The [`tempdir`](https://crates.io/crates/tempdir) crate has been deprecated\nand the functionality is merged into [`tempfile`](https://crates.io/crates/tempfile)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://osv.dev/vulnerability/RUSTSEC-2018-0017",
+              "help": {
+                "text": "Vulnerability RUSTSEC-2018-0017\nSeverity: UNKNOWN\nPackage: tempdir\nFixed Version: \nLink: [RUSTSEC-2018-0017](https://osv.dev/vulnerability/RUSTSEC-2018-0017)\nThe [`tempdir`](https://crates.io/crates/tempdir) crate has been deprecated\nand the functionality is merged into [`tempfile`](https://crates.io/crates/tempfile).",
+                "markdown": "**Vulnerability RUSTSEC-2018-0017**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|tempdir||[RUSTSEC-2018-0017](https://osv.dev/vulnerability/RUSTSEC-2018-0017)|\n\nThe [`tempdir`](https://crates.io/crates/tempdir) crate has been deprecated\nand the functionality is merged into [`tempfile`](https://crates.io/crates/tempfile)."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "UNKNOWN"
                 ]
               }
             }
@@ -615,8 +1641,104 @@
           ]
         },
         {
-          "ruleId": "CVE-2018-17456",
+          "ruleId": "CVE-2018-16890",
           "ruleIndex": 7,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2018-16890\nSeverity: HIGH\nFixed Version: 7.61.1-r2\nLink: [CVE-2018-16890](https://avd.aquasec.com/nvd/cve-2018-16890)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-3823",
+          "ruleIndex": 8,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.61.0-r0\nVulnerability CVE-2019-3823\nSeverity: HIGH\nFixed Version: 7.61.1-r2\nLink: [CVE-2019-3823](https://avd.aquasec.com/nvd/cve-2019-3823)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20843",
+          "ruleIndex": 9,
+          "level": "error",
+          "message": {
+            "text": "Package: expat\nInstalled Version: 2.2.5-r0\nVulnerability CVE-2018-20843\nSeverity: HIGH\nFixed Version: 2.2.7-r0\nLink: [CVE-2018-20843](https://avd.aquasec.com/nvd/cve-2018-20843)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-15903",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: expat\nInstalled Version: 2.2.5-r0\nVulnerability CVE-2019-15903\nSeverity: HIGH\nFixed Version: 2.2.7-r1\nLink: [CVE-2019-15903](https://avd.aquasec.com/nvd/cve-2019-15903)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-17456",
+          "ruleIndex": 11,
           "level": "error",
           "message": {
             "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2018-17456\nSeverity: CRITICAL\nFixed Version: 2.15.3-r0\nLink: [CVE-2018-17456](https://avd.aquasec.com/nvd/cve-2018-17456)"
@@ -640,7 +1762,7 @@
         },
         {
           "ruleId": "CVE-2019-1353",
-          "ruleIndex": 8,
+          "ruleIndex": 12,
           "level": "error",
           "message": {
             "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1353\nSeverity: CRITICAL\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1353](https://avd.aquasec.com/nvd/cve-2019-1353)"
@@ -663,8 +1785,176 @@
           ]
         },
         {
+          "ruleId": "CVE-2019-1349",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1349\nSeverity: HIGH\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1349](https://avd.aquasec.com/nvd/cve-2019-1349)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1350",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1350\nSeverity: HIGH\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1350](https://avd.aquasec.com/nvd/cve-2019-1350)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1351",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1351\nSeverity: HIGH\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1351](https://avd.aquasec.com/nvd/cve-2019-1351)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1352",
+          "ruleIndex": 16,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1352\nSeverity: HIGH\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1352](https://avd.aquasec.com/nvd/cve-2019-1352)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1354",
+          "ruleIndex": 17,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1354\nSeverity: HIGH\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1354](https://avd.aquasec.com/nvd/cve-2019-1354)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1387",
+          "ruleIndex": 18,
+          "level": "error",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1387\nSeverity: HIGH\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1387](https://avd.aquasec.com/nvd/cve-2019-1387)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1348",
+          "ruleIndex": 19,
+          "level": "note",
+          "message": {
+            "text": "Package: git\nInstalled Version: 2.15.2-r0\nVulnerability CVE-2019-1348\nSeverity: LOW\nFixed Version: 2.15.4-r0\nLink: [CVE-2019-1348](https://avd.aquasec.com/nvd/cve-2019-1348)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "CVE-2019-12900",
-          "ruleIndex": 9,
+          "ruleIndex": 20,
           "level": "error",
           "message": {
             "text": "Package: libbz2\nInstalled Version: 1.0.6-r6\nVulnerability CVE-2019-12900\nSeverity: CRITICAL\nFixed Version: 1.0.6-r7\nLink: [CVE-2019-12900](https://avd.aquasec.com/nvd/cve-2019-12900)"
@@ -831,8 +2121,152 @@
           ]
         },
         {
+          "ruleId": "CVE-2018-16890",
+          "ruleIndex": 7,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2018-16890\nSeverity: HIGH\nFixed Version: 7.61.1-r2\nLink: [CVE-2018-16890](https://avd.aquasec.com/nvd/cve-2018-16890)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-3823",
+          "ruleIndex": 8,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.61.1-r0\nVulnerability CVE-2019-3823\nSeverity: HIGH\nFixed Version: 7.61.1-r2\nLink: [CVE-2019-3823](https://avd.aquasec.com/nvd/cve-2019-3823)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-14404",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "Package: libxml2\nInstalled Version: 2.9.7-r0\nVulnerability CVE-2018-14404\nSeverity: HIGH\nFixed Version: 2.9.8-r1\nLink: [CVE-2018-14404](https://avd.aquasec.com/nvd/cve-2018-14404)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-14567",
+          "ruleIndex": 22,
+          "level": "warning",
+          "message": {
+            "text": "Package: libxml2\nInstalled Version: 2.9.7-r0\nVulnerability CVE-2018-14567\nSeverity: MEDIUM\nFixed Version: 2.9.8-r1\nLink: [CVE-2018-14567](https://avd.aquasec.com/nvd/cve-2018-14567)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-9251",
+          "ruleIndex": 23,
+          "level": "warning",
+          "message": {
+            "text": "Package: libxml2\nInstalled Version: 2.9.7-r0\nVulnerability CVE-2018-9251\nSeverity: MEDIUM\nFixed Version: 2.9.8-r1\nLink: [CVE-2018-9251](https://avd.aquasec.com/nvd/cve-2018-9251)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-3902",
+          "ruleIndex": 24,
+          "level": "warning",
+          "message": {
+            "text": "Package: mercurial\nInstalled Version: 4.5.2-r0\nVulnerability CVE-2019-3902\nSeverity: MEDIUM\nFixed Version: 4.5.2-r1\nLink: [CVE-2019-3902](https://avd.aquasec.com/nvd/cve-2019-3902)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "CVE-2019-14697",
-          "ruleIndex": 10,
+          "ruleIndex": 25,
           "level": "error",
           "message": {
             "text": "Package: musl\nInstalled Version: 1.1.18-r3\nVulnerability CVE-2019-14697\nSeverity: CRITICAL\nFixed Version: 1.1.18-r4\nLink: [CVE-2019-14697](https://avd.aquasec.com/nvd/cve-2019-14697)"
@@ -856,7 +2290,7 @@
         },
         {
           "ruleId": "CVE-2019-14697",
-          "ruleIndex": 10,
+          "ruleIndex": 25,
           "level": "error",
           "message": {
             "text": "Package: musl-utils\nInstalled Version: 1.1.18-r3\nVulnerability CVE-2019-14697\nSeverity: CRITICAL\nFixed Version: 1.1.18-r4\nLink: [CVE-2019-14697](https://avd.aquasec.com/nvd/cve-2019-14697)"
@@ -879,8 +2313,536 @@
           ]
         },
         {
+          "ruleId": "CVE-2018-20685",
+          "ruleIndex": 26,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2018-20685\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6109",
+          "ruleIndex": 27,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6109\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6111",
+          "ruleIndex": 28,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6111\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20685",
+          "ruleIndex": 26,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-client\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2018-20685\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6109",
+          "ruleIndex": 27,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-client\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6109\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6111",
+          "ruleIndex": 28,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-client\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6111\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20685",
+          "ruleIndex": 26,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-keygen\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2018-20685\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6109",
+          "ruleIndex": 27,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-keygen\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6109\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6111",
+          "ruleIndex": 28,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-keygen\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6111\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20685",
+          "ruleIndex": 26,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-server\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2018-20685\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6109",
+          "ruleIndex": 27,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-server\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6109\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6111",
+          "ruleIndex": 28,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-server\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6111\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20685",
+          "ruleIndex": 26,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-server-common\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2018-20685\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6109",
+          "ruleIndex": 27,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-server-common\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6109\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6111",
+          "ruleIndex": 28,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-server-common\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6111\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20685",
+          "ruleIndex": 26,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-sftp-server\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2018-20685\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2018-20685](https://avd.aquasec.com/nvd/cve-2018-20685)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6109",
+          "ruleIndex": 27,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-sftp-server\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6109\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6109](https://avd.aquasec.com/nvd/cve-2019-6109)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-6111",
+          "ruleIndex": 28,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssh-sftp-server\nInstalled Version: 7.5_p1-r9\nVulnerability CVE-2019-6111\nSeverity: MEDIUM\nFixed Version: 7.5_p1-r10\nLink: [CVE-2019-6111](https://avd.aquasec.com/nvd/cve-2019-6111)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-1000156",
+          "ruleIndex": 29,
+          "level": "error",
+          "message": {
+            "text": "Package: patch\nInstalled Version: 2.7.5-r2\nVulnerability CVE-2018-1000156\nSeverity: HIGH\nFixed Version: 2.7.6-r0\nLink: [CVE-2018-1000156](https://avd.aquasec.com/nvd/cve-2018-1000156)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-6952",
+          "ruleIndex": 30,
+          "level": "error",
+          "message": {
+            "text": "Package: patch\nInstalled Version: 2.7.5-r2\nVulnerability CVE-2018-6952\nSeverity: HIGH\nFixed Version: 2.7.6-r0\nLink: [CVE-2018-6952](https://avd.aquasec.com/nvd/cve-2018-6952)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-13638",
+          "ruleIndex": 31,
+          "level": "error",
+          "message": {
+            "text": "Package: patch\nInstalled Version: 2.7.5-r2\nVulnerability CVE-2019-13638\nSeverity: HIGH\nFixed Version: 2.7.6-r0\nLink: [CVE-2019-13638](https://avd.aquasec.com/nvd/cve-2019-13638)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-13636",
+          "ruleIndex": 32,
+          "level": "warning",
+          "message": {
+            "text": "Package: patch\nInstalled Version: 2.7.5-r2\nVulnerability CVE-2019-13636\nSeverity: MEDIUM\nFixed Version: 2.7.5-r3\nLink: [CVE-2019-13636](https://avd.aquasec.com/nvd/cve-2019-13636)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "CVE-2019-8457",
-          "ruleIndex": 11,
+          "ruleIndex": 33,
           "level": "error",
           "message": {
             "text": "Package: sqlite-libs\nInstalled Version: 3.21.0-r1\nVulnerability CVE-2019-8457\nSeverity: CRITICAL\nFixed Version: 3.25.3-r1\nLink: [CVE-2019-8457](https://avd.aquasec.com/nvd/cve-2019-8457)"
@@ -903,8 +2865,392 @@
           ]
         },
         {
+          "ruleId": "CVE-2018-20346",
+          "ruleIndex": 34,
+          "level": "error",
+          "message": {
+            "text": "Package: sqlite-libs\nInstalled Version: 3.21.0-r1\nVulnerability CVE-2018-20346\nSeverity: HIGH\nFixed Version: 3.25.3-r0\nLink: [CVE-2018-20346](https://avd.aquasec.com/nvd/cve-2018-20346)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-0203",
+          "ruleIndex": 35,
+          "level": "error",
+          "message": {
+            "text": "Package: subversion\nInstalled Version: 1.9.7-r0\nVulnerability CVE-2019-0203\nSeverity: HIGH\nFixed Version: 1.9.12-r0\nLink: [CVE-2019-0203](https://avd.aquasec.com/nvd/cve-2019-0203)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-11782",
+          "ruleIndex": 36,
+          "level": "warning",
+          "message": {
+            "text": "Package: subversion\nInstalled Version: 1.9.7-r0\nVulnerability CVE-2018-11782\nSeverity: MEDIUM\nFixed Version: 1.9.12-r0\nLink: [CVE-2018-11782](https://avd.aquasec.com/nvd/cve-2018-11782)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-0203",
+          "ruleIndex": 35,
+          "level": "error",
+          "message": {
+            "text": "Package: subversion-libs\nInstalled Version: 1.9.7-r0\nVulnerability CVE-2019-0203\nSeverity: HIGH\nFixed Version: 1.9.12-r0\nLink: [CVE-2019-0203](https://avd.aquasec.com/nvd/cve-2019-0203)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-11782",
+          "ruleIndex": 36,
+          "level": "warning",
+          "message": {
+            "text": "Package: subversion-libs\nInstalled Version: 1.9.7-r0\nVulnerability CVE-2018-11782\nSeverity: MEDIUM\nFixed Version: 1.9.12-r0\nLink: [CVE-2018-11782](https://avd.aquasec.com/nvd/cve-2018-11782)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-20482",
+          "ruleIndex": 37,
+          "level": "warning",
+          "message": {
+            "text": "Package: tar\nInstalled Version: 1.29-r1\nVulnerability CVE-2018-20482\nSeverity: MEDIUM\nFixed Version: 1.31-r0\nLink: [CVE-2018-20482](https://avd.aquasec.com/nvd/cve-2018-20482)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "knqyf263/vuln-image",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-5385",
+          "ruleIndex": 38,
+          "level": "error",
+          "message": {
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2016-5385\nSeverity: HIGH\nFixed Version: 6.2.1, 4.2.4, 5.3.1\nLink: [CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29248",
+          "ruleIndex": 39,
+          "level": "error",
+          "message": {
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-29248\nSeverity: HIGH\nFixed Version: 7.4.3, 6.5.6\nLink: [CVE-2022-29248](https://avd.aquasec.com/nvd/cve-2022-29248)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-31042",
+          "ruleIndex": 40,
+          "level": "error",
+          "message": {
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31042\nSeverity: HIGH\nFixed Version: 7.4.4, 6.5.7\nLink: [CVE-2022-31042](https://avd.aquasec.com/nvd/cve-2022-31042)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-31043",
+          "ruleIndex": 41,
+          "level": "error",
+          "message": {
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31043\nSeverity: HIGH\nFixed Version: 7.4.4, 6.5.7\nLink: [CVE-2022-31043](https://avd.aquasec.com/nvd/cve-2022-31043)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-31090",
+          "ruleIndex": 42,
+          "level": "note",
+          "message": {
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31090\nSeverity: UNKNOWN\nFixed Version: 6.5.8, 7.4.5\nLink: [CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-31091",
+          "ruleIndex": 43,
+          "level": "note",
+          "message": {
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31091\nSeverity: UNKNOWN\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-24775",
+          "ruleIndex": 44,
+          "level": "error",
+          "message": {
+            "text": "Package: guzzlehttp/psr7\nInstalled Version: 1.5.2\nVulnerability CVE-2022-24775\nSeverity: HIGH\nFixed Version: 2.1.1, 1.8.4\nLink: [CVE-2022-24775](https://avd.aquasec.com/nvd/cve-2022-24775)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "php-app/composer.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-15542",
+          "ruleIndex": 45,
+          "level": "error",
+          "message": {
+            "text": "Package: ammonia\nInstalled Version: 1.9.0\nVulnerability CVE-2019-15542\nSeverity: HIGH\nFixed Version: 2.1.0\nLink: [CVE-2019-15542](https://avd.aquasec.com/nvd/cve-2019-15542)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-38193",
+          "ruleIndex": 46,
+          "level": "warning",
+          "message": {
+            "text": "Package: ammonia\nInstalled Version: 1.9.0\nVulnerability CVE-2021-38193\nSeverity: MEDIUM\nFixed Version: 2.1.3, 3.1.0\nLink: [CVE-2021-38193](https://avd.aquasec.com/nvd/cve-2021-38193)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-10931",
+          "ruleIndex": 47,
+          "level": "error",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 0.8.3\nVulnerability CVE-2016-10931\nSeverity: HIGH\nFixed Version: 0.9.0\nLink: [CVE-2016-10931](https://avd.aquasec.com/nvd/cve-2016-10931)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "CVE-2020-25576",
-          "ruleIndex": 12,
+          "ruleIndex": 48,
           "level": "error",
           "message": {
             "text": "Package: rand_core\nInstalled Version: 0.4.0\nVulnerability CVE-2020-25576\nSeverity: CRITICAL\nFixed Version: 0.3.1, 0.4.2\nLink: [CVE-2020-25576](https://avd.aquasec.com/nvd/cve-2020-25576)"
@@ -928,7 +3274,7 @@
         },
         {
           "ruleId": "CVE-2019-15551",
-          "ruleIndex": 13,
+          "ruleIndex": 49,
           "level": "error",
           "message": {
             "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability CVE-2019-15551\nSeverity: CRITICAL\nFixed Version: 0.6.10\nLink: [CVE-2019-15551](https://avd.aquasec.com/nvd/cve-2019-15551)"
@@ -952,7 +3298,7 @@
         },
         {
           "ruleId": "CVE-2019-15554",
-          "ruleIndex": 14,
+          "ruleIndex": 50,
           "level": "error",
           "message": {
             "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability CVE-2019-15554\nSeverity: CRITICAL\nFixed Version: 0.6.10\nLink: [CVE-2019-15554](https://avd.aquasec.com/nvd/cve-2019-15554)"
@@ -976,10 +3322,58 @@
         },
         {
           "ruleId": "CVE-2021-25900",
-          "ruleIndex": 15,
+          "ruleIndex": 51,
           "level": "error",
           "message": {
             "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability CVE-2021-25900\nSeverity: CRITICAL\nFixed Version: 0.6.14, 1.6.1\nLink: [CVE-2021-25900](https://avd.aquasec.com/nvd/cve-2021-25900)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "RUSTSEC-2018-0018",
+          "ruleIndex": 52,
+          "level": "note",
+          "message": {
+            "text": "Package: smallvec\nInstalled Version: 0.6.9\nVulnerability RUSTSEC-2018-0018\nSeverity: UNKNOWN\nFixed Version: 0.6.13\nLink: [RUSTSEC-2018-0018](https://osv.dev/vulnerability/RUSTSEC-2018-0018)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rust-app/Cargo.lock",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "RUSTSEC-2018-0017",
+          "ruleIndex": 53,
+          "level": "note",
+          "message": {
+            "text": "Package: tempdir\nInstalled Version: 0.3.7\nVulnerability RUSTSEC-2018-0017\nSeverity: UNKNOWN\nFixed Version: \nLink: [RUSTSEC-2018-0017](https://osv.dev/vulnerability/RUSTSEC-2018-0017)"
           },
           "locations": [
             {
