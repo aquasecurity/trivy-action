@@ -58,8 +58,8 @@ load '/usr/lib/bats-assert/load.bash'
   [ "$result" == '' ]
 }
 
-@test "trivy image with sbom option" {
-  # trivy sbom --format  github --artifact-type  image  knqyf263/vuln-image:1.2.3
-  run ./entrypoint.sh  "-a sbom" "-b github" "-i knqyf263/vuln-image:1.2.3" "-j ." "-u image"
+@test "trivy image with sbom output" {
+  # trivy image --format  github knqyf263/vuln-image:1.2.3
+  run ./entrypoint.sh  "-a image" "-b github" "-i knqyf263/vuln-image:1.2.3"
   assert_output --partial '"package_url": "pkg:apk/ca-certificates@20171114-r0",' # TODO: Output contains time, need to mock
 }

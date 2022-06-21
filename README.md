@@ -252,10 +252,9 @@ jobs:
       - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Snapshots
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'sbom'
+          scan-type: 'fs'
           format: 'github'
           output: 'dependency-results.sbom.json'
-          artifact-type: 'fs'
           image-ref: '.'
           github-pat: '<github_pat_token>'
 ```
@@ -430,7 +429,6 @@ Following inputs can be used as `step.with` keys:
 | `list-all-pkgs`   | String  |                                    | Output all packages regardless of vulnerability                                                 |
 | `security-checks` | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)               |
 | `trivyignores`    | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files        |
-| `artifact-type`   | String  | `image`                            | input artifact type (image, fs, repo, archive) for SBOM generation                              |
 | `github-pat`      | String  |                                    | GitHub Personal Access Token (PAT) for sending SBOM scan results to GitHub Dependency Snapshots |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest

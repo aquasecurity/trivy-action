@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -63,9 +63,6 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
          export trivyIgnores=${OPTARG}
        ;;
        u)
-         export artifactType=${OPTARG}
-       ;;
-       v)
          export githubPAT=${OPTARG}
        ;;
   esac
@@ -159,9 +156,6 @@ if [ "$skipFiles" ];then
     ARGS="$ARGS --skip-files $i"
   done
 fi
-if [ $artifactType ]; then
-  ARGS="$ARGS --artifact-type $artifactType"
-fi
 
 echo "Running trivy with options: ${ARGS}" "${artifactRef}"
 echo "Global options: " "${GLOBAL_ARGS}"
@@ -176,7 +170,7 @@ if [[ "${format}" == "sarif" ]]; then
   trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 fi
 
-if [[ "${format}" == "github" ]]; then
+if [[ "${format}" == "github" ]] && [[ "$(echo $githubPAT | xargs)" != "" ]]; then
   echo "Uploading GitHub Dependency Snapshot"
   curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
 fi

@@ -110,5 +110,4 @@ runs:
     - '-r ${{ inputs.list-all-pkgs }}'
     - '-s ${{ inputs.security-checks }}'
     - '-t ${{ inputs.trivyignores }}'
-    - '-u ${{ inputs.artifact-type }}'
-    - '-v ${{ inputs.github-pat }}'
+    - '-u ${{ inputs.github-pat }}'
