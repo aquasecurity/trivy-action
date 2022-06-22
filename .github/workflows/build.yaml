@@ -1,7 +1,7 @@
 name: "build"
 on: [push, pull_request]
 env:
-  TRIVY_VERSION: 0.29.0
+  TRIVY_VERSION: 0.29.1
 jobs:
   build:
     name: build
@@ -12,6 +12,9 @@ jobs:
         uses: mig4/setup-bats@v1
         with:
           bats-version: 1.2.1
+
+      - name: Setup Bats libs
+        uses: brokenpip3/setup-bats-libs@0.1.0
 
       - name: Check out code
         uses: actions/checkout@v1

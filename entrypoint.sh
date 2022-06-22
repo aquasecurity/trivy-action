@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -62,6 +62,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:" o; do
        t)
          export trivyIgnores=${OPTARG}
        ;;
+       u)
+         export githubPAT=${OPTARG}
+       ;;
   esac
 done
 
@@ -84,6 +87,7 @@ fi
 
 SARIF_ARGS=""
 ARGS=""
+format=$(echo $format | xargs)
 if [ $format ];then
  ARGS="$ARGS --format $format"
 fi
@@ -97,7 +101,7 @@ if [ "$ignoreUnfixed" == "true" ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --ignore-unfixed"
   SARIF_ARGS="$SARIF_ARGS --ignore-unfixed"
 fi
-if [ $vulnType ] && [ "$scanType" != "config" ];then
+if [ $vulnType ] && [ "$scanType" != "config" ] && [ "$scanType" != "sbom" ];then
   ARGS="$ARGS --vuln-type $vulnType"
   SARIF_ARGS="$SARIF_ARGS --vuln-type $vulnType"
 fi
@@ -164,6 +168,11 @@ returnCode=$?
 if [[ "${format}" == "sarif" ]]; then
   echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
   trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+fi
+
+if [[ "${format}" == "github" ]] && [[ "$(echo $githubPAT | xargs)" != "" ]]; then
+  echo "Uploading GitHub Dependency Snapshot"
+  curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
 fi
 
 exit $returnCode

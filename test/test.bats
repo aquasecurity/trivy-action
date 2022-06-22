@@ -1,4 +1,6 @@
 #!/usr/bin/env bats
+load '/usr/lib/bats-support/load.bash'
+load '/usr/lib/bats-assert/load.bash'
 
 @test "trivy image" {
   # trivy image --severity CRITICAL --format json --output image.test knqyf263/vuln-image:1.2.3
@@ -54,4 +56,10 @@
   ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3' '-b json' '-h image-trivyignores.test' '-g CRITICAL' '-t ./test/data/.trivyignore1,./test/data/.trivyignore2'
   result="$(diff ./test/data/image-trivyignores.test image-trivyignores.test)"
   [ "$result" == '' ]
+}
+
+@test "trivy image with sbom output" {
+  # trivy image --format  github knqyf263/vuln-image:1.2.3
+  run ./entrypoint.sh  "-a image" "-b github" "-i knqyf263/vuln-image:1.2.3"
+  assert_output --partial '"package_url": "pkg:apk/ca-certificates@20171114-r0",' # TODO: Output contains time, need to mock
 }
