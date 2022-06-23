@@ -51,6 +51,35 @@ jobs:
           severity: 'CRITICAL,HIGH'
 ```
 
+
+### Scanning a Tarball
+```yaml
+name: build
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Generate tarball from image
+      run: |
+        docker pull <your-docker-image>
+        docker save -o vuln-image.tar <your-docker-image>
+        
+    - name: Run Trivy vulnerability scanner in tarball mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        input: /github/workspace/vuln-image.tar
+        severity: 'CRITICAL,HIGH'
+```
+
 ### Using Trivy with GitHub Code Scanning
 If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
 ```yaml
