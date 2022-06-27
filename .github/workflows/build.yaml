@@ -1,7 +1,7 @@
 name: "build"
 on: [push, pull_request]
 env:
-  TRIVY_VERSION: 0.29.1
+  TRIVY_VERSION: 0.29.2
 jobs:
   build:
     name: build
@@ -24,4 +24,10 @@ jobs:
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${{ env.TRIVY_VERSION }}
 
       - name: Test
-        run: bats -r .
+        run: bats --recursive --timing .
+
+      - name: Debug show artifacts
+        if: always()
+        run: |
+          cat ./config.test
+          cat ./fs-scheck.test

@@ -1,34 +1,5 @@
-{
-  "SchemaVersion": 2,
-  "ArtifactName": "https://github.com/krol3/demo-trivy/",
-  "ArtifactType": "repository",
-  "Metadata": {
-    "ImageConfig": {
-      "architecture": "",
-      "created": "0001-01-01T00:00:00Z",
-      "os": "",
-      "rootfs": {
-        "type": "",
-        "diff_ids": null
-      },
-      "config": {}
-    }
-  },
-  "Results": [
-    {
-      "Target": "env",
-      "Class": "secret",
-      "Secrets": [
-        {
-          "RuleID": "github-pat",
-          "Category": "GitHub",
-          "Severity": "CRITICAL",
-          "Title": "GitHub Personal Access Token",
-          "StartLine": 5,
-          "EndLine": 5,
-          "Match": "export GITHUB_PAT=*****"
-        }
-      ]
-    }
-  ]
-}
+┌──────────┬──────────────────────────────┬──────────┬─────────┬─────────────────────────┐
+│ Category │         Description          │ Severity │ Line No │          Match          │
+├──────────┼──────────────────────────────┼──────────┼─────────┼─────────────────────────┤
+│  GitHub  │ GitHub Personal Access Token │ CRITICAL │    5    │ export GITHUB_PAT=***** │
+└──────────┴──────────────────────────────┴──────────┴─────────┴─────────────────────────┘
