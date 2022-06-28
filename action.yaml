@@ -20,7 +20,6 @@ inputs:
   exit-code:
     description: 'exit code when vulnerabilities were found'
     required: false
-    default: '0'
   ignore-unfixed:
     description: 'ignore unfixed vulnerabilities'
     required: false
@@ -38,7 +37,7 @@ inputs:
     required: false
     default: 'table'
   template:
-    description: 'use an existing template for rendering output (@/contrib/sarif.tpl, @/contrib/gitlab.tpl, @/contrib/junit.tpl'
+    description: 'use an existing template for rendering output (@/contrib/gitlab.tpl, @/contrib/junit.tpl, @/contrib/html.tpl)'
     required: false
     default: ''
   output:
@@ -68,7 +67,6 @@ inputs:
   hide-progress:
     description: 'hide progress output'
     required: false
-    default: 'true'
   list-all-pkgs:
     description: 'output all packages regardless of vulnerability'
     required: false
@@ -77,6 +75,17 @@ inputs:
     description: 'comma-separated list of what security issues to detect'
     required: false
     default: ''
+  trivyignores:
+    description: 'comma-separated list of relative paths in repository to one or more .trivyignore files'
+    required: false
+    default: ''
+  artifact-type:
+    description: 'input artifact type (image, fs, repo, archive) for SBOM generation'
+    required: false
+  github-pat:
+    description: 'GitHub Personal Access Token (PAT) for submitting SBOM to GitHub Dependency Snapshot API'
+    required: false
+
 runs:
   using: 'docker'
   image: "Dockerfile"
@@ -100,3 +109,5 @@ runs:
     - '-q ${{ inputs.skip-files }}'
     - '-r ${{ inputs.list-all-pkgs }}'
     - '-s ${{ inputs.security-checks }}'
+    - '-t ${{ inputs.trivyignores }}'
+    - '-u ${{ inputs.github-pat }}'
