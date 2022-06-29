@@ -1049,8 +1049,8 @@
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2016-5385",
               "help": {
-                "text": "Vulnerability CVE-2016-5385\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 6.2.1, 4.2.4, 5.3.1\nLink: [CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)\nPHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue.",
-                "markdown": "**Vulnerability CVE-2016-5385**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|6.2.1, 4.2.4, 5.3.1|[CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)|\n\nPHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue."
+                "text": "Vulnerability CVE-2016-5385\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 5.3.1, 6.2.1, 4.2.4\nLink: [CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)\nPHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue.",
+                "markdown": "**Vulnerability CVE-2016-5385**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|5.3.1, 6.2.1, 4.2.4|[CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)|\n\nPHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue."
               },
               "properties": {
                 "precision": "very-high",
@@ -1150,23 +1150,23 @@
                 "text": "CVE-2022-31090"
               },
               "fullDescription": {
-                "text": "CURLOPT_HTTPAUTH option not cleared on change of origin"
+                "text": "Guzzle, an extensible PHP HTTP client. `Authorization` headers on requests are sensitive information. In affected versions when using our Curl handler, it is possible to use the `CURLOPT_HTTPAUTH` option to specify an `Authorization` header. On making a request which responds with a redirect to a URI with a different origin (change in host, scheme or port), if we choose to follow it, we should remove the `CURLOPT_HTTPAUTH` option before continuing, stopping curl from appending the `Authorization` header to the new request. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. If you do not require or expect redirects to be followed, one should simply disable redirects all together. Alternatively, one can specify to use the Guzzle steam handler backend, rather than curl."
               },
               "defaultConfiguration": {
-                "level": "note"
+                "level": "error"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2022-31090",
               "help": {
-                "text": "Vulnerability CVE-2022-31090\nSeverity: UNKNOWN\nPackage: guzzlehttp/guzzle\nFixed Version: 6.5.8, 7.4.5\nLink: [CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)\n",
-                "markdown": "**Vulnerability CVE-2022-31090**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|guzzlehttp/guzzle|6.5.8, 7.4.5|[CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)|\n\n"
+                "text": "Vulnerability CVE-2022-31090\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)\nGuzzle, an extensible PHP HTTP client. `Authorization` headers on requests are sensitive information. In affected versions when using our Curl handler, it is possible to use the `CURLOPT_HTTPAUTH` option to specify an `Authorization` header. On making a request which responds with a redirect to a URI with a different origin (change in host, scheme or port), if we choose to follow it, we should remove the `CURLOPT_HTTPAUTH` option before continuing, stopping curl from appending the `Authorization` header to the new request. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. If you do not require or expect redirects to be followed, one should simply disable redirects all together. Alternatively, one can specify to use the Guzzle steam handler backend, rather than curl.",
+                "markdown": "**Vulnerability CVE-2022-31090**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|7.4.5, 6.5.8|[CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)|\n\nGuzzle, an extensible PHP HTTP client. `Authorization` headers on requests are sensitive information. In affected versions when using our Curl handler, it is possible to use the `CURLOPT_HTTPAUTH` option to specify an `Authorization` header. On making a request which responds with a redirect to a URI with a different origin (change in host, scheme or port), if we choose to follow it, we should remove the `CURLOPT_HTTPAUTH` option before continuing, stopping curl from appending the `Authorization` header to the new request. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. If you do not require or expect redirects to be followed, one should simply disable redirects all together. Alternatively, one can specify to use the Guzzle steam handler backend, rather than curl."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "0.0",
+                "security-severity": "8.0",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNKNOWN"
+                  "HIGH"
                 ]
               }
             },
@@ -1177,23 +1177,23 @@
                 "text": "CVE-2022-31091"
               },
               "fullDescription": {
-                "text": "Change in port should be considered a change in origin"
+                "text": "Guzzle, an extensible PHP HTTP client. `Authorization` and `Cookie` headers on requests are sensitive information. In affected versions on making a request which responds with a redirect to a URI with a different port, if we choose to follow it, we should remove the `Authorization` and `Cookie` headers from the request, before containing. Previously, we would only consider a change in host or scheme. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. An alternative approach would be to use your own redirect middleware, rather than ours, if you are unable to upgrade. If you do not require or expect redirects to be followed, one should simply disable redirects all together."
               },
               "defaultConfiguration": {
-                "level": "note"
+                "level": "error"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2022-31091",
               "help": {
-                "text": "Vulnerability CVE-2022-31091\nSeverity: UNKNOWN\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)\n",
-                "markdown": "**Vulnerability CVE-2022-31091**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|guzzlehttp/guzzle|7.4.5, 6.5.8|[CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)|\n\n"
+                "text": "Vulnerability CVE-2022-31091\nSeverity: HIGH\nPackage: guzzlehttp/guzzle\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)\nGuzzle, an extensible PHP HTTP client. `Authorization` and `Cookie` headers on requests are sensitive information. In affected versions on making a request which responds with a redirect to a URI with a different port, if we choose to follow it, we should remove the `Authorization` and `Cookie` headers from the request, before containing. Previously, we would only consider a change in host or scheme. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. An alternative approach would be to use your own redirect middleware, rather than ours, if you are unable to upgrade. If you do not require or expect redirects to be followed, one should simply disable redirects all together.",
+                "markdown": "**Vulnerability CVE-2022-31091**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|guzzlehttp/guzzle|7.4.5, 6.5.8|[CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)|\n\nGuzzle, an extensible PHP HTTP client. `Authorization` and `Cookie` headers on requests are sensitive information. In affected versions on making a request which responds with a redirect to a URI with a different port, if we choose to follow it, we should remove the `Authorization` and `Cookie` headers from the request, before containing. Previously, we would only consider a change in host or scheme. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. An alternative approach would be to use your own redirect middleware, rather than ours, if you are unable to upgrade. If you do not require or expect redirects to be followed, one should simply disable redirects all together."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "0.0",
+                "security-severity": "8.0",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNKNOWN"
+                  "HIGH"
                 ]
               }
             },
@@ -1468,7 +1468,7 @@
               }
             }
           ],
-          "version": "0.29.1"
+          "version": "0.29.2"
         }
       },
       "results": [
@@ -3013,7 +3013,7 @@
           "ruleIndex": 38,
           "level": "error",
           "message": {
-            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2016-5385\nSeverity: HIGH\nFixed Version: 6.2.1, 4.2.4, 5.3.1\nLink: [CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)"
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2016-5385\nSeverity: HIGH\nFixed Version: 5.3.1, 6.2.1, 4.2.4\nLink: [CVE-2016-5385](https://avd.aquasec.com/nvd/cve-2016-5385)"
           },
           "locations": [
             {
@@ -3107,9 +3107,9 @@
         {
           "ruleId": "CVE-2022-31090",
           "ruleIndex": 42,
-          "level": "note",
+          "level": "error",
           "message": {
-            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31090\nSeverity: UNKNOWN\nFixed Version: 6.5.8, 7.4.5\nLink: [CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)"
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31090\nSeverity: HIGH\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31090](https://avd.aquasec.com/nvd/cve-2022-31090)"
           },
           "locations": [
             {
@@ -3131,9 +3131,9 @@
         {
           "ruleId": "CVE-2022-31091",
           "ruleIndex": 43,
-          "level": "note",
+          "level": "error",
           "message": {
-            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31091\nSeverity: UNKNOWN\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)"
+            "text": "Package: guzzlehttp/guzzle\nInstalled Version: 6.2.0\nVulnerability CVE-2022-31091\nSeverity: HIGH\nFixed Version: 7.4.5, 6.5.8\nLink: [CVE-2022-31091](https://avd.aquasec.com/nvd/cve-2022-31091)"
           },
           "locations": [
             {
