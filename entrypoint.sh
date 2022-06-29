@@ -175,4 +175,5 @@ if [[ "${format}" == "github" ]] && [[ "$(echo $githubPAT | xargs)" != "" ]]; th
   curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
 fi
 
+echo "returnCode: " $returnCode
 exit $returnCode
