@@ -85,6 +85,10 @@ inputs:
   github-pat:
     description: 'GitHub Personal Access Token (PAT) for submitting SBOM to GitHub Dependency Snapshot API'
     required: false
+  dependency-tree:
+    description: 'show dependency origin tree'
+    required: false
+    default: 'false'
 
 runs:
   using: 'docker'
@@ -111,3 +115,4 @@ runs:
     - '-s ${{ inputs.security-checks }}'
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.github-pat }}'
+    - '-v ${{ inputs.dependency-tree }}'

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -65,6 +65,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
        u)
          export githubPAT=${OPTARG}
        ;;
+       v)
+         export dependencyTree=${OPTARG}
+       ;;
   esac
 done
 
@@ -79,6 +82,7 @@ if [ $input ]; then
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 hideProgress=$(echo $hideProgress | tr -d '\r')
+
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
@@ -156,6 +160,12 @@ if [ "$skipFiles" ];then
     ARGS="$ARGS --skip-files $i"
   done
 fi
+
+dependencyTree=$(echo $dependencyTree | tr -d '\r')
+if [ "$dependencyTree" == "true" ] && [ "$scanType" != "config" ];then
+  ARGS="$ARGS --dependency-tree"
+fi
+
 
 echo "Running trivy with options: ${ARGS}" "${artifactRef}"
 echo "Global options: " "${GLOBAL_ARGS}"
