@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -65,8 +65,12 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:" o; do
        u)
          export githubPAT=${OPTARG}
        ;;
+       v)
+         export trivyConfig=${OPTARG}
+       ;;
   esac
 done
+
 
 scanType=$(echo $scanType | tr -d '\r')
 export artifactRef="${imageRef}"
@@ -157,10 +161,17 @@ if [ "$skipFiles" ];then
   done
 fi
 
-echo "Running trivy with options: ${ARGS}" "${artifactRef}"
-echo "Global options: " "${GLOBAL_ARGS}"
-trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
-returnCode=$?
+trivyConfig=$(echo $trivyConfig | tr -d '\r')
+if [ $trivyConfig ]; then
+   echo "Running Trivy with trivy.yaml config from: " $trivyConfig
+   trivy --config $trivyConfig ${scanType} $ARGS ${artifactRef}
+   returnCode=$?
+else
+   echo "Running trivy with options: ${ARGS}" "${artifactRef}"
+   echo "Global options: " "${GLOBAL_ARGS}"
+   trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
+   returnCode=$?
+fi
 
 # SARIF is special. We output all vulnerabilities,
 # regardless of severity level specified in this report.

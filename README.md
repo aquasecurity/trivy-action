@@ -19,38 +19,39 @@
 
 ## Usage
 
-### Workflow
+### Scan CI Pipeline (w/ Trivy Config)
 
 ```yaml
 name: build
 on:
   push:
     branches:
-      - master
+    - master
   pull_request:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+    - name: Run Trivy vulnerability scanner in repo mode
+      uses: aquasecurity/trivy-action@add-support-for-trivy-config
+      with:
+        scan-type: 'fs'
+        ignore-unfixed: true
+        trivy-config: ./trivy.yaml
 ```
 
+In this case `trivy.yaml` is a YAML configuration that is checked in as part of the repo. Detailed information is available on the Trivy website but an example is as follows:
+```yaml
+format: json
+exit-code: 1
+severity: CRITICAL
+```
+
+It is possible to define all options in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes.
 
 ### Scanning a Tarball
 ```yaml

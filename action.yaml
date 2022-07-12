@@ -85,6 +85,9 @@ inputs:
   github-pat:
     description: 'GitHub Personal Access Token (PAT) for submitting SBOM to GitHub Dependency Snapshot API'
     required: false
+  trivy-config:
+    description: 'path to trivy.yaml config'
+    required: false
 
 runs:
   using: 'docker'
@@ -111,3 +114,4 @@ runs:
     - '-s ${{ inputs.security-checks }}'
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.github-pat }}'
+    - '-v ${{ inputs.trivy-config }}'

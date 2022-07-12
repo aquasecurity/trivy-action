@@ -9,10 +9,10 @@ load '/usr/lib/bats-assert/load.bash'
   [ "$result" == '' ]
 }
 
-@test "trivy image sarif report" {
-  # trivy image --severity CRITICAL -f sarif --output image-sarif.test knqyf263/vuln-image:1.2.3
-  ./entrypoint.sh '-a image' '-b sarif' '-i knqyf263/vuln-image:1.2.3' '-h image-sarif.test' '-g CRITICAL'
-  result="$(diff ./test/data/image-sarif.test image-sarif.test)"
+@test "trivy config sarif report" {
+  # trivy config --format sarif --output  config-sarif.test .
+  ./entrypoint.sh '-a config' '-b sarif' '-h config-sarif.test' '-j .'
+  result="$(diff ./test/data/config-sarif.test config-sarif.test)"
   [ "$result" == '' ]
 }
 
@@ -62,4 +62,11 @@ load '/usr/lib/bats-assert/load.bash'
   # trivy image --format  github knqyf263/vuln-image:1.2.3
   run ./entrypoint.sh  "-a image" "-b github" "-i knqyf263/vuln-image:1.2.3"
   assert_output --partial '"package_url": "pkg:apk/ca-certificates@20171114-r0",' # TODO: Output contains time, need to mock
+}
+
+@test "trivy repo with trivy.yaml config" {
+  # trivy --config=./data/trivy.yaml fs --security-checks=config,secret --output=yamlconfig.test .
+  run ./entrypoint.sh "-a fs" "-j ." "-s config,secret" "-v ./test/data/trivy.yaml" "-h yamlconfig.test"
+  result="$(diff ./test/data/yamlconfig.test yamlconfig.test)"
+  [ "$result" == '' ]
 }
