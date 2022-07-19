@@ -24,30 +24,37 @@ load '/usr/lib/bats-assert/load.bash'
 }
 
 @test "trivy rootfs" {
-  # trivy rootfs --output rootfs.test .
-  ./entrypoint.sh '-a rootfs' '-j .' '-h rootfs.test'
+  # trivy rootfs --format json --output rootfs.test .
+  ./entrypoint.sh '-a rootfs' '-b json' '-j .' '-h rootfs.test'
   result="$(diff ./test/data/rootfs.test rootfs.test)"
   [ "$result" == '' ]
 }
 
 @test "trivy fs" {
-  # trivy fs --output fs.test .
-  ./entrypoint.sh '-a fs' '-j .' '-h fs.test'
+  # trivy fs --format json --output fs.test .
+  ./entrypoint.sh '-a fs' '-b json' '-j .' '-h fs.test'
   result="$(diff ./test/data/fs.test fs.test)"
   [ "$result" == '' ]
 }
 
 @test "trivy fs with securityChecks option" {
   # trivy fs --format json --security-checks=vuln,config --output fs-scheck.test .
-  ./entrypoint.sh '-a fs' '-b json' '-j .' '-s vuln,config,secret' '-h fs-scheck.test'
+  ./entrypoint.sh '-a fs' '-b json' '-j .' '-s vuln,config' '-h fs-scheck.test'
   result="$(diff ./test/data/fs-scheck.test fs-scheck.test)"
   [ "$result" == '' ]
 }
 
-@test "trivy repo with securityCheck secret only" {
-  # trivy repo --output repo.test --security-checks=secret https://github.com/krol3/demo-trivy/
-  ./entrypoint.sh '-h repo.test' '-s secret' '-a repo' '-j https://github.com/krol3/demo-trivy/'
+@test "trivy repo with securityCheck vuln only" {
+  # trivy repo --output repo.test --security-checks=vuln https://github.com/krol3/demo-trivy/
+  ./entrypoint.sh '-h repo.test' '-s vuln' '-a repo' '-j https://github.com/krol3/demo-trivy/'
   result="$(diff ./test/data/repo.test repo.test)"
+  [ "$result" == '' ]
+}
+
+@test "trivy fs with securityCheck secret only" {
+  # trivy fs --format json --output secret.test --security-checks=secret ./test/data/secret/
+  ./entrypoint.sh '-h secret.test' '-s secret' '-a fs' '-b json' '-j ./test/data/secret/'
+  result="$(diff ./test/data/secret.test secret.test)"
   [ "$result" == '' ]
 }
 
@@ -65,8 +72,8 @@ load '/usr/lib/bats-assert/load.bash'
 }
 
 @test "trivy repo with trivy.yaml config" {
-  # trivy --config=./data/trivy.yaml fs --security-checks=config,secret --output=yamlconfig.test .
-  run ./entrypoint.sh "-a fs" "-j ." "-s config,secret" "-v ./test/data/trivy.yaml" "-h yamlconfig.test"
+  # trivy --config=./data/trivy.yaml fs --security-checks=config,vuln --output=yamlconfig.test .
+  run ./entrypoint.sh "-a fs" "-j ." "-s config,vuln" "-v ./test/data/trivy.yaml" "-h yamlconfig.test"
   result="$(diff ./test/data/yamlconfig.test yamlconfig.test)"
   [ "$result" == '' ]
 }
