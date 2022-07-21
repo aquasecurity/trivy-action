@@ -1,7 +1,8 @@
 name: "build"
 on: [push, pull_request]
 env:
-  TRIVY_VERSION: 0.29.2
+  TRIVY_VERSION: 0.30.2
+  BATS_LIB_PATH: '/usr/lib/'
 jobs:
   build:
     name: build
@@ -11,7 +12,7 @@ jobs:
       - name: Setup BATS
         uses: mig4/setup-bats@v1
         with:
-          bats-version: 1.2.1
+          bats-version: 1.7.0
 
       - name: Setup Bats libs
         uses: brokenpip3/setup-bats-libs@0.1.0
@@ -24,10 +25,4 @@ jobs:
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${{ env.TRIVY_VERSION }}
 
       - name: Test
-        run: bats --recursive --timing .
-
-      - name: Debug show artifacts
-        if: always()
-        run: |
-          cat ./config.test
-          cat ./fs-scheck.test
+        run: BATS_LIB_PATH=${{ env.BATS_LIB_PATH }} bats --recursive --timing .

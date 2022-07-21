@@ -1,5 +1,76 @@
-┌──────────┬──────────────────────────────┬──────────┬─────────┬─────────────────────────┐
-│ Category │         Description          │ Severity │ Line No │          Match          │
-├──────────┼──────────────────────────────┼──────────┼─────────┼─────────────────────────┤
-│  GitHub  │ GitHub Personal Access Token │ CRITICAL │    5    │ export GITHUB_PAT=***** │
-└──────────┴──────────────────────────────┴──────────┴─────────┴─────────────────────────┘
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "https://github.com/krol3/demo-trivy/",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "ImageConfig": {
+      "architecture": "",
+      "created": "0001-01-01T00:00:00Z",
+      "os": "",
+      "rootfs": {
+        "type": "",
+        "diff_ids": null
+      },
+      "config": {}
+    }
+  },
+  "Results": [
+    {
+      "Target": "env",
+      "Class": "secret",
+      "Secrets": [
+        {
+          "RuleID": "github-pat",
+          "Category": "GitHub",
+          "Severity": "CRITICAL",
+          "Title": "GitHub Personal Access Token",
+          "StartLine": 5,
+          "EndLine": 5,
+          "Code": {
+            "Lines": [
+              {
+                "Number": 3,
+                "Content": "export AWS_ACCESS_KEY_ID=1234567",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "export AWS_ACCESS_KEY_ID=1234567",
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 4,
+                "Content": "",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "FirstCause": false,
+                "LastCause": false
+              },
+              {
+                "Number": 5,
+                "Content": "export GITHUB_PAT=****************************************",
+                "IsCause": true,
+                "Annotation": "",
+                "Truncated": false,
+                "Highlighted": "export GITHUB_PAT=****************************************",
+                "FirstCause": true,
+                "LastCause": true
+              },
+              {
+                "Number": 6,
+                "Content": "",
+                "IsCause": false,
+                "Annotation": "",
+                "Truncated": false,
+                "FirstCause": false,
+                "LastCause": false
+              }
+            ]
+          },
+          "Match": "export GITHUB_PAT=****************************************"
+        }
+      ]
+    }
+  ]
+}
