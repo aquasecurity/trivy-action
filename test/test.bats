@@ -74,9 +74,9 @@ bats_load_library bats-file
   assert_output --partial '"package_url": "pkg:apk/ca-certificates@20171114-r0",' # TODO: Output contains time, need to mock
 }
 
-@test "trivy repo with trivy.yaml config" {
-  # trivy --config=./data/trivy.yaml fs --security-checks=config,secret --output=yamlconfig.test .
-  run ./entrypoint.sh "-a fs" "-j ." "-s config,secret" "-v ./test/data/trivy.yaml" "-h yamlconfig.test"
+@test "trivy image with trivy.yaml config" {
+  # trivy --config=./test/data/trivy.yaml image alpine:3.10
+  run ./entrypoint.sh "-v ./test/data/trivy.yaml" "-a image" "-i alpine:3.10"
   run diff yamlconfig.test ./test/data/yamlconfig.test
   echo "$output"
   assert_files_equal yamlconfig.test ./test/data/yamlconfig.test
