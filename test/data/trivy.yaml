@@ -1,2 +1,5 @@
 format: json
 severity: CRITICAL
+vulnerability:
+  type: os
+output: yamlconfig.test
