@@ -167,9 +167,9 @@ if [ $trivyConfig ]; then
    trivy --config $trivyConfig ${scanType} ${artifactRef}
    returnCode=$?
 else
-   echo "Running trivy with options: ${ARGS}" "${artifactRef}"
+   echo "Running trivy with options: trivy ${scanType} ${ARGS}" "${artifactRef}"
    echo "Global options: " "${GLOBAL_ARGS}"
-   trivy $GLOBAL_ARGS ${scanType} $ARGS ${artifactRef}
+   trivy $GLOBAL_ARGS ${scanType} ${ARGS} ${artifactRef}
    returnCode=$?
 fi
 
@@ -181,9 +181,13 @@ if [[ "${format}" == "sarif" ]]; then
   trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 fi
 
-if [[ "${format}" == "github" ]] && [[ "$(echo $githubPAT | xargs)" != "" ]]; then
-  echo "Uploading GitHub Dependency Snapshot"
-  curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
+if [[ "${format}" == "github" ]]; then
+  if [[ "$(echo $githubPAT | xargs)" != "" ]]; then
+    printf "\n Uploading GitHub Dependency Snapshot"
+    curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
+  else
+    printf "\n Failing GitHub Dependency Snapshot. Missing github-pat"
+  fi
 fi
 
 exit $returnCode
