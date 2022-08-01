@@ -1,14 +1,14 @@
 name: 'Aqua Security Trivy'
-description: 'Scans container images for vulnerabilities with Trivy'
+description: 'Scans for vulnerabilities with Trivy'
 author: 'Aqua Security'
 inputs:
   scan-type:
-    description: 'Scan type to use for scanning vulnerability'
+    description: 'Scan type to use for scanning vulnerability: fs, config, image...'
     required: false
     default: 'image'
   image-ref:
     description: 'image reference(for backward compatibility)'
-    required: true
+    required: false
   input:
     description: 'reference of tar file to scan'
     required: false
@@ -52,6 +52,9 @@ inputs:
     description: 'comma separated list of files to be skipped'
     required: false
     default: ''
+  file-patterns:
+    description: 'comma separated list of file name patterns to be added for extra scan'
+    required: false
   cache-dir:
     description: 'specify where the cache is stored'
     required: false
@@ -115,3 +118,4 @@ runs:
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
+    - '-w ${{ inputs.file-patterns }}'

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -67,6 +67,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
        ;;
        v)
          export trivyConfig=${OPTARG}
+       ;;
+       w)
+         export filePatterns=${OPTARG}
        ;;
   esac
 done
@@ -158,6 +161,13 @@ if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")
   do
     ARGS="$ARGS --skip-files $i"
+  done
+fi
+
+if [ "$filePatterns" ]; then
+  for i in $(echo $filePatterns | tr "," "\n")
+  do
+    ARGS="$ARGS --file-patterns $i"
   done
 fi
 
