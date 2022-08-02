@@ -111,6 +111,7 @@ if [ $vulnType ] && [ "$scanType" != "config" ] && [ "$scanType" != "sbom" ];the
 fi
 if [ $securityChecks ];then
   ARGS="$ARGS --security-checks $securityChecks"
+  SARIF_ARGS="$SARIF_ARGS --security-checks $securityChecks"
 fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
@@ -141,6 +142,7 @@ if [ $trivyIgnores ];then
 fi
 if [ $timeout ];then
   ARGS="$ARGS --timeout $timeout"
+  SARIF_ARGS="$SARIF_ARGS --timeout $timeout"
 fi
 if [ $ignorePolicy ];then
   ARGS="$ARGS --ignore-policy $ignorePolicy"
