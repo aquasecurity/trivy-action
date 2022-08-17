@@ -186,7 +186,7 @@ fi
 if [[ "${format}" == "github" ]]; then
   if [[ "$(echo $githubPAT | xargs)" != "" ]]; then
     printf "\n Uploading GitHub Dependency Snapshot"
-    curl -u "${githubPAT}" -H 'Content-Type: application/json' 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
+    curl -H 'Accept: application/vnd.github+json' -H "Authorization: token $githubPAT" 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
   else
     printf "\n Failing GitHub Dependency Snapshot. Missing github-pat"
   fi
