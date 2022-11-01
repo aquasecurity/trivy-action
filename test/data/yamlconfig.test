@@ -60,6 +60,7 @@
       "Vulnerabilities": [
         {
           "VulnerabilityID": "CVE-2021-36159",
+          "PkgID": "apk-tools@2.10.6-r0",
           "PkgName": "apk-tools",
           "InstalledVersion": "2.10.6-r0",
           "FixedVersion": "2.10.7-r0",

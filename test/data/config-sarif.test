@@ -13,7 +13,7 @@
               "id": "DS002",
               "name": "Misconfiguration",
               "shortDescription": {
-                "text": "DS002"
+                "text": "Image user should not be \u0026#39;root\u0026#39;"
               },
               "fullDescription": {
                 "text": "Running containers with \u0026#39;root\u0026#39; user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a \u0026#39;USER\u0026#39; statement to the Dockerfile."
@@ -37,7 +37,7 @@
               }
             }
           ],
-          "version": "0.31.2"
+          "version": "0.34.0"
         }
       },
       "results": [
@@ -61,6 +61,9 @@
                   "endLine": 1,
                   "endColumn": 1
                 }
+              },
+              "message": {
+                "text": "Dockerfile"
               }
             }
           ]

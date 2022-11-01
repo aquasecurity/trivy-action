@@ -69,7 +69,6 @@
             ]
           },
           "Match": "export GITHUB_PAT=****************************************",
-          "Deleted": false,
           "Layer": {}
         }
       ]
