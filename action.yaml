@@ -88,6 +88,10 @@ inputs:
   trivy-config:
     description: 'path to trivy.yaml config'
     required: false
+  offline-scan:
+    description: 'do not issue API requests to identify dependencies'
+    required: false
+    default: 'false'
 
 runs:
   using: 'docker'
@@ -115,3 +119,4 @@ runs:
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
+    - '-w ${{ inputs.offline-scan }}'

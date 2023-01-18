@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -68,6 +68,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
        v)
          export trivyConfig=${OPTARG}
        ;;
+       w)
+         export offlineScan=${OPTARG}
+       ;;
   esac
 done
 
@@ -83,6 +86,7 @@ if [ $input ]; then
 fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 hideProgress=$(echo $hideProgress | tr -d '\r')
+offlineScan=$(echo $offlineScan | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
@@ -150,6 +154,9 @@ if [ $ignorePolicy ];then
 fi
 if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --no-progress"
+fi
+if [ "$offlineScan" == "true" ];then
+  ARGS="$ARGS --offline-scan"
 fi
 
 listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
