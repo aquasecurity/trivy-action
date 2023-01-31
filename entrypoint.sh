@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -68,6 +68,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:" o; do
        v)
          export trivyConfig=${OPTARG}
        ;;
+       z)
+         export limitSeveritiesForSARIF=${OPTARG}
+       ;;
   esac
 done
 
@@ -81,8 +84,10 @@ input=$(echo $input | tr -d '\r')
 if [ $input ]; then
   artifactRef="--input $input"
 fi
+#trim leading spaces for boolean params
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 hideProgress=$(echo $hideProgress | tr -d '\r')
+limitSeveritiesForSARIF=$(echo $limitSeveritiesForSARIF | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
@@ -164,7 +169,13 @@ if [ "$skipFiles" ];then
 fi
 
 trivyConfig=$(echo $trivyConfig | tr -d '\r')
-if [ $trivyConfig ]; then
+if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; then
+  # SARIF is special. We output all vulnerabilities,
+  # regardless of severity level specified in this report.
+  # This is a feature, not a bug :)
+  echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
+  trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
    trivy --config $trivyConfig ${scanType} ${artifactRef}
    returnCode=$?
@@ -173,14 +184,6 @@ else
    echo "Global options: " "${GLOBAL_ARGS}"
    trivy $GLOBAL_ARGS ${scanType} ${ARGS} ${artifactRef}
    returnCode=$?
-fi
-
-# SARIF is special. We output all vulnerabilities,
-# regardless of severity level specified in this report.
-# This is a feature, not a bug :)
-if [[ "${format}" == "sarif" ]]; then
-  echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
-  trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 fi
 
 if [[ "${format}" == "github" ]]; then
