@@ -262,7 +262,7 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 ```
 
-### Using Trivy to scan Infrastucture as Code
+### Using Trivy to scan Infrastructure as Code
 It's also possible to scan your IaC repos with Trivy's built-in repo scan. This can be handy if you want to run Trivy as a build time check on each PR that gets opened in your repo. This helps you identify potential vulnerablites that might get introduced with each PR.
 
 If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
