@@ -115,8 +115,8 @@ if [ $vulnType ] && [ "$scanType" != "config" ] && [ "$scanType" != "sbom" ];the
   SARIF_ARGS="$SARIF_ARGS --vuln-type $vulnType"
 fi
 if [ $securityChecks ];then
-  ARGS="$ARGS --security-checks $securityChecks"
-  SARIF_ARGS="$SARIF_ARGS --security-checks $securityChecks"
+  ARGS="$ARGS --scanners $securityChecks"
+  SARIF_ARGS="$SARIF_ARGS --scanners $securityChecks"
 fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
