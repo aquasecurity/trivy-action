@@ -299,11 +299,11 @@ jobs:
 ```
 
 ### Using Trivy to generate SBOM
-It's possible for Trivy to generate an SBOM of your dependencies and submit them to a consumer like GitHub Dependency Snapshot.
+It's possible for Trivy to generate an SBOM of your dependencies and submit them to a consumer like GitHub Dependency Graph.
 
-The sending of SBOM to GitHub feature is only available if you currently have [GitHub Dependency Snapshot](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/using-the-dependency-submission-api) available to you in your repo. 
+The sending of SBOM to GitHub feature is only available if you currently have [GitHub Dependency Graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/using-the-dependency-submission-api) available to you in your repo. 
 
-In order to send results to the GitHub Dependency Snapshot, you will need to create a [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+In order to send results to the GitHub Dependency Graph, you will need to create a [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 ```yaml
 ---
 name: Pull Request
@@ -320,7 +320,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Snapshots
+      - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Graph
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
