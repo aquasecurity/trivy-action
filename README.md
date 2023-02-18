@@ -299,7 +299,7 @@ jobs:
 ```
 
 ### Using Trivy to generate SBOM
-It's possible for Trivy to generate an SBOM of your dependencies and submit them to a consumer like [GitHub Dependency Graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph).
+It's possible for Trivy to generate an [SBOM](https://www.aquasec.com/cloud-native-academy/supply-chain-security/sbom/) of your dependencies and submit them to a consumer like [GitHub Dependency Graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph).
 
 The [sending of an SBOM to GitHub](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/using-the-dependency-submission-api) feature is only available if you currently have GitHub Dependency Graph [enabled in your repo](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository). 
 
