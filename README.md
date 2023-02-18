@@ -313,6 +313,11 @@ on:
     branches:
     - master
   pull_request:
+
+## GITHUB_TOKEN authentication, add only if you're not going to use a PAT
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Checks
@@ -328,7 +333,7 @@ jobs:
           format: 'github'
           output: 'dependency-results.sbom.json'
           image-ref: '.'
-          github-pat: '<github_pat_token>'
+          github-pat: ${{ secrets.GITHUB_TOKEN }} # or ${{ secrets.github_pat_name }} if you're using a PAT
 ```
 
 ### Using Trivy to scan your private registry
