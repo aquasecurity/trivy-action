@@ -327,7 +327,7 @@ jobs:
           format: 'github'
           output: 'dependency-results.sbom.json'
           image-ref: '.'
-          github-pat: '<github_pat_token>'
+          github-token: '<github_pat_token>'
 ```
 
 ### Using Trivy to scan your private registry
