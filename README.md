@@ -312,7 +312,6 @@ on:
   push:
     branches:
     - master
-  pull_request:
 
 ## GITHUB_TOKEN authentication, add only if you're not going to use a PAT
 permissions:
