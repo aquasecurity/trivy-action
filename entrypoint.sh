@@ -63,7 +63,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:" o; do
          export trivyIgnores=${OPTARG}
        ;;
        u)
-         export githubPAT=${OPTARG}
+         export githubToken=${OPTARG}
        ;;
        v)
          export trivyConfig=${OPTARG}
@@ -187,11 +187,11 @@ else
 fi
 
 if [[ "${format}" == "github" ]]; then
-  if [[ "$(echo $githubPAT | xargs)" != "" ]]; then
+  if [[ "$(echo $githubToken | xargs)" != "" ]]; then
     printf "\n Uploading GitHub Dependency Snapshot"
-    curl -H 'Accept: application/vnd.github+json' -H "Authorization: token $githubPAT" 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
+    curl -H 'Accept: application/vnd.github+json' -H "Authorization: token $githubToken" 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
   else
-    printf "\n Failing GitHub Dependency Snapshot. Missing github-pat"
+    printf "\n Failing GitHub Dependency Snapshot. Missing github-token"
   fi
 fi
 

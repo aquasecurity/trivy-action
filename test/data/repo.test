@@ -20,10 +20,10 @@
       "Class": "secret",
       "Secrets": [
         {
-          "RuleID": "github-pat",
+          "RuleID": "github-token",
           "Category": "GitHub",
           "Severity": "CRITICAL",
-          "Title": "GitHub Personal Access Token",
+          "Title": "GitHub Token (PAT or install access token)",
           "StartLine": 5,
           "EndLine": 5,
           "Code": {
@@ -49,11 +49,11 @@
               },
               {
                 "Number": 5,
-                "Content": "export GITHUB_PAT=****************************************",
+                "Content": "export GITHUB_TOKEN=****************************************",
                 "IsCause": true,
                 "Annotation": "",
                 "Truncated": false,
-                "Highlighted": "export GITHUB_PAT=****************************************",
+                "Highlighted": "export GITHUB_TOKEN=****************************************",
                 "FirstCause": true,
                 "LastCause": true
               },
@@ -68,7 +68,7 @@
               }
             ]
           },
-          "Match": "export GITHUB_PAT=****************************************",
+          "Match": "export GITHUB_TOKEN=****************************************",
           "Layer": {}
         }
       ]

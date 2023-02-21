@@ -82,8 +82,8 @@ inputs:
   artifact-type:
     description: 'input artifact type (image, fs, repo, archive) for SBOM generation'
     required: false
-  github-pat:
-    description: 'GitHub Personal Access Token (PAT) for submitting SBOM to GitHub Dependency Snapshot API'
+  github-token:
+    description: 'Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN'
     required: false
   trivy-config:
     description: 'path to trivy.yaml config'
@@ -116,6 +116,6 @@ runs:
     - '-r ${{ inputs.list-all-pkgs }}'
     - '-s ${{ inputs.security-checks }}'
     - '-t ${{ inputs.trivyignores }}'
-    - '-u ${{ inputs.github-pat }}'
+    - '-u ${{ inputs.github-token }}'
     - '-v ${{ inputs.trivy-config }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
