@@ -23,7 +23,7 @@
           "RuleID": "github-token",
           "Category": "GitHub",
           "Severity": "CRITICAL",
-          "Title": "GitHub Token (PAT or install acess token)",
+          "Title": "GitHub Token (PAT or install access token)",
           "StartLine": 5,
           "EndLine": 5,
           "Code": {
