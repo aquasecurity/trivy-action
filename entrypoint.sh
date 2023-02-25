@@ -57,7 +57,7 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:" o; do
          export listAllPkgs=${OPTARG}
        ;;
        s)
-         export securityChecks=${OPTARG}
+         export runners=${OPTARG}
        ;;
        t)
          export trivyIgnores=${OPTARG}
@@ -114,9 +114,9 @@ if [ $vulnType ] && [ "$scanType" != "config" ] && [ "$scanType" != "sbom" ];the
   ARGS="$ARGS --vuln-type $vulnType"
   SARIF_ARGS="$SARIF_ARGS --vuln-type $vulnType"
 fi
-if [ $securityChecks ];then
-  ARGS="$ARGS --security-checks $securityChecks"
-  SARIF_ARGS="$SARIF_ARGS --security-checks $securityChecks"
+if [ $scanners ];then
+  ARGS="$ARGS --scanners $scanners"
+  SARIF_ARGS="$SARIF_ARGS --scanners $scanners"
 fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
