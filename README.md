@@ -478,31 +478,31 @@ jobs:
 
 Following inputs can be used as `step.with` keys:
 
-| Name              | Type    | Default                            | Description                                                                                     |
-|-------------------|---------|------------------------------------|-------------------------------------------------------------------------------------------------|
-| `scan-type`       | String  | `image`                            | Scan type, e.g. `image` or `fs`                                                                 |
-| `input`           | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                         |
-| `image-ref`       | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                           |
-| `scan-ref`        | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                |
-| `format`          | String  | `table`                            | Output format (`table`, `json`, `sarif`, `github`)                                              |
-| `template`        | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                 |
-| `output`          | String  |                                    | Save results to a file                                                                          |
-| `exit-code`       | String  | `0`                                | Exit code when specified vulnerabilities are found                                              |
-| `ignore-unfixed`  | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities                                                        |
-| `vuln-type`       | String  | `os,library`                       | Vulnerability types (os,library)                                                                |
-| `severity`        | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed                                      |
-| `skip-dirs`       | String  |                                    | Comma separated list of directories where traversal is skipped                                  |
-| `skip-files`      | String  |                                    | Comma separated list of files where traversal is skipped                                        |
-| `cache-dir`       | String  |                                    | Cache directory                                                                                 |
-| `timeout`         | String  | `5m0s`                             | Scan timeout duration                                                                           |
-| `ignore-policy`   | String  |                                    | Filter vulnerabilities with OPA rego language                                                   |
-| `hide-progress`   | String  | `true`                             | Suppress progress bar                                                                           |
-| `list-all-pkgs`   | String  |                                    | Output all packages regardless of vulnerability                                                 |
-| `security-checks` | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)               |
-| `trivyignores`    | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files        |
-| `trivy-config`    | String  |                                    | Path to trivy.yaml config                                                                       |
-| `github-pat`      | String  |                                    | GitHub Personal Access Token (PAT) for sending SBOM scan results to GitHub Dependency Snapshots |
-| `limit-severities-for-sarif`      | Boolean  | false                                   | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
+| Name                         | Type    | Default                            | Description                                                                                     |
+|------------------------------|---------|------------------------------------|-------------------------------------------------------------------------------------------------|
+| `scan-type`                  | String  | `image`                            | Scan type, e.g. `image` or `fs`                                                                 |
+| `input`                      | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                         |
+| `image-ref`                  | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                           |
+| `scan-ref`                   | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                |
+| `format`                     | String  | `table`                            | Output format (`table`, `json`, `sarif`, `github`)                                              |
+| `template`                   | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                 |
+| `output`                     | String  |                                    | Save results to a file                                                                          |
+| `exit-code`                  | String  | `0`                                | Exit code when specified vulnerabilities are found                                              |
+| `ignore-unfixed`             | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities                                                        |
+| `vuln-type`                  | String  | `os,library`                       | Vulnerability types (os,library)                                                                |
+| `severity`                   | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed                                      |
+| `skip-dirs`                  | String  |                                    | Comma separated list of directories where traversal is skipped                                  |
+| `skip-files`                 | String  |                                    | Comma separated list of files where traversal is skipped                                        |
+| `cache-dir`                  | String  |                                    | Cache directory                                                                                 |
+| `timeout`                    | String  | `5m0s`                             | Scan timeout duration                                                                           |
+| `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                   |
+| `hide-progress`              | String  | `true`                             | Suppress progress bar                                                                           |
+| `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                 |
+| `runners`                    | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)               |
+| `trivyignores`               | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files        |
+| `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                       |
+| `github-pat`                 | String  |                                    | GitHub Personal Access Token (PAT) for sending SBOM scan results to GitHub Dependency Snapshots |
+| `limit-severities-for-sarif` | Boolean  | false                                   | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
