@@ -498,7 +498,7 @@ Following inputs can be used as `step.with` keys:
 | `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                   |
 | `hide-progress`              | String  | `true`                             | Suppress progress bar                                                                           |
 | `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                 |
-| `runners`                    | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)               |
+| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)               |
 | `trivyignores`               | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files        |
 | `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                       |
 | `github-pat`                 | String  |                                    | GitHub Personal Access Token (PAT) for sending SBOM scan results to GitHub Dependency Snapshots |
