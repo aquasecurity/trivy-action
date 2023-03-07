@@ -1,4 +1,4 @@
-FROM ghcr.io/aquasecurity/trivy:0.37.2
+FROM ghcr.io/aquasecurity/trivy:0.38.1
 COPY entrypoint.sh /
 RUN apk --no-cache add bash curl npm
 RUN chmod +x /entrypoint.sh
