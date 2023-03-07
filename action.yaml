@@ -71,7 +71,7 @@ inputs:
     description: 'output all packages regardless of vulnerability'
     required: false
     default: 'false'
-  security-checks:
+  scanners:
     description: 'comma-separated list of what security issues to detect'
     required: false
     default: ''
@@ -114,7 +114,7 @@ runs:
     - '-p ${{ inputs.hide-progress }}'
     - '-q ${{ inputs.skip-files }}'
     - '-r ${{ inputs.list-all-pkgs }}'
-    - '-s ${{ inputs.security-checks }}'
+    - '-s ${{ inputs.scanners }}'
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
