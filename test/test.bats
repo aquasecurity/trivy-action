@@ -4,7 +4,7 @@ bats_load_library bats-assert
 bats_load_library bats-file
 
 @test "trivy repo with securityCheck secret only" {
-  # trivy repo --format json --output repo.test --security-checks=secret https://github.com/krol3/demo-trivy/
+  # trivy repo --format json --output repo.test --scanners=secret https://github.com/krol3/demo-trivy/
   run ./entrypoint.sh '-b json' '-h repo.test' '-s secret' '-a repo' '-j https://github.com/krol3/demo-trivy/'
   run diff repo.test ./test/data/repo.test
   echo "$output"
@@ -52,7 +52,7 @@ bats_load_library bats-file
 }
 
 @test "trivy fs with securityChecks option" {
-  # trivy fs --format json --security-checks=vuln,config --output fs-scheck.test .
+  # trivy fs --format json --scanners=vuln,config --output fs-scheck.test .
   run ./entrypoint.sh '-a fs' '-b json' '-j .' '-s vuln,config,secret' '-h fs-scheck.test'
   run diff fs-scheck.test ./test/data/fs-scheck.test
   echo "$output"
