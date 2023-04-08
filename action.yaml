@@ -8,7 +8,8 @@ inputs:
     default: 'image'
   image-ref:
     description: 'image reference(for backward compatibility)'
-    required: true
+    required: false
+    default: ''
   input:
     description: 'reference of tar file to scan'
     required: false
