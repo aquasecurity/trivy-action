@@ -43,15 +43,15 @@
                 "text": "No HEALTHCHECK defined"
               },
               "fullDescription": {
-                "text": "You shoud add HEALTHCHECK instruction in your docker container images to perform the health check on running containers."
+                "text": "You should add HEALTHCHECK instruction in your docker container images to perform the health check on running containers."
               },
               "defaultConfiguration": {
                 "level": "note"
               },
               "helpUri": "https://avd.aquasec.com/misconfig/ds026",
               "help": {
-                "text": "Misconfiguration DS026\nType: Dockerfile Security Check\nSeverity: LOW\nCheck: No HEALTHCHECK defined\nMessage: Add HEALTHCHECK instruction in your Dockerfile\nLink: [DS026](https://avd.aquasec.com/misconfig/ds026)\nYou shoud add HEALTHCHECK instruction in your docker container images to perform the health check on running containers.",
-                "markdown": "**Misconfiguration DS026**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Dockerfile Security Check|LOW|No HEALTHCHECK defined|Add HEALTHCHECK instruction in your Dockerfile|[DS026](https://avd.aquasec.com/misconfig/ds026)|\n\nYou shoud add HEALTHCHECK instruction in your docker container images to perform the health check on running containers."
+                "text": "Misconfiguration DS026\nType: Dockerfile Security Check\nSeverity: LOW\nCheck: No HEALTHCHECK defined\nMessage: Add HEALTHCHECK instruction in your Dockerfile\nLink: [DS026](https://avd.aquasec.com/misconfig/ds026)\nYou should add HEALTHCHECK instruction in your docker container images to perform the health check on running containers.",
+                "markdown": "**Misconfiguration DS026**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Dockerfile Security Check|LOW|No HEALTHCHECK defined|Add HEALTHCHECK instruction in your Dockerfile|[DS026](https://avd.aquasec.com/misconfig/ds026)|\n\nYou should add HEALTHCHECK instruction in your docker container images to perform the health check on running containers."
               },
               "properties": {
                 "precision": "very-high",
@@ -64,7 +64,7 @@
               }
             }
           ],
-          "version": "0.38.1"
+          "version": "0.40.0"
         }
       },
       "results": [

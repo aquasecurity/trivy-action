@@ -20,7 +20,7 @@
       "Class": "config",
       "Type": "dockerfile",
       "MisconfSummary": {
-        "Successes": 22,
+        "Successes": 24,
         "Failures": 2,
         "Exceptions": 0
       },
@@ -56,7 +56,7 @@
           "ID": "DS026",
           "AVDID": "AVD-DS-0026",
           "Title": "No HEALTHCHECK defined",
-          "Description": "You shoud add HEALTHCHECK instruction in your docker container images to perform the health check on running containers.",
+          "Description": "You should add HEALTHCHECK instruction in your docker container images to perform the health check on running containers.",
           "Message": "Add HEALTHCHECK instruction in your Dockerfile",
           "Namespace": "builtin.dockerfile.DS026",
           "Query": "data.builtin.dockerfile.DS026.deny",
