@@ -81,3 +81,11 @@ bats_load_library bats-file
   echo "$output"
   assert_files_equal yamlconfig.test ./test/data/yamlconfig.test
 }
+
+@test "trivy image with trivy.yaml config and args" {
+  # trivy --config=./test/data/trivy-reduced.yaml image alpine:3.10
+  run ./entrypoint.sh "-v ./test/data/trivy-reduced.yaml" "-a image" "-i alpine:3.10" "-b json" "-g CRITICAL"
+  run diff yamlconfig.test ./test/data/yamlconfig.test
+  echo "$output"
+  assert_files_equal yamlconfig.test ./test/data/yamlconfig.test
+}

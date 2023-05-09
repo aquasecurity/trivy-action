@@ -1,0 +1,3 @@
+vulnerability:
+  type: os
+output: yamlconfig.test
