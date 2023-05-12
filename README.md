@@ -26,7 +26,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -56,7 +56,7 @@ name: build
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
 jobs:
   build:
@@ -99,7 +99,7 @@ name: build
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
 jobs:
   build:
@@ -128,7 +128,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -163,7 +163,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -202,7 +202,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -236,7 +236,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -271,7 +271,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -311,7 +311,7 @@ name: Pull Request
 on:
   push:
     branches:
-    - master
+    - main
 
 ## GITHUB_TOKEN authentication, add only if you're not going to use a PAT
 permissions:
@@ -346,7 +346,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -382,7 +382,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -418,7 +418,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
@@ -451,7 +451,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
