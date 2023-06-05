@@ -105,6 +105,7 @@ if [ $template ] ;then
 fi
 if [ $exitCode ];then
  ARGS="$ARGS --exit-code $exitCode"
+ SARIF_ARGS="$SARIF_ARGS --exit-code $exitCode"
 fi
 if [ "$ignoreUnfixed" == "true" ] && [ "$scanType" != "config" ];then
   ARGS="$ARGS --ignore-unfixed"
