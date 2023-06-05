@@ -169,6 +169,8 @@ if [ "$skipFiles" ];then
 fi
 
 trivyConfig=$(echo $trivyConfig | tr -d '\r')
+# To make sure that uploda GitHub Dependency Snapshot succeeds, disable the script that fails first.
+set +e
 if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; then
   # SARIF is special. We output all vulnerabilities,
   # regardless of severity level specified in this report.
@@ -186,6 +188,7 @@ else
    returnCode=$?
 fi
 
+set -e
 if [[ "${format}" == "github" ]]; then
   if [[ "$(echo $githubPAT | xargs)" != "" ]]; then
     printf "\n Uploading GitHub Dependency Snapshot"
