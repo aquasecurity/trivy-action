@@ -2,12 +2,13 @@ name: "build"
 on: [push, pull_request]
 env:
   TRIVY_VERSION: 0.42.1
-  BATS_LIB_PATH: "/usr/lib/"
+  BATS_LIB_PATH: '/usr/lib/'
 jobs:
   build:
     name: build
     runs-on: ubuntu-20.04
     steps:
+
       - name: Setup BATS
         uses: mig4/setup-bats@v1
         with:
