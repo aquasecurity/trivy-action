@@ -180,7 +180,7 @@ if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; the
   trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
-   trivy --config $trivyConfig ${ARGS} ${scanType} ${artifactRef}
+   trivy --config $trivyConfig ${scanType} ${artifactRef}
    returnCode=$?
 else
    echo "Running trivy with options: trivy ${scanType} ${ARGS}" "${artifactRef}"
