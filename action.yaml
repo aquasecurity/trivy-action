@@ -94,7 +94,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: "Dockerfile"
+  image: "docker://docker.io/aquasec/trivy:latest"
   args:
     - '-a ${{ inputs.scan-type }}'
     - '-b ${{ inputs.format }}'
