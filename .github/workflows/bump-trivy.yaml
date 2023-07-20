@@ -15,6 +15,7 @@ jobs:
         run: |
           sed -r -i "s/ghcr.io\/aquasecurity\/trivy:[0-9]+\.[0-9]+\.[0-9]+/ghcr.io\/aquasecurity\/trivy:${{ github.event.client_payload.trivy_version }}/" Dockerfile
           sed -r -i "s/TRIVY_VERSION: [0-9]+\.[0-9]+\.[0-9]+/TRIVY_VERSION: ${{ github.event.client_payload.trivy_version }}/" .github/workflows/build.yaml
+          find test/data -type f -name '*.test' | xargs sed -r -i 's/"version": "[0-9]+\.[0-9]+\.[0-9]+"/"version": "${{ github.event.client_payload.trivy_version }}"/'
 
       - name: Create PR
         id: create-pr
