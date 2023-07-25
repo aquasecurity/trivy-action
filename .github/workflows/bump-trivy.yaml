@@ -25,7 +25,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.ORG_REPO_TOKEN }}
           title: "chore(deps): Update trivy to v${{ inputs.trivy_version }}"
           commit-message: "chore(deps): Update trivy to v${{ inputs.trivy_version }}"
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
