@@ -1,4 +1,4 @@
-name: Bump trivy
+name: Bump rivy
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       trivy_version:
         required: true
         type: string
-        description: the trivy version
+        description: The Trivy version
 
 run-name: Bump trivy to v${{ inputs.trivy_version }}
 

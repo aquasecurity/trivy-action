@@ -1,7 +1,7 @@
 name: "build"
 on: [push, pull_request]
 env:
-  TRIVY_VERSION: 0.43.1
+  TRIVY_VERSION: 0.44.1
   BATS_LIB_PATH: '/usr/lib/'
 jobs:
   build:
