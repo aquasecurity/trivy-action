@@ -83,7 +83,7 @@ Total: 4 (CRITICAL: 4)
 │ rand_core │ CVE-2020-25576 │ CRITICAL │ fixed  │ 0.4.0             │ 0.3.1, 0.4.2  │ An issue was discovered in the rand_core crate before 0.4.2 │
 │           │                │          │        │                   │               │ for Rust....                                                │
 │           │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-25576                  │
-├───────────┼────────────────┤          ├────────├───────────────────┼───────────────┼─────────────────────────────────────────────────────────────┤
+├───────────┼────────────────┤          │        ├───────────────────┼───────────────┼─────────────────────────────────────────────────────────────┤
 │ smallvec  │ CVE-2019-15551 │          │        │ 0.6.9             │ 0.6.10        │ An issue was discovered in the smallvec crate before 0.6.10 │
 │           │                │          │        │                   │               │ for Rust....                                                │
 │           │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-15551                  │
