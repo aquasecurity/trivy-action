@@ -97,6 +97,9 @@ GLOBAL_ARGS=""
 if [ $cacheDir ];then
   GLOBAL_ARGS="$GLOBAL_ARGS --cache-dir $cacheDir"
 fi
+if [ "$debugMode" == "true" ];then
+  GLOBAL_ARGS="$GLOBAL_ARGS --debug"
+fi
 
 SARIF_ARGS=""
 ARGS=""
@@ -160,9 +163,6 @@ if [ $ignorePolicy ];then
 fi
 if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --no-progress"
-fi
-if [ "$debugMode" == "true" ];then
-  ARGS="$ARGS --debug"
 fi
 
 listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
