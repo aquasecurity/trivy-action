@@ -91,6 +91,7 @@ fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 hideProgress=$(echo $hideProgress | tr -d '\r')
 limitSeveritiesForSARIF=$(echo $limitSeveritiesForSARIF | tr -d '\r')
+debugMode=$(echo $debugMode | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
