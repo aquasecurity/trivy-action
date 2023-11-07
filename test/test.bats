@@ -81,3 +81,9 @@ bats_load_library bats-file
   echo "$output"
   assert_files_equal yamlconfig.test ./test/data/yamlconfig.test
 }
+
+@test "trivy image with debug mode on" {
+  # trivy image --debug github knqyf263/vuln-image:1.2.3
+  run ./entrypoint.sh  "-x true" "-a image" "-b github" "-i knqyf263/vuln-image:1.2.3"
+  assert_output --partial '"package_url": "pkg:apk/ca-certificates@20171114-r0",'
+}

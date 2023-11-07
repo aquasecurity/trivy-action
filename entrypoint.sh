@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:x:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -71,6 +71,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:" o; do
        z)
          export limitSeveritiesForSARIF=${OPTARG}
        ;;
+       x)
+         export debugMode=${OPTARG}
+       ;;
   esac
 done
 
@@ -88,10 +91,14 @@ fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 hideProgress=$(echo $hideProgress | tr -d '\r')
 limitSeveritiesForSARIF=$(echo $limitSeveritiesForSARIF | tr -d '\r')
+debugMode=$(echo $debugMode | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
   GLOBAL_ARGS="$GLOBAL_ARGS --cache-dir $cacheDir"
+fi
+if [ "$debugMode" == "true" ];then
+  GLOBAL_ARGS="$GLOBAL_ARGS --debug"
 fi
 
 SARIF_ARGS=""

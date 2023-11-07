@@ -91,6 +91,10 @@ inputs:
   limit-severities-for-sarif:
     description: 'limit severities for SARIF format'
     required: false
+  debug-mode:
+    description: 'debug mode'
+    required: false
+    default: 'false'
 
 runs:
   using: 'docker'
@@ -119,3 +123,4 @@ runs:
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
+    - '-x ${{ inputs.debug }}'
