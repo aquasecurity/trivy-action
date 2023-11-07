@@ -91,6 +91,9 @@ inputs:
   limit-severities-for-sarif:
     description: 'limit severities for SARIF format'
     required: false
+  docker-host:
+    description: 'unix domain socket path to use for docker scanning'
+    required: false
 
 runs:
   using: 'docker'
@@ -119,3 +122,4 @@ runs:
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
+    - '-y ${{ inputs.docker-host }}'
