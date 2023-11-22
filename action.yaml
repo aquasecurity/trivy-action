@@ -88,6 +88,9 @@ inputs:
   trivy-config:
     description: 'path to trivy.yaml config'
     required: false
+  tf-vars:
+    description: "path to terraform tfvars file"
+    required: false
   limit-severities-for-sarif:
     description: 'limit severities for SARIF format'
     required: false
@@ -118,4 +121,6 @@ runs:
     - '-t ${{ inputs.trivyignores }}'
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
+    - '-x ${{ inputs.tf-vars }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
+    
