@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "ArtifactName": ".",
+  "ArtifactName": "test/data",
   "ArtifactType": "filesystem",
   "Metadata": {
     "ImageConfig": {
@@ -16,17 +16,7 @@
   },
   "Results": [
     {
-      "Target": "Dockerfile",
-      "Class": "config",
-      "Type": "dockerfile",
-      "MisconfSummary": {
-        "Successes": 4,
-        "Failures": 0,
-        "Exceptions": 0
-      }
-    },
-    {
-      "Target": "test/data",
+      "Target": ".",
       "Class": "config",
       "Type": "terraform",
       "MisconfSummary": {
@@ -36,7 +26,7 @@
       }
     },
     {
-      "Target": "test/data/main.tf",
+      "Target": "main.tf",
       "Class": "config",
       "Type": "terraform",
       "MisconfSummary": {
