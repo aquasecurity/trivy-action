@@ -15,6 +15,9 @@
     "RepoTags": [
       "alpine:3.10"
     ],
+    "RepoDigests": [
+      "alpine@sha256:451eee8bedcb2f029756dc3e9d73bab0e7943c1ac55cff3a4861c52a0fdd3e98"
+    ],
     "ImageConfig": {
       "architecture": "amd64",
       "container": "fdb7e80e3339e8d0599282e606c907aa5881ee4c668a68136119e6dfac6ce3a4",
@@ -22,11 +25,11 @@
       "docker_version": "19.03.12",
       "history": [
         {
-          "created": "2021-04-14T19:20:04Z",
+          "created": "2021-04-14T19:20:04.987219124Z",
           "created_by": "/bin/sh -c #(nop) ADD file:c5377eaa926bf412dd8d4a08b0a1f2399cfd708743533b0aa03b53d14cb4bb4e in / "
         },
         {
-          "created": "2021-04-14T19:20:05Z",
+          "created": "2021-04-14T19:20:05.338397761Z",
           "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
           "empty_layer": true
         }
