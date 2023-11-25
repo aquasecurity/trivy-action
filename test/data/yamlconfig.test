@@ -66,6 +66,7 @@
           "FixedVersion": "2.10.7-r0",
           "Status": "fixed",
           "Layer": {
+            "Digest": "sha256:396c31837116ac290458afcb928f68b6cc1c7bdd6963fc72f52f365a2a89c1b5",
             "DiffID": "sha256:9fb3aa2f8b8023a4bebbf92aa567caf88e38e969ada9f0ac12643b2847391635"
           },
           "SeveritySource": "nvd",
