@@ -21,7 +21,7 @@ bats_load_library bats-file
 
 @test "trivy config sarif report" {
   # trivy config --format sarif --output  config-sarif.test .
-  run ./entrypoint.sh '-a config' '-b sarif' '-h config-sarif.test' '-j .'
+  run ./entrypoint.sh '-a config' '-b sarif' '-h config-sarif.test' '-j .' '-q ./test/data/main.tf'
   run diff config-sarif.test ./test/data/config-sarif.test
   echo "$output"
   assert_files_equal config-sarif.test ./test/data/config-sarif.test
@@ -80,4 +80,12 @@ bats_load_library bats-file
   run diff yamlconfig.test ./test/data/yamlconfig.test
   echo "$output"
   assert_files_equal yamlconfig.test ./test/data/yamlconfig.test
+}
+
+@test "trivy config with terraform variables" {
+  # trivy config --format json --severity  MEDIUM --output  tfvars.test --tf-vars  ./test/data/dev.tfvars ./test/data  
+  run ./entrypoint.sh "-a config"  "-j ./test/data" "-h tfvars.test" "-g MEDIUM" "-x ./test/data/dev.tfvars" "-b json"
+  run diff tfvars.test ./test/data/tfvars.test 
+  echo "$output"
+  assert_files_equal tfvars.test ./test/data/tfvars.test
 }
