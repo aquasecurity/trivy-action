@@ -8,9 +8,9 @@
       "Name": "3.10.9",
       "EOSL": true
     },
-    "ImageID": "sha256:e7b300aee9f9bf3433d32bc9305bfdd22183beb59d933b48d77ab56ba53a197a",
+    "ImageID": "sha256:19a85ffa0ee14b7c64ca5104dc4e1c5021fa04bd6b4a692074691ce154f5d074",
     "DiffIDs": [
-      "sha256:9fb3aa2f8b8023a4bebbf92aa567caf88e38e969ada9f0ac12643b2847391635"
+      "sha256:e484d53633e7e5ebaabbe277838af1f26c388cbcebfa32e29fae72dd4086d54d"
     ],
     "RepoTags": [
       "alpine:3.10"
@@ -19,17 +19,17 @@
       "alpine@sha256:451eee8bedcb2f029756dc3e9d73bab0e7943c1ac55cff3a4861c52a0fdd3e98"
     ],
     "ImageConfig": {
-      "architecture": "amd64",
-      "container": "fdb7e80e3339e8d0599282e606c907aa5881ee4c668a68136119e6dfac6ce3a4",
-      "created": "2021-04-14T19:20:05.338397761Z",
+      "architecture": "arm64",
+      "container": "a4d75c1d7a32e4ce20815a25661aa959ae11ee98b9f1db61e1d91b3f652c9dbe",
+      "created": "2021-04-14T18:43:17.827903143Z",
       "docker_version": "19.03.12",
       "history": [
         {
-          "created": "2021-04-14T19:20:04.987219124Z",
-          "created_by": "/bin/sh -c #(nop) ADD file:c5377eaa926bf412dd8d4a08b0a1f2399cfd708743533b0aa03b53d14cb4bb4e in / "
+          "created": "2021-04-14T18:43:16Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:85a5071af4733240679a3799298092cb671cae007156a367219b6edf6cfc6377 in / "
         },
         {
-          "created": "2021-04-14T19:20:05.338397761Z",
+          "created": "2021-04-14T18:43:17Z",
           "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
           "empty_layer": true
         }
@@ -38,7 +38,7 @@
       "rootfs": {
         "type": "layers",
         "diff_ids": [
-          "sha256:9fb3aa2f8b8023a4bebbf92aa567caf88e38e969ada9f0ac12643b2847391635"
+          "sha256:e484d53633e7e5ebaabbe277838af1f26c388cbcebfa32e29fae72dd4086d54d"
         ]
       },
       "config": {
@@ -48,7 +48,7 @@
         "Env": [
           "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         ],
-        "Image": "sha256:eb2080c455e94c22ae35b3aef9e078c492a00795412e026e4d6b41ef64bc7dd8"
+        "Image": "sha256:93dc876730ac144ef1bebf3afccf9f64b761da5bb57054b86fc391e6f2bbcbe8"
       }
     }
   },
@@ -66,8 +66,7 @@
           "FixedVersion": "2.10.7-r0",
           "Status": "fixed",
           "Layer": {
-            "Digest": "sha256:396c31837116ac290458afcb928f68b6cc1c7bdd6963fc72f52f365a2a89c1b5",
-            "DiffID": "sha256:9fb3aa2f8b8023a4bebbf92aa567caf88e38e969ada9f0ac12643b2847391635"
+            "DiffID": "sha256:e484d53633e7e5ebaabbe277838af1f26c388cbcebfa32e29fae72dd4086d54d"
           },
           "SeveritySource": "nvd",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-36159",
@@ -98,15 +97,15 @@
             "https://access.redhat.com/security/cve/CVE-2021-36159",
             "https://github.com/freebsd/freebsd-src/commits/main/lib/libfetch",
             "https://gitlab.alpinelinux.org/alpine/apk-tools/-/issues/10749",
-            "https://lists.apache.org/thread.html/r61db8e7dcb56dc000a5387a88f7a473bacec5ee01b9ff3f55308aacc@%3Cdev.kafka.apache.org%3E",
-            "https://lists.apache.org/thread.html/r61db8e7dcb56dc000a5387a88f7a473bacec5ee01b9ff3f55308aacc@%3Cusers.kafka.apache.org%3E",
-            "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7@%3Cdev.kafka.apache.org%3E",
-            "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7@%3Cusers.kafka.apache.org%3E",
+            "https://lists.apache.org/thread.html/r61db8e7dcb56dc000a5387a88f7a473bacec5ee01b9ff3f55308aacc%40%3Cdev.kafka.apache.org%3E",
+            "https://lists.apache.org/thread.html/r61db8e7dcb56dc000a5387a88f7a473bacec5ee01b9ff3f55308aacc%40%3Cusers.kafka.apache.org%3E",
+            "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7%40%3Cdev.kafka.apache.org%3E",
+            "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7%40%3Cusers.kafka.apache.org%3E",
             "https://nvd.nist.gov/vuln/detail/CVE-2021-36159",
             "https://www.cve.org/CVERecord?id=CVE-2021-36159"
           ],
           "PublishedDate": "2021-08-03T14:15:00Z",
-          "LastModifiedDate": "2021-10-18T12:19:00Z"
+          "LastModifiedDate": "2023-11-07T03:36:00Z"
         }
       ]
     }
