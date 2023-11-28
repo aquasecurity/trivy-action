@@ -21,7 +21,7 @@ bats_load_library bats-file
 
 @test "trivy config sarif report" {
   # trivy config --format sarif --output  config-sarif.test .
-  run ./entrypoint.sh '-a config' '-b sarif' '-h config-sarif.test' '-j .' '-q ./test/data/main.tf'
+  run ./entrypoint.sh '-a config' '-b sarif' '-h config-sarif.test' '-j .'
   run diff config-sarif.test ./test/data/config-sarif.test
   echo "$output"
   assert_files_equal config-sarif.test ./test/data/config-sarif.test
