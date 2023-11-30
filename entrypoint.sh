@@ -77,7 +77,7 @@ done
 
 scanType=$(echo $scanType | tr -d '\r')
 export artifactRef="${imageRef}"
-if [ "${scanType}" = "repo" ] || [ "${scanType}" = "fs" ] ||  [ "${scanType}" = "config" ] ||  [ "${scanType}" = "rootfs" ];then
+if [ "${scanType}" = "repo" ] || [ "${scanType}" = "fs" ] || [ "${scanType}" = "filesystem" ] ||  [ "${scanType}" = "config" ] ||  [ "${scanType}" = "rootfs" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
 input=$(echo $input | tr -d '\r')
@@ -181,13 +181,12 @@ if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; the
 elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
    trivy --config $trivyConfig ${scanType} ${artifactRef}
-   returnCode=$?
 else
    echo "Running trivy with options: trivy ${scanType} ${ARGS}" "${artifactRef}"
    echo "Global options: " "${GLOBAL_ARGS}"
    trivy $GLOBAL_ARGS ${scanType} ${ARGS} ${artifactRef}
-   returnCode=$?
 fi
+returnCode=$?
 
 set -e
 if [[ "${format}" == "github" ]]; then

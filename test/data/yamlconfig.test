@@ -64,6 +64,7 @@
           "PkgName": "apk-tools",
           "InstalledVersion": "2.10.6-r0",
           "FixedVersion": "2.10.7-r0",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:396c31837116ac290458afcb928f68b6cc1c7bdd6963fc72f52f365a2a89c1b5",
             "DiffID": "sha256:9fb3aa2f8b8023a4bebbf92aa567caf88e38e969ada9f0ac12643b2847391635"
@@ -75,6 +76,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
+          "Title": "an out of boundary read while libfetch uses strtol to parse the relevant numbers into address bytes leads to information leak or crash",
           "Description": "libfetch before 2021-07-26, as used in apk-tools, xbps, and other products, mishandles numeric strings for the FTP and HTTP protocols. The FTP passive mode implementation allows an out-of-bounds read because strtol is used to parse the relevant numbers into address bytes. It does not check if the line ends prematurely. If it does, the for-loop condition checks for the '\\0' terminator one byte too late.",
           "Severity": "CRITICAL",
           "CweIDs": [
@@ -86,15 +88,22 @@
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H",
               "V2Score": 6.4,
               "V3Score": 9.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H",
+              "V3Score": 9.1
             }
           },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2021-36159",
             "https://github.com/freebsd/freebsd-src/commits/main/lib/libfetch",
             "https://gitlab.alpinelinux.org/alpine/apk-tools/-/issues/10749",
             "https://lists.apache.org/thread.html/r61db8e7dcb56dc000a5387a88f7a473bacec5ee01b9ff3f55308aacc@%3Cdev.kafka.apache.org%3E",
             "https://lists.apache.org/thread.html/r61db8e7dcb56dc000a5387a88f7a473bacec5ee01b9ff3f55308aacc@%3Cusers.kafka.apache.org%3E",
             "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7@%3Cdev.kafka.apache.org%3E",
-            "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7@%3Cusers.kafka.apache.org%3E"
+            "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7@%3Cusers.kafka.apache.org%3E",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-36159",
+            "https://www.cve.org/CVERecord?id=CVE-2021-36159"
           ],
           "PublishedDate": "2021-08-03T14:15:00Z",
           "LastModifiedDate": "2021-10-18T12:19:00Z"
