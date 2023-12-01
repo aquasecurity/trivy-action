@@ -5,27 +5,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Add upstream
-        run: |
-          git remote add upstream https://github.com/aquasecurity/trivy-action
-          git fetch upstream
-          git merge upstream/master
-          git config --global user.name 'Tyler Titsworth'
-          git config --global user.email 'tyler.titsworth@intel.com'
-          git push
+  # sync:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Add upstream
+  #       shell: bash
+  #       run: |
+  #         git config --global user.name 'Tyler Titsworth'
+  #         git config --global user.email 'tyler.titsworth@intel.com'
+  #         git remote add upstream https://github.com/aquasecurity/trivy-action
+  #         git fetch upstream
+  #         git pull upstream master
+  #         git push origin HEAD:master
   build:
-    needs: sync
+    # needs: sync
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - uses: docker/build-push-action@v5
         with:
           tags: totalsundae/trivy-action:latest
