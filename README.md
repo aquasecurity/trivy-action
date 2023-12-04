@@ -491,6 +491,7 @@ Following inputs can be used as `step.with` keys:
 | `scan-ref`        | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                |
 | `format`          | String  | `table`                            | Output format (`table`, `json`, `sarif`, `github`)                                              |
 | `template`        | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                 |
+| `tf-vars`         | String  |                                    | path to Terraform variables file                                                                |
 | `output`          | String  |                                    | Save results to a file                                                                          |
 | `exit-code`       | String  | `0`                                | Exit code when specified vulnerabilities are found                                              |
 | `ignore-unfixed`  | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities                                                        |
