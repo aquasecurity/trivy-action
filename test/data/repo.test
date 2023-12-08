@@ -1,5 +1,6 @@
 {
   "SchemaVersion": 2,
+  "CreatedAt": "2023-12-08T11:02:50.045151-07:00",
   "ArtifactName": "https://github.com/krol3/demo-trivy/",
   "ArtifactType": "repository",
   "Metadata": {

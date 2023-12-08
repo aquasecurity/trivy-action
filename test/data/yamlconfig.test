@@ -1,5 +1,6 @@
 {
   "SchemaVersion": 2,
+  "CreatedAt": "2023-12-08T11:03:01.877209-07:00",
   "ArtifactName": "alpine:3.10",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -76,7 +77,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Title": "an out of boundary read while libfetch uses strtol to parse the relevant numbers into address bytes leads to information leak or crash",
+          "Title": "libfetch: an out of boundary read while libfetch uses strtol to parse the relevant numbers into address bytes leads to information leak or crash",
           "Description": "libfetch before 2021-07-26, as used in apk-tools, xbps, and other products, mishandles numeric strings for the FTP and HTTP protocols. The FTP passive mode implementation allows an out-of-bounds read because strtol is used to parse the relevant numbers into address bytes. It does not check if the line ends prematurely. If it does, the for-loop condition checks for the '\\0' terminator one byte too late.",
           "Severity": "CRITICAL",
           "CweIDs": [
