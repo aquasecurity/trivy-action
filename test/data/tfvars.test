@@ -1,5 +1,6 @@
 {
   "SchemaVersion": 2,
+  "CreatedAt": "2023-12-08T11:03:02.76948-07:00",
   "ArtifactName": "test/data",
   "ArtifactType": "filesystem",
   "Metadata": {

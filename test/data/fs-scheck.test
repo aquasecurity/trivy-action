@@ -1,5 +1,6 @@
 {
   "SchemaVersion": 2,
+  "CreatedAt": "2023-12-08T11:02:56.571535-07:00",
   "ArtifactName": ".",
   "ArtifactType": "filesystem",
   "Metadata": {
@@ -130,6 +131,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -139,6 +141,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -148,6 +151,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -186,6 +190,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -195,6 +200,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -204,6 +210,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -242,6 +249,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -251,6 +259,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -260,6 +269,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -299,6 +309,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -308,6 +319,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -317,6 +329,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -355,6 +368,7 @@
                   "IsCause": false,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket_versioning\"\u001b[0m \u001b[38;5;37m\"bucket_versioning\"\u001b[0m {",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -364,6 +378,7 @@
                   "IsCause": false,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = aws_s3_bucket.bucket.id",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -382,6 +397,7 @@
                   "IsCause": false,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  versioning_configuration {",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -391,6 +407,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "    \u001b[38;5;245mstatus\u001b[0m = \u001b[38;5;33mvar\u001b[0m.bucket_versioning_enabled",
                   "FirstCause": true,
                   "LastCause": true
                 },
@@ -400,6 +417,7 @@
                   "IsCause": false,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  }",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -409,6 +427,7 @@
                   "IsCause": false,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "}",
                   "FirstCause": false,
                   "LastCause": false
                 }
@@ -465,6 +484,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -474,6 +494,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -483,6 +504,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -521,6 +543,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -530,6 +553,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -539,6 +563,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -577,6 +602,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -586,6 +612,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -595,6 +622,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
@@ -633,6 +661,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bucket\"\u001b[0m {",
                   "FirstCause": true,
                   "LastCause": false
                 },
@@ -642,6 +671,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"trivy-action-bucket\"",
                   "FirstCause": false,
                   "LastCause": false
                 },
@@ -651,6 +681,7 @@
                   "IsCause": true,
                   "Annotation": "",
                   "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
                   "FirstCause": false,
                   "LastCause": true
                 }
