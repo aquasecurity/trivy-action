@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2023-12-08T11:03:01.877209-07:00",
+  "CreatedAt": "2024-01-02T23:40:21.039454971Z",
   "ArtifactName": "alpine:3.10",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -106,8 +106,8 @@
             "https://nvd.nist.gov/vuln/detail/CVE-2021-36159",
             "https://www.cve.org/CVERecord?id=CVE-2021-36159"
           ],
-          "PublishedDate": "2021-08-03T14:15:00Z",
-          "LastModifiedDate": "2023-11-07T03:36:00Z"
+          "PublishedDate": "2021-08-03T14:15:08.233Z",
+          "LastModifiedDate": "2023-11-07T03:36:43.337Z"
         }
       ]
     }
