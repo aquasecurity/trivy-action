@@ -86,7 +86,7 @@ It is possible to define all options in the `trivy.yaml` file. Specifying indivi
 - `image-ref`: If using `image` scan.
 - `scan-type`: To define the scan type, e.g. `image`, `fs`, `repo`, etc.
 
-#### Order of prerference for options
+#### Order of preference for options
 Trivy uses [Viper](https://github.com/spf13/viper) which has a defined precedence order for options. The order is as follows:
 - GitHub Action flag
 - Environment variable
