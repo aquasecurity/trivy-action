@@ -307,7 +307,7 @@
               }
             }
           ],
-          "version": "0.48.0"
+          "version": "0.48.1"
         }
       },
       "results": [
@@ -612,7 +612,7 @@
       "columnKind": "utf16CodeUnits",
       "originalUriBaseIds": {
         "ROOTPATH": {
-          "uri": "file:///Users/simarpreetsingh/repos/trivy-action/"
+          "uri": "file:///home/runner/work/trivy-action/trivy-action/"
         }
       }
     }
