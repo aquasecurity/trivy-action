@@ -83,7 +83,7 @@ secret:
   config: config/trivy/secret.yaml
 ```
 
-It is possible to define all Trivy options (including flags not supported by [inputs](#inputs) such as `--secret-config`) in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes. Defining the following is required as they cannot be defined with the config file:
+It is possible to define all options in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes. Defining the following is required as they cannot be defined with the config file:
 - `scan-ref`: If using `fs, repo` scans.
 - `image-ref`: If using `image` scan.
 - `scan-type`: To define the scan type, e.g. `image`, `fs`, `repo`, etc.
@@ -481,36 +481,49 @@ jobs:
 
 ## Customizing
 
+Configuration priority:
+- [Inputs](#inputs)
+- [Environment variables](#environment-variables)
+- [Trivy config file](#trivy-config-file)
+- Default values
+
+
 ### inputs
 
 Following inputs can be used as `step.with` keys:
 
-| Name              | Type    | Default                            | Description                                                                                     |
-|-------------------|---------|------------------------------------|-------------------------------------------------------------------------------------------------|
-| `scan-type`       | String  | `image`                            | Scan type, e.g. `image` or `fs`                                                                 |
-| `input`           | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                         |
-| `image-ref`       | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                           |
-| `scan-ref`        | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                |
-| `format`          | String  | `table`                            | Output format (`table`, `json`, `sarif`, `github`)                                              |
-| `template`        | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                 |
-| `tf-vars`         | String  |                                    | path to Terraform variables file                                                                |
-| `output`          | String  |                                    | Save results to a file                                                                          |
-| `exit-code`       | String  | `0`                                | Exit code when specified vulnerabilities are found                                              |
-| `ignore-unfixed`  | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities                                                        |
-| `vuln-type`       | String  | `os,library`                       | Vulnerability types (os,library)                                                                |
-| `severity`        | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed                                      |
-| `skip-dirs`       | String  |                                    | Comma separated list of directories where traversal is skipped                                  |
-| `skip-files`      | String  |                                    | Comma separated list of files where traversal is skipped                                        |
-| `cache-dir`       | String  |                                    | Cache directory                                                                                 |
-| `timeout`         | String  | `5m0s`                             | Scan timeout duration                                                                           |
-| `ignore-policy`   | String  |                                    | Filter vulnerabilities with OPA rego language                                                   |
-| `hide-progress`   | String  | `true`                             | Suppress progress bar                                                                           |
-| `list-all-pkgs`   | String  |                                    | Output all packages regardless of vulnerability                                                 |
-| `scanners` | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)               |
-| `trivyignores`    | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files        |
-| `trivy-config`    | String  |                                    | Path to trivy.yaml config                                                                       |
-| `github-pat`      | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN |
-| `limit-severities-for-sarif`      | Boolean  | false                                   | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
+| Name                         | Type    | Default                            | Description                                                                                                                                                    |
+|------------------------------|---------|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `scan-type`                  | String  | `image`                            | Scan type, e.g. `image` or `fs`                                                                                                                                |
+| `input`                      | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                                                                                        |
+| `image-ref`                  | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                                                                                          |
+| `scan-ref`                   | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                                                                               |
+| `format`                     | String  | `table`                            | Output format (`table`, `json`, `sarif`, `github`)                                                                                                             |
+| `template`                   | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                                                                                |
+| `tf-vars`                    | String  |                                    | path to Terraform variables file                                                                                                                               |
+| `output`                     | String  |                                    | Save results to a file                                                                                                                                         |
+| `exit-code`                  | String  | `0`                                | Exit code when specified vulnerabilities are found                                                                                                             |
+| `ignore-unfixed`             | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities                                                                                                                       |
+| `vuln-type`                  | String  | `os,library`                       | Vulnerability types (os,library)                                                                                                                               |
+| `severity`                   | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed                                                                                                     |
+| `skip-dirs`                  | String  |                                    | Comma separated list of directories where traversal is skipped                                                                                                 |
+| `skip-files`                 | String  |                                    | Comma separated list of files where traversal is skipped                                                                                                       |
+| `cache-dir`                  | String  |                                    | Cache directory                                                                                                                                                |
+| `timeout`                    | String  | `5m0s`                             | Scan timeout duration                                                                                                                                          |
+| `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                                                                                  |
+| `hide-progress`              | String  | `true`                             | Suppress progress bar                                                                                                                                          |
+| `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                                                                                |
+| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)                                                                              |
+| `trivyignores`               | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files                                                                       |
+| `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                                                                                      |
+| `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN        |
+| `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
+
+### Environment variables
+You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
+
+### Trivy config file
+When using the `trivy-config` [Input](#inputs), you can set options using the [Trivy config file][trivy-config] (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
 
 [release]: https://github.com/aquasecurity/trivy-action/releases/latest
 [release-img]: https://img.shields.io/github/release/aquasecurity/trivy-action.svg?logo=github
@@ -518,3 +531,5 @@ Following inputs can be used as `step.with` keys:
 [marketplace-img]: https://img.shields.io/badge/marketplace-trivy--action-blue?logo=github
 [license]: https://github.com/aquasecurity/trivy-action/blob/master/LICENSE
 [license-img]: https://img.shields.io/github/license/aquasecurity/trivy-action
+[trivy-env]: https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables
+[trivy-config]: https://aquasecurity.github.io/trivy/latest/docs/references/configuration/config-file/
