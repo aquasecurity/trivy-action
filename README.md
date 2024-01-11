@@ -79,9 +79,11 @@ In this case `trivy.yaml` is a YAML configuration that is checked in as part of 
 format: json
 exit-code: 1
 severity: CRITICAL
+secret:
+  config: config/trivy/secret.yaml
 ```
 
-It is possible to define all options in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes. Defining the following is required as they cannot be defined with the config file:
+It is possible to define all Trivy options (including flags not supported by [inputs](#inputs) such as `--secret-config`) in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes. Defining the following is required as they cannot be defined with the config file:
 - `scan-ref`: If using `fs, repo` scans.
 - `image-ref`: If using `image` scan.
 - `scan-type`: To define the scan type, e.g. `image`, `fs`, `repo`, etc.
