@@ -163,6 +163,7 @@ if [ $ignorePolicy ];then
 fi
 if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --no-progress"
+  SARIF_ARGS="$SARIF_ARGS --no-progress"
 fi
 
 listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
@@ -173,6 +174,7 @@ if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")
   do
     ARGS="$ARGS --skip-files $i"
+    SARIF_ARGS="$SARIF_ARGS --skip-files $i"
   done
 fi
 
