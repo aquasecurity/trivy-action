@@ -338,6 +338,7 @@ jobs:
 ```
 
 When scanning images you may want to parse the actual output JSON as Github Dependency doesn't show all details like the file path of each dependency for instance.
+
 You can upload the report as an artifact and download it, for instance using the [upload-artifact action](https://github.com/actions/upload-artifact):
 
 ```yaml
@@ -368,8 +369,8 @@ jobs:
           severity: "MEDIUM,HIGH,CRITICAL"
           scanners: "vuln"
         env:
-          TRIVY_USERNAME: "REDACTED"
-          TRIVY_PASSWORD: "REDACTED"
+          TRIVY_USERNAME: "image_registry_admin_username"
+          TRIVY_PASSWORD: "image_registry_admin_password"
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
