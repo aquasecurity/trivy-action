@@ -372,7 +372,7 @@ jobs:
           TRIVY_USERNAME: "image_registry_admin_username"
           TRIVY_PASSWORD: "image_registry_admin_password"
 
-      - name: Upload Build Artifacts
+      - name: Upload trivy report as a Github artifact
         uses: actions/upload-artifact@v4
         with:
           name: trivy-sbom-report
