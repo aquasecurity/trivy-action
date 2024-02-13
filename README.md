@@ -337,6 +337,49 @@ jobs:
           github-pat: ${{ secrets.GITHUB_TOKEN }} # or ${{ secrets.github_pat_name }} if you're using a PAT
 ```
 
+When scanning images you may want to parse the actual output JSON as Github Dependency doesn't show all details like the file path of each dependency for instance.
+
+You can upload the report as an artifact and download it, for instance using the [upload-artifact action](https://github.com/actions/upload-artifact):
+
+```yaml
+---
+name: Pull Request
+on:
+  push:
+    branches:
+    - main
+
+## GITHUB_TOKEN authentication, add only if you're not going to use a PAT
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Checks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Scan image in a private registry
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "private_image_registry/image_name:image_tag"
+          scan-type: image
+          format: 'github'
+          output: 'dependency-results.sbom.json'
+          github-pat: ${{ secrets.GITHUB_TOKEN }} # or ${{ secrets.github_pat_name }} if you're using a PAT
+          severity: "MEDIUM,HIGH,CRITICAL"
+          scanners: "vuln"
+        env:
+          TRIVY_USERNAME: "image_registry_admin_username"
+          TRIVY_PASSWORD: "image_registry_admin_password"
+
+      - name: Upload trivy report as a Github artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-sbom-report
+          path: '${{ github.workspace }}/dependency-results.sbom.json'
+          retention-days: 20 # 90 is the default
+```
+
 ### Using Trivy to scan your private registry
 It's also possible to scan your private registry with Trivy's built-in image scan. All you have to do is set ENV vars.
 
