@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:z:" o; do
    case "${o}" in
        a)
@@ -137,6 +138,7 @@ if [ $skipDirs ];then
 fi
 if [ $tfVars ] && [ "$scanType" == "config" ];then
   ARGS="$ARGS --tf-vars $tfVars"
+  SARIF_ARGS="$SARIF_ARGS --tf-vars $tfVars"
 fi 
 
 if [ $trivyIgnores ];then
@@ -186,7 +188,8 @@ if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; the
   # regardless of severity level specified in this report.
   # This is a feature, not a bug :)
   echo "Building SARIF report with options: ${SARIF_ARGS}" "${artifactRef}"
-  trivy --quiet ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
+  echo "Ignore all severity level being defined since limit-severities-for-sarif: false"
+  trivy ${scanType} --format sarif --output ${output} $SARIF_ARGS ${artifactRef}
 elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
    trivy --config $trivyConfig ${scanType} ${artifactRef}
