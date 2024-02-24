@@ -6,20 +6,23 @@ on:
       trivy_version:
         required: true
         type: string
-        description: the trivy version
+        description: the Trivy version
 
-run-name: Bump trivy to v${{ inputs.trivy_version }}
+run-name: Bump Trivy to v${{ inputs.trivy_version }}
 
 jobs:
-  bump:
+  bump-trivy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Update Trivy versions
         run: |
-          sed -r -i "s/ghcr.io\/aquasecurity\/trivy:[0-9]+\.[0-9]+\.[0-9]+/ghcr.io\/aquasecurity\/trivy:${{ inputs.trivy_version }}/" Dockerfile
-          sed -r -i "s/TRIVY_VERSION: [0-9]+\.[0-9]+\.[0-9]+/TRIVY_VERSION: ${{ inputs.trivy_version }}/" .github/workflows/build.yaml
-          find test/data -type f -name '*.test' | xargs sed -r -i 's/"version": "[0-9]+\.[0-9]+\.[0-9]+"/"version": "${{ inputs.trivy_version }}"/'
+          current_trivy_version=$(cat .github/workflows/build.yaml | sed -rn 's/TRIVY_VERSION: ([0-9]+\.[0-9]+\.[0-9]+)/\1/p' | xargs)
+          sed -ri "s/ghcr.io\/aquasecurity\/trivy:$current_trivy_version/ghcr.io\/aquasecurity\/trivy:${{ inputs.trivy_version }}/" Dockerfile
+          sed -ri "s/TRIVY_VERSION: $current_trivy_version/TRIVY_VERSION: ${{ inputs.trivy_version }}/" .github/workflows/build.yaml
+          find test/data -type f -name '*.test' \
+            | xargs sed -ri \
+            "s/\"version\": \"$current_trivy_version\"/\"version\": \"${{ inputs.trivy_version }}\"/"
 
       - name: Create PR
         id: create-pr
