@@ -137,7 +137,7 @@ if [ $skipDirs ];then
 fi
 if [ $tfVars ] && [ "$scanType" == "config" ];then
   ARGS="$ARGS --tf-vars $tfVars"
-fi 
+fi
 
 if [ $trivyIgnores ];then
   for f in $(echo $trivyIgnores | tr "," "\n")
@@ -162,8 +162,8 @@ if [ $ignorePolicy ];then
   SARIF_ARGS="$SARIF_ARGS --ignore-policy $ignorePolicy"
 fi
 if [ "$hideProgress" == "true" ];then
-  ARGS="$ARGS --no-progress"
-  SARIF_ARGS="$SARIF_ARGS --no-progress"
+  ARGS="$ARGS --quiet"
+  SARIF_ARGS="$SARIF_ARGS --quiet"
 fi
 
 listAllPkgs=$(echo $listAllPkgs | tr -d '\r')

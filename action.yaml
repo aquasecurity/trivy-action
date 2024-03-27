@@ -65,8 +65,9 @@ inputs:
     required: false
     default: ''
   hide-progress:
-    description: 'hide progress output'
+    description: 'suppress progress bar and log output'
     required: false
+    default: 'true'
   list-all-pkgs:
     description: 'output all packages regardless of vulnerability'
     required: false
@@ -123,4 +124,3 @@ runs:
     - '-v ${{ inputs.trivy-config }}'
     - '-x ${{ inputs.tf-vars }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
-    
