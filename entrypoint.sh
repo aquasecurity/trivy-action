@@ -100,10 +100,6 @@ if [ $cacheDir ];then
   GLOBAL_ARGS="$GLOBAL_ARGS --cache-dir $cacheDir"
 fi
 
-if [ $server ] ;then
- ARGS="$ARGS --server $server"
-fi
-
 SARIF_ARGS=""
 ARGS=""
 format=$(echo $format | xargs)
@@ -144,7 +140,7 @@ if [ $skipDirs ];then
 fi
 if [ $tfVars ] && [ "$scanType" == "config" ];then
   ARGS="$ARGS --tf-vars $tfVars"
-fi
+fi 
 
 if [ $trivyIgnores ];then
   for f in $(echo $trivyIgnores | tr "," "\n")
@@ -169,14 +165,19 @@ if [ $ignorePolicy ];then
   SARIF_ARGS="$SARIF_ARGS --ignore-policy $ignorePolicy"
 fi
 if [ "$hideProgress" == "true" ];then
-  ARGS="$ARGS --quiet"
-  SARIF_ARGS="$SARIF_ARGS --quiet"
+  ARGS="$ARGS --no-progress"
+  SARIF_ARGS="$SARIF_ARGS --no-progress"
 fi
 
 listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
 if [ "$listAllPkgs" == "true" ];then
   ARGS="$ARGS --list-all-pkgs"
 fi
+
+if [ $server ] ;then
+ ARGS="$ARGS --server $server"
+fi
+
 if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")
   do
