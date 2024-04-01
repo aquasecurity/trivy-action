@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -71,6 +71,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:z:" o; do
        x)
          export tfVars=${OPTARG}
        ;;
+       y)
+         export server=${OPTARG}
+       ;;
        z)
          export limitSeveritiesForSARIF=${OPTARG}
        ;;
@@ -137,7 +140,7 @@ if [ $skipDirs ];then
 fi
 if [ $tfVars ] && [ "$scanType" == "config" ];then
   ARGS="$ARGS --tf-vars $tfVars"
-fi
+fi 
 
 if [ $trivyIgnores ];then
   for f in $(echo $trivyIgnores | tr "," "\n")
@@ -162,14 +165,19 @@ if [ $ignorePolicy ];then
   SARIF_ARGS="$SARIF_ARGS --ignore-policy $ignorePolicy"
 fi
 if [ "$hideProgress" == "true" ];then
-  ARGS="$ARGS --quiet"
-  SARIF_ARGS="$SARIF_ARGS --quiet"
+  ARGS="$ARGS --no-progress"
+  SARIF_ARGS="$SARIF_ARGS --no-progress"
 fi
 
 listAllPkgs=$(echo $listAllPkgs | tr -d '\r')
 if [ "$listAllPkgs" == "true" ];then
   ARGS="$ARGS --list-all-pkgs"
 fi
+
+if [ $server ] ;then
+ ARGS="$ARGS --server $server"
+fi
+
 if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")
   do
