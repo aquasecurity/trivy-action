@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -71,6 +71,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:z:" o; do
        x)
          export tfVars=${OPTARG}
        ;;
+       y)
+         export server=${OPTARG}
+       ;;
        z)
          export limitSeveritiesForSARIF=${OPTARG}
        ;;
@@ -95,6 +98,10 @@ limitSeveritiesForSARIF=$(echo $limitSeveritiesForSARIF | tr -d '\r')
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
   GLOBAL_ARGS="$GLOBAL_ARGS --cache-dir $cacheDir"
+fi
+
+if [ $server ] ;then
+ ARGS="$ARGS --server $server"
 fi
 
 SARIF_ARGS=""
