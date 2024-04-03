@@ -82,6 +82,14 @@ bats_load_library bats-file
   assert_files_equal yamlconfig.test ./test/data/yamlconfig.test
 }
 
+@test "trivy image with custom docker-host" {
+  # trivy image --docker-host unix:///var/run/docker.sock --severity CRITICAL --output image.test knqyf263/vuln-image:1.2.3
+  run ./entrypoint.sh '-y unix:///var/run/docker.sock' '-a image' '-i knqyf263/vuln-image:1.2.3' '-h image.test' '-g CRITICAL'
+  run diff image.test ./test/data/image.test
+  echo "$output"
+  assert_files_equal image.test ./test/data/image.test
+}
+
 @test "trivy config with terraform variables" {
   # trivy config --format json --severity  MEDIUM --output  tfvars.test --tf-vars  ./test/data/dev.tfvars ./test/data  
   run ./entrypoint.sh "-a config"  "-j ./test/data" "-h tfvars.test" "-g MEDIUM" "-x dev.tfvars" "-b json"
