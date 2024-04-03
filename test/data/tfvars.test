@@ -1,0 +1,40 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2024-01-02T16:27:32.841193-07:00",
+  "ArtifactName": "test/data",
+  "ArtifactType": "filesystem",
+  "Metadata": {
+    "ImageConfig": {
+      "architecture": "",
+      "created": "0001-01-01T00:00:00Z",
+      "os": "",
+      "rootfs": {
+        "type": "",
+        "diff_ids": null
+      },
+      "config": {}
+    }
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 2,
+        "Failures": 0,
+        "Exceptions": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 1,
+        "Failures": 0,
+        "Exceptions": 0
+      }
+    }
+  ]
+}

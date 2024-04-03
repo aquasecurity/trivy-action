@@ -89,3 +89,11 @@ bats_load_library bats-file
   echo "$output"
   assert_files_equal image.test ./test/data/image.test
 }
+
+@test "trivy config with terraform variables" {
+  # trivy config --format json --severity  MEDIUM --output  tfvars.test --tf-vars  ./test/data/dev.tfvars ./test/data  
+  run ./entrypoint.sh "-a config"  "-j ./test/data" "-h tfvars.test" "-g MEDIUM" "-x dev.tfvars" "-b json"
+  run diff tfvars.test ./test/data/tfvars.test 
+  echo "$output"
+  assert_files_equal tfvars.test ./test/data/tfvars.test
+}

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:y:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -68,11 +68,14 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:z:y:" o; do
        v)
          export trivyConfig=${OPTARG}
        ;;
-       z)
-         export limitSeveritiesForSARIF=${OPTARG}
+       x)
+         export tfVars=${OPTARG}
        ;;
        y)
          export dockerHost=${OPTARG}
+       ;;
+       z)
+         export limitSeveritiesForSARIF=${OPTARG}
        ;;
   esac
 done
@@ -80,7 +83,7 @@ done
 
 scanType=$(echo $scanType | tr -d '\r')
 export artifactRef="${imageRef}"
-if [ "${scanType}" = "repo" ] || [ "${scanType}" = "fs" ] ||  [ "${scanType}" = "config" ] ||  [ "${scanType}" = "rootfs" ];then
+if [ "${scanType}" = "repo" ] || [ "${scanType}" = "fs" ] || [ "${scanType}" = "filesystem" ] ||  [ "${scanType}" = "config" ] ||  [ "${scanType}" = "rootfs" ] || [ "${scanType}" = "sbom" ];then
   artifactRef=$(echo $scanRef | tr -d '\r')
 fi
 input=$(echo $input | tr -d '\r')
@@ -135,6 +138,10 @@ if [ $skipDirs ];then
     SARIF_ARGS="$SARIF_ARGS --skip-dirs $i"
   done
 fi
+if [ $tfVars ] && [ "$scanType" == "config" ];then
+  ARGS="$ARGS --tf-vars $tfVars"
+fi
+
 if [ $trivyIgnores ];then
   for f in $(echo $trivyIgnores | tr "," "\n")
   do
@@ -158,7 +165,8 @@ if [ $ignorePolicy ];then
   SARIF_ARGS="$SARIF_ARGS --ignore-policy $ignorePolicy"
 fi
 if [ "$hideProgress" == "true" ];then
-  ARGS="$ARGS --no-progress"
+  ARGS="$ARGS --quiet"
+  SARIF_ARGS="$SARIF_ARGS --quiet"
 fi
 if [ "$dockerHost" == "true" ];then
   ARGS="$ARGS --docker-host $dockerHost"
@@ -172,6 +180,7 @@ if [ "$skipFiles" ];then
   for i in $(echo $skipFiles | tr "," "\n")
   do
     ARGS="$ARGS --skip-files $i"
+    SARIF_ARGS="$SARIF_ARGS --skip-files $i"
   done
 fi
 
@@ -187,13 +196,12 @@ if [ "${format}" == "sarif" ] && [ "${limitSeveritiesForSARIF}" != "true" ]; the
 elif [ $trivyConfig ]; then
    echo "Running Trivy with trivy.yaml config from: " $trivyConfig
    trivy --config $trivyConfig ${scanType} ${artifactRef}
-   returnCode=$?
 else
    echo "Running trivy with options: trivy ${scanType} ${ARGS}" "${artifactRef}"
    echo "Global options: " "${GLOBAL_ARGS}"
    trivy $GLOBAL_ARGS ${scanType} ${ARGS} ${artifactRef}
-   returnCode=$?
 fi
+returnCode=$?
 
 set -e
 if [[ "${format}" == "github" ]]; then
