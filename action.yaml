@@ -95,7 +95,7 @@ inputs:
     description: 'limit severities for SARIF format'
     required: false
   docker-host:
-    description: 'unix domain socket path to use for docker scanning'
+    description: 'unix domain socket path to use for docker scanning, ex. unix:///var/run/docker.sock'
     required: false
 
 runs:
