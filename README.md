@@ -522,6 +522,35 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 ```
 
+### Using Trivy if you don't have code scanning enabled
+
+It's also possible to browse a scan result in a workflow summary.
+
+This step is especially useful for private repositories without [GitHub Advanced Security](https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security) license.
+
+```yaml
+- name: Run Trivy scanner
+  uses: aquasecurity/trivy-action@master
+  with:
+    scan-type: config
+    hide-progress: true
+    output: trivy.txt
+
+- name: Publish Trivy Output to Summary
+  run: |
+    if [[ -s trivy.txt ]]; then
+      {
+        echo "### Security Output"
+        echo "<details><summary>Click to expand</summary>"
+        echo ""
+        echo '```terraform'
+        cat trivy.txt
+        echo '```'
+        echo "</details>"
+      } >> $GITHUB_STEP_SUMMARY
+    fi
+```
+
 ## Customizing
 
 Configuration priority:
