@@ -168,7 +168,7 @@ if [ "$hideProgress" == "true" ];then
   ARGS="$ARGS --quiet"
   SARIF_ARGS="$SARIF_ARGS --quiet"
 fi
-if [ "$dockerHost" == "true" ];then
+if [ $dockerHost ];then
   ARGS="$ARGS --docker-host $dockerHost"
 fi
 
