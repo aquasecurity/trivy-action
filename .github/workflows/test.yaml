@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  TRIVY_VERSION: 0.50.1
+  BATS_LIB_PATH: '/usr/lib/'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bats and bats libs
+        uses: bats-core/bats-action@2.0.0
+
+      - name: Install Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${{ env.TRIVY_VERSION }}
+          trivy --version
+
+      - name: Test
+        run: |
+          chmod +x entrypoint.sh 
+          bats -r -T .

@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2024-01-02T16:27:32.841193-07:00",
-  "ArtifactName": "test/data",
+  "CreatedAt": "2024-04-12T14:09:09.5680191+03:00",
+  "ArtifactName": "test/data/with-tf-vars/main.tf",
   "ArtifactType": "filesystem",
   "Metadata": {
     "ImageConfig": {
