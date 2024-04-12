@@ -97,10 +97,17 @@ inputs:
   docker-host:
     description: 'unix domain socket path to use for docker scanning, ex. unix:///var/run/docker.sock'
     required: false
+  base-image:
+    description: 'alternative base-image URL'
+    default: 'ghcr.io/aquasecurity/trivy:0.50.1'
+    required: false
 
 runs:
   using: 'docker'
   image: "Dockerfile"
+  pre-entrypoint: 'setup.sh'
+  env:
+    base_image: '${{ inputs.base-image }}'
   args:
     - '-a ${{ inputs.scan-type }}'
     - '-b ${{ inputs.format }}'
