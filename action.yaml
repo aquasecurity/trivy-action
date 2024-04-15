@@ -65,7 +65,7 @@ inputs:
     required: false
     default: ''
   hide-progress:
-    description: 'hide progress output'
+    description: 'suppress progress bar and log output'
     required: false
   list-all-pkgs:
     description: 'output all packages regardless of vulnerability'
@@ -93,6 +93,9 @@ inputs:
     required: false
   limit-severities-for-sarif:
     description: 'limit severities for SARIF format'
+    required: false
+  docker-host:
+    description: 'unix domain socket path to use for docker scanning, ex. unix:///var/run/docker.sock'
     required: false
 
 runs:
@@ -123,4 +126,4 @@ runs:
     - '-v ${{ inputs.trivy-config }}'
     - '-x ${{ inputs.tf-vars }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
-    
+    - '-y ${{ inputs.docker-host }}'

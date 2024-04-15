@@ -115,7 +115,7 @@ jobs:
       run: |
         docker pull <your-docker-image>
         docker save -o vuln-image.tar <your-docker-image>
-        
+
     - name: Run Trivy vulnerability scanner in tarball mode
       uses: aquasecurity/trivy-action@master
       with:
@@ -291,7 +291,7 @@ jobs:
         uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
         with:
           scan-type: 'config'
-          hide-progress: false
+          hide-progress: true
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: '0'
@@ -308,7 +308,7 @@ jobs:
 ### Using Trivy to generate SBOM
 It's possible for Trivy to generate an [SBOM](https://www.aquasec.com/cloud-native-academy/supply-chain-security/sbom/) of your dependencies and submit them to a consumer like [GitHub Dependency Graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph).
 
-The [sending of an SBOM to GitHub](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/using-the-dependency-submission-api) feature is only available if you currently have GitHub Dependency Graph [enabled in your repo](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository). 
+The [sending of an SBOM to GitHub](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/using-the-dependency-submission-api) feature is only available if you currently have GitHub Dependency Graph [enabled in your repo](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository).
 
 In order to send results to GitHub Dependency Graph, you will need to create a [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) or use the [GitHub installation access token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication) (also known as `GITHUB_TOKEN`):
 
@@ -527,6 +527,35 @@ jobs:
           sarif_file: 'trivy-results.sarif'
 ```
 
+### Using Trivy if you don't have code scanning enabled
+
+It's also possible to browse a scan result in a workflow summary.
+
+This step is especially useful for private repositories without [GitHub Advanced Security](https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security) license.
+
+```yaml
+- name: Run Trivy scanner
+  uses: aquasecurity/trivy-action@master
+  with:
+    scan-type: config
+    hide-progress: true
+    output: trivy.txt
+
+- name: Publish Trivy Output to Summary
+  run: |
+    if [[ -s trivy.txt ]]; then
+      {
+        echo "### Security Output"
+        echo "<details><summary>Click to expand</summary>"
+        echo ""
+        echo '```terraform'
+        cat trivy.txt
+        echo '```'
+        echo "</details>"
+      } >> $GITHUB_STEP_SUMMARY
+    fi
+```
+
 ## Customizing
 
 Configuration priority:
@@ -559,13 +588,14 @@ Following inputs can be used as `step.with` keys:
 | `cache-dir`                  | String  |                                    | Cache directory                                                                                                                                                |
 | `timeout`                    | String  | `5m0s`                             | Scan timeout duration                                                                                                                                          |
 | `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                                                                                  |
-| `hide-progress`              | String  | `true`                             | Suppress progress bar                                                                                                                                          |
+| `hide-progress`              | String  | `false`                            | Suppress progress bar and log output                                                                                                                           |
 | `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                                                                                |
 | `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`config`)                                                                              |
 | `trivyignores`               | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files                                                                       |
 | `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                                                                                      |
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN        |
 | `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
+| `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values                                      |
 
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
