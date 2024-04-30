@@ -143,19 +143,40 @@ if [ $tfVars ] && [ "$scanType" == "config" ];then
 fi
 
 if [ $trivyIgnores ];then
+  using_yaml_ignores=false
   for f in $(echo $trivyIgnores | tr "," "\n")
   do
     if [ -f "$f" ]; then
       echo "Found ignorefile '${f}':"
       cat "${f}"
-      cat "${f}" >> ./trivyignores
+
+      file_extension="${f##*.}"; [[ $f == *.* ]] || file_extension=""
+      if [ "$file_extension" = "yaml" ] || [ "$file_extension" = "yml" ]; then
+        target_file="./trivyignores.yaml"
+        using_yaml_ignores=true
+      else
+        target_file="./trivyignores"
+      fi
+
+      cat "${f}" >> "$target_file"
     else
       echo "ERROR: cannot find ignorefile '${f}'."
       exit 1
     fi
   done
-  ARGS="$ARGS --ignorefile ./trivyignores"
+
+  if [ -s ./trivyignores.yaml ] && [ -s ./trivyignores ]; then
+    echo "ERROR: mixed types of ignorefiles are not allowed. Please use either all yaml or all plain text ignorefiles."
+    exit 1
+  fi
+
+  if [ $using_yaml_ignores = true ]; then
+    ARGS="$ARGS --ignorefile ./trivyignores.yaml"
+  elif [ $mixed_types = true ]; then
+    ARGS="$ARGS --ignorefile ./trivyignores"
+  fi
 fi
+
 if [ $timeout ];then
   ARGS="$ARGS --timeout $timeout"
   SARIF_ARGS="$SARIF_ARGS --timeout $timeout"
