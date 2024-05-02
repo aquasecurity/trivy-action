@@ -3,7 +3,7 @@ name: Sync Trivy DB
 on:
   workflow_dispatch:
 env:
-  IMAGE_NAME: ${{ github.repository_owner }}/trivy-db
+  IMAGE_NAME: ${{ github.repository_owner }}/trivy-db-act
   REGISTRY: ghcr.io
 
 jobs:
