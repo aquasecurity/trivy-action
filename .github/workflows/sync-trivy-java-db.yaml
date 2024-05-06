@@ -19,6 +19,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Copy Trivy Checks
+      - name: Copy Trivy Java DB
         run: |
           oras cp ghcr.io/aquasecurity/trivy-java-db:1 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
