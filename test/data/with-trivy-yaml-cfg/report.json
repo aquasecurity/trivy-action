@@ -63,6 +63,9 @@
           "VulnerabilityID": "CVE-2021-36159",
           "PkgID": "apk-tools@2.10.6-r0",
           "PkgName": "apk-tools",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64\u0026distro=3.10.9"
+          },
           "InstalledVersion": "2.10.6-r0",
           "FixedVersion": "2.10.7-r0",
           "Status": "fixed",
@@ -83,6 +86,10 @@
           "CweIDs": [
             "CWE-125"
           ],
+          "VendorSeverity": {
+            "nvd": 4,
+            "redhat": 3
+          },
           "CVSS": {
             "nvd": {
               "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:P",
