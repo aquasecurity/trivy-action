@@ -18,7 +18,6 @@ jobs:
       - name: Update Trivy versions
         run: |
           sed -r -i "s/ghcr.io\/aquasecurity\/trivy:[0-9]+\.[0-9]+\.[0-9]+/ghcr.io\/aquasecurity\/trivy:${{ inputs.trivy_version }}/" Dockerfile
-          sed -r -i "s/TRIVY_VERSION: [0-9]+\.[0-9]+\.[0-9]+/TRIVY_VERSION: ${{ inputs.trivy_version }}/" .github/workflows/build.yaml
           find test/data -type f -name '*.test' | xargs sed -r -i 's/"version": "[0-9]+\.[0-9]+\.[0-9]+"/"version": "${{ inputs.trivy_version }}"/'
 
       - name: Create PR
