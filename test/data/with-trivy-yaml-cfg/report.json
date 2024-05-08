@@ -64,7 +64,8 @@
           "PkgID": "apk-tools@2.10.6-r0",
           "PkgName": "apk-tools",
           "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64\u0026distro=3.10.9"
+            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64\u0026distro=3.10.9",
+            "UID": "a6adb154870b6380"
           },
           "InstalledVersion": "2.10.6-r0",
           "FixedVersion": "2.10.7-r0",

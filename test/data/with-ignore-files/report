@@ -27,7 +27,7 @@ Total: 19 (CRITICAL: 19)
 │             │ CVE-2019-5481  │          │        │                   │ 7.61.1-r3     │ curl: double free due to subsequent call of realloc()        │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-5481                    │
 │             ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
-│             │ CVE-2019-5482  │          │        │                   │               │ heap buffer overflow in function tftp_receive_packet()       │
+│             │ CVE-2019-5482  │          │        │                   │               │ curl: heap buffer overflow in function tftp_receive_packet() │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-5482                    │
 ├─────────────┼────────────────┤          │        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
 │ git         │ CVE-2018-17456 │          │        │ 2.15.2-r0         │ 2.15.3-r0     │ git: arbitrary code execution via .gitmodules                │
@@ -58,7 +58,7 @@ Total: 19 (CRITICAL: 19)
 │             │ CVE-2019-5481  │          │        │                   │ 7.61.1-r3     │ curl: double free due to subsequent call of realloc()        │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-5481                    │
 │             ├────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
-│             │ CVE-2019-5482  │          │        │                   │               │ heap buffer overflow in function tftp_receive_packet()       │
+│             │ CVE-2019-5482  │          │        │                   │               │ curl: heap buffer overflow in function tftp_receive_packet() │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-5482                    │
 ├─────────────┼────────────────┤          │        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
 │ musl        │ CVE-2019-14697 │          │        │ 1.1.18-r3         │ 1.1.18-r4     │ musl libc through 1.1.23 has an x87 floating-point stack     │
@@ -69,7 +69,7 @@ Total: 19 (CRITICAL: 19)
 │             │                │          │        │                   │               │                                                              │
 │             │                │          │        │                   │               │                                                              │
 ├─────────────┼────────────────┤          │        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
-│ sqlite-libs │ CVE-2019-8457  │          │        │ 3.21.0-r1         │ 3.25.3-r1     │ heap out-of-bound read in function rtreenode()               │
+│ sqlite-libs │ CVE-2019-8457  │          │        │ 3.21.0-r1         │ 3.25.3-r1     │ sqlite: heap out-of-bound read in function rtreenode()       │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-8457                    │
 └─────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
 
