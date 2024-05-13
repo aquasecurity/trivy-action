@@ -127,6 +127,7 @@ if [ $scanners ];then
 fi
 if [ $severity ];then
   ARGS="$ARGS --severity $severity"
+  SARIF_ARGS="$SARIF_ARGS --severity $severity"
 fi
 if [ $output ];then
   ARGS="$ARGS --output $output"
