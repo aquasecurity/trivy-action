@@ -1,6 +1,5 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2024-01-02T23:40:21.039454971Z",
   "ArtifactName": "alpine:3.10",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -64,7 +63,7 @@
           "PkgID": "apk-tools@2.10.6-r0",
           "PkgName": "apk-tools",
           "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64\u0026distro=3.10.9",
+            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64&distro=3.10.9",
             "UID": "a6adb154870b6380"
           },
           "InstalledVersion": "2.10.6-r0",
