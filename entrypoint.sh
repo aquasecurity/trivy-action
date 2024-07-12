@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -67,6 +67,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
        ;;
        v)
          export trivyConfig=${OPTARG}
+       ;;
+       w)
+         export githubApiUrl=${OPTARG}
        ;;
        x)
          export tfVars=${OPTARG}
@@ -207,7 +210,7 @@ set -e
 if [[ "${format}" == "github" ]]; then
   if [[ "$(echo $githubPAT | xargs)" != "" ]]; then
     printf "\n Uploading GitHub Dependency Snapshot"
-    curl -H 'Accept: application/vnd.github+json' -H "Authorization: token $githubPAT" 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
+    curl -H 'Accept: application/vnd.github+json' -H "Authorization: token $githubPAT" ''$githubApiUrl'/repos/'$GITHUB_REPOSITORY'/dependency-graph/snapshots' -d @./$(echo $output | xargs)
   else
     printf "\n Failing GitHub Dependency Snapshot. Missing github-pat"
   fi
