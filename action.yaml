@@ -97,6 +97,11 @@ inputs:
   docker-host:
     description: 'unix domain socket path to use for docker scanning, ex. unix:///var/run/docker.sock'
     required: false
+  show-suppressed:
+    description: 'show the suppressed results'
+    required: false
+    default: 'false'
+
 
 runs:
   using: 'docker'
@@ -127,3 +132,4 @@ runs:
     - '-x ${{ inputs.tf-vars }}'
     - '-z ${{ inputs.limit-severities-for-sarif }}'
     - '-y ${{ inputs.docker-host }}'
+    - '-aa ${{ inputs.show-suppressed }}'
