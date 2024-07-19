@@ -1,10 +1,7 @@
 #!/bin/bash
 set -e
-while getopts "aa:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z:" o; do
    case "${o}" in
-       aa)
-         export showSuppressed=${OPTARG}
-       ;;
        a)
          export scanType=${OPTARG}
        ;;
@@ -70,6 +67,9 @@ while getopts "aa:a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
        ;;
        v)
          export trivyConfig=${OPTARG}
+       ;;
+       w)
+         export showSuppressed=${OPTARG}
        ;;
        x)
          export tfVars=${OPTARG}
@@ -145,7 +145,7 @@ fi
 if [ $tfVars ] && [ "$scanType" == "config" ];then
   ARGS="$ARGS --tf-vars $tfVars"
 fi
-if [ "$showSuppressed" == "true" ] ;then
+if [ "$showSuppressed" == "true" ];then
   ARGS="$ARGS --show-suppressed"
 fi
 
