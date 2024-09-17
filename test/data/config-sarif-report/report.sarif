@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
   "runs": [
     {
       "tool": {
@@ -91,7 +91,7 @@
               }
             },
             {
-              "id": "AVD-AWS-0089",
+              "id": "s3-bucket-logging",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 Bucket Logging"
@@ -102,10 +102,10 @@
               "defaultConfiguration": {
                 "level": "note"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0089",
+              "helpUri": "https://avd.aquasec.com/misconfig/s3-bucket-logging",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0089\nType: Terraform Security Check\nSeverity: LOW\nCheck: S3 Bucket Logging\nMessage: Bucket has logging disabled\nLink: [AVD-AWS-0089](https://avd.aquasec.com/misconfig/avd-aws-0089)\nEnsures S3 bucket logging is enabled for S3 buckets",
-                "markdown": "**Misconfiguration AVD-AWS-0089**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|LOW|S3 Bucket Logging|Bucket has logging disabled|[AVD-AWS-0089](https://avd.aquasec.com/misconfig/avd-aws-0089)|\n\nEnsures S3 bucket logging is enabled for S3 buckets"
+                "text": "Misconfiguration s3-bucket-logging\nType: Terraform Security Check\nSeverity: LOW\nCheck: S3 Bucket Logging\nMessage: Bucket has logging disabled\nLink: [s3-bucket-logging](https://avd.aquasec.com/misconfig/s3-bucket-logging)\nEnsures S3 bucket logging is enabled for S3 buckets",
+                "markdown": "**Misconfiguration s3-bucket-logging**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|LOW|S3 Bucket Logging|Bucket has logging disabled|[s3-bucket-logging](https://avd.aquasec.com/misconfig/s3-bucket-logging)|\n\nEnsures S3 bucket logging is enabled for S3 buckets"
               },
               "properties": {
                 "precision": "very-high",
@@ -338,11 +338,11 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0089",
+          "ruleId": "s3-bucket-logging",
           "ruleIndex": 3,
           "level": "note",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0089\nSeverity: LOW\nMessage: Bucket has logging disabled\nLink: [AVD-AWS-0089](https://avd.aquasec.com/misconfig/avd-aws-0089)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability s3-bucket-logging\nSeverity: LOW\nMessage: Bucket has logging disabled\nLink: [s3-bucket-logging](https://avd.aquasec.com/misconfig/s3-bucket-logging)"
           },
           "locations": [
             {

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  TRIVY_VERSION: 0.53.0
+  TRIVY_VERSION: 0.55.2
   BATS_LIB_PATH: '/usr/lib/'
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
       - name: Test
         run: |
           chmod +x entrypoint.sh 
-          bats -r -T .
+          TRIVY_DISABLE_VEX_NOTICE=true bats -r -T .

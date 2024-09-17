@@ -214,7 +214,7 @@
         },
         {
           "Type": "Terraform Security Check",
-          "ID": "AVD-AWS-0089",
+          "ID": "s3-bucket-logging",
           "AVDID": "AVD-AWS-0089",
           "Title": "S3 Bucket Logging",
           "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
@@ -223,10 +223,10 @@
           "Query": "data.builtin.aws.s3.aws0089.deny",
           "Resolution": "Add a logging block to the resource to enable access logging",
           "Severity": "LOW",
-          "PrimaryURL": "https://avd.aquasec.com/misconfig/avd-aws-0089",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/s3-bucket-logging",
           "References": [
             "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
-            "https://avd.aquasec.com/misconfig/avd-aws-0089"
+            "https://avd.aquasec.com/misconfig/s3-bucket-logging"
           ],
           "Status": "FAIL",
           "Layer": {},
