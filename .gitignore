@@ -3,3 +3,5 @@
 !test/data/*.test
 trivyignores
 .vscode/
+
+.cache
