@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:0:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -76,6 +76,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
        ;;
        z)
          export limitSeveritiesForSARIF=${OPTARG}
+       ;;
+       0)
+         export dbRepository=${OPTARG}
        ;;
   esac
 done
@@ -182,6 +185,10 @@ if [ "$skipFiles" ];then
     ARGS="$ARGS --skip-files $i"
     SARIF_ARGS="$SARIF_ARGS --skip-files $i"
   done
+fi
+
+if [ "$dbRepository" ]; then
+  ARGS="$ARGS --db-repository $dbRepository"
 fi
 
 trivyConfig=$(echo $trivyConfig | tr -d '\r')

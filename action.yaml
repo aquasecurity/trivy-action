@@ -97,6 +97,9 @@ inputs:
   docker-host:
     description: 'unix domain socket path to use for docker scanning, ex. unix:///var/run/docker.sock'
     required: false
+  db-repository:
+    description: 'vulnerability DB repository address, ex. my-registry.example.com/mirrors/aquasecurity/trivy-db'
+    required: false
 
 runs:
   using: 'docker'
@@ -125,5 +128,6 @@ runs:
     - '-u ${{ inputs.github-pat }}'
     - '-v ${{ inputs.trivy-config }}'
     - '-x ${{ inputs.tf-vars }}'
-    - '-z ${{ inputs.limit-severities-for-sarif }}'
     - '-y ${{ inputs.docker-host }}'
+    - '-z ${{ inputs.limit-severities-for-sarif }}'
+    - '-0 ${{ inputs.db-repository }}'
