@@ -187,7 +187,7 @@ if [ "$skipFiles" ];then
   done
 fi
 
-if [ "$dbRepository" ]; then
+if [ $dbRepository ]; then
   ARGS="$ARGS --db-repository $dbRepository"
 fi
 
