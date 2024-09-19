@@ -100,6 +100,7 @@ inputs:
   db-repository:
     description: 'vulnerability DB repository address, ex. my-registry.example.com/mirrors/aquasecurity/trivy-db'
     required: false
+    default: ''
 
 runs:
   using: 'docker'
