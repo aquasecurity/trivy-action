@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  ci-build-docker-images-jobs-reporting:
+    name: Build and Push New Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    outputs:
+      image-name: ${{ steps.build-job-reporting-arm-image.outputs.image-name }}
+      image-tag: ${{ steps.build-job-reporting-arm-image.outputs.image-tag }}
+      image-name-without-tag: ${{ steps.build-job-reporting-arm-image.outputs.image-name-without-tag }}
+    steps:
+      - name: Checkout
+        uses: tesourohq/Tesouro-Github-Actions/common-actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Build Image
+        id: build-image
+        uses: tesourohq/Tesouro-Github-Actions/build-docker-images-ecr@main
+        with:
+          sem-ver: '1.0.0'
+          AssemblySemVer: '1.0.0' 
+          gh-packages-token: ${{ secrets.GH_PACKAGES_TOKEN }}
+          dockerfile-path: ./Dockerfile
+          image-name: trivy-action
+          docker-context: .
+          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-access-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          aws-repository-name: tesouro
+          aws-region: us-east-1
+          aws-github-role: ${{ secrets.AWS_GITHUB_ROLE }}
+
+      - name: Post Image Name to Summary
+        shell: bash
+        run: echo "Image Pushed ${{ steps.build-image.outputs.image-name }}" >> $GITHUB_STEP_SUMMARY

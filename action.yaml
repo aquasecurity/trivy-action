@@ -100,7 +100,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: "Dockerfile"
+  image: '833624450745.dkr.ecr.us-east-1.amazonaws.com/tesouro/trivy-action:latest'
   args:
     - '-a ${{ inputs.scan-type }}'
     - '-b ${{ inputs.format }}'
