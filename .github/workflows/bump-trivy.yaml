@@ -14,7 +14,7 @@ jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Update Trivy versions
         run: |
           sed -r -i "s/ghcr.io\/aquasecurity\/trivy:[0-9]+\.[0-9]+\.[0-9]+/ghcr.io\/aquasecurity\/trivy:${{ inputs.trivy_version }}/" Dockerfile
