@@ -123,12 +123,13 @@ jobs:
         severity: 'CRITICAL,HIGH'
 ```
 
-### Using cache for trivy-db
-Recently, there has been an increase in cases of receiving the `TOOMANYREQUESTS` error when downloading the `trivy-db`.
+### Using cache for Trivy databases
+Recently, there has been an increase in cases of receiving the `TOOMANYREQUESTS` error when downloading the Trivy databases (`trivy-db`, `trivy-java-db` and `trivy-checks`).
 
-If you’re performing multiple scans, it makes sense to use [action/cache](https://github.com/actions/cache) to cache the `trivy-db`.
+If you’re performing multiple scans, it makes sense to use [action/cache](https://github.com/actions/cache) to cache one or more databases.
 
-The example below saves the trivy-db for each day:
+The example below saves the `trivy-db` for each day in the cache:
+
 ```yaml
 name: build
 on:
