@@ -28,12 +28,7 @@
     {
       "Target": "main.tf",
       "Class": "config",
-      "Type": "terraform",
-      "MisconfSummary": {
-        "Successes": 1,
-        "Failures": 0,
-        "Exceptions": 0
-      }
+      "Type": "terraform"
     }
   ]
 }
