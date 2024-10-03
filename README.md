@@ -123,6 +123,55 @@ jobs:
         severity: 'CRITICAL,HIGH'
 ```
 
+### Using cache for trivy-db
+Recently, there has been an increase in cases of receiving the `TOOMANYREQUESTS` error when downloading the `trivy-db`.
+
+If you’re performing multiple scans, it makes sense to use [action/cache](https://github.com/actions/cache) to cache the `trivy-db`.
+
+The example below saves the trivy-db for each day:
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      ## To avoid the trivy-db becoming outdated, we save the cache for one day
+      - name: Get data
+        id: date
+        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
+      - name: Restore trivy cache
+        uses: actions/cache@v4
+        with:
+          path: cache/db
+          key: trivy-cache-${{ steps.date.outputs.date }}
+          restore-keys:
+            trivy-cache-
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          cache-dir: "./cache"
+
+      ## Trivy-db uses `0600` permissions.
+      ## But `action/cache` use `runner` user by default
+      ## So we need to change the permissions before caching the database.
+      - name: change permissions for trivy.db
+        run: sudo chmod 0644 ./cache/db/trivy.db
+```
+
 ### Using Trivy with GitHub Code Scanning
 If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
 ```yaml
