@@ -630,7 +630,7 @@ Following inputs can be used as `step.with` keys:
 | `severity`                   | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed                                                                                                     |
 | `skip-dirs`                  | String  |                                    | Comma separated list of directories where traversal is skipped                                                                                                 |
 | `skip-files`                 | String  |                                    | Comma separated list of files where traversal is skipped                                                                                                       |
-| `cache-dir`                  | String  |                                    | Cache directory                                                                                                                                                |
+| `cache-dir`                  | String  | `$GITHUB_WORKSPACE/.cache/trivy`   | Cache directory                                                                                                                                                |
 | `timeout`                    | String  | `5m0s`                             | Scan timeout duration                                                                                                                                          |
 | `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                                                                                  |
 | `hide-progress`              | String  | `false`                            | Suppress progress bar and log output                                                                                                                           |
@@ -641,6 +641,7 @@ Following inputs can be used as `step.with` keys:
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN        |
 | `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
 | `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values                                      |
+| `version`                    | String  | `latest`                           | Trivy version to use                                                                                                                                           |
 
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).

@@ -1,6 +1,7 @@
 name: 'Aqua Security Trivy'
 description: 'Scans container images for vulnerabilities with Trivy'
 author: 'Aqua Security'
+
 inputs:
   scan-type:
     description: 'Scan type to use for scanning vulnerability'
@@ -24,7 +25,7 @@ inputs:
     description: 'ignore unfixed vulnerabilities'
     required: false
     default: 'false'
-  vuln-type:
+  vuln-type: # TODO: rename to pkg-types
     description: 'comma-separated list of vulnerability types (os,library)'
     required: false
     default: 'os,library'
@@ -55,7 +56,7 @@ inputs:
   cache-dir:
     description: 'specify where the cache is stored'
     required: false
-    default: ''
+    default: '${{ github.workspace }}/.cache/trivy'
   timeout:
     description: 'timeout (default 5m0s)'
     required: false
@@ -97,33 +98,63 @@ inputs:
   docker-host:
     description: 'unix domain socket path to use for docker scanning, ex. unix:///var/run/docker.sock'
     required: false
+  version:
+    description: 'Trivy version to use'
+    required: false
+    default: 'latest'
 
 runs:
-  using: 'docker'
-  image: "Dockerfile"
-  args:
-    - '-a ${{ inputs.scan-type }}'
-    - '-b ${{ inputs.format }}'
-    - '-c ${{ inputs.template }}'
-    - '-d ${{ inputs.exit-code }}'
-    - '-e ${{ inputs.ignore-unfixed }}'
-    - '-f ${{ inputs.vuln-type }}'
-    - '-g ${{ inputs.severity }}'
-    - '-h ${{ inputs.output }}'
-    - '-i ${{ inputs.image-ref }}'
-    - '-j ${{ inputs.scan-ref }}'
-    - '-k ${{ inputs.skip-dirs }}'
-    - '-l ${{ inputs.input }}'
-    - '-m ${{ inputs.cache-dir }}'
-    - '-n ${{ inputs.timeout }}'
-    - '-o ${{ inputs.ignore-policy }}'
-    - '-p ${{ inputs.hide-progress }}'
-    - '-q ${{ inputs.skip-files }}'
-    - '-r ${{ inputs.list-all-pkgs }}'
-    - '-s ${{ inputs.scanners }}'
-    - '-t ${{ inputs.trivyignores }}'
-    - '-u ${{ inputs.github-pat }}'
-    - '-v ${{ inputs.trivy-config }}'
-    - '-x ${{ inputs.tf-vars }}'
-    - '-z ${{ inputs.limit-severities-for-sarif }}'
-    - '-y ${{ inputs.docker-host }}'
+  using: 'composite'
+  steps:
+    - name: Install Trivy
+      shell: bash
+      run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin ${{ inputs.version }}
+
+    - name: Restore DB from cache
+      uses: actions/cache@v4
+      with:
+        path: ${{ inputs.cache-dir }}
+        key: cache-trivy-db-${{ github.run_id }}
+        restore-keys: cache-trivy-db- # In most cases, the cache is restored by 'restore-keys'.
+
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
+    - name: Run Trivy
+      shell: bash
+      run: entrypoint.sh
+      env:
+        # For shell script
+        # > If the action is written using a composite, then it will not automatically get INPUT_<VARIABLE_NAME>
+        # cf. https://docs.github.com/en/actions/sharing-automations/creating-actions/metadata-syntax-for-github-actions#example-specifying-inputs
+        INPUT_SCAN_TYPE: ${{ inputs.scan-type }}
+        INPUT_IMAGE_REF: ${{ inputs.image-ref }}
+        INPUT_SCAN_REF: ${{ inputs.scan-ref }}
+        INPUT_TRIVYIGNORES: ${{ inputs.trivyignores }}
+        INPUT_GITHUB_PAT: ${{ inputs.github-pat }}
+        INPUT_LIMIT_SEVERITIES_FOR_SARIF: ${{ inputs.limit-severities-for-sarif }}
+
+        # For Trivy
+        # cf. https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables
+        TRIVY_INPUT: ${{ inputs.input }}
+        TRIVY_EXIT_CODE: ${{ inputs.exit-code }}
+        TRIVY_IGNORE_UNFIXED: ${{ inputs.ignore-unfixed }}
+        TRIVY_PKG_TYPES: ${{ inputs.vuln-type }}
+        TRIVY_SEVERITY: ${{ inputs.severity }}
+        TRIVY_FORMAT: ${{ inputs.format }}
+        TRIVY_TEMPLATE: ${{ inputs.template }}
+        TRIVY_OUTPUT: ${{ inputs.output }}
+        TRIVY_SKIP_DIRS: ${{ inputs.skip-dirs }}
+        TRIVY_SKIP_FILES: ${{ inputs.skip-files }}
+        TRIVY_CACHE_DIR: ${{ inputs.cache-dir }}
+        TRIVY_TIMEOUT: ${{ inputs.timeout }}
+        TRIVY_IGNORE_POLICY: ${{ inputs.ignore-policy }}
+        TRIVY_QUIET: ${{ inputs.hide-progress }}
+        TRIVY_LIST_ALL_PKGS: ${{ inputs.list-all-pkgs }}
+        TRIVY_SCANNERS: ${{ inputs.scanners }}
+        TRIVY_CONFIG: ${{ inputs.trivy-config }}
+        TRIVY_TF_VARS: ${{ inputs.tf-vars }}
+        TRIVY_DOCKER_HOST: ${{ inputs.docker-host }}
