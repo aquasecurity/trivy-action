@@ -80,9 +80,6 @@ inputs:
     description: 'comma-separated list of relative paths in repository to one or more .trivyignore files'
     required: false
     default: ''
-  artifact-type:
-    description: 'input artifact type (image, fs, repo, archive) for SBOM generation'
-    required: false
   github-pat:
     description: 'GitHub Personal Access Token (PAT) for submitting SBOM to GitHub Dependency Snapshot API'
     required: false
