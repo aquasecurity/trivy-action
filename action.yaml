@@ -99,6 +99,10 @@ inputs:
     description: 'Trivy version to use'
     required: false
     default: 'latest'
+  cache:
+    description: 'Used to specify whether caching is needed. Set to false, if you'd like to disable caching.'
+    required: false
+    default: 'true'
 
 runs:
   using: 'composite'
@@ -108,6 +112,7 @@ runs:
       run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin ${{ inputs.version }}
 
     - name: Restore DB from cache
+      if: ${{ inputs.cache == 'true' }}
       uses: actions/cache@v4
       with:
         path: ${{ inputs.cache-dir }}
