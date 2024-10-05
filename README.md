@@ -95,6 +95,24 @@ Trivy uses [Viper](https://github.com/spf13/viper) which has a defined precedenc
 - Config file
 - Default
 
+### Caching downloaded files
+The action has a built-in functionality for caching and restoring [the vulnerability DB](https://github.com/aquasecurity/trivy-db), [the Java DB](https://github.com/aquasecurity/trivy-java-db) and [the checks bundle](https://github.com/aquasecurity/trivy-checks) if they are downloaded during the scan.
+The cache is stored in the `$GITHUB_WORKSPACE/.cache/trivy` directory by default.
+The cache is restored before the scan starts and saved after the scan finishes.
+
+It uses [actions/cache](https://github.com/actions/cache) under the hood but requires less configuration settings.
+The cache input is optional, and caching is turned on by default.
+If you want to disable caching, set the `cache` input to `false`, but we recommend keeping it enabled to avoid rate limiting issues.
+
+```yaml
+    - name: Run Trivy scanner without cache
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        cache: 'false'
+```
+
 ### Scanning a Tarball
 ```yaml
 name: build
