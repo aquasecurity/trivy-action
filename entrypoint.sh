@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
+while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:w:x:y:z:" o; do
    case "${o}" in
        a)
          export scanType=${OPTARG}
@@ -68,6 +68,9 @@ while getopts "a:b:c:d:e:f:g:h:i:j:k:l:m:n:o:p:q:r:s:t:u:v:x:y:z:" o; do
        v)
          export trivyConfig=${OPTARG}
        ;;
+       w)
+         export showSuppressed=${OPTARG}
+       ;;
        x)
          export tfVars=${OPTARG}
        ;;
@@ -94,6 +97,7 @@ fi
 ignoreUnfixed=$(echo $ignoreUnfixed | tr -d '\r')
 hideProgress=$(echo $hideProgress | tr -d '\r')
 limitSeveritiesForSARIF=$(echo $limitSeveritiesForSARIF | tr -d '\r')
+showSuppressed=$(echo $showSuppressed | tr -d '\r')
 
 GLOBAL_ARGS=""
 if [ $cacheDir ];then
@@ -140,6 +144,9 @@ if [ $skipDirs ];then
 fi
 if [ $tfVars ] && [ "$scanType" == "config" ];then
   ARGS="$ARGS --tf-vars $tfVars"
+fi
+if [ "$showSuppressed" == "true" ];then
+  ARGS="$ARGS --show-suppressed"
 fi
 
 if [ $trivyIgnores ];then
