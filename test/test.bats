@@ -4,7 +4,7 @@ setup_file() {
   local owner=$GITHUB_REPOSITORY_OWNER
   export TRIVY_DB_REPOSITORY=ghcr.io/${owner}/trivy-db-act:latest
   export TRIVY_JAVA_DB_REPOSITORY=ghcr.io/${owner}/trivy-java-db-act:latest
-  export TRIVY_POLICY_BUNDLE_REPOSITORY=ghcr.io/${owner}/trivy-checks-act:latest
+  export TRIVY_CHECKS_BUNDLE_REPOSITORY=ghcr.io/${owner}/trivy-checks-act:latest
 }
 
 setup() {

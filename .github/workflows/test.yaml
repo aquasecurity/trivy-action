@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  TRIVY_VERSION: 0.53.0
+  TRIVY_VERSION: 0.56.1
   BATS_LIB_PATH: '/usr/lib/'
 
 jobs:
@@ -26,4 +26,6 @@ jobs:
       - name: Test
         run: |
           chmod +x entrypoint.sh 
-          bats -r -T .
+           GITHUB_REPOSITORY_OWNER=aquasecurity\
+           TRIVY_CACHE_DIR=.cache TRIVY_DISABLE_VEX_NOTICE=true TRIVY_DEBUG=true\
+           bats --recursive --timing --verbose-run .
