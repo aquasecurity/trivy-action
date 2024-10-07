@@ -100,7 +100,7 @@ inputs:
     required: false
     default: 'v0.56.1'
   cache:
-    description: 'Used to specify whether caching is needed. Set to false, if you'd like to disable caching.'
+    description: 'Used to specify whether caching is needed. Set to false, if you would like to disable caching.'
     required: false
     default: 'true'
 
@@ -111,13 +111,18 @@ runs:
       shell: bash
       run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin ${{ inputs.version }}
 
+    - name: Get current date
+      id: date
+      shell: bash
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
     - name: Restore DB from cache
       if: ${{ inputs.cache == 'true' }}
       uses: actions/cache@v4
       with:
         path: ${{ inputs.cache-dir }}
-        key: cache-trivy-db-${{ github.run_id }}
-        restore-keys: cache-trivy-db- # In most cases, the cache is restored by 'restore-keys'.
+        key: cache-trivy-${{ steps.date.outputs.date }}
+        restore-keys: cache-trivy- # In most cases, the cache is restored by 'restore-keys'.
 
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
