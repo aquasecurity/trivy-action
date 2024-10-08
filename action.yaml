@@ -122,7 +122,7 @@ runs:
       with:
         path: ${{ inputs.cache-dir }}
         key: cache-trivy-${{ steps.date.outputs.date }}
-        restore-keys: cache-trivy- # In most cases, the cache is restored by 'restore-keys'.
+        restore-keys: cache-trivy-
 
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
