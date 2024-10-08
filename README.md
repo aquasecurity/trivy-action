@@ -10,12 +10,22 @@
 
 ## Table of Contents
 
-- [Usage](#usage)
-  - [Workflow](#workflow)
-  - [Docker Image Scanning](#using-trivy-with-github-code-scanning)
-  - [Git Repository Scanning](#using-trivy-to-scan-your-git-repo)
-- [Customizing](#customizing)
-  - [Inputs](#inputs)
+* [Usage](#usage)
+  * [Scan CI Pipeline](#scan-ci-pipeline)
+  * [Scan CI Pipeline (w/ Trivy Config)](#scan-ci-pipeline-w-trivy-config)
+  * [Cache](#cache)
+  * [Scanning a Tarball](#scanning-a-tarball)
+  * [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
+  * [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
+  * [Using Trivy to scan your rootfs directories](#using-trivy-to-scan-your-rootfs-directories)
+  * [Using Trivy to scan Infrastructure as Code](#using-trivy-to-scan-infrastructure-as-code)
+  * [Using Trivy to generate SBOM](#using-trivy-to-generate-sbom)
+  * [Using Trivy to scan your private registry](#using-trivy-to-scan-your-private-registry)
+  * [Using Trivy if you don't have code scanning enabled](#using-trivy-if-you-dont-have-code-scanning-enabled)
+* [Customizing](#customizing)
+  * [inputs](#inputs)
+  * [Environment variables](#environment-variables)
+  * [Trivy config file](#trivy-config-file)
 
 ## Usage
 
@@ -36,8 +46,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build an image from Dockerfile
-        run: |
-          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+        run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
@@ -95,13 +104,15 @@ Trivy uses [Viper](https://github.com/spf13/viper) which has a defined precedenc
 - Config file
 - Default
 
-### Caching downloaded files
+### Cache
 The action has a built-in functionality for caching and restoring [the vulnerability DB](https://github.com/aquasecurity/trivy-db), [the Java DB](https://github.com/aquasecurity/trivy-java-db) and [the checks bundle](https://github.com/aquasecurity/trivy-checks) if they are downloaded during the scan.
 The cache is stored in the `$GITHUB_WORKSPACE/.cache/trivy` directory by default.
 The cache is restored before the scan starts and saved after the scan finishes.
 
 It uses [actions/cache](https://github.com/actions/cache) under the hood but requires less configuration settings.
 The cache input is optional, and caching is turned on by default.
+
+#### Disabling caching
 If you want to disable caching, set the `cache` input to `false`, but we recommend keeping it enabled to avoid rate limiting issues.
 
 ```yaml
@@ -111,6 +122,66 @@ If you want to disable caching, set the `cache` input to `false`, but we recomme
         scan-type: 'fs'
         scan-ref: '.'
         cache: 'false'
+```
+
+#### Updating caches in the default branch
+Please note that there are [restrictions on cache access](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#restrictions-for-accessing-a-cache) between branches in GitHub Actions.
+By default, a workflow can access and restore a cache created in either the current branch or the default branch (usually `main` or `master`).
+If you need to share caches across branches, you may need to create a cache in the default branch and restore it in the current branch.
+
+To optimize your workflow, you can set up a cron job to regularly update the cache in the default branch.
+This allows subsequent scans to use the cached DB without downloading it again.
+
+```yaml
+# Note: This workflow only updates the cache. You should create a separate workflow for your actual Trivy scans.
+# In your scan workflow, set TRIVY_SKIP_DB_UPDATE=true and TRIVY_SKIP_JAVA_DB_UPDATE=true.
+name: Update Trivy Cache
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  update-trivy-db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Download and extract the vulnerability DB
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.cache/trivy/db
+          oras pull ghcr.io/aquasecurity/trivy-db:2
+          tar -xzf db.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/db
+          rm db.tar.gz
+
+      - name: Download and extract the Java DB
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.cache/trivy/java-db
+          oras pull ghcr.io/aquasecurity/trivy-java-db:1
+          tar -xzf javadb.tar.gz -C $GITHUB_WORKSPACE/.cache/trivy/java-db
+          rm javadb.tar.gz
+
+      - name: Cache DBs
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ github.workspace }}/.cache/trivy
+          key: cache-trivy-${{ steps.date.outputs.date }}
+```
+
+When running a scan, set the environment variables `TRIVY_SKIP_DB_UPDATE` and `TRIVY_SKIP_JAVA_DB_UPDATE` to skip the download process.
+
+```yaml
+    - name: Run Trivy scanner without downloading DBs
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        scan-type: 'image'
+        scan-ref: 'myimage'
+      env:
+        TRIVY_SKIP_DB_UPDATE: true
+        TRIVY_SKIP_JAVA_DB_UPDATE: true
 ```
 
 ### Scanning a Tarball
@@ -139,56 +210,6 @@ jobs:
       with:
         input: /github/workspace/vuln-image.tar
         severity: 'CRITICAL,HIGH'
-```
-
-### Using cache for Trivy databases
-Recently, there has been an increase in cases of receiving the `TOOMANYREQUESTS` error when downloading the Trivy databases (`trivy-db`, `trivy-java-db` and `trivy-checks`).
-
-If you’re performing multiple scans, it makes sense to use [action/cache](https://github.com/actions/cache) to cache one or more databases.
-
-The example below saves the `trivy-db` for each day in the cache:
-
-```yaml
-name: build
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
-jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      ## To avoid the trivy-db becoming outdated, we save the cache for one day
-      - name: Get data
-        id: date
-        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
-
-      - name: Restore trivy cache
-        uses: actions/cache@v4
-        with:
-          path: cache/db
-          key: trivy-cache-${{ steps.date.outputs.date }}
-          restore-keys:
-            trivy-cache-
-
-      - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@0.24.0
-        with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          cache-dir: "./cache"
-
-      ## Trivy-db uses `0600` permissions.
-      ## But `action/cache` use `runner` user by default
-      ## So we need to change the permissions before caching the database.
-      - name: change permissions for trivy.db
-        run: sudo chmod 0644 ./cache/db/trivy.db
 ```
 
 ### Using Trivy with GitHub Code Scanning
