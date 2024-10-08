@@ -34,6 +34,13 @@ function remove_github_fields() {
   fi
 }
 
+function reset_envs() {
+  local var
+  for var in $(env | grep '^TRIVY_\|^INPUT_' | cut -d= -f1); do
+    unset "$var"
+  done
+}
+
 function compare_files() {
   local file1="$1"
   local file2="$2"
@@ -56,68 +63,90 @@ function compare_files() {
 
 @test "trivy repo with securityCheck secret only" {
   # trivy repo -f json -o repo.test --scanners=secret https://github.com/krol3/demo-trivy/
-  run ./entrypoint.sh '-b json' '-h repo.json' '-s secret' '-a repo' '-j https://github.com/krol3/demo-trivy/'
+  export TRIVY_FORMAT=json TRIVY_OUTPUT=repo.json TRIVY_SCANNERS=secret INPUT_SCAN_TYPE=repo INPUT_SCAN_REF="https://github.com/krol3/demo-trivy/"
+  ./entrypoint.sh
   compare_files repo.json ./test/data/secret-scan/report.json
+  reset_envs
 }
 
 @test "trivy image" {
   # trivy image --severity CRITICAL -o image.test knqyf263/vuln-image:1.2.3
-  run ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3' '-h image.test' '-g CRITICAL'
+  export TRIVY_OUTPUT=image.test TRIVY_SEVERITY=CRITICAL INPUT_SCAN_TYPE=image INPUT_SCAN_REF=knqyf263/vuln-image:1.2.3
+  ./entrypoint.sh
   compare_files image.test ./test/data/image-scan/report
+  reset_envs
 }
 
 @test "trivy config sarif report" {
   # trivy config -f sarif -o  config-sarif.test ./test/data/config-sarif-report
-  run ./entrypoint.sh '-a config' '-b sarif' '-h config-sarif.sarif' '-j ./test/data/config-sarif-report/main.tf'
+  export TRIVY_FORMAT=sarif TRIVY_OUTPUT=config-sarif.sarif INPUT_SCAN_TYPE=config INPUT_SCAN_REF=./test/data/config-sarif-report
+  ./entrypoint.sh
   compare_files config-sarif.sarif ./test/data/config-sarif-report/report.sarif
+  reset_envs
 }
 
 @test "trivy config" {
   # trivy config -f json -o config.json ./test/data/config-scan
-  run ./entrypoint.sh '-a config' '-b json' '-j ./test/data/config-scan' '-h config.json'
+  export TRIVY_FORMAT=json TRIVY_OUTPUT=config.json INPUT_SCAN_TYPE=config INPUT_SCAN_REF=./test/data/config-scan
+  ./entrypoint.sh
   compare_files config.json ./test/data/config-scan/report.json
+  reset_envs
 }
 
 @test "trivy rootfs" {
   # trivy rootfs --output rootfs.test ./test/data/rootfs-scan
   # TODO: add data
-  run ./entrypoint.sh '-a rootfs' '-j ./test/data/rootfs-scan' '-h rootfs.test'
+  export TRIVY_OUTPUT=rootfs.test INPUT_SCAN_TYPE=rootfs INPUT_SCAN_REF=./test/data/rootfs-scan
+  ./entrypoint.sh
   compare_files rootfs.test ./test/data/rootfs-scan/report
+  reset_envs
 }
 
 @test "trivy fs" {
   # trivy fs --output fs.test ./test/data/fs-scan
   # TODO: add data
-  run ./entrypoint.sh '-a fs' '-j ./test/data/fs-scan' '-h fs.test'
+  export TRIVY_OUTPUT=fs.test INPUT_SCAN_TYPE=fs INPUT_SCAN_REF=./test/data/fs-scan
+  ./entrypoint.sh
   compare_files fs.test ./test/data/fs-scan/report
+  reset_envs
 }
 
 @test "trivy image with trivyIgnores option" {
   # cat ./test/data/with-ignore-files/.trivyignore1 ./test/data/with-ignore-files/.trivyignore2 > ./trivyignores ; trivy image --severity CRITICAL  --output image-trivyignores.test --ignorefile ./trivyignores knqyf263/vuln-image:1.2.3
-  run ./entrypoint.sh '-a image' '-i knqyf263/vuln-image:1.2.3' '-h image-trivyignores.test' '-g CRITICAL' '-t ./test/data/with-ignore-files/.trivyignore1,./test/data/with-ignore-files/.trivyignore2'
+  export TRIVY_OUTPUT=image-trivyignores.test TRIVY_SEVERITY=CRITICAL INPUT_SCAN_TYPE=image INPUT_IMAGE_REF=knqyf263/vuln-image:1.2.3 INPUT_TRIVYIGNORES="./test/data/with-ignore-files/.trivyignore1,./test/data/with-ignore-files/.trivyignore2"
+  ./entrypoint.sh
   compare_files image-trivyignores.test ./test/data/with-ignore-files/report
+  reset_envs
 }
 
 @test "trivy image with sbom output" {
-  # trivy image --format  github knqyf263/vuln-image:1.2.3
-  run ./entrypoint.sh  "-a image" "-b github" "-h github-dep-snapshot.gsbom" "-i knqyf263/vuln-image:1.2.3"
+  # trivy image --format github knqyf263/vuln-image:1.2.3
+  export TRIVY_FORMAT=github TRIVY_OUTPUT=github-dep-snapshot.gsbom INPUT_SCAN_TYPE=image INPUT_SCAN_REF=knqyf263/vuln-image:1.2.3
+  ./entrypoint.sh
   compare_files github-dep-snapshot.gsbom ./test/data/github-dep-snapshot/report.gsbom
+  reset_envs
 }
 
 @test "trivy image with trivy.yaml config" {
   # trivy --config=./test/data/with-trivy-yaml-cfg/trivy.yaml image alpine:3.10
-  run ./entrypoint.sh "-v ./test/data/with-trivy-yaml-cfg/trivy.yaml" "-a image" "-i alpine:3.10"
+  export TRIVY_CONFIG=./test/data/with-trivy-yaml-cfg/trivy.yaml INPUT_SCAN_TYPE=image INPUT_SCAN_REF=alpine:3.10
+  ./entrypoint.sh
   compare_files yamlconfig.json ./test/data/with-trivy-yaml-cfg/report.json
+  reset_envs
 }
 
 @test "trivy image with custom docker-host" {
   # trivy image --docker-host unix:///var/run/docker.sock --severity CRITICAL --output image.test knqyf263/vuln-image:1.2.3
-  run ./entrypoint.sh '-y unix:///var/run/docker.sock' '-a image' '-i knqyf263/vuln-image:1.2.3' '-h image.test' '-g CRITICAL'
+  export TRIVY_OUTPUT=image.test TRIVY_SEVERITY=CRITICAL INPUT_SCAN_TYPE=image INPUT_SCAN_REF=knqyf263/vuln-image:1.2.3 TRIVY_DOCKER_HOST=unix:///var/run/docker.sock
+  ./entrypoint.sh
   compare_files image.test ./test/data/image-scan/report
+  reset_envs
 }
 
 @test "trivy config with terraform variables" {
-  # trivy config -f json -o tfvars.json --severity  MEDIUM  --tf-vars  ./test/data/with-tf-vars/dev.tfvars ./test/data/with-tf-vars/main.tf  
-  run ./entrypoint.sh "-a config"  "-j ./test/data/with-tf-vars/main.tf" "-h tfvars.json" "-g MEDIUM" "-x ./test/data/with-tf-vars/dev.tfvars" "-b json"
+  # trivy config -f json -o tfvars.json --severity  MEDIUM  --tf-vars  ./test/data/with-tf-vars/dev.tfvars ./test/data/with-tf-vars/main.tf
+  export TRIVY_FORMAT=json TRIVY_SEVERITY=MEDIUM TRIVY_OUTPUT=tfvars.json INPUT_SCAN_TYPE=config INPUT_SCAN_REF=./test/data/with-tf-vars/main.tf TRIVY_TF_VARS=./test/data/with-tf-vars/dev.tfvars
+  ./entrypoint.sh
   compare_files tfvars.json ./test/data/with-tf-vars/report.json
+  reset_envs
 }
