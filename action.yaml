@@ -154,7 +154,7 @@ runs:
         set_env_var_if_provided "TRIVY_EXIT_CODE" "${{ inputs.exit-code }}" ""
         set_env_var_if_provided "TRIVY_IGNORE_UNFIXED" "${{ inputs.ignore-unfixed }}" "false"
         set_env_var_if_provided "TRIVY_PKG_TYPES" "${{ inputs.vuln-type }}" "os,library"
-        set_env_var_if_provided "TRIVY_SEVERITY" "${{ inputs.severity }}" "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+        set_env_var_if_provided "TRIVY_SEVERITY" "${{ inputs.severity }}" "${{ inputs.severity.default }}"
         set_env_var_if_provided "TRIVY_FORMAT" "${{ inputs.format }}" "table"
         set_env_var_if_provided "TRIVY_TEMPLATE" "${{ inputs.template }}" ""
         set_env_var_if_provided "TRIVY_OUTPUT" "${{ inputs.output }}" ""
