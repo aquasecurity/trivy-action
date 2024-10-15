@@ -108,7 +108,7 @@ runs:
   using: 'composite'
   steps:
     - name: Install Trivy
-      uses: aquasecurity/setup-trivy@v0.2.0
+      uses: aquasecurity/setup-trivy@v0.2.1
       with:
         version: ${{ inputs.version }}
         cache: ${{ inputs.cache }}
