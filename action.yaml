@@ -103,11 +103,16 @@ inputs:
     description: 'Used to specify whether caching is needed. Set to false, if you would like to disable caching.'
     required: false
     default: 'true'
+  skip-setup-trivy:
+    description: 'skip calling the setup-trivy action to install trivy'
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
   steps:
     - name: Install Trivy
+      if: ${{ inputs.skip-setup-trivy == 'false' }}
       uses: aquasecurity/setup-trivy@v0.1.0
       with:
         version: ${{ inputs.version }}
