@@ -14,6 +14,7 @@
   * [Scan CI Pipeline](#scan-ci-pipeline)
   * [Scan CI Pipeline (w/ Trivy Config)](#scan-ci-pipeline-w-trivy-config)
   * [Cache](#cache)
+  * [Trivy Setup](#trivy-setup)
   * [Scanning a Tarball](#scanning-a-tarball)
   * [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
   * [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
@@ -182,6 +183,97 @@ When running a scan, set the environment variables `TRIVY_SKIP_DB_UPDATE` and `T
       env:
         TRIVY_SKIP_DB_UPDATE: true
         TRIVY_SKIP_JAVA_DB_UPDATE: true
+```
+
+### Trivy Setup
+By default the action calls [`aquasecurity/setup-trivy`](https://github.com/aquasecurity/setup-trivy) as the first step
+which installs the `trivy` version specified by the `version` input.  If you have already installed `trivy` by other
+means, e.g. calling `aquasecurity/setup-trivy` directly, or are invoking this action multiple times then you can use the
+`skip-setup-trivy` input to disable this step.
+
+#### Setting up Trivy Manually
+```yaml
+name: build
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Manual Trivy Setup
+      uses: aquasecurity/setup-trivy@v0.2.0
+      with:
+        cache: true
+        version: v0.56.1
+
+    - name: Run Trivy vulnerability scanner in repo mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        ignore-unfixed: true
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        severity: 'CRITICAL'
+        skip-setup-trivy: true
+```
+
+#### Skipping Setup when Calling Trivy Action multiple times
+Another common use case is when a build calls this action multiple times, in this case we can set `skip-setup-trivy` to 
+`true` on subsequent invocations e.g.
+
+```yaml
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      # The first call to the action will invoke setup-trivy and install trivy
+      - name: Generate Trivy Vulnerability Report
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          output: trivy-report.json
+          format: json
+          scan-ref: .
+          exit-code: 0
+
+      - name: Upload Vulnerability Scan Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report
+          path: trivy-report.json
+          retention-days: 30
+
+      - name: Fail build on High/Criticial Vulnerabilities
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          format: table
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: 1
+          # On a subsequent call to the action we know trivy is already installed so can skip this
+          skip-setup-trivy: true
 ```
 
 ### Scanning a Tarball
@@ -681,6 +773,7 @@ Following inputs can be used as `step.with` keys:
 | `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
 | `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values                                      |
 | `version`                    | String  | `v0.56.1`                          | Trivy version to use, e.g. `latest` or `v0.56.1`                                                                                                               |
+| `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                       |
 
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
