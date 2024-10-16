@@ -113,7 +113,7 @@ runs:
   steps:
     - name: Install Trivy
       if: ${{ inputs.skip-setup-trivy == 'false' }}
-      uses: aquasecurity/setup-trivy@v0.1.0
+      uses: aquasecurity/setup-trivy@v0.2.1
       with:
         version: ${{ inputs.version }}
         cache: ${{ inputs.cache }}
