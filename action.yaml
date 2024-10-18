@@ -107,6 +107,10 @@ inputs:
     description: 'skip calling the setup-trivy action to install trivy'
     required: false
     default: 'false'
+outputs:
+  result:
+    description: "Result of the Trivy scan according to the parameters supplied. One of 'pass', 'fail'"
+    value: ${{ steps.trivy.outputs.result }}
 
 runs:
   using: 'composite'
@@ -177,6 +181,7 @@ runs:
         set_env_var_if_provided "TRIVY_DOCKER_HOST" "${{ inputs.docker-host }}" ""
 
     - name: Run Trivy
+      id: trivy
       shell: bash
       run: entrypoint.sh
       env:

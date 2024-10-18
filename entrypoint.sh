@@ -38,6 +38,10 @@ if [ "${TRIVY_FORMAT:-}" = "sarif" ]; then
   fi
 fi
 
+# Ignore TRIVY_EXIT_CODE until formulation of action's output is finalized
+export inputExitCode="$TRIVY_EXIT_CODE"
+export TRIVY_EXIT_CODE=1
+
 # Run Trivy
 cmd=(trivy "$scanType" "$scanRef")
 echo "Running Trivy with options: ${cmd[*]}"
@@ -54,4 +58,22 @@ if [ "${TRIVY_FORMAT:-}" = "github" ]; then
   fi
 fi
 
-exit $returnCode
+# return an output based on result whilst honoring exit-code input
+case $inputExitCode$returnCode in
+  00)
+    echo "result=pass" >> "$GITHUB_OUTPUT" # No findings
+    exit 0
+    ;;
+  10)
+    echo "result=pass" >> "$GITHUB_OUTPUT" # No findings
+    exit 0
+    ;;
+  01)
+    echo "result=fail" >> "$GITHUB_OUTPUT" # Findings present but TRIVY_EXIT_CODE=0 
+    exit 0
+    ;;
+  11)
+    echo "result=fail" >> "$GITHUB_OUTPUT" # Findings present and TRIVY_EXIT_CODE=1
+    exit 1
+    ;;
+esac
