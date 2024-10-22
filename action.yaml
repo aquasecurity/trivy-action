@@ -107,16 +107,23 @@ inputs:
     description: 'skip calling the setup-trivy action to install trivy'
     required: false
     default: 'false'
+  token-setup-trivy:
+    description: >
+      `token-setup-trivy` is required when `github.token` in invalid for `https://github.com` server.
+      See https://github.com/aquasecurity/setup-trivy/?tab=readme-ov-file#install-trivy-with-non-default-token for more details.
+    required: false
+    default: ''
 
 runs:
   using: 'composite'
   steps:
     - name: Install Trivy
       if: ${{ inputs.skip-setup-trivy == 'false' }}
-      uses: aquasecurity/setup-trivy@v0.2.1
+      uses: DmitriyLewen/setup-trivy@fddb6a4fe01a7bd845669cf407127598e53f28f1
       with:
         version: ${{ inputs.version }}
         cache: ${{ inputs.cache }}
+        token: ${{ inputs.token-setup-trivy }}
 
     - name: Get current date
       id: date
