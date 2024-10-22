@@ -16,6 +16,7 @@
   * [Cache](#cache)
   * [Trivy Setup](#trivy-setup)
   * [Scanning a Tarball](#scanning-a-tarball)
+  * [Using Trivy with default templates](#using-trivy-with-github-code-scanning)
   * [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
   * [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
   * [Using Trivy to scan your rootfs directories](#using-trivy-to-scan-your-rootfs-directories)
@@ -305,6 +306,64 @@ jobs:
       with:
         input: /github/workspace/vuln-image.tar
         severity: 'CRITICAL,HIGH'
+```
+
+### Using Trivy with templates
+The action supports [Trivy templates][trivy-templates]. 
+
+Use `template` input to specify path (remember to prefix the path with `@`) to template file.
+
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: "fs"
+          scan-ref: .
+          format: 'template'
+          template: "@./path/to/my_template.tpl"
+```
+
+#### Default templates
+Trivy has [default templates][trivy-default-templates].
+
+By default, `setup-trivy` install them in `$HOME/.local/bin/trivy-bin/contrib` directory.
+
+```yaml
+name: build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: "fs"
+          scan-ref: .
+          format: 'template'
+          template: "@./$HOME/.local/bin/trivy-bin/contrib/html.tpl"
 ```
 
 ### Using Trivy with GitHub Code Scanning
@@ -754,8 +813,8 @@ Following inputs can be used as `step.with` keys:
 | `input`                      | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                                                                                        |
 | `image-ref`                  | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                                                                                          |
 | `scan-ref`                   | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                                                                               |
-| `format`                     | String  | `table`                            | Output format (`table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, `cosign-vuln`)                                                                                                             |
-| `template`                   | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                                                                                |
+| `format`                     | String  | `table`                            | Output format (`table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, `cosign-vuln`)                                                |
+| `template`                   | String  |                                    | Output template (`@./$HOME/.local/bin/trivy-bin/contrib/gitlab.tpl`, `@./$HOME/.local/bin/trivy-bin//contrib/junit.tpl`)                                       |
 | `tf-vars`                    | String  |                                    | path to Terraform variables file                                                                                                                               |
 | `output`                     | String  |                                    | Save results to a file                                                                                                                                         |
 | `exit-code`                  | String  | `0`                                | Exit code when specified vulnerabilities are found                                                                                                             |
@@ -769,7 +828,7 @@ Following inputs can be used as `step.with` keys:
 | `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                                                                                  |
 | `hide-progress`              | String  | `false`                            | Suppress progress bar and log output                                                                                                                           |
 | `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                                                                                |
-| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`misconfig`,`license`)                                                                              |
+| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`misconfig`,`license`)                                                                 |
 | `trivyignores`               | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files                                                                       |
 | `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                                                                                      |
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN        |
@@ -792,3 +851,5 @@ When using the `trivy-config` [Input](#inputs), you can set options using the [T
 [license-img]: https://img.shields.io/github/license/aquasecurity/trivy-action
 [trivy-env]: https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables
 [trivy-config]: https://aquasecurity.github.io/trivy/latest/docs/references/configuration/config-file/
+[trivy-templates]: https://aquasecurity.github.io/trivy/latest/docs/configuration/reporting/#template
+[trivy-default-templates]: https://aquasecurity.github.io/trivy/latest/docs/configuration/reporting/#default-templates
