@@ -147,6 +147,9 @@ jobs:
   update-trivy-db:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup oras
+        uses: oras-project/setup-oras@v1
+
       - name: Get current date
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
