@@ -107,6 +107,10 @@ inputs:
     description: 'skip calling the setup-trivy action to install trivy'
     required: false
     default: 'false'
+  include-dev-deps:
+    description: 'include development dependencies in the report (supported: npm, yarn)'
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
@@ -175,6 +179,7 @@ runs:
         set_env_var_if_provided "TRIVY_CONFIG" "${{ inputs.trivy-config }}" ""
         set_env_var_if_provided "TRIVY_TF_VARS" "${{ inputs.tf-vars }}" ""
         set_env_var_if_provided "TRIVY_DOCKER_HOST" "${{ inputs.docker-host }}" ""
+        set_env_var_if_provided "TRIVY_INCLUDE_DEV_DEPS" "${{ inputs.include-dev-deps }}" ""
 
     - name: Run Trivy
       shell: bash
