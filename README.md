@@ -334,7 +334,7 @@ jobs:
           scan-type: "fs"
           scan-ref: .
           format: 'template'
-          template: "@./path/to/my_template.tpl"
+          template: "@path/to/my_template.tpl"
 ```
 
 #### Default templates
@@ -363,7 +363,7 @@ jobs:
           scan-type: "fs"
           scan-ref: .
           format: 'template'
-          template: "@./$HOME/.local/bin/trivy-bin/contrib/html.tpl"
+          template: "@$HOME/.local/bin/trivy-bin/contrib/html.tpl"
 ```
 
 ### Using Trivy with GitHub Code Scanning
