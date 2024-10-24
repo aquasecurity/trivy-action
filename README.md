@@ -340,7 +340,7 @@ jobs:
 #### Default templates
 Trivy has [default templates][trivy-default-templates].
 
-By default, `setup-trivy` install them in `$HOME/.local/bin/trivy-bin/contrib` directory.
+By default, `setup-trivy` installs them into the `$HOME/.local/bin/trivy-bin/contrib` directory.
 
 ```yaml
 name: build
