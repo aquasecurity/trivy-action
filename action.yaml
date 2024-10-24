@@ -122,7 +122,7 @@ runs:
   steps:
     - name: Install Trivy
       if: ${{ inputs.skip-setup-trivy == 'false' }}
-      uses: DmitriyLewen/setup-trivy@34d9f0ee0ca364ca9f822843050fb1013babdb58
+      uses: aquasecurity/setup-trivy@v0.2.2
       with:
         version: ${{ inputs.version }}
         cache: ${{ inputs.cache }}
