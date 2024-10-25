@@ -279,6 +279,22 @@ jobs:
           skip-setup-trivy: true
 ```
 
+#### Use non-default token to install Trivy
+GitHub Enterprise Server (GHES) uses an invalid `github.token` for `https://github.com` server.
+Therefore, you can't install `Trivy` using the `setup-trivy` action.
+
+To fix this problem, you need to overwrite the token for `setup-trivy` using `token-setup-trivy` input:
+```yaml
+    - name: Run Trivy scanner without cache
+      uses: aquasecurity/trivy-action@0.28.0
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        token-setup-trivy: ${{ secrets.GITHUB_PAT }}
+```
+
+GitHub even has [create-github-app-token](https://github.com/actions/create-github-app-token) for similar cases.
+
 ### Scanning a Tarball
 ```yaml
 name: build
@@ -754,7 +770,7 @@ Following inputs can be used as `step.with` keys:
 | `input`                      | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                                                                                        |
 | `image-ref`                  | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                                                                                          |
 | `scan-ref`                   | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                                                                               |
-| `format`                     | String  | `table`                            | Output format (`table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, `cosign-vuln`)                                                                                                             |
+| `format`                     | String  | `table`                            | Output format (`table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, `cosign-vuln`)                                                |
 | `template`                   | String  |                                    | Output template (`@/contrib/gitlab.tpl`, `@/contrib/junit.tpl`)                                                                                                |
 | `tf-vars`                    | String  |                                    | path to Terraform variables file                                                                                                                               |
 | `output`                     | String  |                                    | Save results to a file                                                                                                                                         |
@@ -769,7 +785,7 @@ Following inputs can be used as `step.with` keys:
 | `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                                                                                  |
 | `hide-progress`              | String  | `false`                            | Suppress progress bar and log output                                                                                                                           |
 | `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                                                                                |
-| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`misconfig`,`license`)                                                                              |
+| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`misconfig`,`license`)                                                                 |
 | `trivyignores`               | String  |                                    | comma-separated list of relative paths in repository to one or more `.trivyignore` files                                                                       |
 | `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                                                                                      |
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN        |
@@ -777,6 +793,7 @@ Following inputs can be used as `step.with` keys:
 | `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values                                      |
 | `version`                    | String  | `v0.56.1`                          | Trivy version to use, e.g. `latest` or `v0.56.1`                                                                                                               |
 | `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                       |
+| `token-setup-trivy`          | Boolean |                                    | Overwrite `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                              |
 
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
