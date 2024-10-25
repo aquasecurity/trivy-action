@@ -16,7 +16,7 @@
   * [Cache](#cache)
   * [Trivy Setup](#trivy-setup)
   * [Scanning a Tarball](#scanning-a-tarball)
-  * [Using Trivy with default templates](#using-trivy-with-github-code-scanning)
+  * [Using Trivy with templates](#using-trivy-with-templates)
   * [Using Trivy with GitHub Code Scanning](#using-trivy-with-github-code-scanning)
   * [Using Trivy to scan your Git repo](#using-trivy-to-scan-your-git-repo)
   * [Using Trivy to scan your rootfs directories](#using-trivy-to-scan-your-rootfs-directories)
