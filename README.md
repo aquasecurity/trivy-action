@@ -215,7 +215,7 @@ jobs:
       uses: aquasecurity/setup-trivy@v0.2.0
       with:
         cache: true
-        version: v0.56.1
+        version: v0.57.1
 
     - name: Run Trivy vulnerability scanner in repo mode
       uses: aquasecurity/trivy-action@master
