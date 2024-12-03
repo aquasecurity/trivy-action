@@ -567,7 +567,7 @@ In order to send results to GitHub Dependency Graph, you will need to create a [
 
 ```yaml
 ---
-name: Pull Request
+name: Generate SBOM
 on:
   push:
     branches:
@@ -580,7 +580,7 @@ permissions:
 jobs:
   build:
     name: Checks
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -601,7 +601,7 @@ You can upload the report as an artifact and download it, for instance using the
 
 ```yaml
 ---
-name: Pull Request
+name: Generate SBOM
 on:
   push:
     branches:
@@ -614,7 +614,7 @@ permissions:
 jobs:
   build:
     name: Checks
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Scan image in a private registry
         uses: aquasecurity/trivy-action@0.28.0
