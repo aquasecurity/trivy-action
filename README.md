@@ -578,8 +578,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    name: Checks
+  generate-sbom:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -612,8 +611,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    name: Checks
+  generate-sbom:
     runs-on: ubuntu-latest
     steps:
       - name: Scan image in a private registry
