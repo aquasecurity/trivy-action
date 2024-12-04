@@ -147,6 +147,12 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
+    - name: Create file with trivy envs
+      shell: bash
+      run: |
+        # Create/clear file with Trivy envs to keep envs within this action and avoid env leaks
+        > trivy_envs.txt
+
     - name: Set Trivy environment variables
       shell: bash
       run: |
@@ -161,7 +167,7 @@ runs:
           local default_value="$3"
         
           if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then
-            echo "$var_name=$input_value" >> $GITHUB_ENV
+            echo "$var_name=$input_value" >> trivy_envs.txt
           fi
         }
         
