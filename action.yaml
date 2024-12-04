@@ -141,6 +141,13 @@ runs:
         key: cache-trivy-${{ steps.date.outputs.date }}
         restore-keys: cache-trivy-
 
+    - name: test
+      shell: bash
+      run: |
+        echo "Listing contents of inputs.cache-dir"
+        ls -alh ${{ inputs.cache-dir }}
+        cat ${{ inputs.cache-dir }}/trivy/db/metadata.json
+
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
       shell: bash
