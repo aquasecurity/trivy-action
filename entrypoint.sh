@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Read TRIVY_* envs from file
-source trivy_envs.txt
+source ./trivy_envs.txt
 
 # Set artifact reference
 scanType="${INPUT_SCAN_TYPE:-image}"
