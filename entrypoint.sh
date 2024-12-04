@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Read TRIVY_* envs from file
-source ./trivy_envs.txt
+export TRIVY_FORMAT="sarif"
 
 echo "$TRIVY_FORMAT"
 
