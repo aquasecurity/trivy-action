@@ -1,10 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+echo "export TRIVY_DEBUG=true" >> ./trivy_envs.txt
 # Read TRIVY_* envs from file
 source ./trivy_envs.txt
-
-echo "$TRIVY_FORMAT"
 
 # Set artifact reference
 scanType="${INPUT_SCAN_TYPE:-image}"
@@ -42,6 +41,8 @@ if [ "${TRIVY_FORMAT:-}" = "sarif" ]; then
     echo "Building SARIF report"
   fi
 fi
+
+env | grep TRIVY
 
 # Run Trivy
 cmd=(trivy "$scanType" "$scanRef")
