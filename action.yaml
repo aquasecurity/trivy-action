@@ -161,7 +161,7 @@ runs:
           local default_value="$3"
           local value="${!var_name}"
 
-          if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ] || [ "$value" != "$default_value" ]; then
+          if [ ! -z "$input_value" ] && { [ "$input_value" != "$default_value" ] || [ "$value" != "$default_value" ]; }; then
             echo "$var_name=$input_value" >> $GITHUB_ENV
           fi
         }
