@@ -849,7 +849,7 @@ Following inputs can be used as `step.with` keys:
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN        |
 | `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true** |
 | `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values                                      |
-| `version`                    | String  | `v0.56.2`                          | Trivy version to use, e.g. `latest` or `v0.56.2`                                                                                                               |
+| `version`                    | String  | `v0.57.1`                          | Trivy version to use, e.g. `latest` or `v0.57.1`                                                                                                               |
 | `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                       |
 | `token-setup-trivy`          | Boolean |                                    | Overwrite `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                              |
 
