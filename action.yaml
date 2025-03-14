@@ -159,12 +159,13 @@ runs:
           local var_name="$1"
           local input_value="$2"
           local default_value="$3"
-        
-          if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then
+          local value="${!var_name}"
+
+          if [ ! -z "$input_value" ] && { [ "$input_value" != "$default_value" ] || [ "$value" != "$default_value" ]; }; then
             echo "$var_name=$input_value" >> $GITHUB_ENV
           fi
         }
-        
+
         # Set environment variables, handling those with default values
         # cf. https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables
         set_env_var_if_provided "TRIVY_INPUT" "${{ inputs.input }}" ""
