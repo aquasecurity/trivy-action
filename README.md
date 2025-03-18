@@ -849,6 +849,7 @@ Following inputs can be used as `step.with` keys:
 | `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values                                      |
 | `version`                    | String  | `v0.60.0`                          | Trivy version to use, e.g. `latest` or `v0.60.0`                                                                                                               |
 | `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                       |
+| `include-dev-deps`           | Boolean | false                              | Include development dependencies in the report (supported: `npm`, `yarn`)                                                                                      |
 | `token-setup-trivy`          | Boolean |                                    | Overwrite `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                              |
 
 ### Environment variables
