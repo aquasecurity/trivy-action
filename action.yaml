@@ -141,24 +141,19 @@ runs:
         key: cache-trivy-${{ steps.date.outputs.date }}
         restore-keys: cache-trivy-
 
-    - name: test
-      shell: bash
-      run: |
-        echo "Listing contents of inputs.cache-dir"
-        ls -alh ${{ inputs.cache-dir }}
-        cat ${{ inputs.cache-dir }}/db/metadata.json
-
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
-    - name: Create file with trivy envs
+    # Create and Clear Trivy Envs file
+    # See #422 for context
+    - name: Clear Trivy Envs file
       shell: bash
       run: |
-        # Create/clear file with Trivy envs to keep envs within this action and avoid env leaks
-        > trivy_envs.txt
+        rm -f trivy_envs.txt
+        touch trivy_envs.txt
 
     - name: Set Trivy environment variables
       shell: bash
@@ -199,10 +194,6 @@ runs:
         set_env_var_if_provided "TRIVY_TF_VARS" "${{ inputs.tf-vars }}" ""
         set_env_var_if_provided "TRIVY_DOCKER_HOST" "${{ inputs.docker-host }}" ""
 
-    - name: test
-      shell: bash
-      run: cat trivy_envs.txt
-
     - name: Run Trivy
       shell: bash
       run: entrypoint.sh
@@ -219,3 +210,11 @@ runs:
 
         # For Trivy
         TRIVY_CACHE_DIR: ${{ inputs.cache-dir }} # Always set
+
+    # Remove Trivy envs to keep envs within this action and avoid env leaks
+    # See #422 for context
+    - name: Remove Trivy Envs file
+      if: ${{ always() }}
+      shell: bash
+      run: |
+        rm -f trivy_envs.txt
