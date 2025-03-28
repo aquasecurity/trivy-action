@@ -168,8 +168,10 @@ runs:
           local input_value="$2"
           local default_value="$3"
         
-          if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then
+          if [ ! -z "$input_value" ]; then
             echo "export $var_name=$input_value" >> trivy_envs.txt
+          elif [ ! -z "$default_value" ]; then
+            echo "export $var_name=$default_value" >> trivy_envs.txt
           fi
         }
         
