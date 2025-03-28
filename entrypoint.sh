@@ -1,6 +1,13 @@
 #!/bin/bash
 set -euo pipefail
 
+echo "export TRIVY_DEBUG=true" >> ./trivy_envs.txt
+# Read TRIVY_* envs from file, previously they were written to the GITHUB_ENV file but GitHub Actions automatically 
+# injects those into subsequent job steps which means inputs from one trivy-action invocation were leaking over to 
+# any subsequent invocation which led to unexpected/undesireable behaviour from a user perspective
+# See #422 for more context around this
+source ./trivy_envs.txt
+
 # Set artifact reference
 scanType="${INPUT_SCAN_TYPE:-image}"
 scanRef="${INPUT_SCAN_REF:-.}"

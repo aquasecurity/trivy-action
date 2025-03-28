@@ -147,6 +147,14 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
+    # Create and Clear Trivy Envs file
+    # See #422 for context
+    - name: Clear Trivy Envs file
+      shell: bash
+      run: |
+        rm -f trivy_envs.txt
+        touch trivy_envs.txt
+
     - name: Set Trivy environment variables
       shell: bash
       run: |
@@ -160,8 +168,10 @@ runs:
           local input_value="$2"
           local default_value="$3"
         
-          if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then
-            echo "$var_name=$input_value" >> $GITHUB_ENV
+          if [ ! -z "$input_value" ]; then
+            echo "export $var_name=$input_value" >> trivy_envs.txt
+          elif [ ! -z "$default_value" ]; then
+            echo "export $var_name=$default_value" >> trivy_envs.txt
           fi
         }
         
@@ -186,6 +196,13 @@ runs:
         set_env_var_if_provided "TRIVY_TF_VARS" "${{ inputs.tf-vars }}" ""
         set_env_var_if_provided "TRIVY_DOCKER_HOST" "${{ inputs.docker-host }}" ""
 
+    - name: Display Env variables
+      # Only when Actions Debug Logging enabled
+      if: ${{ runner.debug == '1' }}
+      shell: bash
+      run: |
+        cat trivy_envs.txt
+
     - name: Run Trivy
       shell: bash
       run: entrypoint.sh
@@ -202,3 +219,11 @@ runs:
 
         # For Trivy
         TRIVY_CACHE_DIR: ${{ inputs.cache-dir }} # Always set
+
+    # Remove Trivy envs to keep envs within this action and avoid env leaks
+    # See #422 for context
+    - name: Remove Trivy Envs file
+      if: ${{ always() }}
+      shell: bash
+      run: |
+        rm -f trivy_envs.txt
