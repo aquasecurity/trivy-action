@@ -194,6 +194,13 @@ runs:
         set_env_var_if_provided "TRIVY_TF_VARS" "${{ inputs.tf-vars }}" ""
         set_env_var_if_provided "TRIVY_DOCKER_HOST" "${{ inputs.docker-host }}" ""
 
+    - name: Display Env variables
+      # Only when Actions Debug Logging enabled
+      if: ${{ runner.debug == '1' }}
+      shell: bash
+      run: |
+        cat trivy_envs.txt
+
     - name: Run Trivy
       shell: bash
       run: entrypoint.sh
