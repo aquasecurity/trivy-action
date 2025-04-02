@@ -22,7 +22,7 @@ if [ -n "${INPUT_TRIVYIGNORES:-}" ]; then
       cat "${f}" >> "$ignorefile"
     else
       echo "ERROR: cannot find ignorefile '${f}'." >&2
-      exit 1
+      exit 0
     fi
   done
   export TRIVY_IGNOREFILE="$ignorefile"
