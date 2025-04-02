@@ -162,26 +162,26 @@ runs:
         # This limitation affects how we handle default values and empty inputs.
         # For more information, see: https://github.com/actions/runner/issues/924
 
-        # Function to set environment variable only if the input is provided, or a default required
+        # The following logic implements the configuration priority described in the README:
+        #
+        # Inputs
+        # Environment Variables
+        # Config File
+        # Defaults
+        #
+        # As noted above defaults are awkward to handle as GitHub Actions will inject those values as the input
+        # if the caller doesn't provide them, thus if the input matches the default we don't set it as we
+        # can't tell the difference.  Plus if we did set it when it was the default value then it could potentially 
+        # override an external environment variable, or something in the callers configuration file, which then wouldn't 
+        # match the configuration priority that is documented.
         set_env_var_if_provided() {
           local var_name="$1"
           local input_value="$2"
           local default_value="$3"
-          local external_value="${!var_name}"
         
-          if [ -n "$external_value" ]; then
-            # If action had this value already set in the configured environment variables honour the existing
-            # environment variable
-            # In this case don't need to export it as it already exists in the environment
-            return
-          elif [ ! -z "$input_value" ]; then
+          if [ ! -z "$input_value" && "$input_value" != "$default_value" ]; then
             # If action was provided with explicit input by the caller set that
             echo "export $var_name=$input_value" >> trivy_envs.txt
-          elif [ ! -z "$default_value" ]; then
-            # Otherwise if the action defines a default value then set that 
-            # This is necessary because in some cases the Actions defined default may not align
-            # with the trivy CLIs default
-            echo "export $var_name=$default_value" >> trivy_envs.txt
           fi
         }
         

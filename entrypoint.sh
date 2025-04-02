@@ -5,7 +5,9 @@ set -euo pipefail
 # injects those into subsequent job steps which means inputs from one trivy-action invocation were leaking over to 
 # any subsequent invocation which led to unexpected/undesireable behaviour from a user perspective
 # See #422 for more context around this
-source ./trivy_envs.txt
+if [ -f ./trivy_envs.txt ]; then
+  source ./trivy_envs.txt
+fi
 
 # Set artifact reference
 scanType="${INPUT_SCAN_TYPE:-image}"
