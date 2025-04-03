@@ -179,7 +179,7 @@ runs:
           local input_value="$2"
           local default_value="$3"
         
-          if [ ! -z "$input_value" && "$input_value" != "$default_value" ]; then
+          if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then
             # If action was provided with explicit input by the caller set that
             echo "export $var_name=$input_value" >> trivy_envs.txt
           fi
