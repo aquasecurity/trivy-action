@@ -39,6 +39,7 @@ function reset_envs() {
   for var in $(env | grep '^TRIVY_\|^INPUT_' | cut -d= -f1); do
     unset "$var"
   done
+  rm -f trivy_envs.txt
 }
 
 function compare_files() {
@@ -148,5 +149,32 @@ function compare_files() {
   export TRIVY_FORMAT=json TRIVY_SEVERITY=MEDIUM TRIVY_OUTPUT=tfvars.json INPUT_SCAN_TYPE=config INPUT_SCAN_REF=./test/data/with-tf-vars/main.tf TRIVY_TF_VARS=./test/data/with-tf-vars/dev.tfvars
   ./entrypoint.sh
   compare_files tfvars.json ./test/data/with-tf-vars/report.json
+  reset_envs
+}
+
+@test "trivy image via environment file" {
+  # trivy image --severity CRITICAL --output image.test knqyf263/vuln-image:1.2.3
+  # Action injects inputs into the script via environment variables
+  echo "export TRIVY_OUTPUT=image.test" >> trivy_envs.txt
+  echo "export TRIVY_SEVERITY=CRITICAL" >> trivy_envs.txt
+  echo "export INPUT_SCAN_TYPE=image" >> trivy_envs.txt
+  echo "export INPUT_SCAN_REF=knqyf263/vuln-image:1.2.3" >> trivy_envs.txt 
+  ./entrypoint.sh
+  compare_files image.test ./test/data/image-scan/report
+  reset_envs
+}
+
+@test "trivy image via environment file overrides env leakages" {
+  # trivy image --severity CRITICAL --output image.test knqyf263/vuln-image:1.2.3
+  # Action injects inputs into the script via environment variables
+  # If caller mixes old and new trivy-action version they could still have env leakage so verify that env vars already
+  # in the env are overridden by those from the envs file
+  export INPUT_SCAN_REF=no/such-image:1.2.3
+  echo "export TRIVY_OUTPUT=image.test" >> trivy_envs.txt
+  echo "export TRIVY_SEVERITY=CRITICAL" >> trivy_envs.txt
+  echo "export INPUT_SCAN_TYPE=image" >> trivy_envs.txt
+  echo "export INPUT_SCAN_REF=knqyf263/vuln-image:1.2.3" >> trivy_envs.txt 
+  ./entrypoint.sh
+  compare_files image.test ./test/data/image-scan/report
   reset_envs
 }

@@ -854,6 +854,13 @@ Following inputs can be used as `step.with` keys:
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
 
+**NB** In some older versions of the Action there was a bug that caused inputs from one call to the Action to leak 
+over to subsequent calls to the Action.  This could cause workflows that call the Action multiple times e.g. to run 
+multiple scans, or the same scans with different output formats, to not produce the desired output.  You can see if this
+is the case by looking at the GitHub Actions step information, if the `env` section shown in your Actions output 
+contains `TRIVY_*` environment variables you did not explicitly set then you may be affected by this bug and should 
+upgrade to the latest Action version.
+
 ### Trivy config file
 When using the `trivy-config` [Input](#inputs), you can set options using the [Trivy config file][trivy-config] (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
 

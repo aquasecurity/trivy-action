@@ -147,6 +147,14 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
+    # Create and Clear Trivy Envs file
+    # See #422 for context
+    - name: Clear Trivy Envs file
+      shell: bash
+      run: |
+        rm -f trivy_envs.txt
+        touch trivy_envs.txt
+
     - name: Set Trivy environment variables
       shell: bash
       run: |
@@ -154,14 +162,26 @@ runs:
         # This limitation affects how we handle default values and empty inputs.
         # For more information, see: https://github.com/actions/runner/issues/924
 
-        # Function to set environment variable only if the input is provided and different from default
+        # The following logic implements the configuration priority described in the README:
+        #
+        # Inputs
+        # Environment Variables
+        # Config File
+        # Defaults
+        #
+        # As noted above defaults are awkward to handle as GitHub Actions will inject those values as the input
+        # if the caller doesn't provide them, thus if the input matches the default we don't set it as we
+        # can't tell the difference.  Plus if we did set it when it was the default value then it could potentially 
+        # override an external environment variable, or something in the callers configuration file, which then wouldn't 
+        # match the configuration priority that is documented.
         set_env_var_if_provided() {
           local var_name="$1"
           local input_value="$2"
           local default_value="$3"
         
           if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then
-            echo "$var_name=$input_value" >> $GITHUB_ENV
+            # If action was provided with explicit input by the caller set that
+            echo "export $var_name=$input_value" >> trivy_envs.txt
           fi
         }
         
@@ -202,3 +222,11 @@ runs:
 
         # For Trivy
         TRIVY_CACHE_DIR: ${{ inputs.cache-dir }} # Always set
+
+    # Remove Trivy envs to keep envs within this action and avoid env leaks
+    # See #422 for context
+    - name: Remove Trivy Envs file
+      if: ${{ always() }}
+      shell: bash
+      run: |
+        rm -f trivy_envs.txt
