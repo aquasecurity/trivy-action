@@ -126,8 +126,7 @@ runs:
       # "allowing select actions" feature can be used to whitelist the dependent action by a hash.
       # This is needed since some organizations have a policy to only allow pinned 3rd party actions to 
       # be used.
-      # ff1b8b060f23b650436d419b5e13f67f5d4c3087 is equal to v0.2.2
-      uses: aquasecurity/setup-trivy@ff1b8b060f23b650436d419b5e13f67f5d4c3087
+      uses: aquasecurity/setup-trivy@ff1b8b060f23b650436d419b5e13f67f5d4c3087 # equivalent to `v0.2.2`
       with:
         version: ${{ inputs.version }}
         cache: ${{ inputs.cache }}
