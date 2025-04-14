@@ -590,7 +590,7 @@ jobs:
           scan-type: 'fs'
           format: 'github'
           output: 'dependency-results.sbom.json'
-          image-ref: '.'
+          scan-ref: '.'
           github-pat: ${{ secrets.GITHUB_TOKEN }} # or ${{ secrets.github_pat_name }} if you're using a PAT
 ```
 
