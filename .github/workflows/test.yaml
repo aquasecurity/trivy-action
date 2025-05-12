@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  TRIVY_VERSION: 0.60.0
+  TRIVY_VERSION: 0.61.1
   BATS_LIB_PATH: '/usr/lib/'
 
 jobs:
