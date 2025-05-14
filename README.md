@@ -395,6 +395,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -430,6 +433,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -469,6 +475,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -503,6 +512,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -538,6 +550,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -653,6 +668,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -689,6 +707,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -725,6 +746,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -758,6 +782,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read         # permissions needed to be able to run the checkout action
+      security-events: write # permissions needed for the upload-sarif action
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
