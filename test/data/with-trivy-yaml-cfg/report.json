@@ -1,8 +1,10 @@
 {
   "SchemaVersion": 2,
+  "CreatedAt": "2025-06-03T01:26:45.367171-06:00",
   "ArtifactName": "alpine:3.10",
   "ArtifactType": "container_image",
   "Metadata": {
+    "Size": 5842432,
     "OS": {
       "Family": "alpine",
       "Name": "3.10.9",
@@ -50,7 +52,14 @@
         ],
         "Image": "sha256:eb2080c455e94c22ae35b3aef9e078c492a00795412e026e4d6b41ef64bc7dd8"
       }
-    }
+    },
+    "Layers": [
+      {
+        "Size": 5842432,
+        "Digest": "sha256:396c31837116ac290458afcb928f68b6cc1c7bdd6963fc72f52f365a2a89c1b5",
+        "DiffID": "sha256:9fb3aa2f8b8023a4bebbf92aa567caf88e38e969ada9f0ac12643b2847391635"
+      }
+    ]
   },
   "Results": [
     {
@@ -63,8 +72,8 @@
           "PkgID": "apk-tools@2.10.6-r0",
           "PkgName": "apk-tools",
           "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64&distro=3.10.9",
-            "UID": "99f6581ffed6b22"
+            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64\u0026distro=3.10.9",
+            "UID": "b7a64ae671a99195"
           },
           "InstalledVersion": "2.10.6-r0",
           "FixedVersion": "2.10.7-r0",
