@@ -20,20 +20,14 @@
       "Class": "config",
       "Type": "terraform",
       "MisconfSummary": {
-        "Successes": 2,
-        "Failures": 0,
-        "Exceptions": 0
+        "Successes": 19,
+        "Failures": 0
       }
     },
     {
       "Target": "main.tf",
       "Class": "config",
-      "Type": "terraform",
-      "MisconfSummary": {
-        "Successes": 1,
-        "Failures": 0,
-        "Exceptions": 0
-      }
+      "Type": "terraform"
     }
   ]
 }

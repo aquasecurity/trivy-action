@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  TRIVY_VERSION: 0.53.0
+  TRIVY_VERSION: 0.64.1
   BATS_LIB_PATH: '/usr/lib/'
 
 jobs:
@@ -24,6 +24,8 @@ jobs:
           trivy --version
 
       - name: Test
-        run: |
-          chmod +x entrypoint.sh 
-          bats -r -T .
+        run: bats --recursive --timing --verbose-run .
+        env:
+          TRIVY_CACHE_DIR: .cache
+          TRIVY_DISABLE_VEX_NOTICE: true
+          TRIVY_DEBUG: true

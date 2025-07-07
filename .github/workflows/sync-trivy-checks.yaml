@@ -21,4 +21,4 @@ jobs:
 
       - name: Copy Trivy Checks
         run: |
-          oras cp ghcr.io/aquasecurity/trivy-checks:0 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          oras cp ghcr.io/aquasecurity/trivy-checks:1 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

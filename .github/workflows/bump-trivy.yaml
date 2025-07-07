@@ -6,7 +6,7 @@ on:
       trivy_version:
         required: true
         type: string
-        description: the trivy version
+        description: 'The Trivy version in x.x.x format'
 
 run-name: Bump trivy to v${{ inputs.trivy_version }}
 
@@ -14,11 +14,13 @@ jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      
+      - name: Set new version from input
+        run: echo "NEW_VERSION=${{ inputs.trivy_version }}" >> $GITHUB_ENV
+
       - name: Update Trivy versions
-        run: |
-          sed -r -i "s/ghcr.io\/aquasecurity\/trivy:[0-9]+\.[0-9]+\.[0-9]+/ghcr.io\/aquasecurity\/trivy:${{ inputs.trivy_version }}/" Dockerfile
-          find test/data -type f -name '*.test' | xargs sed -r -i 's/"version": "[0-9]+\.[0-9]+\.[0-9]+"/"version": "${{ inputs.trivy_version }}"/'
+        run: make bump-trivy
 
       - name: Create PR
         id: create-pr
