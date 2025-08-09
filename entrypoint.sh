@@ -18,7 +18,7 @@ fi
 
 # Handle trivy ignores
 if [ -n "${INPUT_TRIVYIGNORES:-}" ]; then
-  ignorefile="./trivyignores"
+  ignorefile="./trivyignores.yaml"
 
   # Clear the ignore file if it exists, or create a new empty file
   : > "$ignorefile"
