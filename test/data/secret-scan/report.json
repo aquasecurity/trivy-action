@@ -2,18 +2,6 @@
   "SchemaVersion": 2,
   "ArtifactName": "https://github.com/krol3/demo-trivy/",
   "ArtifactType": "repository",
-  "Metadata": {
-    "ImageConfig": {
-      "architecture": "",
-      "created": "0001-01-01T00:00:00Z",
-      "os": "",
-      "rootfs": {
-        "type": "",
-        "diff_ids": null
-      },
-      "config": {}
-    }
-  },
   "Results": [
     {
       "Target": "env",
@@ -68,8 +56,7 @@
               }
             ]
           },
-          "Match": "export GITHUB_PAT=****************************************",
-          "Layer": {}
+          "Match": "export GITHUB_PAT=****************************************"
         }
       ]
     }
