@@ -11,7 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: setup-oras
+        uses: oras-project/setup-oras@v1.2.3
+
       - name: Login to GitHub Packages Container registry
         uses: docker/login-action@v3
         with:
