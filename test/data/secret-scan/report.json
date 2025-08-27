@@ -2,6 +2,14 @@
   "SchemaVersion": 2,
   "ArtifactName": "https://github.com/krol3/demo-trivy/",
   "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/krol3/demo-trivy/",
+    "Branch": "main",
+    "Commit": "547db823c73fdb3385871f6235e946c72291f734",
+    "CommitMsg": "chore: add gitignore",
+    "Author": "carolina valencia <krol3@users.noreply.github.com>",
+    "Committer": "carolina valencia <krol3@users.noreply.github.com>"
+  },
   "Results": [
     {
       "Target": "env",

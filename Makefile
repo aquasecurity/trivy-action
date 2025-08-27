@@ -16,14 +16,17 @@ BATS_ENV := BATS_LIB_PATH=$(BATS_LIB_PATH) \
 BATS_FLAGS := --recursive --timing --verbose-run .
 
 .PHONY: test
-test:
-	mkdir -p .cache
+test: init-cache
 	$(BATS_ENV) bats $(BATS_FLAGS)
 
 .PHONY: update-golden
-update-golden:
-	mkdir -p .cache
+update-golden: init-cache
 	UPDATE_GOLDEN=1 $(BATS_ENV) bats $(BATS_FLAGS)
+
+.PHONY: init-cache
+init-cache:
+	mkdir -p .cache
+	rm -f .cache/fanal/fanal.db
 
 bump-trivy:
 	@[ $$NEW_VERSION ] || ( echo "env 'NEW_VERSION' is not set"; exit 1 )
