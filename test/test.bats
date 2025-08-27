@@ -57,9 +57,16 @@ function compare_files() {
   remove_github_fields "$file1"
   remove_github_fields "$file2"
   
-  run diff "$file1" "$file2"
-  echo "$output"
-  assert_files_equal "$file1" "$file2"
+  if [ "${UPDATE_GOLDEN}" = "1" ]; then
+    cp "$file1" "$file2"
+    echo "Updated golden file: $file2"
+  else
+    run diff "$file1" "$file2"
+    echo "$output"
+    assert_files_equal "$file1" "$file2"
+  fi
+
+  rm -f "$file1"
 }
 
 @test "trivy repo with securityCheck secret only" {

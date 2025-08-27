@@ -51,7 +51,8 @@ Total: 19 (CRITICAL: 19)
 │             │                │          │        │                   │               │ Windows Subsystem for...                                     │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1353                    │
 ├─────────────┼────────────────┤          │        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
-│ libbz2      │ CVE-2019-12900 │          │        │ 1.0.6-r6          │ 1.0.6-r7      │ bzip2: out-of-bounds write in function BZ2_decompress        │
+│ libbz2      │ CVE-2019-12900 │          │        │ 1.0.6-r6          │ 1.0.6-r7      │ bzip2: bzip2: Data integrity error when decompressing (with  │
+│             │                │          │        │                   │               │ data integrity tests fail)....                               │
 │             │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-12900                   │
 ├─────────────┼────────────────┤          │        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
 │ libcurl     │ CVE-2018-16839 │          │        │ 7.61.1-r0         │ 7.61.1-r1     │ curl: Integer overflow leading to heap-based buffer overflow │

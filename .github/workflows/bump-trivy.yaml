@@ -22,6 +22,9 @@ jobs:
       - name: Update Trivy versions
         run: make bump-trivy
 
+      - name: Update golden files
+        run: make update-golden
+
       - name: Create PR
         id: create-pr
         uses: peter-evans/create-pull-request@v5

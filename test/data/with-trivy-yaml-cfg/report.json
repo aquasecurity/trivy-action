@@ -1,6 +1,5 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-06-03T01:26:45.367171-06:00",
   "ArtifactName": "alpine:3.10",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -72,7 +71,7 @@
           "PkgID": "apk-tools@2.10.6-r0",
           "PkgName": "apk-tools",
           "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64\u0026distro=3.10.9",
+            "PURL": "pkg:apk/alpine/apk-tools@2.10.6-r0?arch=x86_64&distro=3.10.9",
             "UID": "b7a64ae671a99195"
           },
           "InstalledVersion": "2.10.6-r0",
@@ -123,7 +122,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2021-36159"
           ],
           "PublishedDate": "2021-08-03T14:15:08.233Z",
-          "LastModifiedDate": "2023-11-07T03:36:43.337Z"
+          "LastModifiedDate": "2024-11-21T06:13:13.57Z"
         }
       ]
     }

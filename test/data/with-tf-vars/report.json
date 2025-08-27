@@ -2,18 +2,6 @@
   "SchemaVersion": 2,
   "ArtifactName": "test/data/with-tf-vars/main.tf",
   "ArtifactType": "filesystem",
-  "Metadata": {
-    "ImageConfig": {
-      "architecture": "",
-      "created": "0001-01-01T00:00:00Z",
-      "os": "",
-      "rootfs": {
-        "type": "",
-        "diff_ids": null
-      },
-      "config": {}
-    }
-  },
   "Results": [
     {
       "Target": ".",
