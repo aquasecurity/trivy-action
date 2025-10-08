@@ -98,7 +98,7 @@ inputs:
   version:
     description: 'Trivy version to use'
     required: false
-    default: 'v0.65.0'
+    default: 'v0.67.0'
   cache:
     description: 'Used to specify whether caching is needed. Set to false, if you would like to disable caching.'
     required: false
