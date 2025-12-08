@@ -22,7 +22,13 @@ jobs:
       - name: Update Trivy versions
         run: make bump-trivy
 
+      - name: Setup Bats and bats libs
+        id: setup-bats
+        uses: bats-core/bats-action@3.0.1
+
       - name: Update golden files
+        env:
+          BATS_LIB_PATH: ${{ steps.setup-bats.outputs.lib-path }}
         run: make update-golden
 
       - name: Create PR
