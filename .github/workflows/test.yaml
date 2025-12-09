@@ -16,7 +16,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup Bats and bats libs
-        uses: bats-core/bats-action@2.0.0
+        id: setup-bats
+        uses: bats-core/bats-action@3.0.1
 
       - name: Install Trivy
         run: |
@@ -24,8 +25,6 @@ jobs:
           trivy --version
 
       - name: Test
-        run: bats --recursive --timing --verbose-run .
         env:
-          TRIVY_CACHE_DIR: .cache
-          TRIVY_DISABLE_VEX_NOTICE: true
-          TRIVY_DEBUG: true
+          BATS_LIB_PATH: ${{ steps.setup-bats.outputs.lib-path }}
+        run: make test
