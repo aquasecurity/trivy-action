@@ -26,6 +26,11 @@ jobs:
         id: setup-bats
         uses: bats-core/bats-action@3.0.1
 
+      - name: Install Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${{ inputs.trivy_version }}
+          trivy --version
+
       - name: Update golden files
         env:
           BATS_LIB_PATH: ${{ steps.setup-bats.outputs.lib-path }}
