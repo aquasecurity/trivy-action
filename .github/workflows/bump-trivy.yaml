@@ -15,11 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Set new version from input
-        run: echo "NEW_VERSION=${{ inputs.trivy_version }}" >> $GITHUB_ENV
 
       - name: Update Trivy versions
+        env:
+          NEW_VERSION: ${{ inputs.trivy_version }}
         run: make bump-trivy
 
       - name: Setup Bats and bats libs
@@ -35,6 +34,11 @@ jobs:
         env:
           BATS_LIB_PATH: ${{ steps.setup-bats.outputs.lib-path }}
         run: make update-golden
+
+      - name: Run tests
+        env:
+          BATS_LIB_PATH: ${{ steps.setup-bats.outputs.lib-path }}
+        run: make test
 
       - name: Create PR
         id: create-pr
