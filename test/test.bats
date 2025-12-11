@@ -5,6 +5,7 @@ setup_file() {
   export TRIVY_DB_REPOSITORY=ghcr.io/${owner}/trivy-db-act:latest
   export TRIVY_JAVA_DB_REPOSITORY=ghcr.io/${owner}/trivy-java-db-act:latest
   export TRIVY_CHECKS_BUNDLE_REPOSITORY=ghcr.io/${owner}/trivy-checks-act:latest
+  export TRIVY_LIST_ALL_PKGS=false
 }
 
 setup() {
@@ -16,7 +17,7 @@ setup() {
 function remove_json_fields() {
   local file="$1"
   if [[ "$file" == *.json ]]; then
-      jq 'del(.CreatedAt)' "$file" > tmp && mv tmp "$file"
+      jq 'del(.CreatedAt, .ReportID)' "$file" > tmp && mv tmp "$file"
   fi
 }
 

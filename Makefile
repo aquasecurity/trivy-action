@@ -1,10 +1,11 @@
 OS := $(shell uname)
-SED = sed
-BATS_LIB_PATH ?= /usr/local/lib/ 
 
 ifeq ($(OS), Darwin)
-SED = gsed
-BATS_LIB_PATH ?= /opt/homebrew/lib
+  SED = gsed
+  BATS_LIB_PATH ?= /opt/homebrew/lib
+else
+  SED = sed
+  BATS_LIB_PATH ?= /usr/local/lib/
 endif
 
 BATS_ENV := BATS_LIB_PATH=$(BATS_LIB_PATH) \
