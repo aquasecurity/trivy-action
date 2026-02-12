@@ -1,5 +1,8 @@
 {
   "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.69.1"
+  },
   "ArtifactName": "test/data/with-tf-vars/main.tf",
   "ArtifactType": "filesystem",
   "Results": [
@@ -8,7 +11,7 @@
       "Class": "config",
       "Type": "terraform",
       "MisconfSummary": {
-        "Successes": 19,
+        "Successes": 27,
         "Failures": 0
       }
     },
