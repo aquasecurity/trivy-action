@@ -1,5 +1,8 @@
 {
   "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.69.1"
+  },
   "ArtifactID": "sha256:79ce4c2f8371bef1ce2a321518d3136bc1bd8f3c307ed679944a38e7cbd76c14",
   "ArtifactName": "https://github.com/krol3/demo-trivy/",
   "ArtifactType": "repository",
