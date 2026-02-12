@@ -8,7 +8,7 @@
       "Class": "config",
       "Type": "terraform",
       "MisconfSummary": {
-        "Successes": 38,
+        "Successes": 40,
         "Failures": 0
       }
     },
@@ -263,7 +263,7 @@
           "ID": "AVD-AWS-0090",
           "AVDID": "AVD-AWS-0090",
           "Title": "S3 Data should be versioned",
-          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
           "Message": "Bucket does not have versioning enabled",
           "Namespace": "builtin.aws.s3.aws0090",
           "Query": "data.builtin.aws.s3.aws0090.deny",
@@ -272,6 +272,7 @@
           "PrimaryURL": "https://avd.aquasec.com/misconfig/avd-aws-0090",
           "References": [
             "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
             "https://avd.aquasec.com/misconfig/avd-aws-0090"
           ],
           "Status": "FAIL",
@@ -382,7 +383,7 @@
           "Type": "Terraform Security Check",
           "ID": "AVD-AWS-0091",
           "AVDID": "AVD-AWS-0091",
-          "Title": "S3 Access Block should Ignore Public Acl",
+          "Title": "S3 Access Block should Ignore Public ACL",
           "Description": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
           "Message": "No public access block so not blocking public acls",
           "Namespace": "builtin.aws.s3.aws0091",
