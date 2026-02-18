@@ -146,8 +146,7 @@ runs:
         restore-keys: cache-trivy-
 
     - name: Set GitHub Path
-      # zizmor: ignore[github-env] - github.action_path is controlled by GitHub, not user input
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH # zizmor: ignore[github-env]
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
