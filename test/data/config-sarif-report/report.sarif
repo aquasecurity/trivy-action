@@ -10,7 +10,7 @@
           "name": "Trivy",
           "rules": [
             {
-              "id": "AVD-AWS-0086",
+              "id": "AWS-0086",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 Access block should block public ACL"
@@ -21,10 +21,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0086",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0086",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0086\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access block should block public ACL\nMessage: No public access block so not blocking public acls\nLink: [AVD-AWS-0086](https://avd.aquasec.com/misconfig/avd-aws-0086)\nS3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0086**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access block should block public ACL|No public access block so not blocking public acls|[AVD-AWS-0086](https://avd.aquasec.com/misconfig/avd-aws-0086)|\n\nS3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n"
+                "text": "Misconfiguration AWS-0086\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access block should block public ACL\nMessage: No public access block so not blocking public acls\nLink: [AWS-0086](https://avd.aquasec.com/misconfig/aws-0086)\nS3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
+                "markdown": "**Misconfiguration AWS-0086**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access block should block public ACL|No public access block so not blocking public acls|[AWS-0086](https://avd.aquasec.com/misconfig/aws-0086)|\n\nS3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -37,7 +37,7 @@
               }
             },
             {
-              "id": "AVD-AWS-0087",
+              "id": "AWS-0087",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 Access block should block public policy"
@@ -48,10 +48,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0087",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0087",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0087\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access block should block public policy\nMessage: No public access block so not blocking public policies\nLink: [AVD-AWS-0087](https://avd.aquasec.com/misconfig/avd-aws-0087)\nS3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0087**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access block should block public policy|No public access block so not blocking public policies|[AVD-AWS-0087](https://avd.aquasec.com/misconfig/avd-aws-0087)|\n\nS3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n"
+                "text": "Misconfiguration AWS-0087\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access block should block public policy\nMessage: No public access block so not blocking public policies\nLink: [AWS-0087](https://avd.aquasec.com/misconfig/aws-0087)\nS3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
+                "markdown": "**Misconfiguration AWS-0087**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access block should block public policy|No public access block so not blocking public policies|[AWS-0087](https://avd.aquasec.com/misconfig/aws-0087)|\n\nS3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -64,34 +64,7 @@
               }
             },
             {
-              "id": "AVD-AWS-0088",
-              "name": "Misconfiguration",
-              "shortDescription": {
-                "text": "Unencrypted S3 bucket."
-              },
-              "fullDescription": {
-                "text": "S3 Buckets should be encrypted to protect the data that is stored within them if access is compromised.\n"
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0088",
-              "help": {
-                "text": "Misconfiguration AVD-AWS-0088\nType: Terraform Security Check\nSeverity: HIGH\nCheck: Unencrypted S3 bucket.\nMessage: Bucket does not have encryption enabled\nLink: [AVD-AWS-0088](https://avd.aquasec.com/misconfig/avd-aws-0088)\nS3 Buckets should be encrypted to protect the data that is stored within them if access is compromised.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0088**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|Unencrypted S3 bucket.|Bucket does not have encryption enabled|[AVD-AWS-0088](https://avd.aquasec.com/misconfig/avd-aws-0088)|\n\nS3 Buckets should be encrypted to protect the data that is stored within them if access is compromised.\n"
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "8.0",
-                "tags": [
-                  "misconfiguration",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
-              "id": "s3-bucket-logging",
+              "id": "AWS-0089",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 Bucket Logging"
@@ -102,10 +75,10 @@
               "defaultConfiguration": {
                 "level": "note"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/s3-bucket-logging",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0089",
               "help": {
-                "text": "Misconfiguration s3-bucket-logging\nType: Terraform Security Check\nSeverity: LOW\nCheck: S3 Bucket Logging\nMessage: Bucket has logging disabled\nLink: [s3-bucket-logging](https://avd.aquasec.com/misconfig/s3-bucket-logging)\nEnsures S3 bucket logging is enabled for S3 buckets",
-                "markdown": "**Misconfiguration s3-bucket-logging**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|LOW|S3 Bucket Logging|Bucket has logging disabled|[s3-bucket-logging](https://avd.aquasec.com/misconfig/s3-bucket-logging)|\n\nEnsures S3 bucket logging is enabled for S3 buckets"
+                "text": "Misconfiguration AWS-0089\nType: Terraform Security Check\nSeverity: LOW\nCheck: S3 Bucket Logging\nMessage: Bucket has logging disabled\nLink: [AWS-0089](https://avd.aquasec.com/misconfig/aws-0089)\nEnsures S3 bucket logging is enabled for S3 buckets",
+                "markdown": "**Misconfiguration AWS-0089**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|LOW|S3 Bucket Logging|Bucket has logging disabled|[AWS-0089](https://avd.aquasec.com/misconfig/aws-0089)|\n\nEnsures S3 bucket logging is enabled for S3 buckets"
               },
               "properties": {
                 "precision": "very-high",
@@ -118,21 +91,21 @@
               }
             },
             {
-              "id": "AVD-AWS-0090",
+              "id": "AWS-0090",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 Data should be versioned"
               },
               "fullDescription": {
-                "text": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n"
+                "text": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n"
               },
               "defaultConfiguration": {
                 "level": "warning"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0090",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0090",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0090\nType: Terraform Security Check\nSeverity: MEDIUM\nCheck: S3 Data should be versioned\nMessage: Bucket does not have versioning enabled\nLink: [AVD-AWS-0090](https://avd.aquasec.com/misconfig/avd-aws-0090)\nVersioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0090**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|MEDIUM|S3 Data should be versioned|Bucket does not have versioning enabled|[AVD-AWS-0090](https://avd.aquasec.com/misconfig/avd-aws-0090)|\n\nVersioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n"
+                "text": "Misconfiguration AWS-0090\nType: Terraform Security Check\nSeverity: MEDIUM\nCheck: S3 Data should be versioned\nMessage: Bucket does not have versioning enabled\nLink: [AWS-0090](https://avd.aquasec.com/misconfig/aws-0090)\nVersioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+                "markdown": "**Misconfiguration AWS-0090**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|MEDIUM|S3 Data should be versioned|Bucket does not have versioning enabled|[AWS-0090](https://avd.aquasec.com/misconfig/aws-0090)|\n\nVersioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -145,10 +118,10 @@
               }
             },
             {
-              "id": "AVD-AWS-0091",
+              "id": "AWS-0091",
               "name": "Misconfiguration",
               "shortDescription": {
-                "text": "S3 Access Block should Ignore Public Acl"
+                "text": "S3 Access Block should Ignore Public ACL"
               },
               "fullDescription": {
                 "text": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n"
@@ -156,10 +129,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0091",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0091",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0091\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access Block should Ignore Public Acl\nMessage: No public access block so not blocking public acls\nLink: [AVD-AWS-0091](https://avd.aquasec.com/misconfig/avd-aws-0091)\nS3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0091**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access Block should Ignore Public Acl|No public access block so not blocking public acls|[AVD-AWS-0091](https://avd.aquasec.com/misconfig/avd-aws-0091)|\n\nS3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n"
+                "text": "Misconfiguration AWS-0091\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access Block should Ignore Public ACL\nMessage: No public access block so not blocking public acls\nLink: [AWS-0091](https://avd.aquasec.com/misconfig/aws-0091)\nS3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
+                "markdown": "**Misconfiguration AWS-0091**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access Block should Ignore Public ACL|No public access block so not blocking public acls|[AWS-0091](https://avd.aquasec.com/misconfig/aws-0091)|\n\nS3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -172,7 +145,7 @@
               }
             },
             {
-              "id": "AVD-AWS-0093",
+              "id": "AWS-0093",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 Access block should restrict public bucket to limit access"
@@ -183,10 +156,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0093",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0093",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0093\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access block should restrict public bucket to limit access\nMessage: No public access block so not restricting public buckets\nLink: [AVD-AWS-0093](https://avd.aquasec.com/misconfig/avd-aws-0093)\nS3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0093**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access block should restrict public bucket to limit access|No public access block so not restricting public buckets|[AVD-AWS-0093](https://avd.aquasec.com/misconfig/avd-aws-0093)|\n\nS3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n"
+                "text": "Misconfiguration AWS-0093\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 Access block should restrict public bucket to limit access\nMessage: No public access block so not restricting public buckets\nLink: [AWS-0093](https://avd.aquasec.com/misconfig/aws-0093)\nS3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
+                "markdown": "**Misconfiguration AWS-0093**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 Access block should restrict public bucket to limit access|No public access block so not restricting public buckets|[AWS-0093](https://avd.aquasec.com/misconfig/aws-0093)|\n\nS3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -199,7 +172,7 @@
               }
             },
             {
-              "id": "AVD-AWS-0094",
+              "id": "AWS-0094",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 buckets should each define an aws_s3_bucket_public_access_block"
@@ -210,10 +183,10 @@
               "defaultConfiguration": {
                 "level": "note"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0094",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0094",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0094\nType: Terraform Security Check\nSeverity: LOW\nCheck: S3 buckets should each define an aws_s3_bucket_public_access_block\nMessage: Bucket does not have a corresponding public access block.\nLink: [AVD-AWS-0094](https://avd.aquasec.com/misconfig/avd-aws-0094)\nThe \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0094**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|LOW|S3 buckets should each define an aws_s3_bucket_public_access_block|Bucket does not have a corresponding public access block.|[AVD-AWS-0094](https://avd.aquasec.com/misconfig/avd-aws-0094)|\n\nThe \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n"
+                "text": "Misconfiguration AWS-0094\nType: Terraform Security Check\nSeverity: LOW\nCheck: S3 buckets should each define an aws_s3_bucket_public_access_block\nMessage: Bucket does not have a corresponding public access block.\nLink: [AWS-0094](https://avd.aquasec.com/misconfig/aws-0094)\nThe \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
+                "markdown": "**Misconfiguration AWS-0094**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|LOW|S3 buckets should each define an aws_s3_bucket_public_access_block|Bucket does not have a corresponding public access block.|[AWS-0094](https://avd.aquasec.com/misconfig/aws-0094)|\n\nThe \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -226,21 +199,21 @@
               }
             },
             {
-              "id": "AVD-AWS-0132",
+              "id": "AWS-0132",
               "name": "Misconfiguration",
               "shortDescription": {
                 "text": "S3 encryption should use Customer Managed Keys"
               },
               "fullDescription": {
-                "text": "Encryption using AWS keys provides protection for your S3 buckets. To increase control of the encryption and manage factors like rotation use customer managed keys.\n"
+                "text": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n"
               },
               "defaultConfiguration": {
                 "level": "error"
               },
-              "helpUri": "https://avd.aquasec.com/misconfig/avd-aws-0132",
+              "helpUri": "https://avd.aquasec.com/misconfig/aws-0132",
               "help": {
-                "text": "Misconfiguration AVD-AWS-0132\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 encryption should use Customer Managed Keys\nMessage: Bucket does not encrypt data with a customer managed key.\nLink: [AVD-AWS-0132](https://avd.aquasec.com/misconfig/avd-aws-0132)\nEncryption using AWS keys provides protection for your S3 buckets. To increase control of the encryption and manage factors like rotation use customer managed keys.\n",
-                "markdown": "**Misconfiguration AVD-AWS-0132**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 encryption should use Customer Managed Keys|Bucket does not encrypt data with a customer managed key.|[AVD-AWS-0132](https://avd.aquasec.com/misconfig/avd-aws-0132)|\n\nEncryption using AWS keys provides protection for your S3 buckets. To increase control of the encryption and manage factors like rotation use customer managed keys.\n"
+                "text": "Misconfiguration AWS-0132\nType: Terraform Security Check\nSeverity: HIGH\nCheck: S3 encryption should use Customer Managed Keys\nMessage: Bucket does not encrypt data with a customer managed key.\nLink: [AWS-0132](https://avd.aquasec.com/misconfig/aws-0132)\nEncryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+                "markdown": "**Misconfiguration AWS-0132**\n| Type | Severity | Check | Message | Link |\n| --- | --- | --- | --- | --- |\n|Terraform Security Check|HIGH|S3 encryption should use Customer Managed Keys|Bucket does not encrypt data with a customer managed key.|[AWS-0132](https://avd.aquasec.com/misconfig/aws-0132)|\n\nEncryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n"
               },
               "properties": {
                 "precision": "very-high",
@@ -257,11 +230,11 @@
       },
       "results": [
         {
-          "ruleId": "AVD-AWS-0086",
+          "ruleId": "AWS-0086",
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0086\nSeverity: HIGH\nMessage: No public access block so not blocking public acls\nLink: [AVD-AWS-0086](https://avd.aquasec.com/misconfig/avd-aws-0086)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0086\nSeverity: HIGH\nMessage: No public access block so not blocking public acls\nLink: [AWS-0086](https://avd.aquasec.com/misconfig/aws-0086)"
           },
           "locations": [
             {
@@ -284,11 +257,11 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0087",
+          "ruleId": "AWS-0087",
           "ruleIndex": 1,
           "level": "error",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0087\nSeverity: HIGH\nMessage: No public access block so not blocking public policies\nLink: [AVD-AWS-0087](https://avd.aquasec.com/misconfig/avd-aws-0087)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0087\nSeverity: HIGH\nMessage: No public access block so not blocking public policies\nLink: [AWS-0087](https://avd.aquasec.com/misconfig/aws-0087)"
           },
           "locations": [
             {
@@ -311,38 +284,11 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0088",
+          "ruleId": "AWS-0089",
           "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0088\nSeverity: HIGH\nMessage: Bucket does not have encryption enabled\nLink: [AVD-AWS-0088](https://avd.aquasec.com/misconfig/avd-aws-0088)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "main.tf",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 1,
-                  "endLine": 10,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "main.tf"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "s3-bucket-logging",
-          "ruleIndex": 3,
           "level": "note",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability s3-bucket-logging\nSeverity: LOW\nMessage: Bucket has logging disabled\nLink: [s3-bucket-logging](https://avd.aquasec.com/misconfig/s3-bucket-logging)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0089\nSeverity: LOW\nMessage: Bucket has logging disabled\nLink: [AWS-0089](https://avd.aquasec.com/misconfig/aws-0089)"
           },
           "locations": [
             {
@@ -365,11 +311,11 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0090",
-          "ruleIndex": 4,
+          "ruleId": "AWS-0090",
+          "ruleIndex": 3,
           "level": "warning",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0090\nSeverity: MEDIUM\nMessage: Bucket does not have versioning enabled\nLink: [AVD-AWS-0090](https://avd.aquasec.com/misconfig/avd-aws-0090)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0090\nSeverity: MEDIUM\nMessage: Bucket does not have versioning enabled\nLink: [AWS-0090](https://avd.aquasec.com/misconfig/aws-0090)"
           },
           "locations": [
             {
@@ -392,11 +338,38 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0091",
+          "ruleId": "AWS-0091",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0091\nSeverity: HIGH\nMessage: No public access block so not blocking public acls\nLink: [AWS-0091](https://avd.aquasec.com/misconfig/aws-0091)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "main.tf",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1,
+                  "endLine": 10,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "main.tf"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "AWS-0093",
           "ruleIndex": 5,
           "level": "error",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0091\nSeverity: HIGH\nMessage: No public access block so not blocking public acls\nLink: [AVD-AWS-0091](https://avd.aquasec.com/misconfig/avd-aws-0091)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0093\nSeverity: HIGH\nMessage: No public access block so not restricting public buckets\nLink: [AWS-0093](https://avd.aquasec.com/misconfig/aws-0093)"
           },
           "locations": [
             {
@@ -419,38 +392,11 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0093",
+          "ruleId": "AWS-0094",
           "ruleIndex": 6,
-          "level": "error",
-          "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0093\nSeverity: HIGH\nMessage: No public access block so not restricting public buckets\nLink: [AVD-AWS-0093](https://avd.aquasec.com/misconfig/avd-aws-0093)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "main.tf",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 1,
-                  "endLine": 10,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "main.tf"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "AVD-AWS-0094",
-          "ruleIndex": 7,
           "level": "note",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0094\nSeverity: LOW\nMessage: Bucket does not have a corresponding public access block.\nLink: [AVD-AWS-0094](https://avd.aquasec.com/misconfig/avd-aws-0094)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0094\nSeverity: LOW\nMessage: Bucket does not have a corresponding public access block.\nLink: [AWS-0094](https://avd.aquasec.com/misconfig/aws-0094)"
           },
           "locations": [
             {
@@ -473,11 +419,11 @@
           ]
         },
         {
-          "ruleId": "AVD-AWS-0132",
-          "ruleIndex": 8,
+          "ruleId": "AWS-0132",
+          "ruleIndex": 7,
           "level": "error",
           "message": {
-            "text": "Artifact: main.tf\nType: terraform\nVulnerability AVD-AWS-0132\nSeverity: HIGH\nMessage: Bucket does not encrypt data with a customer managed key.\nLink: [AVD-AWS-0132](https://avd.aquasec.com/misconfig/avd-aws-0132)"
+            "text": "Artifact: main.tf\nType: terraform\nVulnerability AWS-0132\nSeverity: HIGH\nMessage: Bucket does not encrypt data with a customer managed key.\nLink: [AWS-0132](https://avd.aquasec.com/misconfig/aws-0132)"
           },
           "locations": [
             {
