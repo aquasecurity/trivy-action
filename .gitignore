@@ -5,3 +5,6 @@ trivyignores
 .vscode/
 
 .cache
+
+# Local tools
+.bin/
