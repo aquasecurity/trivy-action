@@ -146,7 +146,7 @@ runs:
         restore-keys: cache-trivy-
 
     - name: Set GitHub Path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH # zizmor: ignore[github-env]
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
@@ -161,6 +161,25 @@ runs:
 
     - name: Set Trivy environment variables
       shell: bash
+      env:
+        INPUT_INPUT: ${{ inputs.input }}
+        INPUT_EXIT_CODE: ${{ inputs.exit-code }}
+        INPUT_IGNORE_UNFIXED: ${{ inputs.ignore-unfixed }}
+        INPUT_VULN_TYPE: ${{ inputs.vuln-type }}
+        INPUT_SEVERITY: ${{ inputs.severity }}
+        INPUT_FORMAT: ${{ inputs.format }}
+        INPUT_TEMPLATE: ${{ inputs.template }}
+        INPUT_OUTPUT: ${{ inputs.output }}
+        INPUT_SKIP_DIRS: ${{ inputs.skip-dirs }}
+        INPUT_SKIP_FILES: ${{ inputs.skip-files }}
+        INPUT_TIMEOUT: ${{ inputs.timeout }}
+        INPUT_IGNORE_POLICY: ${{ inputs.ignore-policy }}
+        INPUT_HIDE_PROGRESS: ${{ inputs.hide-progress }}
+        INPUT_LIST_ALL_PKGS: ${{ inputs.list-all-pkgs }}
+        INPUT_SCANNERS: ${{ inputs.scanners }}
+        INPUT_TRIVY_CONFIG: ${{ inputs.trivy-config }}
+        INPUT_TF_VARS: ${{ inputs.tf-vars }}
+        INPUT_DOCKER_HOST: ${{ inputs.docker-host }}
       run: |
         # Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.
         # This limitation affects how we handle default values and empty inputs.
@@ -175,41 +194,41 @@ runs:
         #
         # As noted above defaults are awkward to handle as GitHub Actions will inject those values as the input
         # if the caller doesn't provide them, thus if the input matches the default we don't set it as we
-        # can't tell the difference.  Plus if we did set it when it was the default value then it could potentially 
-        # override an external environment variable, or something in the callers configuration file, which then wouldn't 
+        # can't tell the difference.  Plus if we did set it when it was the default value then it could potentially
+        # override an external environment variable, or something in the callers configuration file, which then wouldn't
         # match the configuration priority that is documented.
         set_env_var_if_provided() {
           local var_name="$1"
           local input_value="$2"
           local default_value="$3"
-        
+
           if [ -n "$input_value" ] && [ "$input_value" != "$default_value" ]; then
             # If action was provided with explicit input by the caller set that
             # Use printf %q to safely escape special characters and prevent command injection
             printf 'export %s=%q\n' "$var_name" "$input_value" >> trivy_envs.txt
           fi
         }
-        
+
         # Set environment variables, handling those with default values
         # cf. https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables
-        set_env_var_if_provided "TRIVY_INPUT" "${{ inputs.input }}" ""
-        set_env_var_if_provided "TRIVY_EXIT_CODE" "${{ inputs.exit-code }}" ""
-        set_env_var_if_provided "TRIVY_IGNORE_UNFIXED" "${{ inputs.ignore-unfixed }}" "false"
-        set_env_var_if_provided "TRIVY_PKG_TYPES" "${{ inputs.vuln-type }}" "os,library"
-        set_env_var_if_provided "TRIVY_SEVERITY" "${{ inputs.severity }}" "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
-        set_env_var_if_provided "TRIVY_FORMAT" "${{ inputs.format }}" "table"
-        set_env_var_if_provided "TRIVY_TEMPLATE" "${{ inputs.template }}" ""
-        set_env_var_if_provided "TRIVY_OUTPUT" "${{ inputs.output }}" ""
-        set_env_var_if_provided "TRIVY_SKIP_DIRS" "${{ inputs.skip-dirs }}" ""
-        set_env_var_if_provided "TRIVY_SKIP_FILES" "${{ inputs.skip-files }}" ""
-        set_env_var_if_provided "TRIVY_TIMEOUT" "${{ inputs.timeout }}" ""
-        set_env_var_if_provided "TRIVY_IGNORE_POLICY" "${{ inputs.ignore-policy }}" ""
-        set_env_var_if_provided "TRIVY_QUIET" "${{ inputs.hide-progress }}" ""
-        set_env_var_if_provided "TRIVY_LIST_ALL_PKGS" "${{ inputs.list-all-pkgs }}" "false"
-        set_env_var_if_provided "TRIVY_SCANNERS" "${{ inputs.scanners }}" ""
-        set_env_var_if_provided "TRIVY_CONFIG" "${{ inputs.trivy-config }}" ""
-        set_env_var_if_provided "TRIVY_TF_VARS" "${{ inputs.tf-vars }}" ""
-        set_env_var_if_provided "TRIVY_DOCKER_HOST" "${{ inputs.docker-host }}" ""
+        set_env_var_if_provided "TRIVY_INPUT" "$INPUT_INPUT" ""
+        set_env_var_if_provided "TRIVY_EXIT_CODE" "$INPUT_EXIT_CODE" ""
+        set_env_var_if_provided "TRIVY_IGNORE_UNFIXED" "$INPUT_IGNORE_UNFIXED" "false"
+        set_env_var_if_provided "TRIVY_PKG_TYPES" "$INPUT_VULN_TYPE" "os,library"
+        set_env_var_if_provided "TRIVY_SEVERITY" "$INPUT_SEVERITY" "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+        set_env_var_if_provided "TRIVY_FORMAT" "$INPUT_FORMAT" "table"
+        set_env_var_if_provided "TRIVY_TEMPLATE" "$INPUT_TEMPLATE" ""
+        set_env_var_if_provided "TRIVY_OUTPUT" "$INPUT_OUTPUT" ""
+        set_env_var_if_provided "TRIVY_SKIP_DIRS" "$INPUT_SKIP_DIRS" ""
+        set_env_var_if_provided "TRIVY_SKIP_FILES" "$INPUT_SKIP_FILES" ""
+        set_env_var_if_provided "TRIVY_TIMEOUT" "$INPUT_TIMEOUT" ""
+        set_env_var_if_provided "TRIVY_IGNORE_POLICY" "$INPUT_IGNORE_POLICY" ""
+        set_env_var_if_provided "TRIVY_QUIET" "$INPUT_HIDE_PROGRESS" ""
+        set_env_var_if_provided "TRIVY_LIST_ALL_PKGS" "$INPUT_LIST_ALL_PKGS" "false"
+        set_env_var_if_provided "TRIVY_SCANNERS" "$INPUT_SCANNERS" ""
+        set_env_var_if_provided "TRIVY_CONFIG" "$INPUT_TRIVY_CONFIG" ""
+        set_env_var_if_provided "TRIVY_TF_VARS" "$INPUT_TF_VARS" ""
+        set_env_var_if_provided "TRIVY_DOCKER_HOST" "$INPUT_DOCKER_HOST" ""
 
     - name: Run Trivy
       shell: bash

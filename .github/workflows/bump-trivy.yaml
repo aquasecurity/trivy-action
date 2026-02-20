@@ -13,8 +13,12 @@ run-name: Bump trivy to v${{ inputs.trivy_version }}
 jobs:
   bump:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
 
       - name: Update Trivy versions
         env:
@@ -23,11 +27,13 @@ jobs:
 
       - name: Setup Bats and bats libs
         id: setup-bats
-        uses: bats-core/bats-action@3.0.1
+        uses: bats-core/bats-action@42fcc8700f773c075a16a90eb11674c0318ad507 # 3.0.1
 
       - name: Install Trivy
+        env:
+          TRIVY_VERSION: ${{ inputs.trivy_version }}
         run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${{ inputs.trivy_version }}
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin "v${TRIVY_VERSION}"
           trivy --version
 
       - name: Update golden files
@@ -42,7 +48,7 @@ jobs:
 
       - name: Create PR
         id: create-pr
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@4e1beaa7521e8b457b572c090b25bd3db56bf1c5 # v5
         with:
           token: ${{ secrets.ORG_REPO_TOKEN }}
           title: "chore(deps): Update trivy to v${{ inputs.trivy_version }}"
@@ -54,6 +60,9 @@ jobs:
           delete-branch: true
 
       - name: Check outputs
+        env:
+          PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+          PR_URL: ${{ steps.create-pr.outputs.pull-request-url }}
         run: |
-          echo "Pull Request Number - ${{ steps.create-pr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.create-pr.outputs.pull-request-url }}"
+          echo "Pull Request Number - ${PR_NUMBER}"
+          echo "Pull Request URL - ${PR_URL}"
