@@ -8,30 +8,65 @@ else
   BATS_LIB_PATH ?= /usr/local/lib/
 endif
 
+LOCAL_BIN := $(CURDIR)/.bin
+LOCAL_TRIVY := $(LOCAL_BIN)/trivy
+
+ifeq ($(shell [ -f $(LOCAL_TRIVY) ] && [ -z "$(CI)" ] && echo yes),yes)
+TRIVY_CMD := $(LOCAL_TRIVY)
+else
+TRIVY_CMD ?= trivy
+endif
+
+CACHE_DIR := '.cache'
+
+TRIVY_VERSION_FILE := .github/workflows/test.yaml
+CURRENT_TRIVY_VERSION := $(shell awk '/TRIVY_VERSION:/ {print $$2}' $(TRIVY_VERSION_FILE))
+
 BATS_ENV := BATS_LIB_PATH=$(BATS_LIB_PATH) \
 	GITHUB_REPOSITORY_OWNER=aquasecurity \
-	TRIVY_CACHE_DIR=.cache \
-	TRIVY_DISABLE_VEX_NOTICE=true \
+	TRIVY_CACHE_DIR=$(CACHE_DIR) \
 	TRIVY_DEBUG=true
 
-BATS_FLAGS := --recursive --timing --verbose-run .
+BATS_FLAGS := --timing --verbose-run test/test.bats
 
 .PHONY: test
-test: init-cache
-	$(BATS_ENV) bats $(BATS_FLAGS)
+test:
+	TRIVY_CMD=$(TRIVY_CMD) $(BATS_ENV) bats $(BATS_FLAGS)
 
 .PHONY: update-golden
-update-golden: init-cache
-	UPDATE_GOLDEN=1 $(BATS_ENV) bats $(BATS_FLAGS)
+update-golden:
+	UPDATE_GOLDEN=1 TRIVY_CMD=$(TRIVY_CMD) $(BATS_ENV) bats $(BATS_FLAGS)
 
 .PHONY: init-cache
 init-cache:
-	mkdir -p .cache
-	rm -f .cache/fanal/fanal.db
+	mkdir -p $(CACHE_DIR)
+
+.PHONY: clean-cache
+clean-cache:
+	$(TRIVY_CMD) clean --scan-cache --cache-dir $(CACHE_DIR)
 
 bump-trivy:
 	@[ $$NEW_VERSION ] || ( echo "env 'NEW_VERSION' is not set"; exit 1 )
-	@CURRENT_VERSION=$$(grep "TRIVY_VERSION:" .github/workflows/test.yaml | awk '{print $$2}');\
-	echo Current version: $$CURRENT_VERSION ;\
+	@echo Current version: $(CURRENT_TRIVY_VERSION) ;\
 	echo New version: $$NEW_VERSION ;\
-	$(SED) -i -e "s/$$CURRENT_VERSION/$$NEW_VERSION/g" README.md action.yaml .github/workflows/test.yaml ;\
+	$(SED) -i -e "s/$(CURRENT_TRIVY_VERSION)/$$NEW_VERSION/g" \
+		README.md action.yaml $(TRIVY_VERSION_FILE)
+
+.PHONY: ensure-trivy
+ensure-trivy:
+	@set -e; \
+	mkdir -p $(LOCAL_BIN); \
+	if [ -x $(LOCAL_TRIVY) ]; then \
+		CURRENT_VERSION="$$( $(LOCAL_TRIVY) version -f json | jq -r '.Version' )"; \
+	else \
+		CURRENT_VERSION=none; \
+	fi; \
+	echo "Required: $(CURRENT_TRIVY_VERSION)"; \
+	echo "Current:  $$CURRENT_VERSION"; \
+	if [ "$$CURRENT_VERSION" != "$(CURRENT_TRIVY_VERSION)" ]; then \
+		echo "Installing Trivy $(CURRENT_TRIVY_VERSION) locally..."; \
+		curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | \
+		sh -s -- -b $(LOCAL_BIN) v$(CURRENT_TRIVY_VERSION); \
+	else \
+		echo "Trivy $(CURRENT_TRIVY_VERSION) already present."; \
+	fi
