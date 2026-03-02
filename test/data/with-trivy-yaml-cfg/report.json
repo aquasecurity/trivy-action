@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
   "Trivy": {
-    "Version": "0.69.1"
+    "Version": "0.69.2"
   },
   "ArtifactID": "sha256:aab05ff324c90bb728aa5177b75d7e39d363be13323873de70959d2251edcebc",
   "ArtifactName": "alpine:3.10",
