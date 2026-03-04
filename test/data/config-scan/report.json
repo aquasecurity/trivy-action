@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
   "Trivy": {
-    "Version": "0.69.2"
+    "Version": "0.69.3"
   },
   "ArtifactName": "test/data/config-scan",
   "ArtifactType": "filesystem",
