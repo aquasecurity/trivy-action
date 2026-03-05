@@ -273,3 +273,30 @@ run_test_case_fails() {
   assert_output --partial "Found ignorefile '$plain1'"
   assert_output --partial "Found ignorefile '$plain2'"
 }
+
+@test "expand_env_vars expands template paths safely" {
+  local script="$BATS_TEST_TMPDIR/expand_env_vars_test.sh"
+  local entrypoint_path="$BATS_TEST_DIRNAME/../entrypoint.sh"
+
+  cat > "$script" <<EOF
+#!/bin/bash
+set -euo pipefail
+EOF
+
+  sed -n '/^expand_env_vars()/,/^}/p' "$entrypoint_path" >> "$script"
+
+  cat >> "$script" <<'EOF'
+export HOME="/home/demo"
+export FOO="bar"
+
+expand_env_vars '@$HOME/.local/bin/trivy-bin/contrib/html.tpl'
+printf '\n'
+expand_env_vars 'x=${FOO},y=\$HOME,z=$(whoami)'
+printf '\n'
+EOF
+
+  run bash "$script"
+  assert_success
+  assert_line --index 0 "@/home/demo/.local/bin/trivy-bin/contrib/html.tpl"
+  assert_line --index 1 'x=bar,y=$HOME,z=$(whoami)'
+}
