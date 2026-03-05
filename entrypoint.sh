@@ -12,6 +12,32 @@ if [ -f ./trivy_envs.txt ]; then
   source ./trivy_envs.txt
 fi
 
+expand_env_vars() {
+  # Expand $VAR and ${VAR} without executing command substitutions.
+  local input="$1"
+  local sentinel=$'\x1f'
+  local rest="${input//\\\$/$sentinel}"
+  local output=""
+  local regex='^([^$]*)(\$\{?[A-Za-z_][A-Za-z0-9_]*\}?)(.*)$'
+
+  while [[ "$rest" =~ $regex ]]; do
+    local prefix="${BASH_REMATCH[1]}"
+    local token="${BASH_REMATCH[2]}"
+    local suffix="${BASH_REMATCH[3]}"
+    local var="${token#\$}"
+    var="${var#\{}"
+    var="${var%\}}"
+    local value="${!var}"
+
+    output+="${prefix}${value}"
+    rest="$suffix"
+  done
+
+  output+="$rest"
+  output="${output//$sentinel/\$}"
+  printf '%s' "$output"
+}
+
 # Set artifact reference
 scanType="${INPUT_SCAN_TYPE:-image}"
 scanRef="${INPUT_SCAN_REF:-.}"
@@ -70,6 +96,11 @@ if [ -n "${INPUT_TRIVYIGNORES:-}" ]; then
 
     export TRIVY_IGNOREFILE="$ignorefile"
   fi
+fi
+
+if [ -n "${TRIVY_TEMPLATE:-}" ]; then
+  TRIVY_TEMPLATE="$(expand_env_vars "$TRIVY_TEMPLATE")"
+  export TRIVY_TEMPLATE
 fi
 
 # Handle SARIF
