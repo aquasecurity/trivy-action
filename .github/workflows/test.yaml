@@ -5,6 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions: {}
+
 env:
   TRIVY_VERSION: 0.69.3
   BATS_LIB_PATH: '/usr/lib/'
