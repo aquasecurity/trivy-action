@@ -2,6 +2,9 @@ name: Sync Trivy Checks
 
 on:
   workflow_dispatch:
+
+permissions: {}
+
 env:
   IMAGE_NAME: ${{ github.repository_owner }}/trivy-checks-act
   REGISTRY: ghcr.io
