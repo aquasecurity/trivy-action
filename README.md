@@ -50,7 +50,7 @@ jobs:
       - name: Build an image from Dockerfile
         run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'table'
@@ -78,7 +78,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run Trivy vulnerability scanner in fs mode
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -119,7 +119,7 @@ If you want to disable caching, set the `cache` input to `false`, but we recomme
 
 ```yaml
     - name: Run Trivy scanner without cache
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -180,7 +180,7 @@ When running a scan, set the environment variables `TRIVY_SKIP_DB_UPDATE` and `T
 
 ```yaml
     - name: Run Trivy scanner without downloading DBs
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'image'
         scan-ref: 'myimage'
@@ -287,7 +287,7 @@ Therefore, you can't install `Trivy` using the `setup-trivy` action.
 To fix this problem, you need to overwrite the token for `setup-trivy` using `token-setup-trivy` input:
 ```yaml
     - name: Run Trivy scanner without cache
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -318,7 +318,7 @@ jobs:
         docker save -o vuln-image.tar <your-docker-image>
 
     - name: Run Trivy vulnerability scanner in tarball mode
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         input: /github/workspace/vuln-image.tar
         severity: 'CRITICAL,HIGH'
@@ -345,7 +345,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: "fs"
           scan-ref: .
@@ -374,7 +374,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: "fs"
           scan-ref: .
@@ -407,7 +407,7 @@ jobs:
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -445,7 +445,7 @@ jobs:
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -483,7 +483,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'fs'
           ignore-unfixed: true
@@ -520,7 +520,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner with rootfs command
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'rootfs'
           scan-ref: 'rootfs-example-binary'
@@ -560,7 +560,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in IaC mode
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'config'
           hide-progress: true
@@ -617,7 +617,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Graph
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'fs'
           format: 'github'
@@ -647,7 +647,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Scan image in a private registry
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: "private_image_registry/image_name:image_tag"
           scan-type: image
@@ -693,7 +693,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -732,7 +732,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'aws_account_id.dkr.ecr.region.amazonaws.com/imageName:${{ github.sha }}'
           format: 'sarif'
@@ -771,7 +771,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -807,7 +807,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -830,7 +830,7 @@ This step is especially useful for private repositories without [GitHub Advanced
 
 ```yaml
 - name: Run Trivy scanner
-  uses: aquasecurity/trivy-action@0.33.1
+  uses: aquasecurity/trivy-action@0.35.0
   with:
     scan-type: config
     hide-progress: true
