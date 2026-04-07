@@ -751,7 +751,7 @@ jobs:
 #### GCR (Google Container Registry)
 Trivy uses Google Cloud SDK. You don't need to install `gcloud` command.
 
-If you want to use target project's repository, you can set it via `GOOGLE_APPLICATION_CREDENTIAL`.
+If you want to use target project's repository, you can set it via `GOOGLE_APPLICATION_CREDENTIALS`.
 ```yaml
 name: build
 on:
@@ -777,7 +777,7 @@ jobs:
           format: 'sarif'
           output: 'trivy-results.sarif'
         env:
-          GOOGLE_APPLICATION_CREDENTIAL: /path/to/credential.json
+          GOOGLE_APPLICATION_CREDENTIALS: /path/to/credential.json
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v4
