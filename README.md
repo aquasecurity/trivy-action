@@ -50,7 +50,7 @@ jobs:
       - name: Build an image from Dockerfile
         run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'table'
@@ -78,14 +78,14 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run Trivy vulnerability scanner in fs mode
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
         trivy-config: trivy.yaml
 ```
 
-In this case `trivy.yaml` is a YAML configuration that is checked in as part of the repo. Detailed information is available on the Trivy website but an example is as follows:
+In this case, `trivy.yaml` is a YAML configuration that is checked in as part of the repo. Detailed information is available on the Trivy website, but an example is as follows:
 ```yaml
 format: json
 exit-code: 1
@@ -94,13 +94,13 @@ secret:
   config: config/trivy/secret.yaml
 ```
 
-It is possible to define all options in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes. Defining the following is required as they cannot be defined with the config file:
+It is possible to define all options in the `trivy.yaml` file. Specifying individual options via the action is left for backward compatibility purposes. Defining the following is required, as they cannot be defined with the config file:
 - `scan-ref`: If using `fs, repo` scans.
 - `image-ref`: If using `image` scan.
 - `scan-type`: To define the scan type, e.g. `image`, `fs`, `repo`, etc.
 
 #### Order of preference for options
-Trivy uses [Viper](https://github.com/spf13/viper) which has a defined precedence order for options. The order is as follows:
+Trivy uses [Viper](https://github.com/spf13/viper), which has a defined precedence order for options. The order is as follows:
 - GitHub Action flag
 - Environment variable
 - Config file
@@ -111,15 +111,15 @@ The action has a built-in functionality for caching and restoring [the vulnerabi
 The cache is stored in the `$GITHUB_WORKSPACE/.cache/trivy` directory by default.
 The cache is restored before the scan starts and saved after the scan finishes.
 
-It uses [actions/cache](https://github.com/actions/cache) under the hood but requires less configuration settings.
+It uses [actions/cache](https://github.com/actions/cache) under the hood, but requires fewer configuration settings.
 The cache input is optional, and caching is turned on by default.
 
 #### Disabling caching
-If you want to disable caching, set the `cache` input to `false`, but we recommend keeping it enabled to avoid rate limiting issues.
+If you want to disable caching, set the `cache` input to `false`, but we recommend keeping it enabled to avoid rate-limiting issues.
 
 ```yaml
     - name: Run Trivy scanner without cache
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -131,7 +131,7 @@ Please note that there are [restrictions on cache access](https://docs.github.co
 By default, a workflow can access and restore a cache created in either the current branch or the default branch (usually `main` or `master`).
 If you need to share caches across branches, you may need to create a cache in the default branch and restore it in the current branch.
 
-To optimize your workflow, you can set up a cron job to regularly update the cache in the default branch.
+To optimise your workflow, you can set up a cron job to regularly update the cache in the default branch.
 This allows subsequent scans to use the cached DB without downloading it again.
 
 ```yaml
@@ -180,7 +180,7 @@ When running a scan, set the environment variables `TRIVY_SKIP_DB_UPDATE` and `T
 
 ```yaml
     - name: Run Trivy scanner without downloading DBs
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'image'
         scan-ref: 'myimage'
@@ -190,9 +190,9 @@ When running a scan, set the environment variables `TRIVY_SKIP_DB_UPDATE` and `T
 ```
 
 ### Trivy Setup
-By default the action calls [`aquasecurity/setup-trivy`](https://github.com/aquasecurity/setup-trivy) as the first step
+By default, the action calls [`aquasecurity/setup-trivy`](https://github.com/aquasecurity/setup-trivy) as the first step
 which installs the `trivy` version specified by the `version` input.  If you have already installed `trivy` by other
-means, e.g. calling `aquasecurity/setup-trivy` directly, or are invoking this action multiple times then you can use the
+means, e.g. calling `aquasecurity/setup-trivy` directly, or are invoking this action multiple times, then you can use the
 `skip-setup-trivy` input to disable this step.
 
 #### Setting up Trivy Manually
@@ -229,8 +229,8 @@ jobs:
 ```
 
 #### Skipping Setup when Calling Trivy Action multiple times
-Another common use case is when a build calls this action multiple times, in this case we can set `skip-setup-trivy` to 
-`true` on subsequent invocations e.g.
+Another common use case is when a build calls this action multiple times; in this case, we can set `skip-setup-trivy` to 
+`true` on subsequent invocations, e.g.
 
 ```yaml
 name: build
@@ -267,27 +267,27 @@ jobs:
           path: trivy-report.json
           retention-days: 30
 
-      - name: Fail build on High/Criticial Vulnerabilities
+      - name: Fail build on High/Critical Vulnerabilities
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: "fs"
           format: table
           scan-ref: .
-          severity: HIGH,CRITICAL
+          severity: HIGH, CRITICAL
           ignore-unfixed: true
           exit-code: 1
-          # On a subsequent call to the action we know trivy is already installed so can skip this
+          # On a subsequent call to the action, we know Trivy is already installed, so we can skip this
           skip-setup-trivy: true
 ```
 
 #### Use non-default token to install Trivy
-GitHub Enterprise Server (GHES) uses an invalid `github.token` for `https://github.com` server.
+GitHub Enterprise Server (GHES) uses an invalid `github.token` for the `https://github.com` server.
 Therefore, you can't install `Trivy` using the `setup-trivy` action.
 
 To fix this problem, you need to overwrite the token for `setup-trivy` using `token-setup-trivy` input:
 ```yaml
     - name: Run Trivy scanner without cache
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -318,16 +318,16 @@ jobs:
         docker save -o vuln-image.tar <your-docker-image>
 
     - name: Run Trivy vulnerability scanner in tarball mode
-      uses: aquasecurity/trivy-action@0.33.1
+      uses: aquasecurity/trivy-action@0.35.0
       with:
         input: /github/workspace/vuln-image.tar
-        severity: 'CRITICAL,HIGH'
+        severity: 'CRITICAL, HIGH'
 ```
 
 ### Using Trivy with templates
 The action supports [Trivy templates][trivy-templates]. 
 
-Use `template` input to specify path (remember to prefix the path with `@`) to template file.
+Use `template` input to specify the path (remember to prefix the path with `@`) to the template file.
 
 ```yaml
 name: build
@@ -345,7 +345,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: "fs"
           scan-ref: .
@@ -374,7 +374,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: "fs"
           scan-ref: .
@@ -397,7 +397,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: read          # Required to checkout and read repo files
-      security-events: write  # Required to upload SARIF files to Security tab
+      security-events: write  # Required to upload SARIF files to the Security tab
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -407,7 +407,7 @@ jobs:
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -421,7 +421,7 @@ jobs:
 
 You can find a more in-depth example here: https://github.com/aquasecurity/trivy-sarif-demo/blob/master/.github/workflows/scan.yml
 
-If you would like to upload SARIF results to GitHub Code scanning even upon a non zero exit code from Trivy Scan, you can add the following to your upload step:
+If you would like to upload SARIF results to GitHub Code scanning, even upon a non-zero exit code from Trivy Scan, you can add the following to your upload step:
 ```yaml
 name: build
 on:
@@ -435,7 +435,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: read          # Required to checkout and read repo files
-      security-events: write  # Required to upload SARIF files to Security tab
+      security-events: write  # Required to upload SARIF files to the Security tab
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -445,7 +445,7 @@ jobs:
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -463,7 +463,7 @@ See this for more details: https://docs.github.com/en/actions/learn-github-actio
 ### Using Trivy to scan your Git repo
 It's also possible to scan your git repos with Trivy's built-in repo scan. This can be handy if you want to run Trivy as a build time check on each PR that gets opened in your repo. This helps you identify potential vulnerabilities that might get introduced with each PR.
 
-If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
+If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available, you can use Trivy as a scanning tool as follows:
 ```yaml
 name: build
 on:
@@ -477,13 +477,13 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: read          # Required to checkout and read repo files
-      security-events: write  # Required to upload SARIF files to Security tab
+      security-events: write  # Required to upload SARIF files to the Security tab
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'fs'
           ignore-unfixed: true
@@ -498,9 +498,9 @@ jobs:
 ```
 
 ### Using Trivy to scan your rootfs directories
-It's also possible to scan your rootfs directories with Trivy's built-in rootfs scan. This can be handy if you want to run Trivy as a build time check on each PR that gets opened in your repo. This helps you identify potential vulnerabilities that might get introduced with each PR.
+It's also possible to scan your rootfs directories with Trivy's built-in rootfs scan. This can be handy if you want to run Trivy as a build-time check on each PR that gets opened in your repo. This helps you identify potential vulnerabilities that might get introduced with each PR.
 
-If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
+If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available, you can use Trivy as a scanning tool as follows:
 ```yaml
 name: build
 on:
@@ -514,13 +514,13 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: read          # Required to checkout and read repo files
-      security-events: write  # Required to upload SARIF files to Security tab
+      security-events: write  # Required to upload SARIF files to the Security tab
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner with rootfs command
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'rootfs'
           scan-ref: 'rootfs-example-binary'
@@ -537,10 +537,10 @@ jobs:
 
 ### Using Trivy to scan Infrastructure as Code
 It's also possible to scan your IaC repos with Trivy's built-in repo scan. 
-This can be handy if you want to run Trivy as a build time check on each PR that gets opened in your repo. 
+This can be handy if you want to run Trivy as a build-time check on each PR that gets opened in your repo. 
 This helps you identify potential vulnerabilities that might get introduced with each PR.
 
-If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available you can use Trivy as a scanning tool as follows:
+If you have [GitHub code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) available, you can use Trivy as a scanning tool as follows:
 ```yaml
 name: build
 on:
@@ -560,14 +560,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in IaC mode
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'config'
           hide-progress: true
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: '1'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL, HIGH'
 
       - name: Upload Trivy scan results to GitHub Security tab
         if: always()
@@ -577,7 +577,7 @@ jobs:
 ```
 
 **Note**: If your Terraform configuration contains private modules, configure Git to authenticate with the repository hosting them. 
-This can be done by adding a step in your CI workflow that sets up access, for example using a Personal Access Token (PAT) or SSH keys:
+This can be done by adding a step in your CI workflow that sets up access, for example, using a Personal Access Token (PAT) or SSH keys:
 
 ```yaml
 - name: Configure Git for private modules
@@ -617,7 +617,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Graph
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'fs'
           format: 'github'
@@ -647,20 +647,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Scan image in a private registry
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: "private_image_registry/image_name:image_tag"
           scan-type: image
           format: 'github'
           output: 'dependency-results.sbom.json'
           github-pat: ${{ secrets.GITHUB_TOKEN }} # or ${{ secrets.github_pat_name }} if you're using a PAT
-          severity: "MEDIUM,HIGH,CRITICAL"
+          severity: "MEDIUM, HIGH, CRITICAL"
           scanners: "vuln"
         env:
           TRIVY_USERNAME: "image_registry_admin_username"
           TRIVY_PASSWORD: "image_registry_admin_password"
 
-      - name: Upload trivy report as a Github artifact
+      - name: Upload trivy report as a GitHub artefact
         uses: actions/upload-artifact@v4
         with:
           name: trivy-sbom-report
@@ -693,7 +693,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -709,7 +709,7 @@ jobs:
 ```
 
 #### AWS ECR (Elastic Container Registry)
-Trivy uses AWS SDK. You don't need to install `aws` CLI tool.
+Trivy uses AWS SDK. You don't need to install the `aws` CLI tool.
 You can use [AWS CLI's ENV Vars][env-var].
 
 [env-var]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
@@ -732,7 +732,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'aws_account_id.dkr.ecr.region.amazonaws.com/imageName:${{ github.sha }}'
           format: 'sarif'
@@ -749,9 +749,9 @@ jobs:
 ```
 
 #### GCR (Google Container Registry)
-Trivy uses Google Cloud SDK. You don't need to install `gcloud` command.
+Trivy uses Google Cloud SDK. You don't need to install the `gcloud` command.
 
-If you want to use target project's repository, you can set it via `GOOGLE_APPLICATION_CREDENTIAL`.
+If you want to use the target project's repository, you can set it via `GOOGLE_APPLICATION_CREDENTIAL`.
 ```yaml
 name: build
 on:
@@ -771,7 +771,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -787,7 +787,7 @@ jobs:
 
 #### Self-Hosted
 BasicAuth server needs `TRIVY_USERNAME` and `TRIVY_PASSWORD`.
-if you want to use 80 port, use NonSSL `TRIVY_NON_SSL=true`
+If you want to use an 80 port, use NonSSL `TRIVY_NON_SSL=true`
 ```yaml
 name: build
 on:
@@ -807,7 +807,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'sarif'
@@ -830,7 +830,7 @@ This step is especially useful for private repositories without [GitHub Advanced
 
 ```yaml
 - name: Run Trivy scanner
-  uses: aquasecurity/trivy-action@0.33.1
+  uses: aquasecurity/trivy-action@0.35.0
   with:
     scan-type: config
     hide-progress: true
@@ -862,7 +862,7 @@ Configuration priority:
 
 ### inputs
 
-Following inputs can be used as `step.with` keys:
+The following inputs can be used as `step.with` keys:
 
 | Name                         | Type    | Default                            | Description                                                                                                                                                      |
 |------------------------------|---------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -877,20 +877,20 @@ Following inputs can be used as `step.with` keys:
 | `exit-code`                  | String  | `0`                                | Exit code when specified vulnerabilities are found                                                                                                               |
 | `ignore-unfixed`             | Boolean | false                              | Ignore unpatched/unfixed vulnerabilities                                                                                                                         |
 | `vuln-type`                  | String  | `os,library`                       | Vulnerability types (os,library)                                                                                                                                 |
-| `severity`                   | String  | `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` | Severities of vulnerabilities to scanned for and displayed                                                                                                       |
-| `skip-dirs`                  | String  |                                    | Comma separated list of directories where traversal is skipped                                                                                                   |
-| `skip-files`                 | String  |                                    | Comma separated list of files where traversal is skipped                                                                                                         |
+| `severity`                   | String  | `UNKNOWN, LOW, MEDIUM, HIGH, CRITICAL` | Severities of vulnerabilities to be scanned for and displayed                                                                                                       |
+| `skip-dirs`                  | String  |                                    | Comma-separated list of directories where traversal is skipped                                                                                                   |
+| `skip-files`                 | String  |                                    | Comma-separated list of files where traversal is skipped                                                                                                         |
 | `cache-dir`                  | String  | `$GITHUB_WORKSPACE/.cache/trivy`   | Cache directory. NOTE: This value cannot be configured by `trivy.yaml`.                                                                                          |
 | `timeout`                    | String  | `5m0s`                             | Scan timeout duration                                                                                                                                            |
 | `ignore-policy`              | String  |                                    | Filter vulnerabilities with OPA rego language                                                                                                                    |
 | `hide-progress`              | String  | `false`                            | Suppress progress bar and log output                                                                                                                             |
 | `list-all-pkgs`              | String  |                                    | Output all packages regardless of vulnerability                                                                                                                  |
-| `scanners`                   | String  | `vuln,secret`                      | comma-separated list of what security issues to detect (`vuln`,`secret`,`misconfig`,`license`)                                                                   |
+| `scanners`                   | String  | `vuln, secret`                      | comma-separated list of what security issues to detect (`vuln`, `secret`, `misconfig`, `license`)                                                                   |
 | `trivyignores`               | String  |                                    | comma-separated list of relative paths within the repository to one or more `.trivyignore` files, or a single `.trivyignore.yaml` file.                          |
 | `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                                                                                        |
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN          |
-| `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true**   |
-| `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values (`unix:/` or other prefix is required) |
+| `limit-severities-for-sarif` | Boolean | false                              | By default, *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true**   |
+| `docker-host`                | String  |                                    | By default, it is set to `unix://var/run/docker.sock`, but can be updated to help with containerised infrastructure values (`unix:/` or other prefix is required) |
 | `version`                    | String  | `v0.69.3`                          | Trivy version to use, e.g. `latest` or `v0.69.3`                                                                                                                 |
 | `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                         |
 | `token-setup-trivy`          | Boolean |                                    | Overwrite `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                                |
@@ -898,11 +898,11 @@ Following inputs can be used as `step.with` keys:
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
 
-**NB** In some older versions of the Action there was a bug that caused inputs from one call to the Action to leak 
-over to subsequent calls to the Action.  This could cause workflows that call the Action multiple times e.g. to run 
+**NB** In some older versions of the Action, there was a bug that caused inputs from one call to the Action to leak 
+over to subsequent calls to the Action.  This could cause workflows that call the Action multiple times, e.g. to run 
 multiple scans, or the same scans with different output formats, to not produce the desired output.  You can see if this
-is the case by looking at the GitHub Actions step information, if the `env` section shown in your Actions output 
-contains `TRIVY_*` environment variables you did not explicitly set then you may be affected by this bug and should 
+is the case by looking at the GitHub Actions step information. If the `env` section shown in your Actions output 
+contains `TRIVY_*` environment variables you did not explicitly set, then you may be affected by this bug and should 
 upgrade to the latest Action version.
 
 ### Trivy config file
