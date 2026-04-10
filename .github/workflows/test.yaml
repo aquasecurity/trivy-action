@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 
 env:
-  TRIVY_VERSION: 0.69.3
   BATS_LIB_PATH: '/usr/lib/'
 
 jobs:
@@ -38,9 +37,7 @@ jobs:
         uses: bats-core/bats-action@42fcc8700f773c075a16a90eb11674c0318ad507 # 3.0.1
 
       - name: Install Trivy
-        run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${{ env.TRIVY_VERSION }}
-          trivy --version
+        run: make ensure-trivy TRIVY_INSTALL_DIR=/usr/local/bin
 
       - name: Test
         env:

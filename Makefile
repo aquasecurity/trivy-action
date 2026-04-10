@@ -9,7 +9,8 @@ else
 endif
 
 LOCAL_BIN := $(CURDIR)/.bin
-LOCAL_TRIVY := $(LOCAL_BIN)/trivy
+TRIVY_INSTALL_DIR ?= $(LOCAL_BIN)
+LOCAL_TRIVY := $(TRIVY_INSTALL_DIR)/trivy
 
 ifeq ($(shell [ -f $(LOCAL_TRIVY) ] && [ -z "$(CI)" ] && echo yes),yes)
 TRIVY_CMD := $(LOCAL_TRIVY)
@@ -19,8 +20,8 @@ endif
 
 CACHE_DIR := '.cache'
 
-TRIVY_VERSION_FILE := .github/workflows/test.yaml
-CURRENT_TRIVY_VERSION := $(shell awk '/TRIVY_VERSION:/ {print $$2}' $(TRIVY_VERSION_FILE))
+TRIVY_VERSION_FILE := action.yaml
+CURRENT_TRIVY_VERSION := $(shell yq '.inputs.version.default' $(TRIVY_VERSION_FILE) | tr -d 'v')
 
 BATS_ENV := BATS_LIB_PATH=$(BATS_LIB_PATH) \
 	GITHUB_REPOSITORY_OWNER=aquasecurity \
@@ -46,7 +47,7 @@ bump-trivy:
 	@echo Current version: $(CURRENT_TRIVY_VERSION) ;\
 	echo New version: $$NEW_VERSION ;\
 	$(SED) -i -e "s/$(CURRENT_TRIVY_VERSION)/$$NEW_VERSION/g" \
-		README.md action.yaml $(TRIVY_VERSION_FILE)
+		README.md $(TRIVY_VERSION_FILE)
 
 .PHONY: ensure-trivy
 ensure-trivy:
@@ -62,7 +63,7 @@ ensure-trivy:
 	if [ "$$CURRENT_VERSION" != "$(CURRENT_TRIVY_VERSION)" ]; then \
 		echo "Installing Trivy $(CURRENT_TRIVY_VERSION) locally..."; \
 		curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | \
-		sh -s -- -b $(LOCAL_BIN) v$(CURRENT_TRIVY_VERSION); \
+		sh -s -- -b $(TRIVY_INSTALL_DIR) v$(CURRENT_TRIVY_VERSION); \
 	else \
 		echo "Trivy $(CURRENT_TRIVY_VERSION) already present."; \
 	fi
