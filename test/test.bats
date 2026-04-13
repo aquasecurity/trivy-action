@@ -23,11 +23,9 @@ teardown() {
 }
 
 setup_trivy_env() {
-  local owner="${GITHUB_REPOSITORY_OWNER:-aquasecurity}"
-
-  export TRIVY_DB_REPOSITORY="ghcr.io/${owner}/trivy-db-act:latest"
-  export TRIVY_JAVA_DB_REPOSITORY="ghcr.io/${owner}/trivy-java-db-act:latest"
-  export TRIVY_CHECKS_BUNDLE_REPOSITORY="ghcr.io/${owner}/trivy-checks-act:latest"
+  export TRIVY_DB_REPOSITORY="ghcr.io/aquasecurity/trivy-db@sha256:7f8b879d4c23469b09c874b18d64a7eedea95f0ce08ea1862a783dc8d799be6f"
+  export TRIVY_JAVA_DB_REPOSITORY="ghcr.io/aquasecurity/trivy-java-db@sha256:f60faf3353edb6556f676c83c8b26d8a60398feab31ab2ec591537707a7354ba"
+  export TRIVY_CHECKS_BUNDLE_REPOSITORY="ghcr.io/aquasecurity/trivy-checks@sha256:b63166ca02aa09e30a5127320384d7bd0d2760dc19bab3ab7041a6070114ba45" # v2.2.0
 
   export TRIVY_LIST_ALL_PKGS=false
   export TRIVY_DISABLE_VEX_NOTICE=true

@@ -25,7 +25,6 @@ ACTION_FILE := action.yaml
 CURRENT_TRIVY_VERSION := $(shell yq '.inputs.version.default' $(ACTION_FILE) 2>/dev/null | tr -d 'v')
 
 BATS_ENV := BATS_LIB_PATH=$(BATS_LIB_PATH) \
-	GITHUB_REPOSITORY_OWNER=aquasecurity \
 	TRIVY_CACHE_DIR=$(CACHE_DIR) \
 	TRIVY_DEBUG=true
 
