@@ -50,8 +50,8 @@ jobs:
           BASE_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           gh auth setup-git
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           BRANCH="bump-trivy-${TRIVY_VERSION}"
           git checkout -b "${BRANCH}"
           git add action.yaml README.md test/
