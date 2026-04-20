@@ -875,7 +875,7 @@ jobs:
         run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           severity: 'CRITICAL,HIGH'
@@ -883,16 +883,16 @@ jobs:
 ```
 
 **Notes:**
-- The workflow must have `pull-requests: write` permission. The action uses the built-in `GITHUB_TOKEN` automatically — no extra token configuration is needed.
-- On non-PR events (e.g., `push`), the comment step is skipped gracefully.
-- If the action is invoked multiple times in the same workflow (e.g., `image` scan + `fs` scan), each scan type gets its own comment. Re-running the workflow updates the existing comments instead of creating duplicates.
+- The workflow must have `pull-requests: write` permission. For same-repo pull requests, the built-in `GITHUB_TOKEN` is usually sufficient. For fork-based pull requests, comment posting depends on repository or organization Actions permission settings.
+- On non-PR events (e.g., `push`, `workflow_dispatch`), the comment step is skipped gracefully. The action also detects associated pull requests from `workflow_run` and `issue_comment` (on PRs) events.
+- Each unique scan (determined by scan type and target) gets its own comment. Re-running the workflow updates the existing comment instead of creating duplicates.
 - When combining `comment-on-pr` with `trivy-config`, set the `output` input explicitly so the action can read the scan results.
 
 #### Multiple scans with PR comments
 
 ```yaml
       - name: Trivy image scan
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'image'
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
@@ -900,7 +900,7 @@ jobs:
           comment-on-pr: 'true'
 
       - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -908,7 +908,7 @@ jobs:
           comment-on-pr: 'true'
 ```
 
-Each scan type (`image`, `fs`) will produce a separate PR comment.
+Each unique combination of scan type and target produces a separate PR comment. Running the same scan type on different targets (e.g., two different images) also creates separate comments.
 
 ## Customizing
 

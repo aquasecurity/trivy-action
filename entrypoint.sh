@@ -171,9 +171,12 @@ ${scan_results}"
         json|sarif|github) fence_lang="json" ;;
       esac
 
-      # Include scan type in marker so multiple scans on the same PR
-      # each get their own comment instead of overwriting each other
-      comment_marker="<!-- trivy-action-comment:${scanType} -->"
+      # Include scan type and target hash in marker so each unique scan
+      # gets its own comment (e.g. two different image scans won't overwrite each other)
+      # Also include TRIVY_INPUT for tarball scans where scanRef stays at default
+      marker_input="${TRIVY_INPUT:-}"
+      marker_hash=$(printf '%s:%s:%s' "$scanType" "$scanRef" "$marker_input" | cksum | cut -d' ' -f1)
+      comment_marker="<!-- trivy-action-comment:${scanType}:${marker_hash} -->"
 
       # Show scan status in the header
       if [ "$returnCode" -ne 0 ]; then
@@ -206,14 +209,27 @@ ${scan_results}
       # Disable exit-on-error so API failures don't abort a successful scan
       set +e
 
-      # Check for existing trivy comment with the same scan type to update (avoids duplicate comments)
-      existing_comment_id=$(curl -s \
-        -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-        -H "Accept: application/vnd.github+json" \
-        "${api_url}?per_page=100" \
-        | jq --arg marker "$comment_marker" \
-          '[.[] | select(.body | contains($marker))] | first | .id // empty' \
-        2>/dev/null)
+      # Search for existing trivy comment to update (avoids duplicate comments)
+      # Paginate to handle PRs with many comments
+      existing_comment_id=""
+      page=1
+      while [ -z "$existing_comment_id" ] && [ "$page" -le 5 ]; do
+        page_comments=$(curl -s \
+          -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+          -H "Accept: application/vnd.github+json" \
+          "${api_url}?per_page=100&page=${page}")
+
+        # Stop if page is empty
+        if [ "$(echo "$page_comments" | jq 'length' 2>/dev/null)" = "0" ]; then
+          break
+        fi
+
+        existing_comment_id=$(echo "$page_comments" \
+          | jq --arg marker "$comment_marker" \
+            '[.[] | select(.body | contains($marker))] | first | .id // empty' \
+          2>/dev/null)
+        page=$((page + 1))
+      done
 
       if [ -n "$existing_comment_id" ]; then
         # Update existing comment
