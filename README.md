@@ -24,6 +24,7 @@
   * [Using Trivy to generate SBOM](#using-trivy-to-generate-sbom)
   * [Using Trivy to scan your private registry](#using-trivy-to-scan-your-private-registry)
   * [Using Trivy if you don't have code scanning enabled](#using-trivy-if-you-dont-have-code-scanning-enabled)
+  * [Posting scan results as PR comments](#posting-scan-results-as-pr-comments)
 * [Customizing](#customizing)
   * [inputs](#inputs)
   * [Environment variables](#environment-variables)
@@ -851,6 +852,64 @@ This step is especially useful for private repositories without [GitHub Advanced
     fi
 ```
 
+### Posting scan results as PR comments
+
+You can automatically post Trivy scan results as a comment on pull requests. This makes it easy to review vulnerabilities directly in the PR without navigating to the Actions tab.
+
+```yaml
+name: build
+on:
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: write  # Required for posting PR comments
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build an image from Dockerfile
+        run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          severity: 'CRITICAL,HIGH'
+          comment-on-pr: 'true'
+```
+
+**Notes:**
+- The workflow must have `pull-requests: write` permission. The action uses the built-in `GITHUB_TOKEN` automatically — no extra token configuration is needed.
+- On non-PR events (e.g., `push`), the comment step is skipped gracefully.
+- If the action is invoked multiple times in the same workflow (e.g., `image` scan + `fs` scan), each scan type gets its own comment. Re-running the workflow updates the existing comments instead of creating duplicates.
+- When combining `comment-on-pr` with `trivy-config`, set the `output` input explicitly so the action can read the scan results.
+
+#### Multiple scans with PR comments
+
+```yaml
+      - name: Trivy image scan
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: 'image'
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          severity: 'CRITICAL,HIGH'
+          comment-on-pr: 'true'
+
+      - name: Trivy filesystem scan
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          severity: 'CRITICAL,HIGH'
+          comment-on-pr: 'true'
+```
+
+Each scan type (`image`, `fs`) will produce a separate PR comment.
+
 ## Customizing
 
 Configuration priority:
@@ -894,6 +953,7 @@ Following inputs can be used as `step.with` keys:
 | `version`                    | String  | `v0.69.3`                          | Trivy version to use, e.g. `latest` or `v0.69.3`                                                                                                                 |
 | `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                         |
 | `token-setup-trivy`          | Boolean |                                    | Overwrite `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                                |
+| `comment-on-pr`              | Boolean | false                              | Post scan results as a PR comment. Requires `pull-requests: write` permission                                                                                    |
 
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
