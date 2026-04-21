@@ -523,7 +523,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'rootfs'
-          scan-ref: 'rootfs-example-binary'
+          scan-ref: './rootfs-directory'
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'
@@ -890,10 +890,10 @@ Following inputs can be used as `step.with` keys:
 | `trivy-config`               | String  |                                    | Path to trivy.yaml config                                                                                                                                        |
 | `github-pat`                 | String  |                                    | Authentication token to enable sending SBOM scan results to GitHub Dependency Graph. Can be either a GitHub Personal Access Token (PAT) or GITHUB_TOKEN          |
 | `limit-severities-for-sarif` | Boolean | false                              | By default *SARIF* format enforces output of all vulnerabilities regardless of configured severities. To override this behavior set this parameter to **true**   |
-| `docker-host`                | String  |                                    | By default it is set to `unix://var/run/docker.sock`, but can be updated to help with containerized infrastructure values (`unix:/` or other prefix is required) |
+| `docker-host`                | String  |                                    | By default it is set to `unix:///var/run/docker.sock`, but can be updated to help with containerized infrastructure values (`unix:/` or other prefix is required) |
 | `version`                    | String  | `v0.69.3`                          | Trivy version to use, e.g. `latest` or `v0.69.3`                                                                                                                 |
 | `skip-setup-trivy`           | Boolean | false                              | Skip calling the `setup-trivy` action to install `trivy`                                                                                                         |
-| `token-setup-trivy`          | Boolean |                                    | Overwrite `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                                |
+| `token-setup-trivy`          | String  |                                    | Override `github.token` used by `setup-trivy` to checkout the `trivy` repository                                                                                |
 
 ### Environment variables
 You can use [Trivy environment variables][trivy-env] to set the necessary options (including flags that are not supported by [Inputs](#inputs), such as `--secret-config`).
