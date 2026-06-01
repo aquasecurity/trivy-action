@@ -218,7 +218,7 @@ jobs:
         version: v0.71.0
 
     - name: Run Trivy vulnerability scanner in repo mode
-      uses: aquasecurity/trivy-action@master
+      uses: aquasecurity/trivy-action@v0.36.0
       with:
         scan-type: 'fs'
         ignore-unfixed: true
@@ -252,7 +252,7 @@ jobs:
 
       # The first call to the action will invoke setup-trivy and install trivy
       - name: Generate Trivy Vulnerability Report
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: "fs"
           output: trivy-report.json
@@ -268,7 +268,7 @@ jobs:
           retention-days: 30
 
       - name: Fail build on High/Criticial Vulnerabilities
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: "fs"
           format: table
