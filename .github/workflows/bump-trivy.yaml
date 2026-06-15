@@ -51,6 +51,8 @@ jobs:
           private-key: ${{ secrets.REPO_TRIVY_ACTION_WRITE_GH_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Create PR
         env:
