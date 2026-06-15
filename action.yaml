@@ -128,7 +128,7 @@ runs:
       # be used.
       uses: aquasecurity/setup-trivy@3fb12ec12f41e471780db15c232d5dd185dcb514 # v0.2.6
       with:
-        # false positive: inputs.version has a pinned default value, so it's never unpinned
+        # version is pinned by default; using a floating tag like `latest` is the caller's responsibility
         version: ${{ inputs.version }} # zizmor: ignore[unpinned-tools]
         cache: ${{ inputs.cache }}
         token: ${{ inputs.token-setup-trivy }}
