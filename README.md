@@ -212,7 +212,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Manual Trivy Setup
-      uses: aquasecurity/setup-trivy@v0.2.0
+      uses: aquasecurity/setup-trivy@v0.3.1
       with:
         cache: true
         version: v0.71.2
