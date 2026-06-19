@@ -28,7 +28,7 @@ BATS_ENV := BATS_LIB_PATH=$(BATS_LIB_PATH) \
 	TRIVY_CACHE_DIR=$(CACHE_DIR) \
 	TRIVY_DEBUG=true
 
-BATS_FLAGS := --timing --verbose-run test/test.bats
+BATS_FLAGS := --timing --verbose-run test/test.bats test/comment-on-pr.bats
 
 .PHONY: test
 test:
