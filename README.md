@@ -85,7 +85,7 @@ jobs:
         trivy-config: trivy.yaml
 ```
 
-In this case `trivy.yaml` is a YAML configuration that is checked in as part of the repo. Detailed information is available on the Trivy website but an example is as follows:
+In this case, `trivy.yaml` is a YAML configuration that is checked in as part of the repo. Detailed information is available on the Trivy website but an example is as follows:
 ```yaml
 format: json
 exit-code: 1
