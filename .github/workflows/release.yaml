@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+        description: 'New action version in x.x.x format (without v)'
+
+run-name: Release v${{ inputs.version }}
+
+jobs:
+  release:
+    runs-on: ubuntu-2404-2core
+    permissions:
+      contents: read # for actions/checkout
+    steps:
+      - name: Validate version format
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          echo "${VERSION}" | grep -qP '^\d+\.\d+\.\d+$' || { echo "Invalid version format: '${VERSION}'. Expected x.x.x"; exit 1; }
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Update action version in README
+        env:
+          NEW_VERSION: ${{ inputs.version }}
+        run: |
+          CURRENT_VERSION=$(grep -oP 'trivy-action@v\K[0-9]+\.[0-9]+\.[0-9]+' README.md | sort -u | head -1)
+          sed -i "s|trivy-action@v${CURRENT_VERSION}|trivy-action@v${NEW_VERSION}|g" README.md
+
+      - name: Commit, tag and release
+        env:
+          GH_TOKEN: ${{ secrets.TRIVY_ACTION_DEPLOY_TOKEN }}
+          VERSION: ${{ inputs.version }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          gh auth setup-git
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add README.md
+          git commit -m "chore: update action version to v${VERSION} in examples"
+          git tag "v${VERSION}"
+          git push origin "${BASE_BRANCH}"
+          git push origin "v${VERSION}"
+          gh release create "v${VERSION}" --generate-notes
