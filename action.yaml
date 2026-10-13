@@ -116,6 +116,10 @@ inputs:
     ## ${{ github.token }} is default value for actions/checkout
     ## cf. https://github.com/actions/checkout/blob/eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871/action.yml#L24
     default: ${{ github.token }}
+  comment-on-pr:
+    description: 'Post scan results as a PR comment. Requires pull-requests: write permission.'
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
@@ -244,6 +248,9 @@ runs:
         INPUT_TRIVYIGNORES: ${{ inputs.trivyignores }}
         INPUT_GITHUB_PAT: ${{ inputs.github-pat }}
         INPUT_LIMIT_SEVERITIES_FOR_SARIF: ${{ inputs.limit-severities-for-sarif }}
+        INPUT_COMMENT_ON_PR: ${{ inputs.comment-on-pr }}
+        INPUT_GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_API_URL: ${{ github.api_url }}
 
         # For Trivy
         TRIVY_CACHE_DIR: ${{ inputs.cache-dir }} # Always set
