@@ -66,7 +66,7 @@ ensure-trivy: check-yq
 	echo "Current:  $$CURRENT_VERSION"; \
 	if [ "$$CURRENT_VERSION" != "$(CURRENT_TRIVY_VERSION)" ]; then \
 		echo "Installing Trivy $(CURRENT_TRIVY_VERSION) locally..."; \
-		curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | \
+		curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/v$(CURRENT_TRIVY_VERSION)/contrib/install.sh | \
 		sh -s -- -b $(TRIVY_INSTALL_DIR) v$(CURRENT_TRIVY_VERSION); \
 	else \
 		echo "Trivy $(CURRENT_TRIVY_VERSION) already present."; \
