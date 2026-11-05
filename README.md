@@ -746,6 +746,28 @@ jobs:
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: 'trivy-results.sarif'
+
+# Recommended: Use OIDC to avoid long-lived static credentials
+# Note: The example above uses static AWS credentials. For production environments, we recommend using GitHub Actions OIDC with IAM roles to eliminate long-lived access keys:
+- name: Configure AWS credentials via OIDC
+  uses: aws-actions/configure-aws-credentials@v4
+  with:
+    role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-role
+    aws-region: us-east-1
+
+- name: Run Trivy vulnerability scanner
+  uses: aquasecurity/trivy-action@0.33.1
+  with:
+    image-ref: '${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/my-app:${{ github.sha }}'
+    format: 'sarif'
+    output: 'trivy-results.sarif'
+    severity: 'CRITICAL,HIGH'
+    exit-code: '1'
+
+- name: Upload Trivy scan results to GitHub Security tab
+  uses: github/codeql-action/upload-sarif@v4
+  with:
+    sarif_file: 'trivy-results.sarif'
 ```
 
 #### GCR (Google Container Registry)
