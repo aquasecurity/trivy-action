@@ -97,7 +97,7 @@ secret:
 It is possible to define all options in the `trivy.yaml` file. Specifying individual options via the action are left for backward compatibility purposes. Defining the following is required as they cannot be defined with the config file:
 - `scan-ref`: If using `fs, repo` scans.
 - `image-ref`: If using `image` scan.
-- `scan-type`: To define the scan type, e.g. `image`, `fs`, `repo`, etc.
+- `scan-type`: To define the scan type, e.g. `image`, `fs`, `repo`, `rootfs`, `config`, etc.
 
 #### Order of preference for options
 Trivy uses [Viper](https://github.com/spf13/viper) which has a defined precedence order for options. The order is as follows:
@@ -866,7 +866,7 @@ Following inputs can be used as `step.with` keys:
 
 | Name                         | Type    | Default                            | Description                                                                                                                                                      |
 |------------------------------|---------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `scan-type`                  | String  | `image`                            | Scan type, e.g. `image` or `fs`                                                                                                                                  |
+| `scan-type`                  | String  | `image`                            | Scan type (`image`, `fs`, `repo`, `rootfs`, `config`)                                                                                                            |
 | `input`                      | String  |                                    | Tar reference, e.g. `alpine-latest.tar`                                                                                                                          |
 | `image-ref`                  | String  |                                    | Image reference, e.g. `alpine:3.10.2`                                                                                                                            |
 | `scan-ref`                   | String  | `/github/workspace/`               | Scan reference, e.g. `/github/workspace/` or `.`                                                                                                                 |
