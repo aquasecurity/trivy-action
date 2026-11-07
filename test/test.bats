@@ -271,3 +271,53 @@ run_test_case_fails() {
   assert_output --partial "Found ignorefile '$plain1'"
   assert_output --partial "Found ignorefile '$plain2'"
 }
+
+make_trivy_stub() {
+  local stub="$BATS_TEST_TMPDIR/trivy stub"
+  cat > "$stub" <<'EOF'
+#!/usr/bin/env bash
+printf '%s' "$TRIVY_IGNOREFILE" > "$TRIVY_CAPTURE"
+EOF
+  chmod +x "$stub"
+  printf '%s' "$stub"
+}
+
+@test "trivyignores supports spaces in multiple plain file paths" {
+  local ignore_dir="$BATS_TEST_TMPDIR/ignore dir with spaces"
+  local plain1="$ignore_dir/first ignore"
+  local plain2="$ignore_dir/second ignore"
+  mkdir -p "$ignore_dir"
+  printf 'CVE-SYNTHETIC-1\n' > "$plain1"
+  printf 'CVE-SYNTHETIC-2\n' > "$plain2"
+
+  export TRIVY_CMD="$(make_trivy_stub)" \
+         TRIVY_CAPTURE="$BATS_TEST_TMPDIR/captured-ignorefile" \
+         INPUT_TRIVYIGNORES="$plain1,$plain2" \
+         INPUT_SCAN_TYPE=fs \
+         INPUT_SCAN_REF=.
+
+  run bash -c 'cd "$1" && bash "$2"' _ "$BATS_TEST_TMPDIR" "$BATS_TEST_DIRNAME/../entrypoint.sh"
+  assert_success
+  assert_output --partial "Found ignorefile '$plain1'"
+  assert_output --partial "Found ignorefile '$plain2'"
+  assert_equal $'CVE-SYNTHETIC-1\nCVE-SYNTHETIC-2' "$(cat "$BATS_TEST_TMPDIR/trivyignores")"
+  assert_equal './trivyignores' "$(cat "$TRIVY_CAPTURE")"
+}
+
+@test "trivyignores supports spaces in a YAML file path" {
+  local ignore_dir="$BATS_TEST_TMPDIR/ignore dir with spaces"
+  local yaml_ignore="$ignore_dir/.trivyignore.yaml"
+  mkdir -p "$ignore_dir"
+  printf 'vulnerabilities:\n  - id: CVE-SYNTHETIC-3\n' > "$yaml_ignore"
+
+  export TRIVY_CMD="$(make_trivy_stub)" \
+         TRIVY_CAPTURE="$BATS_TEST_TMPDIR/captured-ignorefile" \
+         INPUT_TRIVYIGNORES="$yaml_ignore" \
+         INPUT_SCAN_TYPE=fs \
+         INPUT_SCAN_REF=.
+
+  run bash -c 'cd "$1" && bash "$2"' _ "$BATS_TEST_TMPDIR" "$BATS_TEST_DIRNAME/../entrypoint.sh"
+  assert_success
+  assert_output --partial "Using YAML ignorefile '$yaml_ignore'"
+  assert_equal "$yaml_ignore" "$(cat "$TRIVY_CAPTURE")"
+}

@@ -24,16 +24,29 @@ if [ -n "${INPUT_TRIVYIGNORES:-}" ]; then
 
   yaml_count=0
   plain_count=0
+  yaml_file=""
+  input_ignore_files=()
+  ignore_files=()
+  IFS=',' read -r -a input_ignore_files <<< "$INPUT_TRIVYIGNORES"
 
-  # Validate files and detect types
-  for f in ${INPUT_TRIVYIGNORES//,/ }; do
+  # Split only on commas so spaces and glob characters in paths remain literal.
+  for f in "${input_ignore_files[@]}"; do
+    # Preserve the previous behavior of ignoring whitespace around list entries.
+    f="${f#"${f%%[![:space:]]*}"}"
+    f="${f%"${f##*[![:space:]]}"}"
+    [ -n "$f" ] || continue
+    ignore_files+=("$f")
+
     if [ ! -f "$f" ]; then
       echo "ERROR: cannot find ignorefile '${f}'." >&2
       exit 1
     fi
 
     case "$f" in
-      *.yml|*.yaml) yaml_count=$((yaml_count + 1)) ;;
+      *.yml|*.yaml)
+        yaml_count=$((yaml_count + 1))
+        yaml_file="$f"
+        ;;
       *) plain_count=$((plain_count + 1)) ;;
     esac
   done
@@ -52,7 +65,6 @@ if [ -n "${INPUT_TRIVYIGNORES:-}" ]; then
     fi
 
     # Use the single YAML file
-    yaml_file=$(echo ${INPUT_TRIVYIGNORES//,/ } | awk '{print $1}')
     echo "Using YAML ignorefile '$yaml_file':"
     cat "$yaml_file"
     export TRIVY_IGNOREFILE="$yaml_file"
@@ -62,7 +74,7 @@ if [ -n "${INPUT_TRIVYIGNORES:-}" ]; then
     ignorefile="./trivyignores"
     : > "$ignorefile"
 
-    for f in ${INPUT_TRIVYIGNORES//,/ }; do
+    for f in "${ignore_files[@]}"; do
       echo "Found ignorefile '$f':"
       cat "$f"
       cat "$f" >> "$ignorefile"
